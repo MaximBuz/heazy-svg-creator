@@ -8,23 +8,28 @@ export function smoothWavePath (
   balance: number = 0.5,
   velocity: number = 50,
   breaks: number = 2,
+  stacks: number = 4,
+  distance: number = 5,
 ) {
   let waveHeight = height * balance
   const equal = width / breaks;
-  const data = [`M0 ${waveHeight}`];
-   for (let n = 1; n <= breaks; n++) {
-    const random = (generateRandomNumber(seed+n) - 0.5) * velocity;
-    const smooth = {
-     handle: {
-      x: random < 0 ? (n - 1) * equal + equal / 2 - random : (n - 1) * equal + equal / 2 + random,
-      y: waveHeight + random,
-     },
-     x: n * equal,
-     y: waveHeight + (generateRandomNumber(seed+2*n) - 0.5) * velocity,
-    };
-    data.push(`S${smooth.handle.x} ${smooth.handle.y} ${smooth.x} ${smooth.y}`);
-   }
-  data.push(`L${width} ${height}`, `L0 ${height}Z`);
-  return data.join(' ')
-
+  const waves = [];
+  for (let stack = 0; stack <= stacks; stack++) {
+    const data = [`M0 ${waveHeight + stack * distance * (stack * distance)}`];
+    for (let n = 1; n <= breaks; n++) {
+      const random = (generateRandomNumber(seed+stack+n) - 0.5) * velocity;
+      const smooth = {
+        handle: {
+          x: random < 0 ? (n - 1) * equal + equal / 2 - random : (n - 1) * equal + equal / 2 + random,
+          y: waveHeight + random + stack * distance * (stack * distance),
+        },
+        x: n * equal,
+        y: waveHeight + (generateRandomNumber(seed+stack+2*n) - 0.5) * velocity + stack * distance * (stack * distance),
+      };
+      data.push(`S${smooth.handle.x} ${smooth.handle.y} ${smooth.x} ${smooth.y}`);
+    }
+    data.push(`L${width} ${height}`, `L0 ${height}Z`);
+    waves.push(data.join(" "));
+  }
+  return waves;
 }

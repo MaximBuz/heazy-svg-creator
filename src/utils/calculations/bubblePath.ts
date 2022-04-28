@@ -1,7 +1,7 @@
 // calculates svg data attribute for wave with smooth peaks
 import { generateRandomNumber } from './randomNumber';
 
-export function blobPath(
+export function bubblePath(
   seed: number,
   width: number,
   height: number,
@@ -64,6 +64,6 @@ export function blobPath(
   // close off the blob by adding the first shorthand curve again
   path.push(`S ${first.handle.x} ${first.handle.y} ${first.x} ${first.y} Z`)
 
-  return path;
+  return path.join(" ");
 }
 // M -2 1   |   S -1 3 -2 1   |   S -3 -4 0 -4   |   S 6 -2 4 0   |   S -1 3 -2 1

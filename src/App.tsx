@@ -1,8 +1,7 @@
 import { useCallback, useRef } from 'react';
+import Bubble from './components/Blob';
 import StackedWave from './components/StackedWave';
 import { downloadBlob } from './utils/downloadBlob';
-
-import { blob } from 'stream/consumers';
 
 function App() {
   // test downloading
@@ -17,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <div style={{ display: 'flex', gap: 10}}>
-        <StackedWave
+        {/* <StackedWave
           svgRef = {svgRef}
           type="smooth"
           seed={1}
@@ -35,6 +34,22 @@ function App() {
           breaks={1}
           stacks={3}
           distance={5}
+          stroke={false}
+        /> */}
+        <Bubble
+          svgRef = {svgRef}
+          seed={1}
+          width={window.innerWidth / 3}
+          height={window.innerHeight + 10}
+          startWaveColor="#B7E7FF"
+          stopWaveColor="#927ace"
+          bgColor="#E8F7FF"
+          shadowX={0}
+          shadowY={5}
+          shadowSD={10}
+          shadowOpacity={0.5}
+          velocity={180}
+          size={20}
           stroke={false}
         />
         <StackedWave

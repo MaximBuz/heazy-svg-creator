@@ -1,10 +1,22 @@
+import { useCallback, useRef } from 'react';
 import StackedWave from './components/StackedWave';
+import { downloadBlob } from './utils/downloadBlob';
 
 function App() {
+  // test downloading
+  const svgRef = useRef<SVGAElement | null>(null);
+
+  const downloadSVG = useCallback(() => {
+    const svg = svgRef.current?.innerHTML;
+    const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
+    downloadBlob(blob, 'design.svg');
+  }, []);
+
   return (
     <div className="App">
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', gap: 10}}>
         <StackedWave
+          svgRef = {svgRef}
           type="smooth"
           seed={2}
           width={window.innerWidth / 3}
@@ -17,14 +29,14 @@ function App() {
           shadowSD={10}
           shadowOpacity={0.5}
           balance={0.5}
-          velocity={70}
+          velocity={80}
           breaks={3}
           stacks={3}
           distance={5}
         />
         <StackedWave
           type="peak"
-          seed={7}
+          seed={1}
           width={window.innerWidth / 3}
           height={window.innerHeight + 10}
           startWaveColor="#9e2424"
@@ -40,6 +52,7 @@ function App() {
           stacks={2}
           distance={5}
         />
+        <button onClick = {downloadSVG}>Download</button>
       </div>
     </div>
   );

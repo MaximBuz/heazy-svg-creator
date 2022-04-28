@@ -28,15 +28,16 @@ function App() {
           shadowY={5}
           shadowSD={10}
           shadowOpacity={0.5}
-          balance={0.5}
+          balance={0.65}
           velocity={80}
           breaks={3}
           stacks={3}
           distance={5}
+          stroke={false}
         />
         <StackedWave
           type="peak"
-          seed={1}
+          seed={3}
           width={window.innerWidth / 3}
           height={window.innerHeight + 10}
           startWaveColor="#9e2424"
@@ -51,8 +52,25 @@ function App() {
           breaks={5}
           stacks={2}
           distance={5}
+          stroke={false}
         />
-        <button onClick = {downloadSVG}>Download</button>
+        <StackedWave
+          type="peak"
+          seed={5}
+          width={window.innerWidth / 3}
+          height={window.innerHeight + 10}
+          startWaveColor="#309e24"
+          stopWaveColor="#e5de00"
+          bgColor="#001439"
+          balance={0.1}
+          velocity={10}
+          breaks={60}
+          stacks={60}
+          distance={1}
+          stroke={true}
+          strokeWidth={1.5}
+        />
+        {/* <button onClick = {downloadSVG}>Download</button> */}
       </div>
     </div>
   );

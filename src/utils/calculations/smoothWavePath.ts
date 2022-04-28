@@ -10,6 +10,7 @@ export function smoothWavePath (
   breaks: number = 2,
   stacks: number = 4,
   distance: number = 5,
+  stroke: boolean = false
 ) {
   let waveHeight = height * balance
   const equal = width / breaks;
@@ -28,7 +29,7 @@ export function smoothWavePath (
       };
       data.push(`S${smooth.handle.x} ${smooth.handle.y} ${smooth.x} ${smooth.y}`);
     }
-    data.push(`L${width} ${height}`, `L0 ${height}Z`);
+    !stroke && data.push(`L${width} ${height}`, `L0 ${height}Z`);
     waves.push(data.join(" "));
   }
   return waves;

@@ -9,7 +9,8 @@ export function peakWavePath(
   velocity: number,
   breaks: number,
   stacks: number,
-  distance: number
+  distance: number,
+  stroke: boolean
 ) {
   let waveHeight = height * balance
   const equal = width / breaks;
@@ -19,7 +20,7 @@ export function peakWavePath(
     for (let n = 1; n <= breaks; n++) {
       data.push(`L${n * equal} ${waveHeight + (generateRandomNumber(seed+stack+2*n) - 0.5) * velocity + stack * distance * (stack * distance)}`);
     }
-    data.push(`L${width} ${height}`, `L0 ${height}Z`);
+    !stroke && data.push(`L${width} ${height}`, `L0 ${height}Z`);
     waves.push(data.join(" "));
   }
   return waves;

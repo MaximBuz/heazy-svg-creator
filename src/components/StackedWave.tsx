@@ -55,7 +55,6 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
     wavesData = peakWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
   }
   const randomClassId = Math.round(Math.random()* 100)
-  console.log(randomClassId);
   return (
     <div ref={svgRef} style={{ width, height }}>
       <svg

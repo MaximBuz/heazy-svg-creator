@@ -2,6 +2,8 @@ import { useCallback, useRef } from 'react';
 import StackedWave from './components/StackedWave';
 import { downloadBlob } from './utils/downloadBlob';
 
+import { blob } from 'stream/consumers';
+
 function App() {
   // test downloading
   const svgRef = useRef<SVGAElement | null>(null);

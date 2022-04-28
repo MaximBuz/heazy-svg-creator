@@ -28,10 +28,10 @@ function App() {
           shadowY={5}
           shadowSD={10}
           shadowOpacity={0.5}
-          balance={0.60}
-          velocity={80}
+          balance={0.50}
+          velocity={120}
           breaks={1}
-          stacks={4}
+          stacks={3}
           distance={5}
           stroke={false}
         />

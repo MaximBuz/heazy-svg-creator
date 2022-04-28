@@ -66,39 +66,41 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
       >
-        <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-        <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
-          <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
-        </linearGradient>
+        <g transform-origin={`${width/2} ${height/2}`} transform="scale(1, 1) rotate(180)">
+          <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
+          <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+            <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
+            <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
+          </linearGradient>
 
-          {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x={0} width="100%">
-            <feDropShadow
-              dx={shadowX}
-              dy={shadowY}
-              stdDeviation={shadowSD}
-              floodColor="black"
-              floodOpacity={shadowOpacity}
-            />
-          </filter>
-        )}
-        {wavesData.map((wave, index) => (
-          <path
-            key={index}
-            d={wave}
-            fill="none"
-            strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${type}-${randomClassId})`:undefined}
-            stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
-            strokeWidth={strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / wavesData.length)*index : strokeWidth}
-            style={{
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
-            }}
-          ></path>
-        ))}
+            {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
+          {!stroke && (
+            <filter id={`shadow-${type}-${randomClassId}`} x={0} width="100%">
+              <feDropShadow
+                dx={shadowX}
+                dy={shadowY}
+                stdDeviation={shadowSD}
+                floodColor="black"
+                floodOpacity={shadowOpacity}
+              />
+            </filter>
+          )}
+          {wavesData.map((wave, index) => (
+            <path
+              key={index}
+              d={wave}
+              fill="none"
+              strokeLinecap="round"
+              filter={!stroke ? `url(#shadow-${type}-${randomClassId})`:undefined}
+              stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+              strokeWidth={strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / wavesData.length)*index : strokeWidth}
+              style={{
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
+                fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+              }}
+            ></path>
+          ))}
+        </g>
       </svg>
     </div>
   );

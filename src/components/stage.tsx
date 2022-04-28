@@ -1,3 +1,9 @@
-import styled from "styled-components";
+import React from 'react';
 
-const Stage = styled.div``
+export interface IStageProps {};
+
+const Stage: React.FunctionComponent<IStageProps> = props => {
+  return <></>;
+};
+
+export default Stage;

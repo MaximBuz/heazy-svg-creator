@@ -1,7 +1,6 @@
 import { useCallback, useRef } from 'react';
 import StackedWave from './components/StackedWave';
 import { downloadBlob } from './utils/downloadBlob';
-import {} from 'styled-components/cssprop'
 
 function App() {
   // test downloading

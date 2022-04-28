@@ -1,7 +1,17 @@
+// React
 import { useCallback, useRef } from 'react';
+
+// Components
 import Bubble from './components/Blob';
+import Menu from './components/menu';
 import StackedWave from './components/StackedWave';
+
+// Design
+import { Flex, Spacer, Stack, Container, Image, Heading } from '@chakra-ui/react';
+
+// Utils
 import { downloadBlob } from './utils/downloadBlob';
+import { ViewIcon } from '@chakra-ui/icons';
 
 function App() {
   // test downloading
@@ -14,8 +24,31 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div style={{ display: 'flex', gap: 10}}>
+    <Flex direction="row" overflow="hidden">
+      <Container minW="250px" maxW="250px" height="100vh" overflow="scroll" centerContent>
+        <Container
+          minW="250px"
+          maxW="250px"
+          height="70px"
+          position="fixed"
+          zIndex={2}
+          bgColor="#1A202C"
+          centerContent
+        >
+          <Flex justifyContent="space-between" alignItems="center">
+            <Heading>React</Heading>
+            <ViewIcon></ViewIcon>
+          </Flex>
+        </Container>
+        <Stack marginTop={100} scrollBehavior="smooth">
+          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+        </Stack>
+      </Container>
+      <div style={{ display: 'flex', gap: 10 }}>
         {/* <StackedWave
           svgRef = {svgRef}
           type="smooth"
@@ -37,7 +70,7 @@ function App() {
           stroke={false}
         /> */}
         <Bubble
-          svgRef = {svgRef}
+          svgRef={svgRef}
           seed={1}
           width={window.innerWidth / 3}
           height={window.innerHeight + 10}
@@ -90,7 +123,7 @@ function App() {
         />
         {/* <button onClick = {downloadSVG}>Download</button> */}
       </div>
-    </div>
+    </Flex>
   );
 }
 

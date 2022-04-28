@@ -65,7 +65,7 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
       >
-        <g transform-origin={`${width/2} ${height/2}`} transform="scale(1, 1) rotate(180)">
+        <g transform-origin={`${width/2} ${height/2}`} transform="scale(1, 1) rotate(0)">
           <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
           <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
             <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />

@@ -8,6 +8,7 @@ export interface IStackedWaveProps {
   type: 'smooth' | 'peak';
   stroke: boolean;
   strokeWidth?: number;
+  strokeShrink?: boolean;
   seed: number;
   width: number;
   height: number;
@@ -44,7 +45,8 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
   shadowY,
   shadowSD,
   stroke,
-  strokeWidth
+  strokeWidth,
+  strokeShrink
 }) => {
   let wavesData;
   if (type === 'smooth') {
@@ -52,7 +54,8 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
   } else {
     wavesData = peakWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
   }
-  const randomClassId = Math.round(Math.random()) * Math.round(Math.random());
+  const randomClassId = Math.round(Math.random()* 100)
+  console.log(randomClassId);
   return (
     <div ref={svgRef} style={{ width, height }}>
       <svg
@@ -89,7 +92,7 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
             strokeLinecap="round"
             filter={!stroke ? `url(#shadow-${type}-${randomClassId})`:undefined}
             stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
-            strokeWidth={strokeWidth}
+            strokeWidth={strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / wavesData.length)*index : strokeWidth}
             style={{
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
               fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,

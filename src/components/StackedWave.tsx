@@ -57,7 +57,8 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
           <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
           <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
         </linearGradient>
-        <filter id={`shadow-${type}-${randomClassId}`}>
+          {/* you have to put in either x and width or y and height for shadows to stay in box */}
+        <filter id={`shadow-${type}-${randomClassId}`} x={0} width="100%">
           <feDropShadow
             dx={shadowX}
             dy={shadowY}

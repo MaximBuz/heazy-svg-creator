@@ -7,14 +7,13 @@ import Menu from './components/menu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Stack, Container, Image, Heading, Center, chakra } from '@chakra-ui/react';
+import { Flex, Stack, Text, Container, Image, Heading, Center, chakra, Box } from '@chakra-ui/react';
 import stackedWave from './stackedWaves.svg';
 import stackedWave2 from './stackedWaves2.svg';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
 import { ViewIcon } from '@chakra-ui/icons';
-import { transform } from 'lodash';
 import { isValidMotionProp, motion } from 'framer-motion';
 
 function App() {
@@ -34,8 +33,8 @@ function App() {
   return (
     <Flex direction="row" overflow="hidden" justifyContent="space-between" minW="100vw" minH="100vh">
       <Container
-        minW="220px"
-        maxW="220px"
+        minW="180px"
+        maxW="180px"
         height="100vh"
         position="fixed"
         left="0"
@@ -48,8 +47,8 @@ function App() {
         p="0"
       >
         <Container
-          minW="220px"
-          maxW="220px"
+          minW="180px"
+          maxW="180px"
           height="70px"
           position="fixed"
           zIndex={2}
@@ -61,25 +60,51 @@ function App() {
             <ViewIcon></ViewIcon>
           </Center>
         </Container>
-        <Stack marginTop={100} spacing={0} scrollBehavior="smooth" >
-          <Container p="4" _hover={{ background: '#2e3643', cursor: 'pointer' }}>
-            <Image
-              as={motion.img}
-              rounded="xl"
-              whileHover={{ scale: 1.03, boxShadow: "0 0 0 4px white" }}
-              src={stackedWave}
-              w="100%"
-            />
-          </Container>
-          <Container p="4" _hover={{ background: '#2e3643', cursor: 'pointer' }}>
-            <Image
-              as={motion.img}
-              rounded="xl"
-              whileHover={{ scale: 1.03, boxShadow: "0 0 0 4px white", objectPosition: "scale-down" }}
-              src={stackedWave2}
-              w="100%"
-            />
-          </Container>
+        <Stack marginTop={100} spacing={0} scrollBehavior="smooth">
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            p="4"
+            position="relative"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+          >
+            <Box as={motion.div} rounded="xl" whileHover={{ scale: 1 }} w="100%" h="100%" overflow="hidden">
+              <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={stackedWave} rounded="xl" />
+            </Box>
+            <Text
+              as={motion.p}
+              pointerEvents="none"
+              position="absolute"
+              zIndex={10}
+              fontSize="sm"
+              fontWeight="bold"
+              align="center"
+            >
+              Waves
+            </Text>
+          </Flex>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            p="4"
+            position="relative"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+          >
+            <Box as={motion.div} rounded="xl" whileHover={{ scale: 1 }} w="100%" h="100%" overflow="hidden">
+              <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={stackedWave2} rounded="xl" />
+            </Box>
+            <Text
+              as={motion.p}
+              pointerEvents="none"
+              position="absolute"
+              zIndex={10}
+              fontSize="sm"
+              fontWeight="bold"
+              align="center"
+            >
+              Blob
+            </Text>
+          </Flex>
         </Stack>
       </Container>
       <Container justifyContent="center" alignContent="center" centerContent>
@@ -149,11 +174,11 @@ function App() {
           bgColor="#540e42"
           balance={0.1}
           velocity={10}
-          breaks={60}
-          stacks={40}
+          breaks={20}
+          stacks={50}
           distance={0.7}
           stroke={true}
-          strokeWidth={3}
+          strokeWidth={1}
           strokeShrink={true}
         /> */}
         <button onClick={downloadSVG}>download</button>

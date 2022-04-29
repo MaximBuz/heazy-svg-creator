@@ -56,8 +56,7 @@ function App() {
           justifyContent="space-around"
           alignItems="center"
         >
-            <Heading>React</Heading>
-            <ViewIcon></ViewIcon>
+            <Heading fontWeight="medium" fontFamily="Archivo Black, sans-serif;">svegee</Heading>
         </Flex>
         <Stack marginTop={100} spacing={0} scrollBehavior="smooth">
           <Flex

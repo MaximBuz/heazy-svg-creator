@@ -7,7 +7,9 @@ import Menu from './components/menu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Spacer, Stack, Container, Image, Heading } from '@chakra-ui/react';
+import { Flex, Stack, Container, Image, Heading, Center } from '@chakra-ui/react';
+import stackedWave from './stackedWaves.svg';
+import stackedWave2 from './stackedWaves2.svg';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
@@ -24,31 +26,45 @@ function App() {
   }, []);
 
   return (
-    <Flex direction="row" overflow="hidden">
-      <Container minW="250px" maxW="250px" height="100vh" overflow="scroll" centerContent>
+    <Flex direction="row" overflow="hidden" justifyContent="space-between" minW="100vw" minH="100vh">
+      <Container
+        minW="220px"
+        maxW="220px"
+        height="100vh"
+        position="fixed"
+        left="0"
+        top="0"
+        bgColor="#232a37"
+        overflow="scroll"
+        sx={{ '&::-webkit-scrollbar': { display: 'none' } }}
+        centerContent
+        boxShadow="dark-lg"
+        p="0"
+      >
         <Container
-          minW="250px"
-          maxW="250px"
+          minW="220px"
+          maxW="220px"
           height="70px"
           position="fixed"
           zIndex={2}
-          bgColor="#1A202C"
+          bgColor="#232a37"
           centerContent
         >
-          <Flex justifyContent="space-between" alignItems="center">
+          <Center justifyContent="space-between" alignItems="center">
             <Heading>React</Heading>
             <ViewIcon></ViewIcon>
-          </Flex>
+          </Center>
         </Container>
-        <Stack marginTop={100} scrollBehavior="smooth">
-          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
-          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
-          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
-          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
-          <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+        <Stack marginTop={100} spacing={0} scrollBehavior="smooth">
+          <Container p="2" _hover={{ background: '#2e3643' }}>
+            <Image src={stackedWave} alt="Dan Abramov" rounded="lg" stroke="ActiveBorder" w="100%" />
+          </Container>
+          <Container p="2" _hover={{ background: '#2e3643' }}>
+            <Image src={stackedWave2} alt="Dan Abramov" rounded="lg" stroke="ActiveBorder" w="100%" />
+          </Container>
         </Stack>
       </Container>
-      <div style={{ display: 'flex', gap: 10 }}>
+      <Container justifyContent="center" alignContent="center" centerContent>
         {/* <StackedWave
           svgRef = {svgRef}
           type="smooth"
@@ -69,7 +85,7 @@ function App() {
           distance={5}
           stroke={false}
         /> */}
-        <Bubble
+        {/* <Bubble
           svgRef={svgRef}
           seed={1}
           width={window.innerWidth / 3}
@@ -84,27 +100,28 @@ function App() {
           velocity={180}
           size={20}
           stroke={false}
-        />
+        /> */}
         <StackedWave
-          type="peak"
+          svgRef={svgRef}
+          type="smooth"
           seed={2}
-          width={window.innerWidth / 3}
-          height={window.innerHeight + 10}
-          startWaveColor="#0066FF"
-          stopWaveColor="#2e82ff"
-          bgColor="#002233"
+          width={800}
+          height={500}
+          startWaveColor="#B7E7FF"
+          stopWaveColor="#927ace"
+          bgColor="#320101"
           shadowX={0}
           shadowY={0}
-          shadowSD={15}
+          shadowSD={5}
           shadowOpacity={0.5}
           balance={0.5}
-          velocity={150}
+          velocity={50}
           breaks={6}
-          stacks={2}
+          stacks={3}
           distance={5}
           stroke={false}
         />
-        <StackedWave
+        {/* <StackedWave
           type="peak"
           seed={1}
           width={window.innerWidth / 3}
@@ -120,9 +137,9 @@ function App() {
           stroke={true}
           strokeWidth={3}
           strokeShrink={true}
-        />
-        {/* <button onClick = {downloadSVG}>Download</button> */}
-      </div>
+        /> */}
+        <button onClick={downloadSVG}>download</button>
+      </Container>
     </Flex>
   );
 }

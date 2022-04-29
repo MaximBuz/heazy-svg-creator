@@ -1,0 +1,22 @@
+<svg viewBox="0 0 800 500" height="100%" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<g transform-origin="400 250" transform="scale(1, 1) rotate(0)">
+		<rect x="0" y="0" width="800" height="500" fill="#002233">
+		</rect>
+		<linearGradient id="linear-gradient-peak-32">
+			<stop offset="0%" stop-color="#0066FF" stop-opacity="100%">
+			</stop>
+			<stop offset="100%" stop-color="#2e82ff" stop-opacity="100%">
+			</stop>
+		</linearGradient>
+		<filter id="shadow-peak-32" x="0" width="100%">
+			<feDropShadow dx="0" dy="0" stdDeviation="15" flood-color="black" flood-opacity="0.5">
+			</feDropShadow>
+		</filter>
+		<path d="M0 250 L133.33333333333334 313.5454295668751 L266.6666666666667 253.8619916769676 L400 198.44427547650412 L533.3333333333334 250.29880175134167 L666.6666666666667 218.22263703215867 L800 242.1937215141952 L800 500 L0 500Z" fill="none" stroke-linecap="round" filter="url(#shadow-peak-32)" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-peak-32&quot;);">
+		</path>
+		<path d="M0 275 L133.33333333333334 303.46623663790524 L266.6666666666667 201.75571297295392 L400 229.809337714687 L533.3333333333334 276.7380572971888 L666.6666666666667 284.94839740451425 L800 235.67600385285914 L800 500 L0 500Z" fill="none" stroke-linecap="round" filter="url(#shadow-peak-32)" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-peak-32&quot;);">
+		</path>
+		<path d="M0 350 L133.33333333333334 353.8619916769676 L266.6666666666667 298.4442754765041 L400 350.29880175134167 L533.3333333333334 318.2226370321587 L666.6666666666667 342.1937215141952 L800 369.709281087853 L800 500 L0 500Z" fill="none" stroke-linecap="round" filter="url(#shadow-peak-32)" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-peak-32&quot;);">
+		</path>
+	</g>
+</svg>

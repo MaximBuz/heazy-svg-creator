@@ -22,8 +22,8 @@ export function bubblePath(
  
   // calculate starting point
   const start = {
-    x: center.x - (generateRandomNumber(seed) * (velocity + size)),
-    y: center.y + (generateRandomNumber(seed + random) * (velocity + size)),
+    x: center.x - (generateRandomNumber(seed) * (velocity * size)),
+    y: center.y + (generateRandomNumber(seed + random) * (velocity * size)),
   }
   path.push(`M ${start.x} ${start.y}`)
 
@@ -32,8 +32,8 @@ export function bubblePath(
     x: start.x, // has to be at the same point as the start to stay smooth
     y: start.y,
     handle: {
-      x: start.x + (generateRandomNumber(seed + random * 2) * (velocity + size)),
-      y: start.y + (generateRandomNumber(seed + random * 2) * (velocity + size))
+      x: start.x + (generateRandomNumber(seed + random * 2) * (velocity * size)),
+      y: start.y + (generateRandomNumber(seed + random * 2) * (velocity * size))
     }
   }
   path.push(`S ${first.handle.x} ${first.handle.y} ${first.x} ${first.y}`)
@@ -41,10 +41,10 @@ export function bubblePath(
   // calculate the second (top) shorthand curve
   const second = {
     x: center.x - (generateRandomNumber(seed) * (velocity / 2 + size)),
-    y: center.y - (generateRandomNumber(seed + random * 3) * (velocity + size)),
+    y: center.y - (generateRandomNumber(seed + random * 3) * (velocity * size)),
     handle: {
       x: center.x - (generateRandomNumber(seed) * (velocity * 3 + size)),
-      y: center.y - (generateRandomNumber(seed + random * 4) * (velocity + size))
+      y: center.y - (generateRandomNumber(seed + random * 4) * (velocity * size))
     }
   }
   path.push(`S ${second.handle.x} ${second.handle.y} ${second.x} ${second.y}`)
@@ -52,11 +52,11 @@ export function bubblePath(
 
   // calculate the third (right) shorthand curve
   const third = {
-    x: center.x + (generateRandomNumber(seed) * (velocity + size)),
-    y: center.y + ((generateRandomNumber(seed + random) -0.5) * ((velocity + size))),
+    x: center.x + (generateRandomNumber(seed) * (velocity * size)),
+    y: center.y + ((generateRandomNumber(seed + random) -0.5) * ((velocity * size))),
     handle: {
       x: center.x + (generateRandomNumber(seed) * (velocity * 2 + size)),
-      y: center.y - (generateRandomNumber(seed + random) * ((velocity + size)))
+      y: center.y - (generateRandomNumber(seed + random) * ((velocity * size)))
     }
   }
   path.push(`S ${third.handle.x} ${third.handle.y} ${third.x} ${third.y}`)

@@ -1,14 +1,13 @@
 import React from 'react';
 
 // Design
-import { Flex, Stack, Text, Image, Heading, Box, Icon } from '@chakra-ui/react';
+import { Flex, Stack, Image, Heading, Icon } from '@chakra-ui/react';
 import stackedWave from '../stackedWaves.svg';
 import bubble from '../bubble.svg';
 import Logo from '../Logo.svg';
 import { UilLinkedin } from '@iconscout/react-unicons';
 
 // Utils
-import { motion } from 'framer-motion';
 import Thumbnail from './Thumbnail';
 
 export interface ILeftMenuProps {}

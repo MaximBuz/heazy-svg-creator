@@ -34,7 +34,7 @@ function App() {
       h="100vh"
     >
       <LeftMenu></LeftMenu>
-      <Container flexGrow={1} justifyContent="center" alignContent="center" centerContent>
+      <Container flexGrow={2} justifyContent="center" alignContent="center" centerContent padding="10">
         {/* <StackedWave
           svgRef = {svgRef}
           type="smooth"
@@ -75,8 +75,8 @@ function App() {
           svgRef={svgRef}
           type="peak"
           seed={5}
-          width={700}
-          height={600}
+          width={600}
+          height={450}
           startWaveColor="#035adc"
           stopWaveColor="#5195fb"
           bgColor="#002233"

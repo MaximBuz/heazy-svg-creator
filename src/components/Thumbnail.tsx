@@ -1,11 +1,7 @@
 import React from 'react';
 
 // Design
-import { Flex, Stack, Text, Image, Heading, Box, Icon } from '@chakra-ui/react';
-import stackedWave from '../stackedWaves.svg';
-import bubble from '../bubble.svg';
-import Logo from '../Logo.svg';
-import { UilLinkedin } from '@iconscout/react-unicons';
+import { Flex, Text, Image, Box } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';

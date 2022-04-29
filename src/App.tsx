@@ -7,14 +7,17 @@ import Menu from './components/menu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Stack, Text, Container, Image, Heading, Center, chakra, Box } from '@chakra-ui/react';
+import { Flex, Stack, Text, Container, Image, Heading, chakra, Box, Icon } from '@chakra-ui/react';
 import stackedWave from './stackedWaves.svg';
 import bubble from './bubble.svg';
+import Logo from './Logo.svg';
+import { UilLinkedin } from '@iconscout/react-unicons';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
 import { ViewIcon } from '@chakra-ui/icons';
 import { isValidMotionProp, motion } from 'framer-motion';
+import { relative } from 'path';
 
 function App() {
   // test downloading
@@ -31,8 +34,15 @@ function App() {
   });
 
   return (
-    <Flex direction="row" bgColor="#141820" overflow="hidden" justifyContent="space-between" minW="100vw" minH="100vh">
-      <Container
+    <Flex
+      direction="row"
+      bgColor="#141820"
+      overflow="hidden"
+      justifyContent="space-between"
+      minW="100vw"
+      minH="100vh"
+    >
+      <Flex
         minW="180px"
         maxW="180px"
         height="100vh"
@@ -40,25 +50,31 @@ function App() {
         left="0"
         top="0"
         bgColor="#1c1f27"
-        overflow="scroll"
-        sx={{ '&::-webkit-scrollbar': { display: 'none' } }}
-        centerContent
+        direction="column"
         boxShadow="dark-lg"
         p="0"
+        h="100%"
       >
         <Flex
           minW="180px"
           maxW="180px"
           height="70px"
-          position="fixed"
-          zIndex={2}
+          zIndex={20}
           bgColor="#262a33"
           justifyContent="space-around"
           alignItems="center"
         >
-            <Heading fontWeight="medium" fontFamily="Archivo Black, sans-serif;">svegee</Heading>
+          <Image src={Logo} h="50%"></Image>
         </Flex>
-        <Stack marginTop={100} spacing={0} scrollBehavior="smooth">
+        <Stack
+          spacing={0}
+          scrollBehavior="smooth"
+          overflow="scroll"
+          flexGrow={1}
+          sx={{
+            '&::-webkit-scrollbar': { display: 'none' },
+          }}
+        >
           <Flex
             justifyContent="center"
             alignItems="center"
@@ -104,7 +120,23 @@ function App() {
             </Text>
           </Flex>
         </Stack>
-      </Container>
+
+        <Flex
+          minW="180px"
+          maxW="180px"
+          height="70px"
+          minH="70px"
+          zIndex={20}
+          bgColor="#262a33"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          <Heading lineHeight="1em" fontWeight="lighter" fontSize="2xl" fontFamily="Karla, sans-serif;">
+            HEAZY.
+          </Heading>
+          <Icon as={UilLinkedin} boxSize="8" cursor="pointer"></Icon>
+        </Flex>
+      </Flex>
       <Container justifyContent="center" alignContent="center" centerContent>
         {/* <StackedWave
           svgRef = {svgRef}
@@ -142,10 +174,10 @@ function App() {
           size={3}
           stroke={false}
         /> */}
-        {/* <StackedWave
+        <StackedWave
           svgRef={svgRef}
           type="peak"
-          seed={2}
+          seed={5}
           width={900}
           height={650}
           startWaveColor="#035adc"
@@ -156,13 +188,13 @@ function App() {
           shadowSD={10}
           shadowOpacity={0.5}
           balance={0.5}
-          velocity={150}
+          velocity={100}
           breaks={6}
           stacks={3}
           distance={4.3}
           stroke={false}
-        /> */}
-        <StackedWave
+        />
+        {/* <StackedWave
           type="peak"
           seed={2}
           width={900}
@@ -172,13 +204,13 @@ function App() {
           bgColor="#002233"
           balance={0.5}
           velocity={30}
-          breaks={20}
-          stacks={35}
+          breaks={40}
+          stacks={20}
           distance={0.5}
           stroke={true}
           strokeWidth={2}
           strokeShrink={true}
-        />
+        /> */}
         <button onClick={downloadSVG}>download</button>
       </Container>
     </Flex>

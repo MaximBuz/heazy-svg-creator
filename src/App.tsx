@@ -127,7 +127,7 @@ function App() {
           distance={5}
           stroke={false}
         /> */}
-        <Bubble
+        {/* <Bubble
           svgRef={svgRef}
           seed={1}
           width={900}
@@ -142,7 +142,7 @@ function App() {
           velocity={100}
           size={3}
           stroke={false}
-        />
+        /> */}
         {/* <StackedWave
           svgRef={svgRef}
           type="peak"
@@ -163,23 +163,23 @@ function App() {
           distance={4.3}
           stroke={false}
         /> */}
-        {/* <StackedWave
+        <StackedWave
           type="peak"
-          seed={1}
-          width={window.innerWidth / 3}
-          height={window.innerHeight + 10}
+          seed={2}
+          width={900}
+          height={650}
           startWaveColor="#309e24"
           stopWaveColor="#e5de00"
-          bgColor="#540e42"
-          balance={0.1}
-          velocity={10}
+          bgColor="#002233"
+          balance={0.5}
+          velocity={30}
           breaks={20}
-          stacks={50}
-          distance={0.7}
+          stacks={35}
+          distance={0.5}
           stroke={true}
-          strokeWidth={1}
+          strokeWidth={2}
           strokeShrink={true}
-        /> */}
+        />
         <button onClick={downloadSVG}>download</button>
       </Container>
     </Flex>

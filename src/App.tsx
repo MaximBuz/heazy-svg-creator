@@ -9,7 +9,7 @@ import StackedWave from './components/StackedWave';
 // Design
 import { Flex, Stack, Text, Container, Image, Heading, Center, chakra, Box } from '@chakra-ui/react';
 import stackedWave from './stackedWaves.svg';
-import stackedWave2 from './stackedWaves2.svg';
+import bubble from './bubble.svg';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
@@ -31,7 +31,7 @@ function App() {
   });
 
   return (
-    <Flex direction="row" overflow="hidden" justifyContent="space-between" minW="100vw" minH="100vh">
+    <Flex direction="row" bgColor="#141820" overflow="hidden" justifyContent="space-between" minW="100vw" minH="100vh">
       <Container
         minW="180px"
         maxW="180px"
@@ -39,27 +39,26 @@ function App() {
         position="fixed"
         left="0"
         top="0"
-        bgColor="#232a37"
+        bgColor="#1c1f27"
         overflow="scroll"
         sx={{ '&::-webkit-scrollbar': { display: 'none' } }}
         centerContent
         boxShadow="dark-lg"
         p="0"
       >
-        <Container
+        <Flex
           minW="180px"
           maxW="180px"
           height="70px"
           position="fixed"
           zIndex={2}
-          bgColor="#232a37"
-          centerContent
+          bgColor="#262a33"
+          justifyContent="space-around"
+          alignItems="center"
         >
-          <Center justifyContent="space-between" alignItems="center">
             <Heading>React</Heading>
             <ViewIcon></ViewIcon>
-          </Center>
-        </Container>
+        </Flex>
         <Stack marginTop={100} spacing={0} scrollBehavior="smooth">
           <Flex
             justifyContent="center"
@@ -68,7 +67,7 @@ function App() {
             position="relative"
             _hover={{ background: '#2e3643', cursor: 'pointer' }}
           >
-            <Box as={motion.div} rounded="xl" whileHover={{ scale: 1 }} w="100%" h="100%" overflow="hidden">
+            <Box rounded="xl" w="100%" h="100%" overflow="hidden">
               <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={stackedWave} rounded="xl" />
             </Box>
             <Text
@@ -90,8 +89,8 @@ function App() {
             position="relative"
             _hover={{ background: '#2e3643', cursor: 'pointer' }}
           >
-            <Box as={motion.div} rounded="xl" whileHover={{ scale: 1 }} w="100%" h="100%" overflow="hidden">
-              <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={stackedWave2} rounded="xl" />
+            <Box rounded="xl" w="100%" h="100%" overflow="hidden">
+              <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={bubble} rounded="xl" />
             </Box>
             <Text
               as={motion.p}
@@ -102,7 +101,7 @@ function App() {
               fontWeight="bold"
               align="center"
             >
-              Blob
+              Bubble
             </Text>
           </Flex>
         </Stack>
@@ -128,42 +127,42 @@ function App() {
           distance={5}
           stroke={false}
         /> */}
-        {/* <Bubble
+        <Bubble
           svgRef={svgRef}
           seed={1}
-          width={window.innerWidth / 3}
-          height={window.innerHeight + 10}
-          startWaveColor="#B7E7FF"
-          stopWaveColor="#927ace"
-          bgColor="#E8F7FF"
+          width={900}
+          height={650}
+          startWaveColor="#A7233A"
+          stopWaveColor="#9e1027"
+          bgColor="#001320"
           shadowX={0}
           shadowY={5}
           shadowSD={10}
           shadowOpacity={0.5}
-          velocity={180}
-          size={20}
-          stroke={false}
-        /> */}
-        <StackedWave
-          svgRef={svgRef}
-          type="smooth"
-          seed={2}
-          width={800}
-          height={500}
-          startWaveColor="#B7E7FF"
-          stopWaveColor="#927ace"
-          bgColor="#320101"
-          shadowX={0}
-          shadowY={0}
-          shadowSD={5}
-          shadowOpacity={0.5}
-          balance={0.5}
-          velocity={50}
-          breaks={6}
-          stacks={3}
-          distance={5}
+          velocity={100}
+          size={3}
           stroke={false}
         />
+        {/* <StackedWave
+          svgRef={svgRef}
+          type="peak"
+          seed={2}
+          width={900}
+          height={650}
+          startWaveColor="#035adc"
+          stopWaveColor="#5195fb"
+          bgColor="#002233"
+          shadowX={0}
+          shadowY={0}
+          shadowSD={10}
+          shadowOpacity={0.5}
+          balance={0.5}
+          velocity={150}
+          breaks={6}
+          stacks={3}
+          distance={4.3}
+          stroke={false}
+        /> */}
         {/* <StackedWave
           type="peak"
           seed={1}

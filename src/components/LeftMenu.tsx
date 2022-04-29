@@ -9,6 +9,7 @@ import { UilLinkedin } from '@iconscout/react-unicons';
 
 // Utils
 import { motion } from 'framer-motion';
+import Thumbnail from './Thumbnail';
 
 export interface ILeftMenuProps {}
 
@@ -45,50 +46,8 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = (props) => {
           '&::-webkit-scrollbar': { display: 'none' },
         }}
       >
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          p="4"
-          position="relative"
-          _hover={{ background: '#2e3643', cursor: 'pointer' }}
-        >
-          <Box rounded="xl" w="100%" h="100%" overflow="hidden">
-            <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={stackedWave} rounded="xl" />
-          </Box>
-          <Text
-            as={motion.p}
-            pointerEvents="none"
-            position="absolute"
-            zIndex={10}
-            fontSize="sm"
-            fontWeight="bold"
-            align="center"
-          >
-            Waves
-          </Text>
-        </Flex>
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          p="4"
-          position="relative"
-          _hover={{ background: '#2e3643', cursor: 'pointer' }}
-        >
-          <Box rounded="xl" w="100%" h="100%" overflow="hidden">
-            <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={bubble} rounded="xl" />
-          </Box>
-          <Text
-            as={motion.p}
-            pointerEvents="none"
-            position="absolute"
-            zIndex={10}
-            fontSize="sm"
-            fontWeight="bold"
-            align="center"
-          >
-            Bubble
-          </Text>
-        </Flex>
+        <Thumbnail image={stackedWave} caption="Waves"></Thumbnail>
+        <Thumbnail image={bubble} caption="Bubble"></Thumbnail>
       </Stack>
 
       <Flex

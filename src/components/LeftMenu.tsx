@@ -18,14 +18,12 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = (props) => {
       minW="180px"
       maxW="180px"
       height="100vh"
-      position="fixed"
-      left="0"
-      top="0"
       bgColor="#1c1f27"
       direction="column"
       boxShadow="dark-lg"
       p="0"
       h="100%"
+      zIndex={20}
     >
       <Flex
         minW="180px"

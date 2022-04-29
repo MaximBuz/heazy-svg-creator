@@ -30,11 +30,11 @@ function App() {
       bgColor="#141820"
       overflow="hidden"
       justifyContent="space-between"
-      minW="100vw"
-      minH="100vh"
+      w="100vw"
+      h="100vh"
     >
       <LeftMenu></LeftMenu>
-      <Container justifyContent="center" alignContent="center" centerContent>
+      <Container flexGrow={1} justifyContent="center" alignContent="center" centerContent>
         {/* <StackedWave
           svgRef = {svgRef}
           type="smooth"
@@ -75,8 +75,8 @@ function App() {
           svgRef={svgRef}
           type="peak"
           seed={5}
-          width={900}
-          height={650}
+          width={700}
+          height={600}
           startWaveColor="#035adc"
           stopWaveColor="#5195fb"
           bgColor="#002233"
@@ -108,9 +108,8 @@ function App() {
           strokeWidth={2}
           strokeShrink={true}
         /> */}
-        <button onClick={downloadSVG}>download</button>
       </Container>
-      <RightMenu></RightMenu>
+      <RightMenu onClick={downloadSVG}></RightMenu>
     </Flex>
   );
 }

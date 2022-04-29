@@ -11,27 +11,27 @@ import { UilLinkedin } from '@iconscout/react-unicons';
 import { motion } from 'framer-motion';
 import { DownloadIcon } from '@chakra-ui/icons';
 
-export interface IRightMenuProps {}
+export interface IRightMenuProps {
+  onClick: () => void;
+}
 
-const RightMenu: React.FunctionComponent<IRightMenuProps> = (props) => {
+const RightMenu: React.FunctionComponent<IRightMenuProps> = ({onClick}) => {
   return (
     <Flex
-      minW="300px"
-      maxW="300px"
+      minW="320px"
+      maxW="320px"
       height="100vh"
-      position="fixed"
-      right="0"
-      top="0"
       bgColor="#1c1f27"
       direction="column"
       boxShadow="dark-lg"
       p="0"
       h="100%"
+      zIndex={20}
     >
       <Stack flexGrow={1}></Stack>
       <Flex
-        minW="300px"
-        maxW="300px"
+        minW="320px"
+        maxW="320px"
         height="70px"
         minH="70px"
         zIndex={20}
@@ -40,7 +40,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = (props) => {
         alignItems="center"
       >
         <Stack direction="row" spacing={4}>
-          <Button leftIcon={<DownloadIcon />} colorScheme="blue" variant="solid">
+          <Button leftIcon={<DownloadIcon />} onClick={onClick} colorScheme="blue" variant="solid">
             Download SVG
           </Button>
           <Button colorScheme="gray" variant="outline">

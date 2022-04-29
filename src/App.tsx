@@ -7,13 +7,15 @@ import Menu from './components/menu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Stack, Container, Image, Heading, Center } from '@chakra-ui/react';
+import { Flex, Stack, Container, Image, Heading, Center, chakra } from '@chakra-ui/react';
 import stackedWave from './stackedWaves.svg';
 import stackedWave2 from './stackedWaves2.svg';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
 import { ViewIcon } from '@chakra-ui/icons';
+import { transform } from 'lodash';
+import { isValidMotionProp, motion } from 'framer-motion';
 
 function App() {
   // test downloading
@@ -24,6 +26,10 @@ function App() {
     const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
     downloadBlob(blob, 'design.svg');
   }, []);
+
+  const ChakraBox = chakra(motion.div, {
+    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
+  });
 
   return (
     <Flex direction="row" overflow="hidden" justifyContent="space-between" minW="100vw" minH="100vh">
@@ -55,12 +61,24 @@ function App() {
             <ViewIcon></ViewIcon>
           </Center>
         </Container>
-        <Stack marginTop={100} spacing={0} scrollBehavior="smooth">
-          <Container p="2" _hover={{ background: '#2e3643' }}>
-            <Image src={stackedWave} alt="Dan Abramov" rounded="lg" stroke="ActiveBorder" w="100%" />
+        <Stack marginTop={100} spacing={0} scrollBehavior="smooth" >
+          <Container p="4" _hover={{ background: '#2e3643', cursor: 'pointer' }}>
+            <Image
+              as={motion.img}
+              rounded="xl"
+              whileHover={{ scale: 1.03, boxShadow: "0 0 0 4px white" }}
+              src={stackedWave}
+              w="100%"
+            />
           </Container>
-          <Container p="2" _hover={{ background: '#2e3643' }}>
-            <Image src={stackedWave2} alt="Dan Abramov" rounded="lg" stroke="ActiveBorder" w="100%" />
+          <Container p="4" _hover={{ background: '#2e3643', cursor: 'pointer' }}>
+            <Image
+              as={motion.img}
+              rounded="xl"
+              whileHover={{ scale: 1.03, boxShadow: "0 0 0 4px white", objectPosition: "scale-down" }}
+              src={stackedWave2}
+              w="100%"
+            />
           </Container>
         </Stack>
       </Container>

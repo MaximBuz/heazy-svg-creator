@@ -4,7 +4,7 @@ import { useCallback, useRef } from 'react';
 // Components
 import Bubble from './components/Blob';
 import LeftMenu from './components/LeftMenu';
-import RightMenu from './components/RightMenu';
+import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/StackedWave';
 
 // Design
@@ -109,7 +109,12 @@ function App() {
           strokeShrink={true}
         /> */}
       </Container>
-      <RightMenu onClick={downloadSVG}></RightMenu>
+      <RightMenu onClick={downloadSVG} canvasSize={{
+        width: 600,
+        height: 450,
+        widthRatio: 7,
+        heightRatio: 5
+      }}></RightMenu>
     </Flex>
   );
 }

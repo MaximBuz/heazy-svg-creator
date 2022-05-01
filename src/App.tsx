@@ -1,5 +1,5 @@
 // React
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 // Components
 import Bubble from './components/Blob';
@@ -8,21 +8,31 @@ import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Stack, Text, Container, Image, Heading, chakra, Box, Icon } from '@chakra-ui/react';
+import { Flex, Container } from '@chakra-ui/react';
 
 // Utils
+import { aspectRatio } from './utils/calculations/aspectRatio';
 import { downloadBlob } from './utils/downloadBlob';
 
 function App() {
-  // test downloading
-  const svgRef = useRef<SVGAElement | null>(null);
+  /* --------- DIMENSION CHANGE --------- */
+  const [width, setWidth] = useState<number>(950);
+  const [height, setHeight] = useState<number>(600);
 
+  const canvasDimensions = {
+    width: width,
+    height: height,
+    widthRatio: aspectRatio(width / height, 50)[0],
+    heightRatio: aspectRatio(width / height, 50)[1],
+  };
+
+  /* --------- DOWNLOADING --------- */
+  const svgRef = useRef<SVGAElement | null>(null);
   const downloadSVG = useCallback(() => {
     const svg = svgRef.current?.innerHTML;
     const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
     downloadBlob(blob, 'design.svg');
   }, []);
-
 
   return (
     <Flex
@@ -39,8 +49,8 @@ function App() {
           svgRef = {svgRef}
           type="smooth"
           seed={1}
-          width={window.innerWidth / 3}
-          height={window.innerHeight + 10}
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
           startWaveColor="#B7E7FF"
           stopWaveColor="#927ace"
           bgColor="#E8F7FF"
@@ -58,8 +68,8 @@ function App() {
         {/* <Bubble
           svgRef={svgRef}
           seed={1}
-          width={900}
-          height={650}
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
           startWaveColor="#A7233A"
           stopWaveColor="#9e1027"
           bgColor="#001320"
@@ -75,8 +85,8 @@ function App() {
           svgRef={svgRef}
           type="peak"
           seed={5}
-          width={600}
-          height={450}
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
           startWaveColor="#035adc"
           stopWaveColor="#5195fb"
           bgColor="#002233"
@@ -94,8 +104,8 @@ function App() {
         {/* <StackedWave
           type="peak"
           seed={2}
-          width={900}
-          height={650}
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
           startWaveColor="#309e24"
           stopWaveColor="#e5de00"
           bgColor="#002233"
@@ -109,12 +119,12 @@ function App() {
           strokeShrink={true}
         /> */}
       </Container>
-      <RightMenu onClick={downloadSVG} canvasSize={{
-        width: 600,
-        height: 450,
-        widthRatio: 7,
-        heightRatio: 5
-      }}></RightMenu>
+      <RightMenu
+        onClick={downloadSVG}
+        handleWidthChange={setWidth}
+        handleHeightChange={setHeight}
+        canvasDimensions={canvasDimensions}
+      ></RightMenu>
     </Flex>
   );
 }

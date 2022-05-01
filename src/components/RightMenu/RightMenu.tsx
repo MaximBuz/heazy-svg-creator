@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 
 // Design
 import {
@@ -32,15 +32,22 @@ import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icon
 
 export interface IRightMenuProps {
   onClick: () => void;
-  canvasSize: {
+  canvasDimensions: {
     width: number;
     height: number;
     widthRatio: number;
     heightRatio: number;
   };
+  handleWidthChange: Dispatch<SetStateAction<number>>;
+  handleHeightChange: Dispatch<SetStateAction<number>>;
 }
 
-const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSize }) => {
+const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
+  onClick,
+  canvasDimensions,
+  handleWidthChange,
+  handleHeightChange,
+}) => {
   const {
     isOpen: isDimensionDrawerOpen,
     onOpen: onDimensionDrawerOpen,
@@ -72,6 +79,8 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSi
           justifyContent="space-between"
           alignItems="center"
           padding={5}
+          sx={{ transition: '0.5s' }}
+          _hover={{ background: '#2e3643', cursor: 'pointer' }}
           ref={dimensionDrawerButtonRef}
           onClick={onDimensionDrawerOpen}
         >
@@ -79,12 +88,12 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSi
             <Heading
               fontSize="sm"
               fontWeight="bolder"
-            >{`${canvasSize.widthRatio}:${canvasSize.heightRatio}`}</Heading>
+            >{`${canvasDimensions.widthRatio}:${canvasDimensions.heightRatio}`}</Heading>
             <Heading
               fontSize="sm"
               fontWeight="light"
               opacity={0.7}
-            >{`${canvasSize.width} x ${canvasSize.height}`}</Heading>
+            >{`${canvasDimensions.width} x ${canvasDimensions.height}`}</Heading>
           </Flex>
           <ChevronRightIcon boxSize={6} />
         </Flex>
@@ -117,7 +126,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSi
         onClose={onDimensionDrawerClose}
         finalFocusRef={dimensionDrawerButtonRef}
       >
-        <DrawerOverlay />
+        {/* <DrawerOverlay /> */}
         <DrawerContent bgColor="#1c1f27">
           <DrawerHeader>
             <Stack spacing={2.5}>
@@ -131,13 +140,17 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSi
                   rounded="full"
                   centerContent
                 >
-                  <ChevronLeftIcon onClick={onDimensionDrawerClose}/>
+                  <ChevronLeftIcon onClick={onDimensionDrawerClose} />
                 </Circle>
                 <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
                   Dimensions
                 </Heading>
               </Flex>
               <Divider></Divider>
+            </Stack>
+          </DrawerHeader>
+          <DrawerBody>
+            <Stack>
               <HStack>
                 <InputGroup>
                   <InputLeftElement
@@ -147,7 +160,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSi
                     fontSize="sm"
                     children="w"
                   />
-                  <Input value={canvasSize.width} />
+                  <Input value={canvasDimensions.width} onChange={(e) => handleWidthChange(Number(e.target.value))} />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
                 <InputGroup>
@@ -158,14 +171,11 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({ onClick, canvasSi
                     pointerEvents="none"
                     children="h"
                   />
-                  <Input value={canvasSize.height} />
+                  <Input value={canvasDimensions.height} onChange={(e) => handleHeightChange(Number(e.target.value))} />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
               </HStack>
             </Stack>
-          </DrawerHeader>
-          <DrawerBody>
-            <Input placeholder="Type here..." />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

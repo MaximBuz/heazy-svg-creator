@@ -8,7 +8,7 @@ import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Container } from '@chakra-ui/react';
+import { Flex, Container, AspectRatio } from '@chakra-ui/react';
 
 // Utils
 import { aspectRatio } from './utils/calculations/aspectRatio';
@@ -44,27 +44,7 @@ function App() {
       h="100vh"
     >
       <LeftMenu></LeftMenu>
-      <Container flexGrow={2} justifyContent="center" alignContent="center" centerContent padding="10">
-        {/* <StackedWave
-          svgRef = {svgRef}
-          type="smooth"
-          seed={1}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-          startWaveColor="#B7E7FF"
-          stopWaveColor="#927ace"
-          bgColor="#E8F7FF"
-          shadowX={0}
-          shadowY={5}
-          shadowSD={10}
-          shadowOpacity={0.5}
-          balance={0.50}
-          velocity={120}
-          breaks={1}
-          stacks={3}
-          distance={5}
-          stroke={false}
-        /> */}
+      <Container sx={{transform: "scale(1)"}} justifyContent="center" alignContent="center" centerContent padding="3" m="0">
         {/* <Bubble
           svgRef={svgRef}
           seed={1}
@@ -81,26 +61,29 @@ function App() {
           size={3}
           stroke={false}
         /> */}
-        <StackedWave
-          svgRef={svgRef}
-          type="peak"
-          seed={5}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-          startWaveColor="#035adc"
-          stopWaveColor="#5195fb"
-          bgColor="#002233"
-          shadowX={0}
-          shadowY={0}
-          shadowSD={10}
-          shadowOpacity={0.5}
-          balance={0.5}
-          velocity={100}
-          breaks={6}
-          stacks={3}
-          distance={4.3}
-          stroke={false}
-        />
+
+          <StackedWave
+            svgRef={svgRef}
+            type="peak"
+            seed={5}
+            width={canvasDimensions.width}
+            height={canvasDimensions.height}
+            startWaveColor="#035adc"
+            stopWaveColor="#5195fb"
+            bgColor="#002233"
+            shadowX={0}
+            shadowY={0}
+            shadowSD={10}
+            shadowOpacity={0.5}
+            balance={0.5}
+            velocity={100}
+            breaks={6}
+            stacks={3}
+            distance={4.3}
+            stroke={false}
+          />
+
+
         {/* <StackedWave
           type="peak"
           seed={2}

@@ -29,15 +29,11 @@ import {
 // Utils
 import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icons';
+import { ICanvasDimensions } from '../../utils/types/canvasDimensions';
 
 export interface IRightMenuProps {
   onClick: () => void;
-  canvasDimensions: {
-    width: number;
-    height: number;
-    widthRatio: number;
-    heightRatio: number;
-  };
+  canvasDimensions: ICanvasDimensions;
   handleWidthChange: Dispatch<SetStateAction<number>>;
   handleHeightChange: Dispatch<SetStateAction<number>>;
 }

@@ -1,5 +1,5 @@
 // React
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 // Components
 import Bubble from './components/Blob';
@@ -16,23 +16,25 @@ import { aspectRatio } from './utils/calculations/aspectRatio';
 import { downloadBlob } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
+import { ICanvasDimensions } from './utils/types/canvasDimensions';
 
 function App() {
-  
   /* --------- SEED CHANGE --------- */
   const [seed, setSeed] = useState<number>(0);
-  
+
   /* --------- DIMENSION CHANGE --------- */
   const [width, setWidth] = useState<number>(850);
   const [height, setHeight] = useState<number>(600);
-  
-  const canvasDimensions = {
-    width: width,
-    height: height,
-    widthRatio: aspectRatio(width / height, 50)[0],
-    heightRatio: aspectRatio(width / height, 50)[1],
-  };
-  
+
+  const canvasDimensions = useMemo<ICanvasDimensions>(() => {
+    return {
+      width: width,
+      height: height,
+      widthRatio: aspectRatio(width / height, 50)[0],
+      heightRatio: aspectRatio(width / height, 50)[1],
+    };
+  }, [width, height]);
+
   /* --------- DOWNLOADING --------- */
   const svgRef = useRef<SVGAElement | null>(null);
   const downloadSVG = useCallback(() => {
@@ -40,7 +42,7 @@ function App() {
     const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
     downloadBlob(blob, 'design.svg');
   }, []);
-  
+
   /* --------- DESIGN CHANGE --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');
   const renderDesign = useCallback(() => {
@@ -90,7 +92,7 @@ function App() {
         );
       }
     }
-  }, [canvasDimensions.height, canvasDimensions.width, design, seed]);
+  }, [design, seed, canvasDimensions]);
   return (
     <Flex
       direction="row"

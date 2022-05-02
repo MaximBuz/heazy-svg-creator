@@ -15,22 +15,24 @@ import Dice from './utils/dice.svg';
 import { aspectRatio } from './utils/calculations/aspectRatio';
 import { downloadBlob } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
+import { IDesignModes } from './utils/types/designModes';
 
 function App() {
+  
   /* --------- SEED CHANGE --------- */
   const [seed, setSeed] = useState<number>(0);
-
+  
   /* --------- DIMENSION CHANGE --------- */
   const [width, setWidth] = useState<number>(850);
   const [height, setHeight] = useState<number>(600);
-
+  
   const canvasDimensions = {
     width: width,
     height: height,
     widthRatio: aspectRatio(width / height, 50)[0],
     heightRatio: aspectRatio(width / height, 50)[1],
   };
-
+  
   /* --------- DOWNLOADING --------- */
   const svgRef = useRef<SVGAElement | null>(null);
   const downloadSVG = useCallback(() => {
@@ -38,7 +40,57 @@ function App() {
     const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
     downloadBlob(blob, 'design.svg');
   }, []);
-
+  
+  /* --------- DESIGN CHANGE --------- */
+  const [design, setDesign] = useState<IDesignModes>('waves');
+  const renderDesign = useCallback(() => {
+    switch (design) {
+      case 'waves': {
+        return (
+          <StackedWave
+            svgRef={svgRef}
+            type="peak"
+            seed={seed}
+            width={canvasDimensions.width}
+            height={canvasDimensions.height}
+            startWaveColor="#035adc"
+            stopWaveColor="#5195fb"
+            bgColor="#002233"
+            shadowX={0}
+            shadowY={0}
+            shadowSD={10}
+            shadowOpacity={0.5}
+            balance={0.5}
+            velocity={100}
+            breaks={6}
+            stacks={3}
+            distance={4.3}
+            stroke={false}
+          />
+        );
+      }
+      case 'bubble': {
+        return (
+          <Bubble
+            svgRef={svgRef}
+            seed={seed}
+            width={canvasDimensions.width}
+            height={canvasDimensions.height}
+            startWaveColor="#A7233A"
+            stopWaveColor="#9e1027"
+            bgColor="#001320"
+            shadowX={0}
+            shadowY={5}
+            shadowSD={10}
+            shadowOpacity={0.5}
+            velocity={100}
+            size={3}
+            stroke={false}
+          />
+        );
+      }
+    }
+  }, [canvasDimensions.height, canvasDimensions.width, design, seed]);
   return (
     <Flex
       direction="row"
@@ -48,7 +100,7 @@ function App() {
       w="100vw"
       h="100vh"
     >
-      <LeftMenu></LeftMenu>
+      <LeftMenu setDesign={setDesign}></LeftMenu>
       <Container
         sx={{ transform: 'scale(1)' }}
         justifyContent="center"
@@ -57,42 +109,8 @@ function App() {
         padding="3"
         m="0"
       >
-        {/* <Bubble
-          svgRef={svgRef}
-          seed={seed}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-          startWaveColor="#A7233A"
-          stopWaveColor="#9e1027"
-          bgColor="#001320"
-          shadowX={0}
-          shadowY={5}
-          shadowSD={10}
-          shadowOpacity={0.5}
-          velocity={100}
-          size={3}
-          stroke={false}
-        /> */}
-        <StackedWave
-          svgRef={svgRef}
-          type="peak"
-          seed={seed}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-          startWaveColor="#035adc"
-          stopWaveColor="#5195fb"
-          bgColor="#002233"
-          shadowX={0}
-          shadowY={0}
-          shadowSD={10}
-          shadowOpacity={0.5}
-          balance={0.5}
-          velocity={100}
-          breaks={6}
-          stacks={3}
-          distance={4.3}
-          stroke={false}
-        />
+        {renderDesign()}
+
         <Circle
           maxWidth={80}
           as={motion.button}
@@ -145,24 +163,6 @@ function App() {
             />
           </Icon>
         </Circle>
-
-        {/* <StackedWave
-          type="peak"
-          seed={seed}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-          startWaveColor="#309e24"
-          stopWaveColor="#e5de00"
-          bgColor="#002233"
-          balance={0.5}
-          velocity={30}
-          breaks={40}
-          stacks={20}
-          distance={0.5}
-          stroke={true}
-          strokeWidth={2}
-          strokeShrink={true}
-        /> */}
       </Container>
       <RightMenu
         onClick={downloadSVG}

@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Design
 import { Flex, Text, Image, Box } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
+import { IDesignModes } from '../utils/types/designModes';
 
 export interface IThumbnailProps {
   image: string;
-  caption: string;
+  caption: IDesignModes;
+  setDesign: Dispatch<SetStateAction<IDesignModes>>;
 }
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({image, caption}) => {
+const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ image, caption, setDesign }) => {
   return (
     <Flex
       justifyContent="center"
@@ -19,6 +21,9 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({image, caption}) =
       p="4"
       position="relative"
       _hover={{ background: '#2e3643', cursor: 'pointer' }}
+      onClick={() => {
+        setDesign(caption);
+      }}
     >
       <Box rounded="xl" w="100%" h="100%" overflow="hidden">
         <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={image} rounded="xl" />
@@ -31,6 +36,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({image, caption}) =
         fontSize="sm"
         fontWeight="bold"
         align="center"
+        textTransform="capitalize"
       >
         {caption}
       </Text>

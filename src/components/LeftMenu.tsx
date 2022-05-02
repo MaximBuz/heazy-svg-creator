@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Design
 import { Flex, Stack, Image, Heading, Icon } from '@chakra-ui/react';
@@ -9,10 +9,13 @@ import { UilLinkedin } from '@iconscout/react-unicons';
 
 // Utils
 import Thumbnail from './Thumbnail';
+import { IDesignModes } from '../utils/types/designModes';
 
-export interface ILeftMenuProps {}
+export interface ILeftMenuProps {
+  setDesign: Dispatch<SetStateAction<IDesignModes>>;
+}
 
-const LeftMenu: React.FunctionComponent<ILeftMenuProps> = (props) => {
+const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({setDesign}) => {
   return (
     <Flex
       minW="180px"
@@ -45,8 +48,8 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = (props) => {
           '&::-webkit-scrollbar': { display: 'none' },
         }}
       >
-        <Thumbnail image={stackedWave} caption="Waves"></Thumbnail>
-        <Thumbnail image={bubble} caption="Bubble"></Thumbnail>
+        <Thumbnail setDesign={setDesign} image={stackedWave} caption="waves"></Thumbnail>
+        <Thumbnail setDesign={setDesign} image={bubble} caption="bubble"></Thumbnail>
       </Stack>
 
       <Flex

@@ -51,6 +51,9 @@ function App() {
   const [solid, setSolid] = useState<number>(0);
   const [smooth, setSmooth] = useState<number>(0);
   const [direction, setDirection] = useState<number>(0);
+  const [bgColor, setBgColor] = useState<string>('#002233');
+  const [startColor, setStartColor] = useState<string>('#035adc');
+  const [stopColor, setStopColor] = useState<string>('#5195fb');
 
   // rendering correct canvas
   const renderDesign = useCallback(() => {
@@ -63,9 +66,9 @@ function App() {
             seed={seed}
             width={canvasDimensions.width}
             height={canvasDimensions.height}
-            startWaveColor="#035adc"
-            stopWaveColor="#5195fb"
-            bgColor="#002233"
+            startWaveColor={startColor}
+            stopWaveColor={stopColor}
+            bgColor={bgColor}
             shadowX={0}
             shadowY={0}
             shadowSD={10}
@@ -101,16 +104,28 @@ function App() {
         );
       }
     }
-  }, [design, seed, canvasDimensions, solid, smooth, direction]);
+  }, [design, seed, canvasDimensions, solid, smooth, direction, bgColor, startColor, stopColor]);
 
   // rendering correct menu options
   const renderMenu = useCallback(() => {
     switch (design) {
       case 'waves': {
-        return <WaveOptions setSolid={setSolid} setSmooth={setSmooth} setDirection={setDirection} />;
+        return (
+          <WaveOptions
+            setSolid={setSolid}
+            setSmooth={setSmooth}
+            setDirection={setDirection}
+            setBgColor={setBgColor}
+            bgColor={bgColor}
+            setStartColor={setStartColor}
+            setStopColor={setStopColor}
+            startColor={startColor}
+            stopColor={stopColor}
+          />
+        );
       }
     }
-  }, [design]);
+  }, [design, bgColor]);
 
   return (
     <Flex
@@ -135,8 +150,6 @@ function App() {
         <Circle
           maxWidth={80}
           as={motion.button}
-          pos="relative"
-          bottom="40px"
           justifyContent="center"
           alignItems="center"
           bgColor="#313640"
@@ -145,6 +158,8 @@ function App() {
           onClick={() => setSeed(seed + 1)}
           border="8px"
           borderColor="#141820"
+          position="absolute"
+          bottom="40px"
         >
           <Icon boxSize="50" viewBox="0 0 25 25" color="white">
             <path

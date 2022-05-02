@@ -36,7 +36,7 @@ export interface IRightMenuProps {
   canvasDimensions: ICanvasDimensions;
   handleWidthChange: Dispatch<SetStateAction<number>>;
   handleHeightChange: Dispatch<SetStateAction<number>>;
-  children: ReactNode
+  children: ReactNode;
 }
 
 const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
@@ -44,7 +44,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   canvasDimensions,
   handleWidthChange,
   handleHeightChange,
-  children
+  children,
 }) => {
   const {
     isOpen: isDimensionDrawerOpen,
@@ -63,8 +63,15 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
       p="0"
       h="100%"
       zIndex={20}
+      overflow="scroll"
     >
-      <Stack flexGrow={1} padding={5} spacing={4}>
+      <Stack
+        flexGrow={1}
+        padding={5}
+        spacing={4}
+        scrollBehavior="smooth"
+        overflow="scroll"
+      >
         {/* --------- DIMENSIONS BUTTON --------- */}
         <Heading as="h3" size="xs" textTransform="uppercase">
           Dimensions
@@ -97,12 +104,10 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           <ChevronRightIcon boxSize={6} />
         </Flex>
 
-
         <Divider></Divider>
 
         {/* --------- DESIGN SPECIFIC OPTIONS --------- */}
         {children}
-        
       </Stack>
 
       {/* --------- DOWNLOAD SECTION AT BOTTOM --------- */}
@@ -192,7 +197,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-
     </Flex>
   );
 };

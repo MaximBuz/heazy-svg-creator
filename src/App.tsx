@@ -50,6 +50,7 @@ function App() {
   // wave options state
   const [solid, setSolid] = useState<number>(0);
   const [smooth, setSmooth] = useState<number>(0);
+  const [direction, setDirection] = useState<number>(0);
 
   // rendering correct canvas
   const renderDesign = useCallback(() => {
@@ -58,7 +59,7 @@ function App() {
         return (
           <StackedWave
             svgRef={svgRef}
-            type={smooth ? "smooth" : "peak"}
+            type={smooth ? 'smooth' : 'peak'}
             seed={seed}
             width={canvasDimensions.width}
             height={canvasDimensions.height}
@@ -105,7 +106,7 @@ function App() {
   const renderMenu = useCallback(() => {
     switch (design) {
       case 'waves': {
-        return <WaveOptions setSolid={setSolid} setSmooth={setSmooth} />;
+        return <WaveOptions setSolid={setSolid} setSmooth={setSmooth} setDirection={setDirection} />;
       }
     }
   }, [design]);

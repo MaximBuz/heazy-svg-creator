@@ -17,6 +17,7 @@ import { downloadBlob } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 import { ICanvasDimensions } from './utils/types/canvasDimensions';
+import WaveOptions from './components/RightMenu/WaveOptions';
 
 function App() {
   /* --------- SEED CHANGE --------- */
@@ -45,6 +46,11 @@ function App() {
 
   /* --------- DESIGN CHANGE --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');
+
+  // wave options state
+  const [solid, setSolid] = useState<number>(0);
+
+  // rendering correct canvas
   const renderDesign = useCallback(() => {
     switch (design) {
       case 'waves': {
@@ -67,7 +73,7 @@ function App() {
             breaks={6}
             stacks={3}
             distance={4.3}
-            stroke={false}
+            stroke={solid ? true : false}
           />
         );
       }
@@ -92,7 +98,17 @@ function App() {
         );
       }
     }
-  }, [design, seed, canvasDimensions]);
+  }, [design, seed, canvasDimensions, solid]);
+
+  // rendering correct menu options
+  const renderMenu = useCallback(() => {
+    switch (design) {
+      case 'waves': {
+        return <WaveOptions setSolid={setSolid} />;
+      }
+    }
+  }, [design]);
+
   return (
     <Flex
       direction="row"
@@ -171,7 +187,9 @@ function App() {
         handleWidthChange={setWidth}
         handleHeightChange={setHeight}
         canvasDimensions={canvasDimensions}
-      ></RightMenu>
+      >
+        {renderMenu()}
+      </RightMenu>
     </Flex>
   );
 }

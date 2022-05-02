@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import React, { Dispatch, ReactElement, ReactNode, SetStateAction, useRef } from 'react';
 
 // Design
 import {
@@ -36,6 +36,7 @@ export interface IRightMenuProps {
   canvasDimensions: ICanvasDimensions;
   handleWidthChange: Dispatch<SetStateAction<number>>;
   handleHeightChange: Dispatch<SetStateAction<number>>;
+  children: ReactNode
 }
 
 const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
@@ -43,6 +44,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   canvasDimensions,
   handleWidthChange,
   handleHeightChange,
+  children
 }) => {
   const {
     isOpen: isDimensionDrawerOpen,
@@ -63,6 +65,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
       zIndex={20}
     >
       <Stack flexGrow={1} padding={5} spacing={4}>
+        {/* --------- DIMENSIONS BUTTON --------- */}
         <Heading as="h3" size="xs" textTransform="uppercase">
           Dimensions
         </Heading>
@@ -93,8 +96,16 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           </Flex>
           <ChevronRightIcon boxSize={6} />
         </Flex>
+
+
         <Divider></Divider>
+
+        {/* --------- DESIGN SPECIFIC OPTIONS --------- */}
+        {children}
+        
       </Stack>
+
+      {/* --------- DOWNLOAD SECTION AT BOTTOM --------- */}
       <Flex
         minW="320px"
         maxW="320px"
@@ -115,7 +126,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
         </Stack>
       </Flex>
 
-      {/* DIMENSIONS DRAWER */}
+      {/* --------- DIMENSIONS DRAWER --------- */}
       <Drawer
         isOpen={isDimensionDrawerOpen}
         placement="right"
@@ -156,7 +167,10 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                     fontSize="sm"
                     children="w"
                   />
-                  <Input value={canvasDimensions.width} onChange={(e) => handleWidthChange(Number(e.target.value))} />
+                  <Input
+                    value={canvasDimensions.width}
+                    onChange={(e) => handleWidthChange(Number(e.target.value))}
+                  />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
                 <InputGroup>
@@ -167,7 +181,10 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                     pointerEvents="none"
                     children="h"
                   />
-                  <Input value={canvasDimensions.height} onChange={(e) => handleHeightChange(Number(e.target.value))} />
+                  <Input
+                    value={canvasDimensions.height}
+                    onChange={(e) => handleHeightChange(Number(e.target.value))}
+                  />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
               </HStack>
@@ -175,6 +192,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           </DrawerBody>
         </DrawerContent>
       </Drawer>
+
     </Flex>
   );
 };

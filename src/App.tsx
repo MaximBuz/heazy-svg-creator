@@ -125,7 +125,7 @@ function App() {
         );
       }
     }
-  }, [design, bgColor]);
+  }, [design, bgColor, startColor, stopColor]);
 
   return (
     <Flex

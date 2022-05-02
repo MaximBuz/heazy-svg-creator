@@ -24,6 +24,7 @@ export interface IStackedWaveProps {
   breaks: number;
   stacks: number;
   distance: number;
+  direction: number;
 }
 
 const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
@@ -47,6 +48,7 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
   stroke,
   strokeWidth,
   strokeShrink,
+  direction
 }) => {
   let wavesData;
   if (type === 'smooth') {
@@ -65,7 +67,7 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
       version="1.1"
       ref={svgRef}
     >
-      <g transform-origin={`${width / 2} ${height / 2}`} transform="scale(1, 1) rotate(0)">
+      <g transform-origin={`${width / 2} ${height / 2}`} transform={"scale(1, 1) rotate(0)"}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
           <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />

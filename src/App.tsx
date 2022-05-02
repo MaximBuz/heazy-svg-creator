@@ -76,6 +76,7 @@ function App() {
             stacks={3}
             distance={4.3}
             stroke={solid ? true : false}
+            direction={direction}
           />
         );
       }

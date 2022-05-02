@@ -101,7 +101,7 @@ function App() {
         );
       }
     }
-  }, [design, seed, canvasDimensions, solid, smooth]);
+  }, [design, seed, canvasDimensions, solid, smooth, direction]);
 
   // rendering correct menu options
   const renderMenu = useCallback(() => {

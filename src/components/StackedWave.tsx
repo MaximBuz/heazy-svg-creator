@@ -19,6 +19,7 @@ export interface IStackedWaveProps {
   shadowY?: number;
   shadowSD?: number;
   shadowOpacity?: number;
+  shadowColor?: string;
   balance: number;
   velocity: number;
   breaks: number;
@@ -45,6 +46,7 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
   shadowX,
   shadowY,
   shadowSD,
+  shadowColor,
   stroke,
   strokeWidth,
   strokeShrink,
@@ -76,12 +78,12 @@ const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x={0} width="100%">
+          <filter id={`shadow-${type}-${randomClassId}`} x={0} width="100%" y="-20%" height="150%">
             <feDropShadow
               dx={shadowX}
               dy={shadowY}
               stdDeviation={shadowSD}
-              floodColor="black"
+              floodColor={shadowColor}
               floodOpacity={shadowOpacity}
             />
           </filter>

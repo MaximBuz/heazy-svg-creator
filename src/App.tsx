@@ -54,6 +54,11 @@ function App() {
   const [bgColor, setBgColor] = useState<string>('#002233');
   const [startColor, setStartColor] = useState<string>('#035adc');
   const [stopColor, setStopColor] = useState<string>('#5195fb');
+  const [shadowX, setShadowX] = useState<number>(0);
+  const [shadowY, setShadowY] = useState<number>(0);
+  const [shadowSD, setShadowSD] = useState<number>(10);
+  const [shadowOpacity, setShadowOpacity] = useState<number>(0.5);
+  const [shadowColor, setShadowColor] = useState<string>('#000000');
 
   // rendering correct canvas
   const renderDesign = useCallback(() => {
@@ -69,10 +74,11 @@ function App() {
             startWaveColor={startColor}
             stopWaveColor={stopColor}
             bgColor={bgColor}
-            shadowX={0}
-            shadowY={0}
-            shadowSD={10}
-            shadowOpacity={0.5}
+            shadowX={shadowX}
+            shadowY={shadowY}
+            shadowSD={shadowSD}
+            shadowOpacity={shadowOpacity}
+            shadowColor={shadowColor}
             balance={0.5}
             velocity={100}
             breaks={6}
@@ -104,7 +110,23 @@ function App() {
         );
       }
     }
-  }, [design, seed, canvasDimensions, solid, smooth, direction, bgColor, startColor, stopColor]);
+  }, [
+    design,
+    smooth,
+    seed,
+    canvasDimensions.width,
+    canvasDimensions.height,
+    startColor,
+    stopColor,
+    bgColor,
+    shadowX,
+    shadowY,
+    shadowSD,
+    shadowOpacity,
+    shadowColor,
+    solid,
+    direction,
+  ]);
 
   // rendering correct menu options
   const renderMenu = useCallback(() => {
@@ -121,11 +143,21 @@ function App() {
             setStopColor={setStopColor}
             startColor={startColor}
             stopColor={stopColor}
+            shadowX={shadowX}
+            setShadowX={setShadowX}
+            shadowY={shadowY}
+            setShadowY={setShadowY}
+            shadowSD={shadowSD}
+            setShadowSD={setShadowSD}
+            shadowOpacity={shadowOpacity}
+            setShadowOpacity={setShadowOpacity}
+            shadowColor={shadowColor}
+            setShadowColor={setShadowColor}
           />
         );
       }
     }
-  }, [design, bgColor, startColor, stopColor]);
+  }, [design, bgColor, startColor, stopColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor]);
 
   return (
     <Flex

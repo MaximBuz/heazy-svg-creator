@@ -59,6 +59,11 @@ function App() {
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowOpacity, setShadowOpacity] = useState<number>(0.5);
   const [shadowColor, setShadowColor] = useState<string>('#000000');
+  const [balance, setBalance] = useState<number>(0.5);
+  const [velocity, setVelocity] = useState<number>(100);
+  const [breaks, setBreaks] = useState<number>(6);
+  const [stacks, setStacks] = useState<number>(3);
+  const [distance, setDistance] = useState<number>(4);
 
   // rendering correct canvas
   const renderDesign = useCallback(() => {
@@ -79,11 +84,11 @@ function App() {
             shadowSD={shadowSD}
             shadowOpacity={shadowOpacity}
             shadowColor={shadowColor}
-            balance={0.5}
-            velocity={100}
-            breaks={6}
-            stacks={3}
-            distance={4.3}
+            balance={balance}
+            velocity={velocity}
+            breaks={breaks}
+            stacks={stacks}
+            distance={distance}
             stroke={solid ? true : false}
             direction={direction}
           />
@@ -110,23 +115,7 @@ function App() {
         );
       }
     }
-  }, [
-    design,
-    smooth,
-    seed,
-    canvasDimensions.width,
-    canvasDimensions.height,
-    startColor,
-    stopColor,
-    bgColor,
-    shadowX,
-    shadowY,
-    shadowSD,
-    shadowOpacity,
-    shadowColor,
-    solid,
-    direction,
-  ]);
+  }, [design, smooth, seed, canvasDimensions.width, canvasDimensions.height, startColor, stopColor, bgColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor, balance, velocity, breaks, stacks, distance, solid, direction]);
 
   // rendering correct menu options
   const renderMenu = useCallback(() => {
@@ -153,11 +142,21 @@ function App() {
             setShadowOpacity={setShadowOpacity}
             shadowColor={shadowColor}
             setShadowColor={setShadowColor}
+            balance={balance}
+            velocity={velocity}
+            breaks={breaks}
+            stacks={stacks}
+            distance={distance}
+            setBalance={setBalance}
+            setVelocity={setVelocity}
+            setBreaks={setBreaks}
+            setStacks={setStacks}
+            setDistance={setDistance}
           />
         );
       }
     }
-  }, [design, bgColor, startColor, stopColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor]);
+  }, [design, bgColor, startColor, stopColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor, balance, velocity, breaks, stacks, distance]);
 
   return (
     <Flex

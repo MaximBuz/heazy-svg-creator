@@ -19,6 +19,11 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
 } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
@@ -46,6 +51,17 @@ export interface IWaveOptionsProps {
   setShadowOpacity: Dispatch<SetStateAction<number>>;
   shadowColor: string;
   setShadowColor: Dispatch<SetStateAction<string>>;
+
+  balance: number;
+  velocity: number;
+  breaks: number;
+  stacks: number;
+  distance: number;
+  setBalance: Dispatch<SetStateAction<number>>;
+  setVelocity: Dispatch<SetStateAction<number>>;
+  setBreaks: Dispatch<SetStateAction<number>>;
+  setStacks: Dispatch<SetStateAction<number>>;
+  setDistance: Dispatch<SetStateAction<number>>;
 }
 
 const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
@@ -68,6 +84,16 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
   setShadowOpacity,
   shadowColor,
   setShadowColor,
+  setBalance,
+  setVelocity,
+  setBreaks,
+  setStacks,
+  setDistance,
+  balance,
+  velocity,
+  breaks,
+  stacks,
+  distance,
 }) => {
   return (
     <>
@@ -125,6 +151,88 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
       </Tabs>
       <Divider></Divider>
 
+      {/* -------------- SHAPE -------------- */}
+      <Heading as="h3" size="xs" textTransform="uppercase">
+        Shape
+      </Heading>
+
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Balance
+      </Heading>
+      <Slider
+        aria-label="balance"
+        defaultValue={balance}
+        min={0}
+        max={1}
+        step={0.01}
+        onChange={(val) => setBalance(val)}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Velocity
+      </Heading>
+      <Slider
+        aria-label="velocity"
+        defaultValue={velocity}
+        min={0}
+        max={250}
+        onChange={(val) => setVelocity(val)}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Complexity
+      </Heading>
+      <Slider
+        aria-label="complexity"
+        defaultValue={breaks}
+        min={0}
+        max={20}
+        onChange={(val) => setBreaks(val)}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Layers
+      </Heading>
+      <NumberInput defaultValue={stacks} min={0} max={100} onChange={(val) => setStacks(Number(val))}>
+        <NumberInputField />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
+
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Layer Distance
+      </Heading>
+      <Slider
+        aria-label="layer-distance"
+        defaultValue={distance}
+        min={0}
+        max={10}
+        onChange={(val) => setDistance(val)}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+
+      <Divider></Divider>
       {/* -------------- DIRECTION -------------- */}
       <Heading as="h3" size="xs" textTransform="uppercase">
         Direction

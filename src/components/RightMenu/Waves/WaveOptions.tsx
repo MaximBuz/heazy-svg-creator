@@ -5,12 +5,12 @@ import React from 'react';
 import { Divider } from '@chakra-ui/react';
 
 // Components
-import Color from './Waves/Color';
-import Direction from './Waves/Direction';
-import Shadow from './Waves/Shadow';
-import Shape from './Waves/Shape';
-import Variants from './Waves/Variants';
-import { IWaveOptionsProps } from '../../utils/types/waveOptionProps';
+import Color from './Color';
+import Direction from './Direction';
+import Shadow from './Shadow';
+import Shape from './Shape';
+import Variants from './Variants';
+import { IWaveOptionsProps } from '../../../utils/types/waveOptionProps';
 
 const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = (props) => {
   return (
@@ -32,8 +32,6 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = (props) => {
       <Divider></Divider>
 
       <Shadow {...props}></Shadow>
-
-      {/* -------------- SHADOW -------------- */}
     </>
   );
 };

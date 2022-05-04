@@ -17,7 +17,7 @@ import { downloadBlob } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 import { ICanvasDimensions } from './utils/types/canvasDimensions';
-import WaveOptions from './components/RightMenu/WaveOptions';
+import WaveOptions from './components/RightMenu/Waves/WaveOptions';
 
 function App() {
   /* --------- SEED CHANGE --------- */

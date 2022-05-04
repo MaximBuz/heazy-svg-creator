@@ -53,7 +53,7 @@ function App() {
   const [direction, setDirection] = useState<number>(0);
   const [bgColor, setBgColor] = useState<string>('#002438');
   const [startColor, setStartColor] = useState<string>('#dc0307');
-  const [stopColor, setStopColor] = useState<string>('#8f0091');
+  const [stopColor, setStopColor] = useState<string>('#910060');
   const [shadowX, setShadowX] = useState<number>(0);
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);

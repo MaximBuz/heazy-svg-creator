@@ -115,7 +115,28 @@ function App() {
         );
       }
     }
-  }, [design, smooth, seed, canvasDimensions.width, canvasDimensions.height, startColor, stopColor, bgColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor, balance, velocity, breaks, stacks, distance, solid, direction]);
+  }, [
+    design,
+    smooth,
+    seed,
+    canvasDimensions.width,
+    canvasDimensions.height,
+    startColor,
+    stopColor,
+    bgColor,
+    shadowX,
+    shadowY,
+    shadowSD,
+    shadowOpacity,
+    shadowColor,
+    balance,
+    velocity,
+    breaks,
+    stacks,
+    distance,
+    solid,
+    direction,
+  ]);
 
   // rendering correct menu options
   const renderMenu = useCallback(() => {
@@ -156,7 +177,22 @@ function App() {
         );
       }
     }
-  }, [design, bgColor, startColor, stopColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor, balance, velocity, breaks, stacks, distance]);
+  }, [
+    design,
+    bgColor,
+    startColor,
+    stopColor,
+    shadowX,
+    shadowY,
+    shadowSD,
+    shadowOpacity,
+    shadowColor,
+    balance,
+    velocity,
+    breaks,
+    stacks,
+    distance,
+  ]);
 
   return (
     <Flex
@@ -192,42 +228,42 @@ function App() {
           position="absolute"
           bottom="40px"
         >
-          <Icon boxSize="50" viewBox="0 0 25 25" color="white">
+          <Icon boxSize="50" viewBox="0 0 350 400" color="white">
+            <g transform='translate(0 20)'>
             <path
-              d="M3 20.4V3.6C3 3.26863 3.26863 3 3.6 3H20.4C20.7314 3 21 3.26863 21 3.6V20.4C21 20.7314 20.7314 21 20.4 21H3.6C3.26863 21 3 20.7314 3 20.4Z"
-              stroke="currentColor"
-              fill="none"
+              d="M268.724 34.4782L120.492 11.5117C100.836 8.46621 80.7743 13.354 64.7214 25.0999C48.6685 36.8457 37.9391 54.4875 34.8936 74.1442L11.9272 222.376C8.88164 242.032 13.7694 262.094 25.5153 278.147C37.2612 294.2 54.903 304.929 74.5597 307.975L222.791 330.941C242.448 333.986 262.509 329.099 278.562 317.353C294.615 305.607 305.344 287.965 308.39 268.308L331.356 120.077C334.402 100.42 329.514 80.3589 317.768 64.306C306.022 48.2531 288.381 37.5237 268.724 34.4782ZM278.744 263.715C276.916 275.509 270.479 286.094 260.847 293.142C251.215 300.189 239.178 303.122 227.384 301.295L79.1529 278.328C67.3589 276.501 56.7739 270.063 49.7263 260.432C42.6788 250.8 39.7461 238.763 41.5735 226.969L64.5399 78.7375C66.3672 66.9435 72.8048 56.3584 82.4366 49.3109C92.0683 42.2634 104.105 39.3307 115.899 41.158L264.131 64.1244C275.925 65.9518 286.51 72.3894 293.557 82.0211C300.605 91.6529 303.537 103.69 301.71 115.484L278.744 263.715Z"
+              fill="white"
             />
-            <path
-              d="M7.5 8C7.22386 8 7 7.77614 7 7.5C7 7.22386 7.22386 7 7.5 7C7.77614 7 8 7.22386 8 7.5C8 7.77614 7.77614 8 7.5 8Z"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <circle
+              cx="133.116"
+              cy="116.179"
+              r="28.5"
+              transform="rotate(8.80717 133.116 116.179)"
+              fill="white"
             />
-            <path
-              d="M16.5 8C16.2239 8 16 7.77614 16 7.5C16 7.22386 16.2239 7 16.5 7C16.7761 7 17 7.22386 17 7.5C17 7.77614 16.7761 8 16.5 8Z"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <circle
+              cx="225.019"
+              cy="130.418"
+              r="28.5"
+              transform="rotate(8.80717 225.019 130.418)"
+              fill="white"
             />
-            <path
-              d="M12 12.5C11.7239 12.5 11.5 12.2761 11.5 12C11.5 11.7239 11.7239 11.5 12 11.5C12.2761 11.5 12.5 11.7239 12.5 12C12.5 12.2761 12.2761 12.5 12 12.5Z"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <circle
+              cx="118.724"
+              cy="209.07"
+              r="28.5"
+              transform="rotate(8.80717 118.724 209.07)"
+              fill="white"
             />
-            <path
-              d="M7.5 17C7.22386 17 7 16.7761 7 16.5C7 16.2239 7.22386 16 7.5 16C7.77614 16 8 16.2239 8 16.5C8 16.7761 7.77614 17 7.5 17Z"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <circle
+              cx="210.627"
+              cy="223.309"
+              r="28.5"
+              transform="rotate(8.80717 210.627 223.309)"
+              fill="white"
             />
-            <path
-              d="M16.5 17C16.2239 17 16 16.7761 16 16.5C16 16.2239 16.2239 16 16.5 16C16.7761 16 17 16.2239 17 16.5C17 16.7761 16.7761 17 16.5 17Z"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+
+            </g>
           </Icon>
         </Circle>
       </Container>

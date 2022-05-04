@@ -24,6 +24,7 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Icon,
 } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
@@ -111,7 +112,21 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
             bgColor="#262a33"
             _hover={{ background: '#2e3643', cursor: 'pointer' }}
             _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
           >
+            <Icon boxSize="5" viewBox="0 0 410 192" color="white">
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M193.735 15C125.145 15 127.148 70.9385 15 38.5385V177H395V15C268.333 69 268.333 15 193.735 15Z"
+                fill="white"
+                stroke="white"
+                stroke-width="30"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="1 1"
+              />
+            </Icon>
             Solid
           </Tab>
           <Tab
@@ -120,7 +135,20 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
             bgColor="#262a33"
             _hover={{ background: '#2e3643', cursor: 'pointer' }}
             _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
           >
+            <Icon boxSize="5" viewBox="0 0 411 96" color="white">
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M16 60.9324C128.148 124.157 126.145 15 194.735 15C269.333 15 269.333 120.374 396 15"
+                stroke="white"
+                stroke-width="30"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="1 1"
+              />
+            </Icon>
             Outline
           </Tab>
         </TabList>
@@ -135,7 +163,19 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
             bgColor="#262a33"
             _hover={{ background: '#2e3643', cursor: 'pointer' }}
             _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
           >
+            <Icon boxSize="5" viewBox="0 0 452 189" color="white">
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M15 121.835L103.512 28.0381L144.364 174L269.189 16L364.509 127.854C386.07 90.5693 436 16 436 16"
+                stroke="white"
+                stroke-width="30"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </Icon>
             Edgy
           </Tab>
           <Tab
@@ -144,7 +184,20 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
             bgColor="#262a33"
             _hover={{ background: '#2e3643', cursor: 'pointer' }}
             _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
           >
+            <Icon boxSize="5" viewBox="0 0 412 219" color="white">
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M16 139.767C142 325.5 93.5 49 194.735 18C295.97 -13 311.5 304 396 18"
+                stroke="white"
+                stroke-width="30"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="1 1"
+              />
+            </Icon>
             Smooth
           </Tab>
         </TabList>
@@ -287,7 +340,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
         Background
       </Heading>
       <HStack>
-        <Popover >
+        <Popover>
           <HStack spacing={4}>
             <PopoverTrigger>
               <Circle
@@ -304,7 +357,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               <Input value={bgColor.replace('#', '')} onChange={(e) => setBgColor(`#${e.target.value}`)} />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
+          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -344,7 +397,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
+          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -384,7 +437,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
+          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -494,7 +547,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
+          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker

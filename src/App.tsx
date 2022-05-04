@@ -188,7 +188,25 @@ function App() {
         );
       }
     }
-  }, [design, solid, bgColor, startColor, stopColor, shadowX, shadowY, shadowSD, shadowOpacity, shadowColor, balance, velocity, breaks, stacks, distance, strokeShrink, strokeWidth]);
+  }, [
+    design,
+    solid,
+    bgColor,
+    startColor,
+    stopColor,
+    shadowX,
+    shadowY,
+    shadowSD,
+    shadowOpacity,
+    shadowColor,
+    balance,
+    velocity,
+    breaks,
+    stacks,
+    distance,
+    strokeShrink,
+    strokeWidth,
+  ]);
 
   return (
     <Flex

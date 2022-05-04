@@ -8,8 +8,7 @@ import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/StackedWave';
 
 // Design
-import { Flex, Container, Button, Icon, Circle, Stack } from '@chakra-ui/react';
-import Dice from './utils/dice.svg';
+import { Flex, Container, Icon, Circle } from '@chakra-ui/react';
 
 // Utils
 import { aspectRatio } from './utils/calculations/aspectRatio';
@@ -17,7 +16,11 @@ import { downloadBlob } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 import { ICanvasDimensions } from './utils/types/canvasDimensions';
+
+// Components
 import WaveOptions from './components/RightMenu/Waves/WaveOptions';
+import useWaveOptions from './utils/customHooks/useWaveOptions';
+import DiceIcon from './components/DiceIcon';
 
 function App() {
   /* --------- SEED CHANGE --------- */
@@ -26,7 +29,6 @@ function App() {
   /* --------- DIMENSION CHANGE --------- */
   const [width, setWidth] = useState<number>(850);
   const [height, setHeight] = useState<number>(600);
-
   const canvasDimensions = useMemo<ICanvasDimensions>(() => {
     return {
       width: width,
@@ -47,54 +49,20 @@ function App() {
   /* --------- DESIGN CHANGE --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');
 
-  // wave options state
-  const [solid, setSolid] = useState<number>(0);
-  const [smooth, setSmooth] = useState<number>(1);
-  const [direction, setDirection] = useState<number>(0);
-  const [bgColor, setBgColor] = useState<string>('#002438');
-  const [startColor, setStartColor] = useState<string>('#dc0307');
-  const [stopColor, setStopColor] = useState<string>('#910060');
-  const [shadowX, setShadowX] = useState<number>(0);
-  const [shadowY, setShadowY] = useState<number>(0);
-  const [shadowSD, setShadowSD] = useState<number>(10);
-  const [shadowOpacity, setShadowOpacity] = useState<number>(0.5);
-  const [shadowColor, setShadowColor] = useState<string>('#000000');
-  const [balance, setBalance] = useState<number>(0.5);
-  const [velocity, setVelocity] = useState<number>(200);
-  const [breaks, setBreaks] = useState<number>(2);
-  const [stacks, setStacks] = useState<number>(4);
-  const [distance, setDistance] = useState<number>(3.5);
-  const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
-  const [strokeWidth, setStrokeWidth] = useState<number>(1);
+  /* --------- WAVE OPTIONS --------- */
+  const waveOptions = useWaveOptions();
 
-  // rendering correct canvas
+  /* --------- RENDER CANVAS --------- */
   const renderDesign = useCallback(() => {
     switch (design) {
       case 'waves': {
         return (
           <StackedWave
-            svgRef={svgRef}
-            type={smooth ? 'smooth' : 'peak'}
-            seed={seed}
             width={canvasDimensions.width}
             height={canvasDimensions.height}
-            startWaveColor={startColor}
-            stopWaveColor={stopColor}
-            bgColor={bgColor}
-            shadowX={shadowX}
-            shadowY={shadowY}
-            shadowSD={shadowSD}
-            shadowOpacity={shadowOpacity}
-            shadowColor={shadowColor}
-            balance={balance}
-            velocity={velocity}
-            breaks={breaks}
-            stacks={stacks}
-            distance={distance}
-            stroke={solid ? true : false}
-            direction={direction}
-            strokeShrink={strokeShrink}
-            strokeWidth={strokeWidth}
+            svgRef={svgRef}
+            seed={seed}
+            {...waveOptions.get}
           />
         );
       }
@@ -119,94 +87,16 @@ function App() {
         );
       }
     }
-  }, [
-    design,
-    smooth,
-    seed,
-    canvasDimensions.width,
-    canvasDimensions.height,
-    startColor,
-    stopColor,
-    bgColor,
-    shadowX,
-    shadowY,
-    shadowSD,
-    shadowOpacity,
-    shadowColor,
-    balance,
-    velocity,
-    breaks,
-    stacks,
-    distance,
-    solid,
-    direction,
-    strokeShrink,
-    strokeWidth,
-  ]);
+  }, [design, seed, canvasDimensions.width, canvasDimensions.height, waveOptions.get]);
 
-  // rendering correct menu options
+  /* --------- RENDER RIGHT MENU --------- */
   const renderMenu = useCallback(() => {
     switch (design) {
       case 'waves': {
-        return (
-          <WaveOptions
-            setSolid={setSolid}
-            solid={solid}
-            setSmooth={setSmooth}
-            setDirection={setDirection}
-            setBgColor={setBgColor}
-            bgColor={bgColor}
-            setStartColor={setStartColor}
-            setStopColor={setStopColor}
-            startColor={startColor}
-            stopColor={stopColor}
-            shadowX={shadowX}
-            setShadowX={setShadowX}
-            shadowY={shadowY}
-            setShadowY={setShadowY}
-            shadowSD={shadowSD}
-            setShadowSD={setShadowSD}
-            shadowOpacity={shadowOpacity}
-            setShadowOpacity={setShadowOpacity}
-            shadowColor={shadowColor}
-            setShadowColor={setShadowColor}
-            balance={balance}
-            velocity={velocity}
-            breaks={breaks}
-            stacks={stacks}
-            distance={distance}
-            setBalance={setBalance}
-            setVelocity={setVelocity}
-            setBreaks={setBreaks}
-            setStacks={setStacks}
-            setDistance={setDistance}
-            setStrokeShrink={setStrokeShrink}
-            strokeShrink={strokeShrink}
-            setStrokeWidth={setStrokeWidth}
-            strokeWidth={strokeWidth}
-          />
-        );
+        return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
       }
     }
-  }, [
-    design,
-    solid,
-    bgColor,
-    startColor,
-    stopColor,
-    shadowX,
-    shadowY,
-    shadowSD,
-    shadowOpacity,
-    shadowColor,
-    balance,
-    velocity,
-    breaks,
-    stacks,
-    distance,
-    strokeShrink,
-    strokeWidth,
-  ]);
+  }, [design, waveOptions.get, waveOptions.set]);
 
   return (
     <Flex
@@ -217,6 +107,7 @@ function App() {
       w="100vw"
       h="100vh"
     >
+      {/* ------ LEFT MENU ----- */}
       <LeftMenu setDesign={setDesign}></LeftMenu>
       <Container
         sx={{ transform: 'scale(1)' }}
@@ -226,6 +117,7 @@ function App() {
         padding="3"
         m="0"
       >
+        {/* ------ CANVAS ----- */}
         {renderDesign()}
 
         <Circle
@@ -242,44 +134,11 @@ function App() {
           position="absolute"
           bottom="40px"
         >
-          <Icon boxSize="50" viewBox="0 0 350 400" color="white">
-            <g transform="translate(0 20)">
-              <path
-                d="M268.724 34.4782L120.492 11.5117C100.836 8.46621 80.7743 13.354 64.7214 25.0999C48.6685 36.8457 37.9391 54.4875 34.8936 74.1442L11.9272 222.376C8.88164 242.032 13.7694 262.094 25.5153 278.147C37.2612 294.2 54.903 304.929 74.5597 307.975L222.791 330.941C242.448 333.986 262.509 329.099 278.562 317.353C294.615 305.607 305.344 287.965 308.39 268.308L331.356 120.077C334.402 100.42 329.514 80.3589 317.768 64.306C306.022 48.2531 288.381 37.5237 268.724 34.4782ZM278.744 263.715C276.916 275.509 270.479 286.094 260.847 293.142C251.215 300.189 239.178 303.122 227.384 301.295L79.1529 278.328C67.3589 276.501 56.7739 270.063 49.7263 260.432C42.6788 250.8 39.7461 238.763 41.5735 226.969L64.5399 78.7375C66.3672 66.9435 72.8048 56.3584 82.4366 49.3109C92.0683 42.2634 104.105 39.3307 115.899 41.158L264.131 64.1244C275.925 65.9518 286.51 72.3894 293.557 82.0211C300.605 91.6529 303.537 103.69 301.71 115.484L278.744 263.715Z"
-                fill="white"
-              />
-              <circle
-                cx="133.116"
-                cy="116.179"
-                r="28.5"
-                transform="rotate(8.80717 133.116 116.179)"
-                fill="white"
-              />
-              <circle
-                cx="225.019"
-                cy="130.418"
-                r="28.5"
-                transform="rotate(8.80717 225.019 130.418)"
-                fill="white"
-              />
-              <circle
-                cx="118.724"
-                cy="209.07"
-                r="28.5"
-                transform="rotate(8.80717 118.724 209.07)"
-                fill="white"
-              />
-              <circle
-                cx="210.627"
-                cy="223.309"
-                r="28.5"
-                transform="rotate(8.80717 210.627 223.309)"
-                fill="white"
-              />
-            </g>
-          </Icon>
+          <DiceIcon />
         </Circle>
       </Container>
+
+      {/* ------ RIGHT MENU ----- */}
       <RightMenu
         onClick={downloadSVG}
         handleWidthChange={setWidth}

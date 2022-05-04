@@ -1,34 +1,10 @@
 import React from 'react';
 import { smoothWavePath } from '../utils/calculations/smoothWavePath';
 import { peakWavePath } from '../utils/calculations/peakWavePath';
+import { IWaveProps } from '../utils/types/waveProps';
 
-export interface IStackedWaveProps {
-  // onClick?: (e: MouseEvent) => void;
-  svgRef?: any;
-  type: 'smooth' | 'peak';
-  stroke: boolean;
-  strokeWidth?: number;
-  strokeShrink?: boolean;
-  seed: number;
-  width: number;
-  height: number;
-  startWaveColor: string;
-  stopWaveColor: string;
-  bgColor: string;
-  shadowX?: number;
-  shadowY?: number;
-  shadowSD?: number;
-  shadowOpacity?: number;
-  shadowColor?: string;
-  balance: number;
-  velocity: number;
-  breaks: number;
-  stacks: number;
-  distance: number;
-  direction: number;
-}
 
-const StackedWave: React.FunctionComponent<IStackedWaveProps> = ({
+const StackedWave: React.FunctionComponent<IWaveProps> = ({
   svgRef,
   type,
   seed,

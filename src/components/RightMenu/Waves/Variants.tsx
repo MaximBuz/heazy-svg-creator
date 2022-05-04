@@ -1,3 +1,7 @@
+// React
+import { Dispatch, SetStateAction } from 'react';
+
+// Layout
 import {
   Heading,
   HStack,
@@ -11,7 +15,9 @@ import {
   TabList,
   Tabs,
 } from '@chakra-ui/react';
-import { Dispatch, SetStateAction } from 'react';
+
+
+// Icons
 import SliderIconWrapper from '../SliderIconWrapper';
 import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';

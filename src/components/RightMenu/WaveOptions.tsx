@@ -287,7 +287,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
         Background
       </Heading>
       <HStack>
-        <Popover>
+        <Popover >
           <HStack spacing={4}>
             <PopoverTrigger>
               <Circle
@@ -304,7 +304,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               <Input value={bgColor.replace('#', '')} onChange={(e) => setBgColor(`#${e.target.value}`)} />
             </InputGroup>
           </HStack>
-          <PopoverContent width="fit-content">
+          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -344,7 +344,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               />
             </InputGroup>
           </HStack>
-          <PopoverContent width="fit-content">
+          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -384,7 +384,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               />
             </InputGroup>
           </HStack>
-          <PopoverContent width="fit-content">
+          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -494,7 +494,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
               />
             </InputGroup>
           </HStack>
-          <PopoverContent width="fit-content">
+          <PopoverContent rootProps={{style: {right: 0}}} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker

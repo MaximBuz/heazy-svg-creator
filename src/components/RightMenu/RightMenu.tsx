@@ -9,7 +9,6 @@ import {
   Divider,
   useDisclosure,
   Input,
-  Container,
   Circle,
   InputGroup,
   InputLeftElement,
@@ -19,11 +18,8 @@ import {
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
 } from '@chakra-ui/react';
 
 // Utils
@@ -63,14 +59,16 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
       p="0"
       h="100%"
       zIndex={20}
-      overflow="scroll"
+      overflow="auto"
+      sx={{'&::-webkit-scrollbar': { display: 'none' },}}
     >
       <Stack
         flexGrow={1}
         padding={5}
         spacing={4}
         scrollBehavior="smooth"
-        overflow="scroll"
+        overflow="auto"
+        sx={{'&::-webkit-scrollbar': { display: 'none' },}}
       >
         {/* --------- DIMENSIONS BUTTON --------- */}
         <Heading as="h3" size="xs" textTransform="uppercase">

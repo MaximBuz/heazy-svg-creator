@@ -15,6 +15,10 @@ import { Dispatch, SetStateAction } from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
 import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';
+import Solid from './Icons/Solid';
+import Outline from './Icons/Outline';
+import Edgy from './Icons/Edgy';
+import Smooth from './Icons/Smooth';
 
 type Props = {
   setSolid: Dispatch<SetStateAction<number>>;
@@ -54,16 +58,7 @@ export default function Variants({
             flexDirection="column"
           >
             <Icon boxSize="5" viewBox="0 0 410 192" color="white">
-              <path
-                xmlns="http://www.w3.org/2000/svg"
-                d="M193.735 15C125.145 15 127.148 70.9385 15 38.5385V177H395V15C268.333 69 268.333 15 193.735 15Z"
-                fill="white"
-                stroke="white"
-                stroke-width="30"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
+              <Solid />
             </Icon>
             Solid
           </Tab>
@@ -77,15 +72,7 @@ export default function Variants({
             flexDirection="column"
           >
             <Icon boxSize="5" viewBox="0 0 411 96" color="white">
-              <path
-                xmlns="http://www.w3.org/2000/svg"
-                d="M16 60.9324C128.148 124.157 126.145 15 194.735 15C269.333 15 269.333 120.374 396 15"
-                stroke="white"
-                stroke-width="30"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
+              <Outline />
             </Icon>
             Outline
           </Tab>
@@ -105,14 +92,7 @@ export default function Variants({
             flexDirection="column"
           >
             <Icon boxSize="5" viewBox="0 0 452 189" color="white">
-              <path
-                xmlns="http://www.w3.org/2000/svg"
-                d="M15 121.835L103.512 28.0381L144.364 174L269.189 16L364.509 127.854C386.07 90.5693 436 16 436 16"
-                stroke="white"
-                stroke-width="30"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+              <Edgy />
             </Icon>
             Edgy
           </Tab>
@@ -126,15 +106,7 @@ export default function Variants({
             flexDirection="column"
           >
             <Icon boxSize="5" viewBox="0 0 412 219" color="white">
-              <path
-                xmlns="http://www.w3.org/2000/svg"
-                d="M16 139.767C142 325.5 93.5 49 194.735 18C295.97 -13 311.5 304 396 18"
-                stroke="white"
-                stroke-width="30"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
+              <Smooth />
             </Icon>
             Smooth
           </Tab>
@@ -175,7 +147,6 @@ export default function Variants({
             >
               <LineWidthRight />
             </SliderIconWrapper>
-
           </HStack>
           <HStack justifyContent="space-between">
             <Heading as="h4" size="xs" opacity={0.5}>

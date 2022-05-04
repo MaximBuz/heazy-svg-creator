@@ -12,6 +12,9 @@ import {
   Tabs,
 } from '@chakra-ui/react';
 import { Dispatch, SetStateAction } from 'react';
+import SliderIconWrapper from '../SliderIconWrapper';
+import LineWidthLeft from './Icons/LineWidthLeft';
+import LineWidthRight from './Icons/LineWidthRight';
 
 type Props = {
   setSolid: Dispatch<SetStateAction<number>>;
@@ -38,7 +41,7 @@ export default function Variants({
         Variants
       </Heading>
 
-      {/*  SOLID vs. OUTLINE  */}
+      {/* ------ SOLID vs. OUTLINE ------ */}
       <Tabs onChange={(index) => setSolid(index)} defaultIndex={0} isFitted variant="unstyled">
         <TabList>
           <Tab
@@ -88,7 +91,8 @@ export default function Variants({
           </Tab>
         </TabList>
       </Tabs>
-      {/*  SMOOTH vs. PEAK  */}
+
+      {/* ------ SMOOTH vs. PEAK ------ */}
       <Tabs onChange={(index) => setSmooth(index)} defaultIndex={1} isFitted variant="unstyled">
         <TabList>
           <Tab
@@ -136,72 +140,21 @@ export default function Variants({
           </Tab>
         </TabList>
       </Tabs>
+
+      {/* ------ LINE STROKE OPTIONS ------ */}
       {solid === 1 && (
         <>
           <Heading as="h4" size="xs" opacity={0.5}>
             Line width
           </Heading>
           <HStack>
-            <Icon
-              onClick={() => strokeWidth > 0 && setStrokeWidth(strokeWidth - 1)}
-              boxSize="9"
+            <SliderIconWrapper
               viewBox="0 0 394 366"
-              rounded="full"
-              p="2"
-              bg="#262e3a"
-              transition="0.3s"
-              _hover={{ background: '#373d48', cursor: 'pointer' }}
-              fill="none"
+              onClick={() => strokeWidth > 0 && setStrokeWidth(strokeWidth - 1)}
             >
-              <path
-                d="M3 35.4568C187 185.661 190.5 -86.5406 391 35.4568"
-                stroke="white"
-                stroke-width="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M3 35.4568C187 185.661 190.5 -86.5406 391 35.4568"
-                stroke="white"
-                stroke-width="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M3 136.457C187 286.661 190.5 14.4594 391 136.457"
-                stroke="white"
-                stroke-width="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M3 215.457C187 365.661 190.5 93.4594 391 215.457"
-                stroke="white"
-                stroke-width="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M3 215.457C187 365.661 190.5 93.4594 391 215.457"
-                stroke="white"
-                stroke-width="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M3 316.457C187 466.661 190.5 194.459 391 316.457"
-                stroke="white"
-                stroke-width="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-            </Icon>
+              <LineWidthLeft />
+            </SliderIconWrapper>
+
             <Slider
               aria-label="balance"
               value={strokeWidth}
@@ -215,50 +168,14 @@ export default function Variants({
               </SliderTrack>
               <SliderThumb />
             </Slider>
-            <Icon
-              onClick={() => strokeWidth < 50 && setStrokeWidth(strokeWidth + 1)}
-              boxSize="9"
+
+            <SliderIconWrapper
               viewBox="0 0 433 325"
-              rounded="full"
-              p="2"
-              bg="#262e3a"
-              transition="0.3s"
-              _hover={{ background: '#373d48', cursor: 'pointer' }}
-              fill="none"
+              onClick={() => strokeWidth < 50 && setStrokeWidth(strokeWidth + 1)}
             >
-              <path
-                d="M22 155.457C206 305.661 209.5 33.4594 410 155.457"
-                stroke="white"
-                stroke-width="44"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M22 155.457C206 305.661 209.5 33.4594 410 155.457"
-                stroke="white"
-                stroke-width="44"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M22 54.4568C206 204.661 209.5 -67.5406 410 54.4568"
-                stroke="white"
-                stroke-width="44"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-              <path
-                d="M22 256.457C206 406.661 209.5 134.459 410 256.457"
-                stroke="white"
-                stroke-width="44"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="1 1"
-              />
-            </Icon>
+              <LineWidthRight />
+            </SliderIconWrapper>
+
           </HStack>
           <HStack justifyContent="space-between">
             <Heading as="h4" size="xs" opacity={0.5}>

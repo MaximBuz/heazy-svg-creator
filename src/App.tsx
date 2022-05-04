@@ -23,10 +23,10 @@ import useWaveOptions from './utils/customHooks/useWaveOptions';
 import DiceIcon from './components/DiceIcon';
 
 function App() {
-  /* --------- SEED CHANGE --------- */
+  /* --------- RANDOMNESS STATE --------- */
   const [seed, setSeed] = useState<number>(0);
 
-  /* --------- DIMENSION CHANGE --------- */
+  /* --------- DIMENSION STATE --------- */
   const [width, setWidth] = useState<number>(850);
   const [height, setHeight] = useState<number>(600);
   const canvasDimensions = useMemo<ICanvasDimensions>(() => {
@@ -38,6 +38,9 @@ function App() {
     };
   }, [width, height]);
 
+  /* --------- VARIANT STATE --------- */
+  const [design, setDesign] = useState<IDesignModes>('waves');
+
   /* --------- DOWNLOADING --------- */
   const svgRef = useRef<SVGAElement | null>(null);
   const downloadSVG = useCallback(() => {
@@ -46,11 +49,11 @@ function App() {
     downloadBlob(blob, 'design.svg');
   }, []);
 
-  /* --------- DESIGN CHANGE --------- */
-  const [design, setDesign] = useState<IDesignModes>('waves');
 
-  /* --------- WAVE OPTIONS --------- */
+  /* --------- OPTION STATES --------- */
   const waveOptions = useWaveOptions();
+  // const bubbleOptions = useBubbleOptions();
+  // ...
 
   /* --------- RENDER CANVAS --------- */
   const renderDesign = useCallback(() => {
@@ -96,7 +99,7 @@ function App() {
         return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
       }
     }
-  }, [design, waveOptions.get, waveOptions.set]);
+  }, [design, waveOptions]);
 
   return (
     <Flex

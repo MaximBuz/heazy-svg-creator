@@ -39,7 +39,7 @@ function App() {
   /* --------- DOWNLOADING --------- */
   const svgRef = useRef<SVGAElement | null>(null);
   const downloadSVG = useCallback(() => {
-    const svg = svgRef.current?.innerHTML;
+    const svg = svgRef.current?.outerHTML;
     const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
     downloadBlob(blob, 'design.svg');
   }, []);
@@ -49,21 +49,21 @@ function App() {
 
   // wave options state
   const [solid, setSolid] = useState<number>(0);
-  const [smooth, setSmooth] = useState<number>(0);
+  const [smooth, setSmooth] = useState<number>(1);
   const [direction, setDirection] = useState<number>(0);
-  const [bgColor, setBgColor] = useState<string>('#002233');
-  const [startColor, setStartColor] = useState<string>('#035adc');
-  const [stopColor, setStopColor] = useState<string>('#5195fb');
+  const [bgColor, setBgColor] = useState<string>('#002438');
+  const [startColor, setStartColor] = useState<string>('#dc0307');
+  const [stopColor, setStopColor] = useState<string>('#8f0091');
   const [shadowX, setShadowX] = useState<number>(0);
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowOpacity, setShadowOpacity] = useState<number>(0.5);
   const [shadowColor, setShadowColor] = useState<string>('#000000');
   const [balance, setBalance] = useState<number>(0.5);
-  const [velocity, setVelocity] = useState<number>(100);
-  const [breaks, setBreaks] = useState<number>(6);
-  const [stacks, setStacks] = useState<number>(3);
-  const [distance, setDistance] = useState<number>(4);
+  const [velocity, setVelocity] = useState<number>(200);
+  const [breaks, setBreaks] = useState<number>(2);
+  const [stacks, setStacks] = useState<number>(4);
+  const [distance, setDistance] = useState<number>(3.5);
   const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
 

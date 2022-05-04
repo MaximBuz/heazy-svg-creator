@@ -166,7 +166,7 @@ const WaveOptions: React.FunctionComponent<IWaveOptionsProps> = ({
       </Tabs>
 
       {/*  SMOOTH vs. PEAK  */}
-      <Tabs onChange={(index) => setSmooth(index)} defaultIndex={0} isFitted variant="unstyled">
+      <Tabs onChange={(index) => setSmooth(index)} defaultIndex={1} isFitted variant="unstyled">
         <TabList>
           <Tab
             roundedTopLeft={10}

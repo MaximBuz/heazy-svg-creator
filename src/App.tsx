@@ -1,5 +1,5 @@
 // React
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 // Components
 import Bubble from './components/Blob';
@@ -8,14 +8,12 @@ import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/Waves';
 
 // Design
-import { Flex, Container, Icon, Circle } from '@chakra-ui/react';
+import { Flex, Container, Circle } from '@chakra-ui/react';
 
 // Utils
-import { aspectRatio } from './utils/calculations/aspectRatio';
 import { downloadBlob } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
-import { ICanvasDimensions } from './utils/types/canvasDimensions';
 
 // Components
 import WaveOptions from './components/RightMenu/Waves/WaveOptions';
@@ -27,16 +25,9 @@ function App() {
   const [seed, setSeed] = useState<number>(0);
 
   /* --------- DIMENSION STATE --------- */
-  const [width, setWidth] = useState<number>(850);
-  const [height, setHeight] = useState<number>(600);
-  const canvasDimensions = useMemo<ICanvasDimensions>(() => {
-    return {
-      width: width,
-      height: height,
-      widthRatio: aspectRatio(width / height, 50)[0],
-      heightRatio: aspectRatio(width / height, 50)[1],
-    };
-  }, [width, height]);
+  const [width, setWidth] = useState<number>(896);
+  const [height, setHeight] = useState<number>(504);
+  const [aspectRatio, setAspectRatio] = useState<string>('16 : 9');
 
   /* --------- VARIANT STATE --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');
@@ -49,7 +40,6 @@ function App() {
     downloadBlob(blob, 'design.svg');
   }, []);
 
-
   /* --------- OPTION STATES --------- */
   const waveOptions = useWaveOptions();
   // const bubbleOptions = useBubbleOptions();
@@ -59,23 +49,15 @@ function App() {
   const renderDesign = useCallback(() => {
     switch (design) {
       case 'waves': {
-        return (
-          <StackedWave
-            width={canvasDimensions.width}
-            height={canvasDimensions.height}
-            svgRef={svgRef}
-            seed={seed}
-            {...waveOptions.get}
-          />
-        );
+        return <StackedWave width={width} height={height} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
       }
       case 'bubble': {
         return (
           <Bubble
             svgRef={svgRef}
             seed={seed}
-            width={canvasDimensions.width}
-            height={canvasDimensions.height}
+            width={width}
+            height={height}
             startWaveColor="#A7233A"
             stopWaveColor="#9e1027"
             bgColor="#001320"
@@ -90,7 +72,7 @@ function App() {
         );
       }
     }
-  }, [design, seed, canvasDimensions.width, canvasDimensions.height, waveOptions.get]);
+  }, [design, seed, width, height, waveOptions.get]);
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderMenu = useCallback(() => {
@@ -146,7 +128,10 @@ function App() {
         onClick={downloadSVG}
         handleWidthChange={setWidth}
         handleHeightChange={setHeight}
-        canvasDimensions={canvasDimensions}
+        setAspectRatio={setAspectRatio}
+        aspectRatio={aspectRatio}
+        width={width}
+        height={height}
       >
         {renderMenu()}
       </RightMenu>

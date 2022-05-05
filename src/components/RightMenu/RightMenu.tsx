@@ -14,22 +14,20 @@ import {
   InputLeftElement,
   InputRightElement,
   HStack,
+  Spacer,
 } from '@chakra-ui/react';
-import {
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerContent,
-} from '@chakra-ui/react';
+import { Drawer, DrawerBody, DrawerHeader, DrawerContent } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icons';
-import { ICanvasDimensions } from '../../utils/types/canvasDimensions';
 
 export interface IRightMenuProps {
   onClick: () => void;
-  canvasDimensions: ICanvasDimensions;
+  aspectRatio: string;
+  width: number;
+  height: number;
+  setAspectRatio: Dispatch<SetStateAction<string>>;
   handleWidthChange: Dispatch<SetStateAction<number>>;
   handleHeightChange: Dispatch<SetStateAction<number>>;
   children: ReactNode;
@@ -37,7 +35,10 @@ export interface IRightMenuProps {
 
 const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   onClick,
-  canvasDimensions,
+  aspectRatio,
+  setAspectRatio,
+  width,
+  height,
   handleWidthChange,
   handleHeightChange,
   children,
@@ -60,7 +61,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
       h="100%"
       zIndex={20}
       overflow="auto"
-      sx={{'&::-webkit-scrollbar': { display: 'none' },}}
+      sx={{ '&::-webkit-scrollbar': { display: 'none' } }}
     >
       <Stack
         flexGrow={1}
@@ -68,7 +69,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
         spacing={4}
         scrollBehavior="smooth"
         overflow="auto"
-        sx={{'&::-webkit-scrollbar': { display: 'none' },}}
+        sx={{ '&::-webkit-scrollbar': { display: 'none' } }}
       >
         {/* --------- DIMENSIONS BUTTON --------- */}
         <Heading as="h3" size="xs" textTransform="uppercase">
@@ -89,15 +90,23 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           onClick={onDimensionDrawerOpen}
         >
           <Flex direction="column" textAlign="left">
-            <Heading
-              fontSize="sm"
-              fontWeight="bolder"
-            >{`${canvasDimensions.widthRatio}:${canvasDimensions.heightRatio}`}</Heading>
-            <Heading
-              fontSize="sm"
-              fontWeight="light"
-              opacity={0.7}
-            >{`${canvasDimensions.width} x ${canvasDimensions.height}`}</Heading>
+            <Heading fontSize="sm" fontWeight="bolder">
+              {height === 504 && width === 896
+                ? 'Full HD'
+                : height === 565 && width === 904
+                ? 'MacBook'
+                : height === 2532 / 3.5 && width === 1170 / 3.5
+                ? 'iPhone 13'
+                : height === 3040 / 3.5 && width === 1440 / 3.5
+                ? 'Galayy S10'
+                : height === 1334 / 2 && width === 750 / 2
+                ? 'iPhone SE'
+                : "Aspect Ratio"}
+            </Heading>
+            <Heading fontSize="sm" fontWeight="light" opacity={0.7}>
+              {aspectRatio}
+            </Heading>
+            {/* Devices stuff */}
           </Flex>
           <ChevronRightIcon boxSize={6} />
         </Flex>
@@ -161,7 +170,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           </DrawerHeader>
           <DrawerBody>
             <Stack>
-              <HStack>
+              {/* <HStack>
                 <InputGroup>
                   <InputLeftElement
                     fontWeight="light"
@@ -190,7 +199,118 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                   />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
-              </HStack>
+              </HStack> */}
+
+              <Heading as="h4" size="xs" opacity={0.5}>
+                Common
+              </Heading>
+              <Divider></Divider>
+              <Button
+                onClick={() => {
+                  handleHeightChange(504);
+                  handleWidthChange(896);
+                  setAspectRatio('16 : 9');
+                }}
+              >
+                16 : 9
+              </Button>
+              <Button
+                onClick={() => {
+                  console.log("test");
+                  handleHeightChange(720);
+                  handleWidthChange(900);
+                  setAspectRatio('5 : 4');
+                }}
+              >
+                5 : 4
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(675);
+                  handleWidthChange(900);
+                  setAspectRatio('4 : 3');
+                }}
+              >
+                4 : 3
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(600);
+                  handleWidthChange(900);
+                  setAspectRatio('3 : 2');
+                }}
+              >
+                3 : 2
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(450);
+                  handleWidthChange(900);
+                  setAspectRatio('2 : 1');
+                }}
+              >
+                2 : 1
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(700);
+                  handleWidthChange(700);
+                  setAspectRatio('1 : 1');
+                }}
+              >
+                1 : 1
+              </Button>
+
+              <Spacer></Spacer>
+              <Heading as="h4" size="xs" opacity={0.5}>
+                Devices
+              </Heading>
+              <Divider></Divider>
+              <Button
+                onClick={() => {
+                  handleHeightChange(504);
+                  handleWidthChange(896);
+                  setAspectRatio('16 : 9');
+                }}
+              >
+                Full HD
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(565);
+                  handleWidthChange(904);
+                  setAspectRatio('16 : 10');
+                }}
+              >
+                MacBook
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(2532 / 3.5);
+                  handleWidthChange(1170 / 3.5);
+                  setAspectRatio('9 : 19:5');
+                }}
+              >
+                iPhone 13
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(3040 / 3.5);
+                  handleWidthChange(1440 / 3.5);
+                  setAspectRatio('9 : 19');
+                }}
+              >
+                Galaxy S10
+              </Button>
+              <Button
+                onClick={() => {
+                  handleHeightChange(1334 / 2);
+                  handleWidthChange(750 / 2);
+                  setAspectRatio('9 : 16');
+                }}
+              >
+                iPhone SE
+              </Button>
             </Stack>
           </DrawerBody>
         </DrawerContent>

@@ -105,6 +105,7 @@ function App() {
         {/* ------ CANVAS ----- */}
         {renderDesign()}
 
+        {/* ------ RANDOMIZE BUTTON ----- */}
         <Circle
           maxWidth={80}
           as={motion.button}
@@ -116,8 +117,11 @@ function App() {
           onClick={() => setSeed(seed + 1)}
           border="8px"
           borderColor="#141820"
-          position="absolute"
+          position="relative"
           bottom="40px"
+          marginBottom="-60px"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 }}
         >
           <DiceIcon />
         </Circle>

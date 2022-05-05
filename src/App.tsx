@@ -66,8 +66,8 @@ function App() {
             shadowSD={10}
             shadowOpacity={0.5}
             velocity={100}
-            size={3}
-            stroke={false}
+            size={50}
+            stroke={true}
           />
         );
       }

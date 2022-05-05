@@ -1,5 +1,6 @@
 import React from 'react';
 import { bubblePath } from '../utils/calculations/bubblePath';
+import { generateRandomNumber } from '../utils/calculations/randomNumber';
 
 export interface IBubbleProps {
   svgRef?: any;
@@ -49,7 +50,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
       >
-        <g transform-origin={`${width / 2} ${height / 2}`} transform="scale(1, 1) rotate(180)">
+        <g transform-origin="center" transform="scale(1, 1) rotate(0)">
           <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
           <linearGradient id={`linear-gradient-${randomClassId}`}>
             <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
@@ -58,7 +59,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
           {!stroke && (
-            <filter id={`shadow-${randomClassId}`} >
+            <filter id={`shadow-${randomClassId}`}>
               <feDropShadow
                 dx={shadowX}
                 dy={shadowY}
@@ -76,6 +77,8 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
             stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
             strokeWidth={strokeWidth}
             style={{
+              transformOrigin: "center",
+              transform: `rotate(${(generateRandomNumber(seed) - 0.5) * 360}deg)`,
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
               fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
             }}

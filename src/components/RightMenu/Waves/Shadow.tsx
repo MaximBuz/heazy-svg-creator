@@ -17,6 +17,8 @@ import {
 } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
+import rgbHex from 'rgb-hex';
+import HideColorButton from '../HideColorButton';
 
 export interface IShadowProps {
   shadowX: number;
@@ -25,8 +27,6 @@ export interface IShadowProps {
   setShadowY: Dispatch<SetStateAction<number>>;
   shadowSD: number;
   setShadowSD: Dispatch<SetStateAction<number>>;
-  shadowOpacity: number;
-  setShadowOpacity: Dispatch<SetStateAction<number>>;
   shadowColor: string;
   setShadowColor: Dispatch<SetStateAction<string>>;
 }
@@ -38,8 +38,6 @@ const Shadow: React.FunctionComponent<IShadowProps> = ({
   setShadowX,
   shadowSD,
   setShadowSD,
-  shadowOpacity,
-  setShadowOpacity,
   shadowColor,
   setShadowColor,
   shadowY,
@@ -98,24 +96,6 @@ const Shadow: React.FunctionComponent<IShadowProps> = ({
         </SliderTrack>
         <SliderThumb />
       </Slider>
-
-      <Heading as="h4" size="xs" opacity={0.5}>
-        Opacity
-      </Heading>
-      <Slider
-        aria-label="shadow-opacity"
-        defaultValue={shadowOpacity}
-        min={0}
-        max={1}
-        step={0.01}
-        onChange={(val) => setShadowOpacity(val)}
-      >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
-
       <Heading as="h4" size="xs" opacity={0.5}>
         Color
       </Heading>
@@ -139,13 +119,14 @@ const Shadow: React.FunctionComponent<IShadowProps> = ({
                 onChange={(e) => setShadowColor(`#${e.target.value}`)}
               />
             </InputGroup>
+            <HideColorButton color={shadowColor} setColor={setShadowColor} />
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
                 color={shadowColor}
-                onChange={(col) => setShadowColor(col.hex)}
+                onChange={(col) => setShadowColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"

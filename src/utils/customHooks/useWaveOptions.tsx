@@ -15,8 +15,7 @@ const useWaveOptions = (): {
   const [shadowX, setShadowX] = useState<number>(0);
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);
-  const [shadowOpacity, setShadowOpacity] = useState<number>(0.5);
-  const [shadowColor, setShadowColor] = useState<string>('#000000');
+  const [shadowColor, setShadowColor] = useState<string>('#00000061');
   const [balance, setBalance] = useState<number>(0.5);
   const [velocity, setVelocity] = useState<number>(200);
   const [breaks, setBreaks] = useState<number>(2);
@@ -35,7 +34,6 @@ const useWaveOptions = (): {
       shadowX,
       shadowY,
       shadowSD,
-      shadowOpacity,
       shadowColor,
       balance,
       velocity,
@@ -57,7 +55,6 @@ const useWaveOptions = (): {
       setShadowX,
       setShadowY,
       setShadowSD,
-      setShadowOpacity,
       setShadowColor,
       setBalance,
       setVelocity,

@@ -21,6 +21,7 @@ import ComplexityLeft from './Icons/ComplexityLeft';
 import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import DistanceLeft from './Icons/DistanceLeft';
+import DistanceRight from './Icons/DistanceRight';
 
 export interface IShapeProps {
   balance: number;
@@ -163,7 +164,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
         </Slider>
 
         <SliderIconWrapper viewBox={'0 0 445 303'} onClick={() => distance < 10 && setDistance(distance + 1)}>
-          <DistanceLeft />
+          <DistanceRight />
         </SliderIconWrapper>
       </HStack>
     </>

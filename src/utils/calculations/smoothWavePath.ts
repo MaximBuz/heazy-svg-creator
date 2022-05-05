@@ -10,15 +10,15 @@ export function smoothWavePath(
   breaks: number,
   stacks: number,
   distance: number,
-  stroke: boolean
-) {
+  stroke: boolean,
+  direction: number
+): string[] {
   let waveHeight = height * balance;
-  const equal = width / breaks;
+  let equal = width / breaks;
   const waves = [];
-  
+
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
-
     // beginning of each wave
     const data = [`M0 ${waveHeight + stack * distance * (stack * distance)}`];
     // generate random waves based on passed parameters

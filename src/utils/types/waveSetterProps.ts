@@ -10,7 +10,6 @@ export interface IWaveSetterProps {
   setShadowX: Dispatch<SetStateAction<number>>;
   setShadowY: Dispatch<SetStateAction<number>>;
   setShadowSD: Dispatch<SetStateAction<number>>;
-  setShadowOpacity: Dispatch<SetStateAction<number>>;
   setShadowColor: Dispatch<SetStateAction<string>>;
   setBalance: Dispatch<SetStateAction<number>>;
   setVelocity: Dispatch<SetStateAction<number>>;

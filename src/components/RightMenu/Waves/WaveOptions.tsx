@@ -25,8 +25,8 @@ const WaveOptions: React.FunctionComponent<
       <Divider />
       <Shape {...props}></Shape>
       <Divider />
-      <Direction {...props}></Direction>
-      <Divider></Divider>
+      {/* <Direction {...props}></Direction> */}
+      {/* <Divider/> */}
       <Color {...props}></Color>
       <Divider></Divider>
       <Shadow {...props}></Shadow>

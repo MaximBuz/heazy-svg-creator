@@ -14,7 +14,6 @@ export interface IWaveProps {
   shadowX: number;
   shadowY: number;
   shadowSD: number;
-  shadowOpacity: number;
   shadowColor: string;
   balance: number;
   velocity: number;

@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import Bubble from './components/Blob';
 import LeftMenu from './components/LeftMenu';
 import RightMenu from './components/RightMenu/RightMenu';
-import StackedWave from './components/StackedWave';
+import StackedWave from './components/Waves';
 
 // Design
 import { Flex, Container, Icon, Circle } from '@chakra-ui/react';

@@ -4,7 +4,7 @@ import { peakWavePath } from '../utils/calculations/peakWavePath';
 import { IWaveProps } from '../utils/types/waveProps';
 
 
-const StackedWave: React.FunctionComponent<IWaveProps> = ({
+const Waves: React.FunctionComponent<IWaveProps> = ({
   svgRef,
   type,
   seed,
@@ -18,7 +18,6 @@ const StackedWave: React.FunctionComponent<IWaveProps> = ({
   startWaveColor,
   stopWaveColor,
   bgColor,
-  shadowOpacity,
   shadowX,
   shadowY,
   shadowSD,
@@ -30,7 +29,7 @@ const StackedWave: React.FunctionComponent<IWaveProps> = ({
 }) => {
   let wavesData;
   if (type === 'smooth') {
-    wavesData = smoothWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
+    wavesData = smoothWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke, direction);
   } else {
     wavesData = peakWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
   }
@@ -60,7 +59,6 @@ const StackedWave: React.FunctionComponent<IWaveProps> = ({
               dy={shadowY}
               stdDeviation={shadowSD}
               floodColor={shadowColor}
-              floodOpacity={shadowOpacity}
             />
           </filter>
         )}
@@ -88,4 +86,4 @@ const StackedWave: React.FunctionComponent<IWaveProps> = ({
   );
 };
 
-export default StackedWave;
+export default Waves;

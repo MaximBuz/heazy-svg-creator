@@ -58,16 +58,16 @@ function App() {
             seed={seed}
             width={width}
             height={height}
-            startWaveColor="#A7233A"
-            stopWaveColor="#9e1027"
-            bgColor="#001320"
+            startWaveColor="#ff8fa2"
+            stopWaveColor="#ff92a4"
+            bgColor="#FF0066"
             shadowX={0}
-            shadowY={5}
+            shadowY={0}
             shadowSD={10}
             shadowOpacity={0.5}
-            velocity={100}
-            size={50}
-            stroke={true}
+            velocity={50}
+            size={100}
+            stroke={false}
           />
         );
       }

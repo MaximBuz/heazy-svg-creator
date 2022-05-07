@@ -12,46 +12,47 @@ export function smoothCornerPath(
   distance: number,
   stroke: boolean
 ): string[] {
-  breaks = 1;
-  let waveStart = height * balance;
-  let waveWidth = waveStart;
-  let equal = Math.sqrt(waveStart ** 2 + waveWidth ** 2) / breaks;
+  breaks = 3;
+  velocity = 50;
+  let waveSize = height * balance;
+  let equal = waveSize / breaks;
   const waves = [];
-
-  console.log(height);
-  console.log(waveStart);
-
-  /* 
-  
-  START FROM 0, 0, it will be so much easier to reason about!!
-  
-  */
 
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     // beginning of each wave
-    const data = [`M0 ${waveStart + stack * distance * (stack * distance)}`];
+    const data = [
+      `M0 0`,
+      `C 0 0 0 ${waveSize} 0 ${waveSize}`,
+    ]; // do some randomness on the handles!
     // generate random waves based on passed parameters
+    let previous;
     for (let n = 1; n <= breaks; n++) {
       const random = (generateRandomNumber(seed + stack + n) - 0.5) * velocity;
-      const smooth = {
-        handle: {
-          x: random < 0 ? (n - 1) * equal + equal / 2 - random : (n - 1) * equal + equal / 2 + random,
-          y: waveStart + random + stack * distance * (stack * distance),
+
+      const coords = {
+        handle1: {
+          x: previous ? (previous.x - previous.handle2.x) + previous.x : generateRandomNumber(seed),
+          y: previous ? (previous.y - previous.handle2.y) + previous.y : generateRandomNumber(seed),
         },
-        x: n * equal,
-        y: n * equal,
-        // +
-        // (generateRandomNumber(seed + stack + 2 * n) - 0.5) * velocity +
-        // stack * distance * (stack * distance),
+        handle2: {
+          x: n * equal + random,
+          y: waveSize - n * equal + random,
+        },
+        x: n * equal + random,
+        y: waveSize - n * equal + random,
       };
 
+      previous = coords;
+
       // push path snippet to data array
-      data.push(`S${smooth.handle.x} ${smooth.handle.y} ${smooth.x} ${smooth.y}`);
+      data.push(
+        `C${coords.handle1.x} ${coords.handle1.y} ${coords.handle2.x} ${coords.handle2.y} ${coords.x} ${coords.y}`
+      );
     }
 
     // if it's a filled wave, close of bottom
-    !stroke && data.push(`L0 ${height}Z`);
+    !stroke && data.push(`L0 0Z`);
 
     // push each wave to waves array
     waves.push(data.join(' '));

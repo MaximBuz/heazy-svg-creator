@@ -95,10 +95,10 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 ? 'Full HD'
                 : height === 565 && width === 904
                 ? 'MacBook'
-                : height === 2532 / 3.5 && width === 1170 / 3.5
+                : height === 2532 / 3.75 && width === 1170 / 3.75
                 ? 'iPhone 13'
-                : height === 3040 / 3.5 && width === 1440 / 3.5
-                ? 'Galayy S10'
+                : height === 3040 / 4.5 && width === 1440 / 4.5
+                ? 'Galaxy S10'
                 : height === 1334 / 2 && width === 750 / 2
                 ? 'iPhone SE'
                 : "Aspect Ratio"}
@@ -286,8 +286,8 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
               </Button>
               <Button
                 onClick={() => {
-                  handleHeightChange(2532 / 3.5);
-                  handleWidthChange(1170 / 3.5);
+                  handleHeightChange(2532 / 3.75);
+                  handleWidthChange(1170 / 3.75);
                   setAspectRatio('9 : 19:5');
                 }}
               >
@@ -295,8 +295,8 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
               </Button>
               <Button
                 onClick={() => {
-                  handleHeightChange(3040 / 3.5);
-                  handleWidthChange(1440 / 3.5);
+                  handleHeightChange(3040 / 4.5);
+                  handleWidthChange(1440 / 4.5);
                   setAspectRatio('9 : 19');
                 }}
               >

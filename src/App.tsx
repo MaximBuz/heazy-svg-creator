@@ -19,6 +19,8 @@ import { IDesignModes } from './utils/types/designModes';
 import WaveOptions from './components/RightMenu/Waves/WaveOptions';
 import useWaveOptions from './utils/customHooks/useWaveOptions';
 import DiceIcon from './components/DiceIcon';
+import useBubbleOptions from './utils/customHooks/useBubbleOptions';
+import BubbleOptions from './components/RightMenu/Bubble/BubbleOptions';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -42,7 +44,7 @@ function App() {
 
   /* --------- OPTION STATES --------- */
   const waveOptions = useWaveOptions();
-  // const bubbleOptions = useBubbleOptions();
+  const bubbleOptions = useBubbleOptions();
   // ...
 
   /* --------- RENDER CANVAS --------- */
@@ -52,24 +54,7 @@ function App() {
         return <StackedWave width={width} height={height} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
       }
       case 'bubble': {
-        return (
-          <Bubble
-            svgRef={svgRef}
-            seed={seed}
-            width={width}
-            height={height}
-            startWaveColor="#002847"
-            stopWaveColor="#002847"
-            bgColor="#FBAE3C"
-            shadowX={0}
-            shadowY={0}
-            shadowSD={0}
-            shadowOpacity={0.5}
-            velocity={50}
-            size={150}
-            stroke={false}
-          />
-        );
+        return <Bubble width={width} height={height} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
       }
     }
   }, [design, seed, width, height, waveOptions.get]);
@@ -79,6 +64,9 @@ function App() {
     switch (design) {
       case 'waves': {
         return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
+      }
+      case 'bubble': {
+        return <BubbleOptions {...bubbleOptions.get} {...bubbleOptions.set} />;
       }
     }
   }, [design, waveOptions]);

@@ -10,12 +10,10 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-  Switch,
   Tab,
   TabList,
   Tabs,
 } from '@chakra-ui/react';
-
 
 // Icons
 import SliderIconWrapper from '../SliderIconWrapper';
@@ -23,28 +21,15 @@ import LineWidthLeft from '../Icons/LineWidthLeft';
 import LineWidthRight from '../Icons/LineWidthRight';
 import Solid from '../Icons/Solid';
 import Outline from '../Icons/Outline';
-import Edgy from '../Icons/Edgy';
-import Smooth from '../Icons/Smooth';
 
 type Props = {
   setSolid: Dispatch<SetStateAction<number>>;
   solid: number;
-  setStrokeShrink: Dispatch<SetStateAction<boolean>>;
-  strokeShrink: boolean;
   setStrokeWidth: Dispatch<SetStateAction<number>>;
   strokeWidth: number;
-  setSmooth: Dispatch<SetStateAction<number>>;
 };
 
-export default function Variants({
-  setSolid,
-  solid,
-  setStrokeShrink,
-  strokeShrink,
-  setStrokeWidth,
-  strokeWidth,
-  setSmooth,
-}: Props) {
+const Variants: React.FunctionComponent<Props> = ({ setSolid, solid, setStrokeWidth, strokeWidth }) => {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">
@@ -85,40 +70,7 @@ export default function Variants({
         </TabList>
       </Tabs>
 
-      {/* ------ SMOOTH vs. PEAK ------ */}
-      <Tabs onChange={(index) => setSmooth(index)} defaultIndex={1} isFitted variant="unstyled">
-        <TabList>
-          <Tab
-            roundedTopLeft={10}
-            roundedBottomLeft={10}
-            bgColor="#262a33"
-            _hover={{ background: '#2e3643', cursor: 'pointer' }}
-            _selected={{ background: '#363e4a' }}
-            display="flex"
-            flexDirection="column"
-          >
-            <Icon boxSize="5" viewBox="0 0 452 189" color="white">
-              <Edgy />
-            </Icon>
-            Edgy
-          </Tab>
-          <Tab
-            roundedTopRight={10}
-            roundedBottomRight={10}
-            bgColor="#262a33"
-            _hover={{ background: '#2e3643', cursor: 'pointer' }}
-            _selected={{ background: '#363e4a' }}
-            display="flex"
-            flexDirection="column"
-          >
-            <Icon boxSize="5" viewBox="0 0 412 219" color="white">
-              <Smooth />
-            </Icon>
-            Smooth
-          </Tab>
-        </TabList>
-      </Tabs>
-
+      
       {/* ------ LINE STROKE OPTIONS ------ */}
       {solid === 1 && (
         <>
@@ -154,14 +106,10 @@ export default function Variants({
               <LineWidthRight />
             </SliderIconWrapper>
           </HStack>
-          <HStack justifyContent="space-between">
-            <Heading as="h4" size="xs" opacity={0.5}>
-              Shrink lines progressively
-            </Heading>
-            <Switch size="lg" onChange={() => setStrokeShrink(!strokeShrink)} />
-          </HStack>
         </>
       )}
     </>
   );
-}
+};
+
+export default Variants;

@@ -14,14 +14,14 @@ import {
 } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
-import BalanceLeft from './Icons/BalanceLeft';
-import BalanceRight from './Icons/BalanceRight';
-import ComplexityRight from './Icons/ComplexityRight';
-import ComplexityLeft from './Icons/ComplexityLeft';
-import VelocityLeft from './Icons/VelocityLeft';
-import VelocityRight from './Icons/VelocityRight';
-import DistanceLeft from './Icons/DistanceLeft';
-import DistanceRight from './Icons/DistanceRight';
+import BalanceLeft from '../Icons/BalanceLeft';
+import BalanceRight from '../Icons/BalanceRight';
+import ComplexityRight from '../Icons/ComplexityRight';
+import ComplexityLeft from '../Icons/ComplexityLeft';
+import VelocityLeft from '../Icons/VelocityLeft';
+import VelocityRight from '../Icons/VelocityRight';
+import DistanceLeft from '../Icons/DistanceLeft';
+import DistanceRight from '../Icons/DistanceRight';
 
 export interface IShapeProps {
   balance: number;

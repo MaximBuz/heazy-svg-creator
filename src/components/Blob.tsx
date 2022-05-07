@@ -1,24 +1,7 @@
 import React from 'react';
 import { bubblePath } from '../utils/calculations/bubblePath';
 import { generateRandomNumber } from '../utils/calculations/randomNumber';
-
-export interface IBubbleProps {
-  svgRef?: any;
-  stroke: boolean;
-  strokeWidth?: number;
-  seed: number;
-  width: number;
-  height: number;
-  startWaveColor: string;
-  stopWaveColor: string;
-  bgColor: string;
-  shadowX?: number;
-  shadowY?: number;
-  shadowSD?: number;
-  shadowOpacity?: number;
-  velocity: number;
-  size: number;
-}
+import { IBubbleProps } from '../utils/types/bubbleProps';
 
 const Bubble: React.FunctionComponent<IBubbleProps> = ({
   svgRef,
@@ -27,13 +10,13 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
   seed,
   width,
   height,
-  startWaveColor,
-  stopWaveColor,
+  startColor,
+  endColor,
   bgColor,
   shadowX,
-  shadowOpacity,
   shadowY,
   shadowSD,
+  shadowColor,
   velocity,
   size,
 }) => {
@@ -53,8 +36,8 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
         <g transform-origin="center" transform="scale(1, 1) rotate(0)">
           <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
           <linearGradient id={`linear-gradient-${randomClassId}`}>
-            <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
-            <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
+            <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
+            <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
           </linearGradient>
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
@@ -64,8 +47,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
                 dx={shadowX}
                 dy={shadowY}
                 stdDeviation={shadowSD}
-                floodColor="black"
-                floodOpacity={shadowOpacity}
+                floodColor={shadowColor}
               />
             </filter>
           )}

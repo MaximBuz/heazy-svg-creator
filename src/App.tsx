@@ -8,11 +8,11 @@ import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/Waves';
 
 // Design
-import { Flex, Container, Circle } from '@chakra-ui/react';
+import { Flex, Container, Circle, chakra } from '@chakra-ui/react';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
-import { motion } from 'framer-motion';
+import { isValidMotionProp, motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 
 // Components
@@ -108,8 +108,9 @@ function App() {
           position="relative"
           bottom="40px"
           marginBottom="-60px"
+          // @ts-ignore
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 }}
+          whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
         >
           <DiceIcon />
         </Circle>

@@ -19,12 +19,12 @@ import {
 
 // Icons
 import SliderIconWrapper from '../SliderIconWrapper';
-import LineWidthLeft from '../Icons/LineWidthLeft';
-import LineWidthRight from '../Icons/LineWidthRight';
-import Solid from '../Icons/Solid';
-import Outline from '../Icons/Outline';
-import Edgy from '../Icons/Edgy';
-import Smooth from '../Icons/Smooth';
+import LineWidthLeft from './Icons/LineWidthLeft';
+import LineWidthRight from './Icons/LineWidthRight';
+import Solid from './Icons/Solid';
+import Outline from './Icons/Outline';
+import Edgy from './Icons/Edgy';
+import Smooth from './Icons/Smooth';
 
 type Props = {
   setSolid: Dispatch<SetStateAction<number>>;

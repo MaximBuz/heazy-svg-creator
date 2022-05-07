@@ -1,27 +1,10 @@
-import {
-  Heading,
-  HStack,
-  Icon,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/react';
+import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Box } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
-import BalanceLeft from '../Icons/BalanceLeft';
-import BalanceRight from '../Icons/BalanceRight';
-import ComplexityRight from '../Icons/ComplexityRight';
-import ComplexityLeft from '../Icons/ComplexityLeft';
-import VelocityLeft from '../Icons/VelocityLeft';
-import VelocityRight from '../Icons/VelocityRight';
-import DistanceLeft from '../Icons/DistanceLeft';
-import DistanceRight from '../Icons/DistanceRight';
+import VelocityLeft from './Icons/VelocityLeft';
+import VelocityRight from './Icons/VelocityRight';
+import SizeLeft from './Icons/SizeLeft';
+import SizeRight from './Icons/SizeRight';
 
 export interface IShapeProps {
   velocity: number;
@@ -44,8 +27,8 @@ const Shape: React.FunctionComponent<IShapeProps> = ({ velocity, setVelocity, si
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => size > 0 && setSize(size - 10)}>
-          <VelocityLeft />
+        <SliderIconWrapper viewBox={'0 0 224 224'} onClick={() => size > 0 && setSize(size - 10)}>
+          <SizeLeft />
         </SliderIconWrapper>
 
         <Slider aria-label="size" value={size} min={0} max={300} onChange={(val) => setSize(val)}>
@@ -55,11 +38,8 @@ const Shape: React.FunctionComponent<IShapeProps> = ({ velocity, setVelocity, si
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper
-          viewBox={'0 0 412 286'}
-          onClick={() => size < 300 && setSize(size + 10)}
-        >
-          <VelocityRight />
+        <SliderIconWrapper viewBox={'0 0 469 469'} onClick={() => size < 300 && setSize(size + 10)}>
+          <SizeRight />
         </SliderIconWrapper>
       </HStack>
 
@@ -69,7 +49,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({ velocity, setVelocity, si
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 10)}>
+        <SliderIconWrapper viewBox={'0 0 465 465'} onClick={() => velocity > 0 && setVelocity(velocity - 10)}>
           <VelocityLeft />
         </SliderIconWrapper>
 
@@ -81,7 +61,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({ velocity, setVelocity, si
         </Slider>
 
         <SliderIconWrapper
-          viewBox={'0 0 412 286'}
+          viewBox={'0 0 444 456'}
           onClick={() => velocity < 100 && setVelocity(velocity + 10)}
         >
           <VelocityRight />
@@ -109,7 +89,6 @@ const Shape: React.FunctionComponent<IShapeProps> = ({ velocity, setVelocity, si
           <ComplexityRight />
         </SliderIconWrapper>
       </HStack> */}
-
     </>
   );
 };

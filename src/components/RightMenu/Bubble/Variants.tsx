@@ -17,10 +17,10 @@ import {
 
 // Icons
 import SliderIconWrapper from '../SliderIconWrapper';
-import LineWidthLeft from '../Icons/LineWidthLeft';
-import LineWidthRight from '../Icons/LineWidthRight';
-import Solid from '../Icons/Solid';
-import Outline from '../Icons/Outline';
+import LineWidthLeft from '../Waves/Icons/LineWidthLeft';
+import LineWidthRight from '../Waves/Icons/LineWidthRight';
+import Solid from './Icons/Solid';
+import Outline from './Icons/Outline';
 
 type Props = {
   setSolid: Dispatch<SetStateAction<number>>;
@@ -47,8 +47,9 @@ const Variants: React.FunctionComponent<Props> = ({ setSolid, solid, setStrokeWi
             _selected={{ background: '#363e4a' }}
             display="flex"
             flexDirection="column"
+            gap="5px"
           >
-            <Icon boxSize="5" viewBox="0 0 410 192" color="white">
+            <Icon boxSize="5" viewBox="0 0 465 465" color="white">
               <Solid />
             </Icon>
             Solid
@@ -61,8 +62,9 @@ const Variants: React.FunctionComponent<Props> = ({ setSolid, solid, setStrokeWi
             _selected={{ background: '#363e4a' }}
             display="flex"
             flexDirection="column"
+            gap="5px"
           >
-            <Icon boxSize="5" viewBox="0 0 411 96" color="white">
+            <Icon boxSize="5" viewBox="0 0 465 465" color="white">
               <Outline />
             </Icon>
             Outline

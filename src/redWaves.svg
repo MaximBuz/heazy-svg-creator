@@ -1,0 +1,26 @@
+<svg viewBox="0 0 896 504" height="504" width="896" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<g transform-origin="448 252" transform="scale(1, 1) rotate(0)">
+		<rect x="0" y="0" width="896" height="504" fill="#020021ff">
+		</rect>
+		<linearGradient id="linear-gradient-smooth-2">
+			<stop offset="0%" stop-color="#dc0307" stop-opacity="100%">
+			</stop>
+			<stop offset="100%" stop-color="#910060" stop-opacity="100%">
+			</stop>
+		</linearGradient>
+		<filter id="shadow-smooth-2" x="0" width="100%" y="-20%" height="150%">
+			<feDropShadow dx="0" dy="5" stdDeviation="17" flood-color="#d900ffff">
+			</feDropShadow>
+		</filter>
+		<path d="M0 201.60000000000002 S309.02358915284276 116.57641084715726 448 229.45411649383607 S699.854116493836 229.45411649383607 896 221.82075038403275 L896 504 L0 504Z" fill="none" stroke-linecap="round" filter="url(#shadow-smooth-2)" stroke-width="1" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-smooth-2&quot;);">
+		</path>
+		<path d="M0 213.85000000000002 S251.85411649383605 241.70411649383607 448 284.05284943282606 S742.202849432826 284.05284943282606 896 313.81221815235915 L896 504 L0 504Z" fill="none" stroke-linecap="round" filter="url(#shadow-smooth-2)" stroke-width="1" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-smooth-2&quot;);">
+		</path>
+		<path d="M0 250.60000000000002 S294.20284943282604 320.80284943282606 448 270.82075038403275 S692.2207503840327 270.82075038403275 896 317.83604644648733 L896 504 L0 504Z" fill="none" stroke-linecap="round" filter="url(#shadow-smooth-2)" stroke-width="1" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-smooth-2&quot;);">
+		</path>
+		<path d="M0 311.85 S244.22075038403273 332.07075038403275 448 411.81221815235915 S771.9622181523591 411.81221815235915 896 219.28910116143527 L896 504 L0 504Z" fill="none" stroke-linecap="round" filter="url(#shadow-smooth-2)" stroke-width="1" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-smooth-2&quot;);">
+		</path>
+		<path d="M0 397.6 S323.9622181523591 497.56221815235915 448 464.83604644648733 S739.2360464464873 464.83604644648733 896 309.6148073881865 L896 504 L0 504Z" fill="none" stroke-linecap="round" filter="url(#shadow-smooth-2)" stroke-width="1" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s; fill: url(&quot;#linear-gradient-smooth-2&quot;);">
+		</path>
+	</g>
+</svg>

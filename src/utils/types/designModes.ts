@@ -1,1 +1,1 @@
-export type IDesignModes = "waves" | "bubble"; 
+export type IDesignModes = "waves" | "bubble" | "corners"; 

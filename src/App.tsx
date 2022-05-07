@@ -6,6 +6,7 @@ import Bubble from './components/Blob';
 import LeftMenu from './components/LeftMenu';
 import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/Waves';
+import Corners from './components/Corners';
 
 // Design
 import { Flex, Container, Circle, chakra } from '@chakra-ui/react';
@@ -21,6 +22,8 @@ import useWaveOptions from './utils/customHooks/useWaveOptions';
 import DiceIcon from './components/DiceIcon';
 import useBubbleOptions from './utils/customHooks/useBubbleOptions';
 import BubbleOptions from './components/RightMenu/Bubble/BubbleOptions';
+import useCornerOptions from './utils/customHooks/useCornerOptions';
+import CornerOptions from './components/RightMenu/Corners/CornerOptions';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -45,7 +48,7 @@ function App() {
   /* --------- OPTION STATES --------- */
   const waveOptions = useWaveOptions();
   const bubbleOptions = useBubbleOptions();
-  // ...
+  const cornerOptions = useCornerOptions();
 
   /* --------- RENDER CANVAS --------- */
   const renderDesign = useCallback(() => {
@@ -56,8 +59,11 @@ function App() {
       case 'bubble': {
         return <Bubble width={width} height={height} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
       }
+      case 'corners': {
+        return <Corners width={width} height={height} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
+      }
     }
-  }, [design, seed, width, height, waveOptions.get]);
+  }, [design, seed, width, height, waveOptions.get, bubbleOptions.get, cornerOptions.get]);
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderMenu = useCallback(() => {
@@ -68,8 +74,11 @@ function App() {
       case 'bubble': {
         return <BubbleOptions {...bubbleOptions.get} {...bubbleOptions.set} />;
       }
+      case 'corners': {
+        return <CornerOptions {...cornerOptions.get} {...cornerOptions.set} />;
+      }
     }
-  }, [design, waveOptions]);
+  }, [design, waveOptions, bubbleOptions, cornerOptions]);
 
   return (
     <Flex

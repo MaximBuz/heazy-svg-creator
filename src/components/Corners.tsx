@@ -2,6 +2,7 @@ import React from 'react';
 import { smoothWavePath } from '../utils/calculations/smoothWavePath';
 import { peakWavePath } from '../utils/calculations/peakWavePath';
 import { ICornerProps } from '../utils/types/cornerProps';
+import { smoothCornerPath } from '../utils/calculations/smoothCornerPath';
 
 const Corners: React.FunctionComponent<ICornerProps> = ({
   svgRef,
@@ -28,20 +29,19 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
 }) => {
   let wavesData;
   if (type === 'smooth') {
-    wavesData = smoothWavePath(
+    wavesData = smoothCornerPath(
       seed,
       width,
       height,
       balance,
       velocity,
       breaks,
-      stacks,
+      0,
       distance,
       stroke,
-      direction
     );
   } else {
-    wavesData = peakWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
+    wavesData = peakWavePath(seed, width, height, balance, velocity, 5, stacks, distance, stroke);
   }
   const randomClassId = Math.round(Math.random() * 100);
   return (

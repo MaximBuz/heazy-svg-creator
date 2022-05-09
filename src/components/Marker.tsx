@@ -1,16 +1,14 @@
 import React from 'react';
-import { bubblePath } from '../utils/calculations/bubblePath';
 import { generateRandomNumber } from '../utils/calculations/randomNumber';
 import { IMarkerProps } from '../utils/types/markerProps';
 
-const Bubble: React.FunctionComponent<IMarkerProps> = ({
+const Marker: React.FunctionComponent<IMarkerProps> = ({
   svgRef,
   seed,
   width,
   height,
-  edgeJoin,
-  startJoin,
-  endJoin,
+  lineCap,
+  lineJoin,
   strokeWidth,
   startColor,
   endColor,
@@ -48,17 +46,16 @@ const Bubble: React.FunctionComponent<IMarkerProps> = ({
           <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
         </filter>
         <path
-          d={"pathData"}
+          d={"M71 338.276L134.477 118.614L191.76 471L308.283 69L397.264 353.59C417.391 258.727 464 69 464 69"}
           fill="none"
-          strokeLinecap={"square"}
+          strokeLinecap={lineCap}
+          strokeLinejoin={lineJoin}
           filter={`url(#shadow-${randomClassId})`}
           stroke={`url(#linear-gradient-${randomClassId})`}
           strokeWidth={strokeWidth}
           style={{
             transformOrigin: 'center',
-            transform: `rotate(${(generateRandomNumber(seed) - 0.5) * 360}deg)`,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-            fill: `url(#linear-gradient-${randomClassId})`,
           }}
         ></path>
       </g>
@@ -66,4 +63,4 @@ const Bubble: React.FunctionComponent<IMarkerProps> = ({
   );
 };
 
-export default Bubble;
+export default Marker;

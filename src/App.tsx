@@ -24,6 +24,8 @@ import useBubbleOptions from './utils/customHooks/useBubbleOptions';
 import BubbleOptions from './components/RightMenu/Bubble/BubbleOptions';
 import useCornerOptions from './utils/customHooks/useCornerOptions';
 import CornerOptions from './components/RightMenu/Corners/CornerOptions';
+import Marker from './components/Marker';
+import useMarkerOptions from './utils/customHooks/useMarkerOptions';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -49,6 +51,7 @@ function App() {
   const waveOptions = useWaveOptions();
   const bubbleOptions = useBubbleOptions();
   const cornerOptions = useCornerOptions();
+  const markerOptions = useMarkerOptions();
 
   /* --------- RENDER CANVAS --------- */
   const renderDesign = useCallback(() => {
@@ -62,8 +65,11 @@ function App() {
       case 'corners': {
         return <Corners width={width} height={height} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
       }
+      case 'marker': {
+        return <Marker width={width} height={height} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
+      }
     }
-  }, [design, seed, width, height, waveOptions.get, bubbleOptions.get, cornerOptions.get]);
+  }, [design, seed, width, height, waveOptions.get, bubbleOptions.get, cornerOptions.get, markerOptions.get]);
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderMenu = useCallback(() => {
@@ -77,8 +83,11 @@ function App() {
       case 'corners': {
         return <CornerOptions {...cornerOptions.get} {...cornerOptions.set} />;
       }
+      // case 'marker': {
+      //   return <MarkerOptions {...markerOptions.get} {...markerOptions.set} />;
+      // }
     }
-  }, [design, waveOptions, bubbleOptions, cornerOptions]);
+  }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
 
   return (
     <Flex

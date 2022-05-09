@@ -52,6 +52,7 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({setDesign}) => {
         <Thumbnail setDesign={setDesign} image={stackedWave} caption="waves"></Thumbnail>
         <Thumbnail setDesign={setDesign} image={bubble} caption="bubble"></Thumbnail>
         <Thumbnail setDesign={setDesign} image={smoothStage} caption="corners"></Thumbnail>
+        <Thumbnail setDesign={setDesign} image={smoothStage} caption="marker"></Thumbnail>
       </Stack>
 
       <Flex

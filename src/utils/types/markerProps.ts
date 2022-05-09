@@ -4,7 +4,7 @@ export interface IMarkerProps {
   width: number;
   height: number;
   lineCap: 'butt' | 'round' | 'square';
-  lineJoin: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round';
+  lineJoin: 'bevel' | 'miter' | 'round';
   strokeWidth: number;
   startColor: string;
   endColor: string;

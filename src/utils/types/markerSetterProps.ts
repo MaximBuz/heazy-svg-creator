@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 export interface IMarkerSetterProps {
   setLineCap: Dispatch<SetStateAction<'butt' | 'round' | 'square'>>;
-  setLineJoin: Dispatch<SetStateAction<'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'>>;
+  setLineJoin: Dispatch<SetStateAction<'bevel' | 'miter' | 'round'>>;
   setStrokeWidth: Dispatch<SetStateAction<number>>;
   setStartColor: Dispatch<SetStateAction<string>>;
   setEndColor: Dispatch<SetStateAction<string>>;

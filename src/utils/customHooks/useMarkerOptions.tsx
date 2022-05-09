@@ -7,8 +7,8 @@ const useMarkerOptions = (): {
   set: IMarkerSetterProps;
 } => {
   const [lineCap, setLineCap] = useState<'butt' | 'round' | 'square'>("square");
-  const [lineJoin, setLineJoin] = useState<'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'>("bevel");
-  const [strokeWidth, setStrokeWidth] = useState<number>(1);
+  const [lineJoin, setLineJoin] = useState< 'bevel' | 'miter'  | 'round'>("bevel");
+  const [strokeWidth, setStrokeWidth] = useState<number>(100);
   const [bgColor, setBgColor] = useState<string>('#FBAE3C');
   const [startColor, setStartColor] = useState<string>('#001e35');
   const [endColor, setEndColor] = useState<string>('#001b2f');

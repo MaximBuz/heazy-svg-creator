@@ -12,8 +12,6 @@ export function smoothCornerPath(
   distance: number,
   stroke: boolean
 ): string[] {
-  breaks = 2;
-  velocity = 10;
   let waveSize = height * balance;
   let equal = waveSize / breaks;
   const waves = [];
@@ -21,17 +19,19 @@ export function smoothCornerPath(
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     // beginning of each wave
-    const data = [`M0 0`, `C 0 0 0 ${waveSize + rndm(seed + stack) *2* velocity} 0 ${waveSize + rndm(seed + stack) *2* velocity - stack * distance * (stack * distance)}`]; // do some randomness on the handles!
+    const data = [`M0 0`, `C 0 0 0 ${waveSize + rndm(seed + stack) *2* velocity} 0 ${waveSize + rndm(seed + stack) *2* velocity - stack * distance}`]; // do some randomness on the handles!
     // generate random waves based on passed parameters
     let previous;
     for (let n = 1; n < breaks; n++) {
 
       let x = n * equal
-        + (rndm(seed + stack + n) - 0.5) * velocity ** 2
-        - stack * distance * (stack * distance)
+        + (rndm(seed + stack + n) - 0.5) * velocity
+        + (rndm(seed + stack + n) - 0.5) * 50
+        - stack * (stack * distance)
       let y = waveSize - n * equal
-        + (rndm(seed + stack + n) - 0.5) * velocity**2
-        - stack * distance * (stack * distance)
+        + (rndm(seed + stack + n) - 0.5) * velocity
+        + (rndm(seed + stack + n) - 0.5) * 50
+        - stack * (stack * distance)
 
       const coords = {
         handle1: {
@@ -61,7 +61,7 @@ export function smoothCornerPath(
     // handle2 of last point
     data.push(`${waveSize} ${rndm(seed) * 2 * equal} `) &&
     // x and y of last point
-    data.push(`${waveSize + rndm(seed) * velocity - stack * distance * (stack * distance)} 0 `) &&
+    data.push(`${waveSize + rndm(seed) * velocity - stack * distance } 0 `) &&
     // close
     !stroke && data.push(`L0 0Z`);
 

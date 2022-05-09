@@ -87,11 +87,11 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 25)}>
+        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 1)}>
           <VelocityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="velocity" value={velocity} min={0} max={250} onChange={(val) => setVelocity(val)}>
+        <Slider aria-label="velocity" value={velocity} min={0} max={50} onChange={(val) => setVelocity(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
@@ -100,7 +100,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
 
         <SliderIconWrapper
           viewBox={'0 0 412 286'}
-          onClick={() => velocity < 250 && setVelocity(velocity + 25)}
+          onClick={() => velocity < 50 && setVelocity(velocity + 1)}
         >
           <VelocityRight />
         </SliderIconWrapper>
@@ -116,14 +116,14 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           <ComplexityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="complexity" value={breaks} min={0} max={20} onChange={(val) => setBreaks(val)}>
+        <Slider aria-label="complexity" value={breaks} min={1} max={5} onChange={(val) => setBreaks(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 20 && setBreaks(breaks + 1)}>
+        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 5 && setBreaks(breaks + 1)}>
           <ComplexityRight />
         </SliderIconWrapper>
       </HStack>
@@ -132,7 +132,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       <Heading as="h4" size="xs" opacity={0.5}>
         Layers
       </Heading>
-      <NumberInput defaultValue={stacks} min={0} max={100} onChange={(val) => setStacks(Number(val))}>
+      <NumberInput defaultValue={stacks} min={0} max={2} onChange={(val) => setStacks(Number(val))}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
@@ -153,7 +153,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           aria-label="layer-distance"
           value={distance}
           min={0}
-          max={10}
+          max={50}
           onChange={(val) => setDistance(val)}
         >
           <SliderTrack>
@@ -162,7 +162,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 445 303'} onClick={() => distance < 10 && setDistance(distance + 1)}>
+        <SliderIconWrapper viewBox={'0 0 445 303'} onClick={() => distance < 50 && setDistance(distance + 1)}>
           <DistanceRight />
         </SliderIconWrapper>
       </HStack>

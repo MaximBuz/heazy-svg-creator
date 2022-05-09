@@ -12,7 +12,7 @@ export function smoothCornerPath(
   distance: number,
   stroke: boolean
 ): string[] {
-  let waveSize = height * balance;
+  let waveSize = height * (1-balance);
   let equal = waveSize / breaks;
   const waves = [];
 

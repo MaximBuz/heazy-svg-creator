@@ -116,7 +116,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           <ComplexityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="complexity" value={breaks} min={1} max={5} onChange={(val) => setBreaks(val)}>
+        <Slider aria-label="complexity" value={breaks} min={2} max={5} onChange={(val) => setBreaks(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>

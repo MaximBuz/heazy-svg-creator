@@ -30,8 +30,8 @@ function App() {
   const [seed, setSeed] = useState<number>(0);
 
   /* --------- DIMENSION STATE --------- */
-  const [width, setWidth] = useState<number>(896);
-  const [height, setHeight] = useState<number>(504);
+  const [width, setWidth] = useState<number>(900);
+  const [height, setHeight] = useState<number>(650);
   const [aspectRatio, setAspectRatio] = useState<string>('16 : 9');
 
   /* --------- VARIANT STATE --------- */

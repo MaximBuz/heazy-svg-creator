@@ -24,8 +24,8 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
 
   const randomClassId = Math.round(Math.random() * 100);
   return (
-    <div ref={svgRef} style={{ width, height }}>
       <svg
+        ref={svgRef}
         viewBox={`0 0 ${width} ${height}`}
         height="100%"
         width="100%"
@@ -67,7 +67,6 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
           ></path>
         </g>
       </svg>
-    </div>
   );
 };
 

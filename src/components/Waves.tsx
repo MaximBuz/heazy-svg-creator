@@ -44,7 +44,7 @@ const Waves: React.FunctionComponent<IWaveProps> = ({
       version="1.1"
       ref={svgRef}
     >
-      <g transform-origin={`${width / 2} ${height / 2}`} transform={"scale(1, 1) rotate(0)"}>
+      <g transform-origin="center" transform={"scale(1, 1) rotate(0)"}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
           <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />

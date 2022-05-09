@@ -21,19 +21,16 @@ export function smoothCornerPath(
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     // beginning of each wave
-    const data = [
-      `M0 0`,
-      `C 0 0 0 ${waveSize} 0 ${waveSize}`,
-    ]; // do some randomness on the handles!
+    const data = [`M0 0`, `C 0 0 0 ${waveSize} 0 ${waveSize}`]; // do some randomness on the handles!
     // generate random waves based on passed parameters
     let previous;
-    for (let n = 1; n <= breaks; n++) {
+    for (let n = 1; n < breaks; n++) {
       const random = (generateRandomNumber(seed + stack + n) - 0.5) * velocity;
 
       const coords = {
         handle1: {
-          x: previous ? (previous.x - previous.handle2.x) + previous.x : generateRandomNumber(seed),
-          y: previous ? (previous.y - previous.handle2.y) + previous.y : generateRandomNumber(seed),
+          x: previous ? previous.x - previous.handle2.x + previous.x : n * equal + random,
+          y: previous ? previous.y - previous.handle2.y + previous.y : waveSize - n * equal + random,
         },
         handle2: {
           x: n * equal + random,
@@ -52,6 +49,14 @@ export function smoothCornerPath(
     }
 
     // if it's a filled wave, close of bottom
+    data.push(`C `) &&
+    // handle1 of last point
+    data.push(`${previous.x - previous.handle2.x + previous.x} ${previous.y - previous.handle2.y + previous.y} `) && 
+    // handle2 of last point
+    data.push(`${waveSize} ${generateRandomNumber(seed) * equal} `) &&
+    // x and y of last point
+    data.push(`${waveSize} 0 `) &&
+    // close
     !stroke && data.push(`L0 0Z`);
 
     // push each wave to waves array

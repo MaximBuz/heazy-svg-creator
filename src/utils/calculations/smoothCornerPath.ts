@@ -1,5 +1,5 @@
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber } from './randomNumber';
+import { generateRandomNumber as rndm } from './randomNumber';
 
 export function smoothCornerPath(
   seed: number,
@@ -12,8 +12,8 @@ export function smoothCornerPath(
   distance: number,
   stroke: boolean
 ): string[] {
-  breaks = 3;
-  velocity = 50;
+  breaks = 2;
+  velocity = 10;
   let waveSize = height * balance;
   let equal = waveSize / breaks;
   const waves = [];
@@ -21,23 +21,28 @@ export function smoothCornerPath(
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     // beginning of each wave
-    const data = [`M0 0`, `C 0 0 0 ${waveSize} 0 ${waveSize}`]; // do some randomness on the handles!
+    const data = [`M0 0`, `C 0 0 0 ${waveSize + rndm(seed + stack) *2* velocity} 0 ${waveSize + rndm(seed + stack) *2* velocity}`]; // do some randomness on the handles!
     // generate random waves based on passed parameters
     let previous;
     for (let n = 1; n < breaks; n++) {
-      const random = (generateRandomNumber(seed + stack + n) - 0.5) * velocity;
+
+      let x = n * equal
+                + (rndm(seed + stack + n) - 0.5) * velocity**2
+      let y = waveSize - n * equal
+                + (rndm(seed + stack + n) - 0.5) * velocity**2
+                - stack * distance * (stack * distance)
 
       const coords = {
         handle1: {
-          x: previous ? previous.x - previous.handle2.x + previous.x : n * equal + random,
-          y: previous ? previous.y - previous.handle2.y + previous.y : waveSize - n * equal + random,
+          x: previous ? previous.x - previous.handle2.x + previous.x : equal  + (rndm(seed + stack + n) - 0.5) * velocity,
+          y: previous ? previous.y - previous.handle2.y + previous.y : waveSize + (rndm(seed + stack + n) - 0.5) * velocity,
         },
         handle2: {
-          x: n * equal + random,
-          y: waveSize - n * equal + random,
+          x: x - equal*0.3 - rndm(seed + stack + n) * 2 * velocity,
+          y: y + equal*0.3 + rndm(seed + stack + n) * 2 * velocity,
         },
-        x: n * equal + random,
-        y: waveSize - n * equal + random,
+        x,
+        y
       };
 
       previous = coords;
@@ -53,9 +58,9 @@ export function smoothCornerPath(
     // handle1 of last point
     data.push(`${previous.x - previous.handle2.x + previous.x} ${previous.y - previous.handle2.y + previous.y} `) && 
     // handle2 of last point
-    data.push(`${waveSize} ${generateRandomNumber(seed) * equal} `) &&
+    data.push(`${waveSize} ${rndm(seed) * 2 * equal} `) &&
     // x and y of last point
-    data.push(`${waveSize} 0 `) &&
+    data.push(`${waveSize + rndm(seed) * velocity} 0 `) &&
     // close
     !stroke && data.push(`L0 0Z`);
 

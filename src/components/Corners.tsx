@@ -27,21 +27,32 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
   strokeShrink,
   direction,
 }) => {
-  let wavesData;
+  let firstCorner, secondCorner;
   if (type === 'smooth') {
-    wavesData = smoothCornerPath(
+    firstCorner = smoothCornerPath(
       seed,
       width,
       height,
       balance,
       velocity,
       breaks,
-      0,
+      stacks,
+      distance,
+      stroke,
+    );
+    secondCorner = smoothCornerPath(
+      seed*2,
+      width,
+      height,
+      balance,
+      velocity,
+      breaks,
+      stacks,
       distance,
       stroke,
     );
   } else {
-    wavesData = peakWavePath(seed, width, height, balance, velocity, 5, stacks, distance, stroke);
+    firstCorner = peakWavePath(seed, width, height, balance, velocity,breaks , stacks, distance, stroke);
   }
   const randomClassId = Math.round(Math.random() * 100);
   return (
@@ -54,6 +65,7 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
       version="1.1"
       ref={svgRef}
     >
+      {/* ----- FIRST CORNER ----- */}
       <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
@@ -63,11 +75,11 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x={0} width="100%" y="-20%" height="150%">
+          <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
             <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
           </filter>
         )}
-        {wavesData.map((wave, index) => (
+        {firstCorner.map((wave, index) => (
           <path
             key={index}
             d={wave}
@@ -77,7 +89,41 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
             stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
             strokeWidth={
               strokeWidth && strokeShrink
-                ? strokeWidth - (strokeWidth / wavesData.length) * index
+                ? strokeWidth - (strokeWidth / firstCorner.length) * index
+                : strokeWidth
+            }
+            style={{
+              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
+              fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+            }}
+          ></path>
+        ))}
+      </g>
+      
+      {/* ----- SECOND CORNER ----- */}
+      <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, -1) rotate(0)'}>
+        <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+          <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
+          <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
+        </linearGradient>
+
+        {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
+        {!stroke && (
+          <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+            <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
+          </filter>
+        )}
+        {secondCorner.map((wave, index) => (
+          <path
+            key={index}
+            d={wave}
+            fill="none"
+            strokeLinecap="round"
+            filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
+            stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+            strokeWidth={
+              strokeWidth && strokeShrink
+                ? strokeWidth - (strokeWidth / secondCorner.length) * index
                 : strokeWidth
             }
             style={{

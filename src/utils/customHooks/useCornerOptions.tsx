@@ -19,8 +19,8 @@ const useCornerOptions = (): {
   const [balance, setBalance] = useState<number>(0.5);
   const [velocity, setVelocity] = useState<number>(200);
   const [breaks, setBreaks] = useState<number>(2);
-  const [stacks, setStacks] = useState<number>(4);
-  const [distance, setDistance] = useState<number>(3.5);
+  const [stacks, setStacks] = useState<number>(1);
+  const [distance, setDistance] = useState<number>(5);
   const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
 

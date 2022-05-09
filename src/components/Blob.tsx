@@ -24,21 +24,21 @@ const Bubble: React.FunctionComponent<IBubbleProps> = ({
 
   const randomClassId = Math.round(Math.random() * 100);
   return (
-      <svg
-        ref={svgRef}
-        viewBox={`0 0 ${width} ${height}`}
-        height="100%"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink"
-        version="1.1"
-      >
-        <g transform-origin="center" transform="scale(1, 1) rotate(0)">
-          <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-          <linearGradient id={`linear-gradient-${randomClassId}`}>
-            <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-            <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-          </linearGradient>
+    <svg
+    viewBox={`0 0 ${width} ${height}`}
+    height={height}
+    width={width}
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+    ref={svgRef}
+  >
+    <g transform-origin="center" transform={"scale(1, 1) rotate(0)"}>
+      <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
+      <linearGradient id={`linear-gradient-${randomClassId}`}>
+        <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
+        <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
+      </linearGradient>
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
           {!stroke && (

@@ -3,9 +3,8 @@ export interface IMarkerProps {
   seed: number;
   width: number;
   height: number;
-  edgeJoin: "miter" | "bevel" | "round";
-  startJoin: "miter" | "bevel" | "round";
-  endJoin: "miter" | "bevel" | "round";
+  lineCap: 'butt' | 'round' | 'square';
+  lineJoin: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round';
   strokeWidth: number;
   startColor: string;
   endColor: string;

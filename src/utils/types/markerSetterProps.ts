@@ -1,9 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IMarkerSetterProps {
-  setEdgeJoin: Dispatch<SetStateAction<'miter' | 'bevel' | 'round'>>;
-  setStartJoin: Dispatch<SetStateAction<'miter' | 'bevel' | 'round'>>;
-  setEndJoin: Dispatch<SetStateAction<'miter' | 'bevel' | 'round'>>;
+  setLineCap: Dispatch<SetStateAction<'butt' | 'round' | 'square'>>;
+  setLineJoin: Dispatch<SetStateAction<'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'>>;
   setStrokeWidth: Dispatch<SetStateAction<number>>;
   setStartColor: Dispatch<SetStateAction<string>>;
   setEndColor: Dispatch<SetStateAction<string>>;

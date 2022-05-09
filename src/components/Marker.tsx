@@ -23,7 +23,7 @@ const Bubble: React.FunctionComponent<IMarkerProps> = ({
   narrowness,
   ghost,
 }) => {
-  const pathData = bubblePath(seed, width, height, velocity, size);
+  // const pathData = bubblePath(seed, width, height, velocity, size);
 
   const randomClassId = Math.round(Math.random() * 100);
   return (
@@ -48,17 +48,17 @@ const Bubble: React.FunctionComponent<IMarkerProps> = ({
           <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
         </filter>
         <path
-          d={pathData}
+          d={"pathData"}
           fill="none"
-          strokeLinecap="round"
-          filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-          stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
+          strokeLinecap={"square"}
+          filter={`url(#shadow-${randomClassId})`}
+          stroke={`url(#linear-gradient-${randomClassId})`}
           strokeWidth={strokeWidth}
           style={{
             transformOrigin: 'center',
             transform: `rotate(${(generateRandomNumber(seed) - 0.5) * 360}deg)`,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-            fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
+            fill: `url(#linear-gradient-${randomClassId})`,
           }}
         ></path>
       </g>

@@ -6,9 +6,8 @@ const useMarkerOptions = (): {
   get: Omit<IMarkerProps, 'seed' | 'width' | 'height' | 'svgRef'>;
   set: IMarkerSetterProps;
 } => {
-  const [edgeJoin, setEdgeJoin] = useState<"miter" | "bevel" | "round">("bevel");
-  const [startJoin, setStartJoin] = useState<"miter" | "bevel" | "round">("bevel");
-  const [endJoin, setEndJoin] = useState<"miter" | "bevel" | "round">("bevel");
+  const [lineCap, setLineCap] = useState<'butt' | 'round' | 'square'>("square");
+  const [lineJoin, setLineJoin] = useState<'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'>("bevel");
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
   const [bgColor, setBgColor] = useState<string>('#FBAE3C');
   const [startColor, setStartColor] = useState<string>('#001e35');
@@ -23,9 +22,8 @@ const useMarkerOptions = (): {
 
   return {
     get: {
-      edgeJoin,
-      startJoin,
-      endJoin,
+      lineJoin,
+      lineCap,
       strokeWidth,
       startColor,
       endColor,
@@ -39,9 +37,8 @@ const useMarkerOptions = (): {
       ghost,
     },
     set: {
-      setEdgeJoin,
-      setStartJoin,
-      setEndJoin,
+      setLineJoin,
+      setLineCap,
       setStrokeWidth,
       setStartColor,
       setEndColor,

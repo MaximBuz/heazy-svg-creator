@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Flex, Stack, Image, Heading, Icon } from '@chakra-ui/react';
 import stackedWave from '../Thumbnails/stackedWaves.svg';
 import smoothStage from '../Thumbnails/smoothStage.svg';
+import marker from '../Thumbnails/marker.svg';
 import bubble from '../Thumbnails/bubble.svg';
 import Logo from '../Logo.svg';
 import { UilLinkedin } from '@iconscout/react-unicons';
@@ -52,7 +53,7 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({setDesign}) => {
         <Thumbnail setDesign={setDesign} image={stackedWave} caption="waves"></Thumbnail>
         <Thumbnail setDesign={setDesign} image={bubble} caption="bubble"></Thumbnail>
         <Thumbnail setDesign={setDesign} image={smoothStage} caption="corners"></Thumbnail>
-        <Thumbnail setDesign={setDesign} image={smoothStage} caption="marker"></Thumbnail>
+        <Thumbnail setDesign={setDesign} image={marker} caption="marker"></Thumbnail>
       </Stack>
 
       <Flex

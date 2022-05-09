@@ -5,15 +5,14 @@ import React from 'react';
 import { Divider } from '@chakra-ui/react';
 
 // Components
-// import Color from './Color';
-// import Direction from './Direction';
-// import Shadow from './Shadow';
-// import Shape from './Shape';
-// import Variants from './Variants';
+import Variants from './Variants';
+import Shape from './Shape';
+import Color from './Color';
 
 // Types
 import { ICornerSetterProps } from '../../../utils/types/cornerSetterProps';
 import { ICornerProps } from '../../../utils/types/cornerProps';
+import Shadow from './Shadow';
 
 const CornerOptions: React.FunctionComponent<
   Omit<ICornerSetterProps, 'seed' | 'width' | 'height' | 'svgRef'> &
@@ -21,15 +20,15 @@ const CornerOptions: React.FunctionComponent<
 > = (props) => {
   return (
     <>
-      {/* <Variants {...props}></Variants>
+      <Variants {...props}></Variants>
       <Divider />
-      <Shape {...props}></Shape>
-      <Divider /> */}
+      <Shape   {...props}></Shape>
+      <Divider />
       {/* <Direction {...props}></Direction> */}
       {/* <Divider/> */}
-      {/* <Color {...props}></Color>
+      <Color {...props}></Color>
       <Divider></Divider>
-      <Shadow {...props}></Shadow> */}
+      <Shadow {...props}></Shadow>
     </>
   );
 };

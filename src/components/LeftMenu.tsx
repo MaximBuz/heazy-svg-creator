@@ -2,9 +2,9 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 // Design
 import { Flex, Stack, Image, Heading, Icon } from '@chakra-ui/react';
-import stackedWave from '../stackedWaves.svg';
-import smoothStage from '../smoothStage.svg';
-import bubble from '../bubble.svg';
+import stackedWave from '../Thumbnails/stackedWaves.svg';
+import smoothStage from '../Thumbnails/smoothStage.svg';
+import bubble from '../Thumbnails/bubble.svg';
 import Logo from '../Logo.svg';
 import { UilLinkedin } from '@iconscout/react-unicons';
 

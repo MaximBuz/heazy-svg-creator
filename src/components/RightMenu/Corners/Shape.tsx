@@ -107,7 +107,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </HStack>
 
       {/* ----- COMPLEXITY SLIDER ------ */}
-      <Heading as="h4" size="xs" opacity={0.5}>
+      {/* <Heading as="h4" size="xs" opacity={0.5}>
         Complexity
       </Heading>
 
@@ -126,7 +126,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
         <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 5 && setBreaks(breaks + 1)}>
           <ComplexityRight />
         </SliderIconWrapper>
-      </HStack>
+      </HStack> */}
 
       {/* ----- LAYERS INPUT ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>

@@ -1,4 +1,4 @@
-import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react';
+import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Tabs, TabList, Tab } from '@chakra-ui/react';
 import React from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
 import VelocityLeft from './Icons/VelocityLeft';
@@ -119,7 +119,118 @@ const Shape: React.FunctionComponent<IMarkerShapeProps & IMarkerShapeSetterProps
       </HStack>
 
       {/* ----- LINECAP ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Line Caps
+      </Heading>
+      <Tabs
+        onChange={(index) => setLineCap(index === 0 ? "butt" : index === 1 ? "round" : "square")}
+        defaultIndex={lineCap === "butt" ? 0 : lineCap === "round" ? 1 : 2}
+        isFitted
+        variant="unstyled"
+      >
+        <TabList>
+          <Tab
+            roundedTopLeft={10}
+            roundedBottomLeft={10}
+            bgColor="#262a33"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+            _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
+            gap="5px"
+          >
+            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
+              <Solid />
+            </Icon> */}
+            Butt
+          </Tab>
+          <Tab
+            bgColor="#262a33"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+            _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
+            gap="5px"
+          >
+            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
+              <Solid />
+            </Icon> */}
+            Round
+          </Tab>
+          <Tab
+            roundedTopRight={10}
+            roundedBottomRight={10}
+            bgColor="#262a33"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+            _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
+            gap="5px"
+          >
+            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
+              <Outline />
+            </Icon> */}
+            Square
+          </Tab>
+        </TabList>
+      </Tabs>
+
       {/* ----- LINEJOIN ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Line Joins
+      </Heading>
+      <Tabs
+        onChange={(index) => setLineJoin(index === 0 ? "bevel" : index === 1 ? "round" : "miter")}
+        defaultIndex={lineJoin === "bevel" ? 0 : lineJoin === "round" ? 1 : 2}
+        isFitted
+        variant="unstyled"
+      >
+        <TabList>
+          <Tab
+            roundedTopLeft={10}
+            roundedBottomLeft={10}
+            bgColor="#262a33"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+            _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
+            gap="5px"
+          >
+            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
+              <Solid />
+            </Icon> */}
+            Bevel
+          </Tab>
+          <Tab
+            bgColor="#262a33"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+            _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
+            gap="5px"
+          >
+            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
+              <Solid />
+            </Icon> */}
+            Round
+          </Tab>
+          <Tab
+            roundedTopRight={10}
+            roundedBottomRight={10}
+            bgColor="#262a33"
+            _hover={{ background: '#2e3643', cursor: 'pointer' }}
+            _selected={{ background: '#363e4a' }}
+            display="flex"
+            flexDirection="column"
+            gap="5px"
+          >
+            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
+              <Outline />
+            </Icon> */}
+            Miter
+          </Tab>
+        </TabList>
+      </Tabs>
 
     </>
   );

@@ -11,6 +11,7 @@ import Shadow from './Shadow';
 import { IMarkerAllSetterProps } from '../../../utils/types/markerSetterProps';
 import { IMarkerAllProps } from '../../../utils/types/markerProps';
 import Position from './Position';
+import Ghost from './Ghost';
 
 // Types
 
@@ -19,11 +20,12 @@ const MarkerOptions: React.FunctionComponent<IMarkerAllSetterProps & IMarkerAllP
     <>
       <Shape {...props}></Shape>
       <Divider />
-      <Color {...props}></Color>
-      <Divider></Divider>
       <Position {...props}></Position>
       <Divider></Divider>
-      {/* <Ghost {...props}></Ghost> */}
+      <Ghost {...props}></Ghost>
+      <Divider></Divider>
+      <Color {...props}></Color>
+      <Divider/>
       <Shadow {...props}></Shadow>
     </>
   );

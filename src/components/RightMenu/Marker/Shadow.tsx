@@ -15,25 +15,16 @@ import {
   PopoverArrow,
   PopoverBody,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
+import { IMarkerShadowProps } from '../../../utils/types/markerProps';
+import { IMarkerShadowSetterProps } from '../../../utils/types/markerSetterProps';
 import HideColorButton from '../HideColorButton';
-
-export interface IShadowProps {
-  shadowX: number;
-  setShadowX: Dispatch<SetStateAction<number>>;
-  shadowY: number;
-  setShadowY: Dispatch<SetStateAction<number>>;
-  shadowSD: number;
-  setShadowSD: Dispatch<SetStateAction<number>>;
-  shadowColor: string;
-  setShadowColor: Dispatch<SetStateAction<string>>;
-}
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-const Shadow: React.FunctionComponent<IShadowProps> = ({
+const Shadow: React.FunctionComponent<IMarkerShadowProps & IMarkerShadowSetterProps> = ({
   shadowX,
   setShadowX,
   shadowSD,

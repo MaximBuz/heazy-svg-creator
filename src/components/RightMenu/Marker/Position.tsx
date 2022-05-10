@@ -38,7 +38,7 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
       </Heading>
       <Tabs
         onChange={(index) => setMirror(index === 0 ? false : true)}
-        defaultIndex={0}
+        defaultIndex={mirror === false ? 0 : 1}
         isFitted
         variant="unstyled"
       >

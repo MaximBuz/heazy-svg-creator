@@ -1,4 +1,5 @@
 import React from 'react';
+import { markerPath } from '../utils/calculations/markerPath';
 import { generateRandomNumber } from '../utils/calculations/randomNumber';
 import { IMarkerProps } from '../utils/types/markerProps';
 
@@ -21,7 +22,7 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
   zickZacks,
   ghost,
 }) => {
-  // const pathData = bubblePath(seed, width, height, velocity, size);
+  const pathData = markerPath(seed, width, height, markerHeight, zickZacks);
 
   const randomClassId = Math.round(Math.random() * 100);
   return (
@@ -46,7 +47,7 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
           <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
         </filter>
         <path
-          d={"M71 338.276L134.477 118.614L191.76 471L308.283 69L397.264 353.59C417.391 258.727 464 69 464 69"}
+          d={pathData}
           fill="none"
           strokeLinecap={lineCap}
           strokeLinejoin={lineJoin}

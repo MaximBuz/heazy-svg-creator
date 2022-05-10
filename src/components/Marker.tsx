@@ -1,6 +1,5 @@
 import React from 'react';
 import { markerPath } from '../utils/calculations/markerPath';
-import { generateRandomNumber } from '../utils/calculations/randomNumber';
 import { IMarkerProps } from '../utils/types/markerProps';
 
 const Marker: React.FunctionComponent<IMarkerProps> = ({
@@ -29,7 +28,6 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
   pressure,
 }) => {
   const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);
-
   const randomClassId = Math.round(Math.random() * 100);
   return (
     <svg

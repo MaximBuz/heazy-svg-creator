@@ -19,9 +19,9 @@ const useMarkerOptions = (): {
   const [markerHeight, setMarkerHeight] = useState<number>(25);
   const [zickZacks, setzickZacks] = useState<number>(10);
   const [ghost, setGhost] = useState<boolean>(true);
+  const [ghostSize, setGhostSize] = useState<number>(1.1);
   const [ghostStartColor, setGhostStartColor] = useState<string>('#dedede');
   const [ghostEndColor, setGhostEndColor] = useState<string>('#bdbdbd');
-  const [size, setSize] = useState<number>(150);
   const [padding, setPadding] = useState<number>(30);
   const [mirror, setMirror] = useState<boolean>(false);
   const [yPosition, setYPosition] = useState<number>(500);
@@ -42,13 +42,13 @@ const useMarkerOptions = (): {
       markerHeight,
       zickZacks,
       ghost,
-      size,
       padding,
       mirror,
       yPosition,
       pressure,
       ghostStartColor,
       ghostEndColor,
+      ghostSize
     },
     set: {
       setLineJoin,
@@ -64,13 +64,13 @@ const useMarkerOptions = (): {
       setMarkerHeight,
       setzickZacks,
       setGhost,
-      setSize,
       setPadding,
       setMirror,
       setYPosition,
       setPressure,
       setGhostStartColor,
       setGhostEndColor,
+      setGhostSize,
     },
   };
 };

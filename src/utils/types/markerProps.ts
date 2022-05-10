@@ -16,9 +16,9 @@ export interface IMarkerProps {
   markerHeight: number;
   zickZacks: number;
   ghost: boolean;
+  ghostSize: number;
   ghostStartColor: string;
   ghostEndColor: string;
-  size: number;
   padding: number;
   mirror: boolean;
   yPosition: number;

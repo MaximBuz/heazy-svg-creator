@@ -22,7 +22,7 @@ export function markerPath(
     mirror
       ? (rndm = i % 2 !== 0 ? random(seed + i) - 1.7 : random(seed + i) + 0.7)
       : (rndm = i % 2 === 0 ? random(seed + i) - 1.8 : random(seed + i) + 0.8);
-    const x = equal + pressure + (random(seed+i)-0.5) * equal;
+    const x = equal + pressure + (random(seed + i) - 0.5) * equal;
     const y = rndm * markerHeight * 10;
 
     if (y < minY) minY = y;
@@ -32,7 +32,7 @@ export function markerPath(
   }
 
   // add the starting point
-  path.unshift(`M ${padding} ${yPosition}`)
+  path.unshift(`M ${padding} ${yPosition}`);
 
   return path.join(' ');
 }

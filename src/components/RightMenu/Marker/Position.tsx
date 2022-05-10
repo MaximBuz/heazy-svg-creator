@@ -11,8 +11,6 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
-import SizeLeft from './Icons/SizeLeft';
-import SizeRight from './Icons/SizeRight';
 import { IMarkerPositionProps } from '../../../utils/types/markerProps';
 import { IMarkerPositionSetterProps } from '../../../utils/types/markerSetterProps';
 
@@ -86,7 +84,7 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
           viewBox={'0 0 224 224'}
           onClick={() => yPosition > -200 && setYPosition(yPosition - 100)}
         >
-          <SizeLeft />
+          {/* <SizeLeft /> */}
         </SliderIconWrapper>
 
         <Slider
@@ -106,7 +104,7 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
           viewBox={'0 0 469 469'}
           onClick={() => yPosition < 1500 && setYPosition(yPosition + 100)}
         >
-          <SizeRight />
+          {/* <SizeRight /> */}
         </SliderIconWrapper>
       </HStack>
 
@@ -117,7 +115,7 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
 
       <HStack>
         <SliderIconWrapper viewBox={'0 0 224 224'} onClick={() => padding > -200 && setPadding(padding - 10)}>
-          <SizeLeft />
+          {/* <SizeLeft /> */}
         </SliderIconWrapper>
 
         <Slider aria-label="size" value={padding} min={-200} max={200} onChange={(val) => setPadding(val)}>
@@ -128,7 +126,7 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
         </Slider>
 
         <SliderIconWrapper viewBox={'0 0 469 469'} onClick={() => padding < 200 && setPadding(padding + 10)}>
-          <SizeRight />
+          {/* <SizeRight /> */}
         </SliderIconWrapper>
       </HStack>
     </>

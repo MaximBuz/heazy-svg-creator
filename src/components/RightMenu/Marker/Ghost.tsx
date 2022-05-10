@@ -13,6 +13,7 @@ import {
   Tabs,
   TabList,
   Tab,
+  Icon,
 } from '@chakra-ui/react';
 import React from 'react';
 import ColorPicker from 'react-color';
@@ -20,6 +21,8 @@ import rgbHex from 'rgb-hex';
 import { IMarkerGhostProps } from '../../../utils/types/markerProps';
 import { IMarkerGhostSetterProps } from '../../../utils/types/markerSetterProps';
 import HideColorButton from '../HideColorButton';
+import GhostLeft from './Icons/GhostLeft';
+import GhostRight from './Icons/GhostRight';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
@@ -58,10 +61,9 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             flexDirection="column"
             gap="5px"
           >
-            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
-              <Solid />
-            </Icon> */}
-            NO
+            <Icon boxSize="10" viewBox="0 0 335 287" color="white">
+              <GhostLeft />
+            </Icon>
           </Tab>
           <Tab
             roundedTopRight={10}
@@ -73,10 +75,9 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             flexDirection="column"
             gap="5px"
           >
-            {/* <Icon boxSize="5" viewBox="0 0 465 465" color="white">
-              <Outline />
-            </Icon> */}
-            Ye
+            <Icon boxSize="10" viewBox="0 0 407 360" color="white">
+              <GhostRight />
+            </Icon>
           </Tab>
         </TabList>
       </Tabs>
@@ -100,7 +101,10 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             </PopoverTrigger>
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
-              <Input value={ghostStartColor.replace('#', '')} onChange={(e) => setGhostStartColor(`#${e.target.value}`)} />
+              <Input
+                value={ghostStartColor.replace('#', '')}
+                onChange={(e) => setGhostStartColor(`#${e.target.value}`)}
+              />
             </InputGroup>
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
@@ -108,7 +112,9 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <PopoverBody>
               <ColorPicker
                 color={ghostStartColor}
-                onChange={(col) => setGhostStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                onChange={(col) =>
+                  setGhostStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))
+                }
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"
@@ -138,7 +144,10 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             </PopoverTrigger>
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
-              <Input value={ghostEndColor.replace('#', '')} onChange={(e) => setGhostEndColor(`#${e.target.value}`)} />
+              <Input
+                value={ghostEndColor.replace('#', '')}
+                onChange={(e) => setGhostEndColor(`#${e.target.value}`)}
+              />
             </InputGroup>
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">

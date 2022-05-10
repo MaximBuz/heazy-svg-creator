@@ -20,8 +20,9 @@ const MarkerOptions: React.FunctionComponent<IMarkerAllSetterProps & IMarkerAllP
       <Divider />
       <Color {...props}></Color>
       <Divider></Divider>
+      {/* <Position {...props}></Position> */}
       {/* <Ghost {...props}></Ghost> */}
-      {/* <Shadow {...props}></Shadow> */}
+      <Shadow {...props}></Shadow>
     </>
   );
 };

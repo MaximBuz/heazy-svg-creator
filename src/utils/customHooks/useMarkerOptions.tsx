@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { IMarkerProps } from '../types/markerProps';
-import { IMarkerSetterProps } from '../types/markerSetterProps';
+import { IMarkerAllProps } from '../types/markerProps';
+import { IMarkerAllSetterProps } from '../types/markerSetterProps';
 
 const useMarkerOptions = (): {
-  get: Omit<IMarkerProps, 'seed' | 'width' | 'height' | 'svgRef'>;
-  set: IMarkerSetterProps;
+  get: IMarkerAllProps;
+  set: IMarkerAllSetterProps;
 } => {
   const [lineCap, setLineCap] = useState<'butt' | 'round' | 'square'>('butt');
   const [lineJoin, setLineJoin] = useState<'bevel' | 'miter' | 'round'>('bevel');
@@ -48,7 +48,7 @@ const useMarkerOptions = (): {
       pressure,
       ghostStartColor,
       ghostEndColor,
-      ghostSize
+      ghostSize,
     },
     set: {
       setLineJoin,

@@ -26,6 +26,7 @@ import useCornerOptions from './utils/customHooks/useCornerOptions';
 import CornerOptions from './components/RightMenu/Corners/CornerOptions';
 import Marker from './components/Marker';
 import useMarkerOptions from './utils/customHooks/useMarkerOptions';
+import MarkerOptions from './components/RightMenu/Marker/MarkerOptions';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -83,9 +84,9 @@ function App() {
       case 'corners': {
         return <CornerOptions {...cornerOptions.get} {...cornerOptions.set} />;
       }
-      // case 'marker': {
-      //   return <MarkerOptions {...markerOptions.get} {...markerOptions.set} />;
-      // }
+      case 'marker': {
+        return <MarkerOptions {...markerOptions.get} {...markerOptions.set} />;
+      }
     }
   }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
 

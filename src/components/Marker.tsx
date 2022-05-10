@@ -1,8 +1,8 @@
 import React from 'react';
 import { markerPath } from '../utils/calculations/markerPath';
-import { IMarkerProps } from '../utils/types/markerProps';
+import { IMarkerAllProps, IMarkerProps } from '../utils/types/markerProps';
 
-const Marker: React.FunctionComponent<IMarkerProps> = ({
+const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = ({
   svgRef,
   seed,
   width,

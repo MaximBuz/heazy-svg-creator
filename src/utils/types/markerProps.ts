@@ -19,4 +19,6 @@ export interface IMarkerProps {
   size: number;
   padding: number;
   mirror: boolean;
+  yPosition: number;
+  pressure: number;
 }

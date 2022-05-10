@@ -17,4 +17,6 @@ export interface IMarkerSetterProps {
   setSize: Dispatch<SetStateAction<number>>;
   setPadding: Dispatch<SetStateAction<number>>;
   setMirror: Dispatch<SetStateAction<boolean>>;
+  setYPosition: Dispatch<SetStateAction<number>>;
+  setPressure: Dispatch<SetStateAction<number>>;
 }

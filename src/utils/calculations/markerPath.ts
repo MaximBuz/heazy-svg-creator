@@ -4,28 +4,36 @@ import { generateRandomNumber as random } from './randomNumber';
 export function markerPath(
   seed: number,
   width: number,
-  height: number,
   markerHeight: number,
   zickZacks: number,
   padding: number,
-  mirror: boolean
+  mirror: boolean,
+  yPosition: number,
+  pressure: number
 ): string {
   mirror = false;
   const equal = (width - padding * 2) / zickZacks;
-  const path = [`M ${padding} ${mirror ? height / 2 - markerHeight * 5 : height / 2 + markerHeight * 5}`];
+  const path = [];
 
+  // save the max and min marker height
+  let minY = +Infinity;
+  let maxY = -Infinity;
   for (let i = 0; i < zickZacks; i++) {
     let rndm;
     mirror
       ? (rndm = i % 2 !== 0 ? random(seed + i) - 1.7 : random(seed + i) + 0.7)
-      : (rndm = i % 2 === 0 ? random(seed + i) - 1.7 : random(seed + i) + 0.7);
-    const x = equal;
+      : (rndm = i % 2 === 0 ? random(seed + i) - 1.8 : random(seed + i) + 0.8);
+    const x = equal + pressure + (random(seed+i)-0.5) * equal;
     const y = rndm * markerHeight * 10;
+
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
 
     path.push(`l${x} ${y}`);
   }
 
-  // close it off ?
+  // add the starting point
+  path.unshift(`M ${padding} ${yPosition}`)
 
   return path.join(' ');
 }

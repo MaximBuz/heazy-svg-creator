@@ -17,4 +17,6 @@ export interface IMarkerProps {
   zickZacks: number;
   ghost: boolean;
   size: number;
+  padding: number;
+  mirror: boolean;
 }

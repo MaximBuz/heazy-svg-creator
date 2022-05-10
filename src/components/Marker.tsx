@@ -21,8 +21,10 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
   markerHeight,
   zickZacks,
   ghost,
+  padding,
+  mirror,
 }) => {
-  const pathData = markerPath(seed, width, height, markerHeight, zickZacks);
+  const pathData = markerPath(seed, width, height, markerHeight, zickZacks, padding, mirror);
 
   const randomClassId = Math.round(Math.random() * 100);
   return (

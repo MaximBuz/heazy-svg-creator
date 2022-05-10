@@ -15,4 +15,6 @@ export interface IMarkerSetterProps {
   setzickZacks: Dispatch<SetStateAction<number>>;
   setGhost: Dispatch<SetStateAction<boolean>>;
   setSize: Dispatch<SetStateAction<number>>;
+  setPadding: Dispatch<SetStateAction<number>>;
+  setMirror: Dispatch<SetStateAction<boolean>>;
 }

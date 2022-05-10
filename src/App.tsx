@@ -9,11 +9,11 @@ import StackedWave from './components/Waves';
 import Corners from './components/Corners';
 
 // Design
-import { Flex, Container, Circle, chakra } from '@chakra-ui/react';
+import { Flex, Container, Circle } from '@chakra-ui/react';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
-import { isValidMotionProp, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 
 // Components
@@ -32,8 +32,8 @@ function App() {
   const [seed, setSeed] = useState<number>(0);
 
   /* --------- DIMENSION STATE --------- */
-  const [width, setWidth] = useState<number>(900);
-  const [height, setHeight] = useState<number>(650);
+  const [width, setWidth] = useState<number>(896);
+  const [height, setHeight] = useState<number>(504);
   const [aspectRatio, setAspectRatio] = useState<string>('16 : 9');
 
   /* --------- VARIANT STATE --------- */

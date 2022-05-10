@@ -6,9 +6,9 @@ const useMarkerOptions = (): {
   get: Omit<IMarkerProps, 'seed' | 'width' | 'height' | 'svgRef'>;
   set: IMarkerSetterProps;
 } => {
-  const [lineCap, setLineCap] = useState<'butt' | 'round' | 'square'>("square");
+  const [lineCap, setLineCap] = useState<'butt' | 'round' | 'square'>("butt");
   const [lineJoin, setLineJoin] = useState< 'bevel' | 'miter'  | 'round'>("bevel");
-  const [strokeWidth, setStrokeWidth] = useState<number>(100);
+  const [strokeWidth, setStrokeWidth] = useState<number>(150);
   const [bgColor, setBgColor] = useState<string>('#ffffff');
   const [startColor, setStartColor] = useState<string>('#000000');
   const [endColor, setEndColor] = useState<string>('#000000');
@@ -16,10 +16,12 @@ const useMarkerOptions = (): {
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowColor, setShadowColor] = useState<string>('#00000000');
-  const [markerHeight, setMarkerHeight] = useState<number>(50);
-  const [zickZacks, setzickZacks] = useState<number>(30);
+  const [markerHeight, setMarkerHeight] = useState<number>(25);
+  const [zickZacks, setzickZacks] = useState<number>(7);
   const [ghost, setGhost] = useState<boolean>(true);
   const [size, setSize] = useState<number>(100);
+  const [padding, setPadding] = useState<number>(100);
+  const [mirror, setMirror] = useState<boolean>(false);
 
   return {
     get: {
@@ -36,7 +38,9 @@ const useMarkerOptions = (): {
       markerHeight,
       zickZacks,
       ghost,
-      size
+      size,
+      padding,
+      mirror
     },
     set: {
       setLineJoin,
@@ -52,7 +56,9 @@ const useMarkerOptions = (): {
       setMarkerHeight,
       setzickZacks,
       setGhost,
-      setSize
+      setSize,
+      setPadding,
+      setMirror
     },
   };
 };

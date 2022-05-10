@@ -11,7 +11,6 @@ export function markerPath(
   yPosition: number,
   pressure: number
 ): string {
-  mirror = false;
   const equal = (width - padding * 2) / zickZacks;
   const path = [];
 

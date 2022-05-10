@@ -47,7 +47,7 @@ const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = ({
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        <filter id={`shadow-${randomClassId}`}>
+        <filter id={`shadow-${randomClassId}`}  y="-20%" height="150%" x="-20%" width="150%">
           <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
         </filter>
         {ghost && (

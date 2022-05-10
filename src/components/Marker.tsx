@@ -21,10 +21,12 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
   markerHeight,
   zickZacks,
   ghost,
+  ghostStartColor,
+  ghostEndColor,
   padding,
   mirror,
   yPosition,
-  pressure
+  pressure,
 }) => {
   const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);
 
@@ -50,6 +52,27 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
         <filter id={`shadow-${randomClassId}`}>
           <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
         </filter>
+        {ghost && (
+          <>
+            <linearGradient id={`ghost-linear-gradient-${randomClassId}`}>
+              <stop offset="0%" stopColor={ghostStartColor} stopOpacity="100%" />
+              <stop offset="100%" stopColor={ghostEndColor} stopOpacity="100%" />
+            </linearGradient>
+            <path
+              d={pathData}
+              fill="none"
+              strokeLinecap={lineCap}
+              strokeLinejoin={lineJoin}
+              stroke={`url(#ghost-linear-gradient-${randomClassId})`}
+              strokeWidth={strokeWidth}
+              style={{
+                transformOrigin: 'center',
+                transform: 'scale(1.1,1.1)',
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
+              }}
+            ></path>
+          </>
+        )}
         <path
           d={pathData}
           fill="none"

@@ -14,6 +14,8 @@ export interface IMarkerSetterProps {
   setMarkerHeight: Dispatch<SetStateAction<number>>;
   setzickZacks: Dispatch<SetStateAction<number>>;
   setGhost: Dispatch<SetStateAction<boolean>>;
+  setGhostStartColor:Dispatch<SetStateAction<string>>;
+  setGhostEndColor:Dispatch<SetStateAction<string>>;
   setSize: Dispatch<SetStateAction<number>>;
   setPadding: Dispatch<SetStateAction<number>>;
   setMirror: Dispatch<SetStateAction<boolean>>;

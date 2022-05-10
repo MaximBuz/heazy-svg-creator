@@ -14,6 +14,7 @@ export interface IMarkerProps {
   shadowSD: number;
   shadowColor: string;
   markerHeight: number;
-  narrowness: number;
+  zickZacks: number;
   ghost: boolean;
+  size: number;
 }

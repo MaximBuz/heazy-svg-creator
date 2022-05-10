@@ -18,7 +18,7 @@ const Marker: React.FunctionComponent<IMarkerProps> = ({
   shadowSD,
   shadowColor,
   markerHeight,
-  narrowness,
+  zickZacks,
   ghost,
 }) => {
   // const pathData = bubblePath(seed, width, height, velocity, size);

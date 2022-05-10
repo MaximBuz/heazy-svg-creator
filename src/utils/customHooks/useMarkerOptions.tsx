@@ -17,8 +17,9 @@ const useMarkerOptions = (): {
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowColor, setShadowColor] = useState<string>('#00000000');
   const [markerHeight, setMarkerHeight] = useState<number>(50);
-  const [narrowness, setNarrowness] = useState<number>(50);
+  const [zickZacks, setzickZacks] = useState<number>(30);
   const [ghost, setGhost] = useState<boolean>(true);
+  const [size, setSize] = useState<number>(100);
 
   return {
     get: {
@@ -33,8 +34,9 @@ const useMarkerOptions = (): {
       shadowSD,
       shadowColor,
       markerHeight,
-      narrowness,
+      zickZacks,
       ghost,
+      size
     },
     set: {
       setLineJoin,
@@ -48,8 +50,9 @@ const useMarkerOptions = (): {
       setShadowSD,
       setShadowColor,
       setMarkerHeight,
-      setNarrowness,
+      setzickZacks,
       setGhost,
+      setSize
     },
   };
 };

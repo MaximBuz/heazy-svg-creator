@@ -12,6 +12,7 @@ export interface IMarkerSetterProps {
   setShadowSD: Dispatch<SetStateAction<number>>;
   setShadowColor: Dispatch<SetStateAction<string>>;
   setMarkerHeight: Dispatch<SetStateAction<number>>;
-  setNarrowness: Dispatch<SetStateAction<number>>;
+  setzickZacks: Dispatch<SetStateAction<number>>;
   setGhost: Dispatch<SetStateAction<boolean>>;
+  setSize: Dispatch<SetStateAction<number>>;
 }

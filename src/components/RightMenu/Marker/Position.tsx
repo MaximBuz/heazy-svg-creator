@@ -13,6 +13,10 @@ import React from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
 import { IMarkerPositionProps } from '../../../utils/types/markerProps';
 import { IMarkerPositionSetterProps } from '../../../utils/types/markerSetterProps';
+import PaddingLeft from './Icons/PaddingLeft';
+import PaddingRight from './Icons/PaddingRight';
+import YPosLeft from './Icons/YPosLeft';
+import YPosRight from './Icons/YPosRight';
 
 const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSetterProps> = ({
   padding,
@@ -81,10 +85,10 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
 
       <HStack>
         <SliderIconWrapper
-          viewBox={'0 0 224 224'}
+          viewBox={'0 0 24 24'}
           onClick={() => yPosition > -200 && setYPosition(yPosition - 100)}
         >
-          {/* <SizeLeft /> */}
+          <YPosLeft/>
         </SliderIconWrapper>
 
         <Slider
@@ -101,10 +105,10 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
         </Slider>
 
         <SliderIconWrapper
-          viewBox={'0 0 469 469'}
+          viewBox={'0 0 24 24'}
           onClick={() => yPosition < 1500 && setYPosition(yPosition + 100)}
         >
-          {/* <SizeRight /> */}
+          <YPosRight/>
         </SliderIconWrapper>
       </HStack>
 
@@ -114,8 +118,8 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 224 224'} onClick={() => padding > -200 && setPadding(padding - 10)}>
-          {/* <SizeLeft /> */}
+        <SliderIconWrapper viewBox={'0 0 24 24'} onClick={() => padding > -200 && setPadding(padding - 10)}>
+          <PaddingRight/>
         </SliderIconWrapper>
 
         <Slider aria-label="size" value={padding} min={-200} max={200} onChange={(val) => setPadding(val)}>
@@ -125,8 +129,8 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 469 469'} onClick={() => padding < 200 && setPadding(padding + 10)}>
-          {/* <SizeRight /> */}
+        <SliderIconWrapper viewBox={'0 0 24 24'} onClick={() => padding < 200 && setPadding(padding + 10)}>
+          <PaddingLeft/>
         </SliderIconWrapper>
       </HStack>
     </>

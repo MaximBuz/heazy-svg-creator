@@ -216,7 +216,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
               </Button>
               <Button
                 onClick={() => {
-                  console.log("test");
                   handleHeightChange(720);
                   handleWidthChange(900);
                   setAspectRatio('5 : 4');

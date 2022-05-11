@@ -112,7 +112,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 0 && setBreaks(breaks - 1)}>
+        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 2 && setBreaks(breaks - 1)}>
           <ComplexityLeft />
         </SliderIconWrapper>
 

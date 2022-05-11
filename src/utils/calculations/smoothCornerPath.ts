@@ -27,11 +27,11 @@ export function smoothCornerPath(
     for (let n = 1; n < breaks; n++) {
 
       let x = n * equal - stack * distance
-        + (rndm(seed + stack + n) - 0.5) * velocity
+        + (rndm(seed + stack + n) - 0.5) * velocity * 3
         
       
       let y = waveSize - n * equal - stack * distance
-        + (rndm(seed + stack + n + 1) - 0.5) * velocity
+        + (rndm(seed + stack + n + 1) - 0.5) * velocity * -3
         
 
       const coords = {

@@ -1,5 +1,5 @@
 // React
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Components
 import Bubble from './components/Blob';
@@ -10,6 +10,8 @@ import Corners from './components/Corners';
 
 // Design
 import { Flex, Container, Circle } from '@chakra-ui/react';
+import Lottie from 'lottie-react';
+import LogoAnimation from './LogoAnimation.json';
 
 // Utils
 import { downloadBlob } from './utils/downloadBlob';
@@ -90,64 +92,104 @@ function App() {
     }
   }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
 
-  return (
-    <Flex
-      direction="row"
-      bgColor="#141820"
-      overflow="hidden"
-      justifyContent="space-between"
-      w="100vw"
-      h="100vh"
-    >
-      {/* ------ LEFT MENU ----- */}
-      <LeftMenu setDesign={setDesign}></LeftMenu>
-      <Container
-        sx={{ transform: 'scale(1)' }}
-        justifyContent="center"
-        alignContent="center"
-        centerContent
-        padding="3"
-        m="0"
-      >
-        {/* ------ CANVAS ----- */}
-        {renderDesign()}
+  /* --------- SHOW ANIMATION ON INITIAL RENDER --------- */
+  const [initialAnimation, setInitialAnimation] = useState<boolean>(true);
 
-        {/* ------ RANDOMIZE BUTTON ----- */}
-        <Circle
-          maxWidth={80}
-          as={motion.button}
+  useEffect(() => {
+    setTimeout(() => {
+      setInitialAnimation(false);
+    }, 5000);
+  }, []);
+
+  return (
+    <>
+      {initialAnimation && (
+        <Flex
+          direction="row"
+          overflow="hidden"
           justifyContent="center"
           alignItems="center"
-          bgColor="#313640"
-          p="2.5"
-          centerContent
-          onClick={() => setSeed(seed + 1)}
-          border="8px"
-          borderColor="#141820"
-          position="relative"
-          bottom="40px"
-          marginBottom="-60px"
-          // @ts-ignore
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
+          zIndex={1000}
+          w="100vw"
+          h="100vh"
+          style={{
+            position: 'absolute',
+            backgroundColor: '#141820e3',
+            zIndex: 1000,
+            margin: '0 auto',
+            left: ' 50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
         >
-          <DiceIcon />
-        </Circle>
-      </Container>
-
-      {/* ------ RIGHT MENU ----- */}
-      <RightMenu
-        onClick={downloadSVG}
-        handleWidthChange={setWidth}
-        handleHeightChange={setHeight}
-        setAspectRatio={setAspectRatio}
-        aspectRatio={aspectRatio}
-        width={width}
-        height={height}
+          <Lottie
+            animationData={LogoAnimation}
+            loop={false}
+            style={{
+              width: 200,
+              height: 200,
+            }}
+          />
+        </Flex>
+      )}
+      <Flex
+        direction="row"
+        bgColor="#141820"
+        overflow="hidden"
+        justifyContent="space-between"
+        w="100vw"
+        h="100vh"
       >
-        {renderMenu()}
-      </RightMenu>
-    </Flex>
+        {/* ------ LEFT MENU ----- */}
+        <LeftMenu setDesign={setDesign}></LeftMenu>
+        <Container
+          sx={{ transform: 'scale(1)' }}
+          justifyContent="center"
+          alignContent="center"
+          centerContent
+          padding="3"
+          m="0"
+        >
+          {/* ------ CANVAS ----- */}
+          {renderDesign()}
+
+          {/* ------ RANDOMIZE BUTTON ----- */}
+          <Circle
+            maxWidth={80}
+            as={motion.button}
+            justifyContent="center"
+            alignItems="center"
+            bgColor="#313640"
+            p="2.5"
+            centerContent
+            onClick={() => setSeed(seed + 1)}
+            border="8px"
+            borderColor="#141820"
+            position="relative"
+            bottom="40px"
+            marginBottom="-60px"
+            // @ts-ignore
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
+          >
+            <DiceIcon />
+          </Circle>
+        </Container>
+
+        {/* ------ RIGHT MENU ----- */}
+        <RightMenu
+          onClick={downloadSVG}
+          handleWidthChange={setWidth}
+          handleHeightChange={setHeight}
+          setAspectRatio={setAspectRatio}
+          aspectRatio={aspectRatio}
+          width={width}
+          height={height}
+        >
+          {renderMenu()}
+        </RightMenu>
+      </Flex>
+    </>
   );
 }
 

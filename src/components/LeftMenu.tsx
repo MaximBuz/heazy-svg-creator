@@ -9,6 +9,8 @@ import bubble from '../Thumbnails/bubble.svg';
 import Logo from '../Logo.svg';
 import { UilLinkedin } from '@iconscout/react-unicons';
 
+
+
 // Utils
 import Thumbnail from './Thumbnail';
 import { IDesignModes } from '../utils/types/designModes';

@@ -1,5 +1,5 @@
 // React
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 // Components
 import Bubble from './components/Blob';
@@ -9,7 +9,7 @@ import StackedWave from './components/Waves';
 import Corners from './components/Corners';
 
 // Design
-import { Flex, Container, Circle, Box, Icon } from '@chakra-ui/react';
+import { Flex, Container, Circle, Icon } from '@chakra-ui/react';
 import Lottie from 'lottie-react';
 import LogoAnimation from './LogoAnimation.json';
 
@@ -29,7 +29,8 @@ import CornerOptions from './components/RightMenu/Corners/CornerOptions';
 import Marker from './components/Marker';
 import useMarkerOptions from './utils/customHooks/useMarkerOptions';
 import MarkerOptions from './components/RightMenu/Marker/MarkerOptions';
-import SliderIconWrapper from './components/RightMenu/SliderIconWrapper';
+import { aspectRatio } from './utils/calculations/aspectRatio';
+import { ICanvasDimensions } from './utils/types/canvasDimensions';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -39,9 +40,16 @@ function App() {
   const [zoom, setZoom] = useState<number>(1);
 
   /* --------- DIMENSION STATE --------- */
-  const [width, setWidth] = useState<number>(900);
-  const [height, setHeight] = useState<number>(650);
-  const [aspectRatio, setAspectRatio] = useState<string>('16 : 9');
+  const [width, setWidth] = useState<number>(800);
+  const [height, setHeight] = useState<number>(600);
+  const canvasDimensions = useMemo<ICanvasDimensions>(() => {
+    return {
+      width: width,
+      height: height,
+      widthRatio: aspectRatio(width / height, 50)[0],
+      heightRatio: aspectRatio(width / height, 50)[1],
+    };
+  }, [width, height]);
 
   /* --------- VARIANT STATE --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');
@@ -64,19 +72,19 @@ function App() {
   const renderDesign = useCallback(() => {
     switch (design) {
       case 'waves': {
-        return <StackedWave width={width} height={height} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
+        return <StackedWave width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
       }
       case 'bubble': {
-        return <Bubble width={width} height={height} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
+        return <Bubble width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
       }
       case 'corners': {
-        return <Corners width={width} height={height} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
+        return <Corners width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
       }
       case 'marker': {
-        return <Marker width={width} height={height} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
+        return <Marker width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
       }
     }
-  }, [design, seed, width, height, waveOptions.get, bubbleOptions.get, cornerOptions.get, markerOptions.get]);
+  }, [design, seed, canvasDimensions, waveOptions.get, bubbleOptions.get, cornerOptions.get, markerOptions.get]);
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderMenu = useCallback(() => {
@@ -262,10 +270,10 @@ function App() {
           onClick={downloadSVG}
           handleWidthChange={setWidth}
           handleHeightChange={setHeight}
-          setAspectRatio={setAspectRatio}
-          aspectRatio={aspectRatio}
-          width={width}
-          height={height}
+          width = {canvasDimensions.width}
+          height = {canvasDimensions.height}
+          widthRatio = {canvasDimensions.widthRatio}
+          heightRatio = {canvasDimensions.heightRatio}
         >
           {renderMenu()}
         </RightMenu>

@@ -24,10 +24,10 @@ import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icon
 
 export interface IRightMenuProps {
   onClick: () => void;
-  aspectRatio: string;
   width: number;
   height: number;
-  setAspectRatio: Dispatch<SetStateAction<string>>;
+  widthRatio: number;
+  heightRatio: number;
   handleWidthChange: Dispatch<SetStateAction<number>>;
   handleHeightChange: Dispatch<SetStateAction<number>>;
   children: ReactNode;
@@ -35,10 +35,10 @@ export interface IRightMenuProps {
 
 const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   onClick,
-  aspectRatio,
-  setAspectRatio,
   width,
   height,
+  widthRatio,
+  heightRatio,
   handleWidthChange,
   handleHeightChange,
   children,
@@ -90,22 +90,8 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           onClick={onDimensionDrawerOpen}
         >
           <Flex direction="column" textAlign="left">
-            <Heading fontSize="sm" fontWeight="bolder">
-              {height === 504 && width === 896
-                ? 'Full HD'
-                : height === 565 && width === 904
-                ? 'MacBook'
-                : height === 2532 / 3.75 && width === 1170 / 3.75
-                ? 'iPhone 13'
-                : height === 3040 / 4.5 && width === 1440 / 4.5
-                ? 'Galaxy S10'
-                : height === 1334 / 2 && width === 750 / 2
-                ? 'iPhone SE'
-                : "Aspect Ratio"}
-            </Heading>
-            <Heading fontSize="sm" fontWeight="light" opacity={0.7}>
-              {aspectRatio}
-            </Heading>
+            <Heading fontSize="sm" fontWeight="bolder">{`${widthRatio}:${heightRatio}`}</Heading>
+            <Heading fontSize="sm" fontWeight="light" opacity={0.7}>{`${Math.floor(width)} x ${Math.floor(height)}`}</Heading>
             {/* Devices stuff */}
           </Flex>
           <ChevronRightIcon boxSize={6} />
@@ -170,7 +156,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           </DrawerHeader>
           <DrawerBody>
             <Stack>
-              {/* <HStack>
+              <HStack>
                 <InputGroup>
                   <InputLeftElement
                     fontWeight="light"
@@ -179,10 +165,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                     fontSize="sm"
                     children="w"
                   />
-                  <Input
-                    value={canvasDimensions.width}
-                    onChange={(e) => handleWidthChange(Number(e.target.value))}
-                  />
+                  <Input value={width} onChange={(e) => handleWidthChange(Number(e.target.value))} />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
                 <InputGroup>
@@ -193,13 +176,11 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                     pointerEvents="none"
                     children="h"
                   />
-                  <Input
-                    value={canvasDimensions.height}
-                    onChange={(e) => handleHeightChange(Number(e.target.value))}
-                  />
+                  <Input value={height} onChange={(e) => handleHeightChange(Number(e.target.value))} />
                   <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
                 </InputGroup>
-              </HStack> */}
+              </HStack>
+              <Spacer></Spacer>
 
               <Heading as="h4" size="xs" opacity={0.5}>
                 Common
@@ -209,7 +190,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(504);
                   handleWidthChange(896);
-                  setAspectRatio('16 : 9');
                 }}
               >
                 16 : 9
@@ -218,7 +198,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(720);
                   handleWidthChange(900);
-                  setAspectRatio('5 : 4');
                 }}
               >
                 5 : 4
@@ -227,7 +206,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(675);
                   handleWidthChange(900);
-                  setAspectRatio('4 : 3');
                 }}
               >
                 4 : 3
@@ -236,7 +214,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(600);
                   handleWidthChange(900);
-                  setAspectRatio('3 : 2');
                 }}
               >
                 3 : 2
@@ -245,7 +222,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(450);
                   handleWidthChange(900);
-                  setAspectRatio('2 : 1');
                 }}
               >
                 2 : 1
@@ -254,7 +230,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(700);
                   handleWidthChange(700);
-                  setAspectRatio('1 : 1');
                 }}
               >
                 1 : 1
@@ -269,7 +244,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(504);
                   handleWidthChange(896);
-                  setAspectRatio('16 : 9');
                 }}
               >
                 Full HD
@@ -278,7 +252,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(565);
                   handleWidthChange(904);
-                  setAspectRatio('16 : 10');
                 }}
               >
                 MacBook
@@ -287,7 +260,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(2532 / 3.75);
                   handleWidthChange(1170 / 3.75);
-                  setAspectRatio('9 : 19:5');
                 }}
               >
                 iPhone 13
@@ -296,7 +268,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(3040 / 4.5);
                   handleWidthChange(1440 / 4.5);
-                  setAspectRatio('9 : 19');
                 }}
               >
                 Galaxy S10
@@ -305,7 +276,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
                 onClick={() => {
                   handleHeightChange(1334 / 2);
                   handleWidthChange(750 / 2);
-                  setAspectRatio('9 : 16');
                 }}
               >
                 iPhone SE

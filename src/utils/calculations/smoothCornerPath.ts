@@ -36,8 +36,8 @@ export function smoothCornerPath(
 
       const coords = {
         handle1: {
-          x: previous ? previous.x - previous.handle2.x + previous.x: equal  + (rndm(seed + stack + n) - 0.5) * velocity - stack * distance - rndm(seed) * velocity,
-          y: previous ? previous.y - previous.handle2.y + previous.y: waveSize + (rndm(seed + stack + n + 1) - 0.5) * velocity - stack * distance - rndm(seed) * velocity,
+          x: previous ? (previous.x - previous.handle2.x) + previous.x: equal  + (rndm(seed + stack + n) - 0.5) * velocity - stack * distance - rndm(seed) * velocity,
+          y: previous ? (previous.y - previous.handle2.y) + previous.y: waveSize + (rndm(seed + stack + n + 1) - 0.5) * velocity - stack * distance - rndm(seed) * velocity,
         },
         handle2: {
           x: x - equal*0.3 - rndm(seed + stack + n) * 2 * velocity + stack * 20,

@@ -1,5 +1,5 @@
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber } from './randomNumber';
+import { generateRandomNumber as random } from './randomNumber';
 
 export function smoothWavePath(
   seed: number,
@@ -10,8 +10,7 @@ export function smoothWavePath(
   breaks: number,
   stacks: number,
   distance: number,
-  stroke: boolean,
-  direction: number
+  stroke: boolean
 ): string[] {
   let waveHeight = height * balance;
   let equal = width / breaks;
@@ -19,25 +18,48 @@ export function smoothWavePath(
 
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
+    // calculate height offset for each stack
+    const stackHeightOffset = stack * distance * (stack * distance);
+
     // beginning of each wave
-    const data = [`M0 ${waveHeight + stack * distance * (stack * distance)}`];
+    const data = [`M0 ${waveHeight + stackHeightOffset}`];
+
+    // save previous wave for handle2
+    let previous;
+
     // generate random waves based on passed parameters
-    for (let n = 1; n <= breaks; n++) {
-      const random = (generateRandomNumber(seed + stack + n) - 0.5) * velocity;
-      const smooth = {
-        handle: {
-          x: random < 0 ? (n - 1) * equal + equal / 2 - random : (n - 1) * equal + equal / 2 + random,
-          y: waveHeight + random + stack * distance * (stack * distance),
+    for (let waveNo = 1; waveNo <= breaks; waveNo++) {
+      velocity = 1;
+      // calculate random components for y and handles
+      const randomPartY = (random(seed + stack + waveNo) - 0.5) * velocity;
+      const randomPartX = random(seed + stack + waveNo * 10)
+
+      // calculate x and y of next point
+      let x = waveNo * equal;
+      let y = waveHeight + stackHeightOffset + (equal * randomPartY);
+
+      const coords = {
+        handle1: {
+          x: previous
+            ? previous.x + (previous.x - previous.handle2.x)
+            : randomPartX + equal / 4  + (equal / 4 * randomPartX), // split 'equal' into 5 parts and go to right into second zone
+          y: previous
+            ? previous.y + (previous.y - previous.handle2.y)
+            : waveHeight + stackHeightOffset + (equal/2 * randomPartY),
         },
-        x: n * equal,
-        y:
-          waveHeight +
-          (generateRandomNumber(seed + stack + 2 * n) - 0.5) * velocity +
-          stack * distance * (stack * distance),
+        handle2: {
+          x: x - equal / 4 - (equal / 4 * randomPartX), // split 'equal' into 5 parts and go to left into second to last zone
+          y: y + randomPartY * 50,
+        },
+        x,
+        y,
       };
 
+      previous = coords;
       // push path snippet to data array
-      data.push(`S${smooth.handle.x} ${smooth.handle.y} ${smooth.x} ${smooth.y}`);
+      data.push(
+        `C${coords.handle1.x} ${coords.handle1.y} ${coords.handle2.x} ${coords.handle2.y} ${coords.x} ${coords.y}`
+      );
     }
 
     // if it's a filled wave, close of bottom

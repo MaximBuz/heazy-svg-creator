@@ -29,7 +29,7 @@ const Waves: React.FunctionComponent<IWaveProps> = ({
 }) => {
   let wavesData;
   if (type === 'smooth') {
-    wavesData = smoothWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke, direction);
+    wavesData = smoothWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
   } else {
     wavesData = peakWavePath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
   }

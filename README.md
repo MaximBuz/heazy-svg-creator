@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://heazy.studio/">
-    <img src="public/favicon.ico" alt="Logo" width="215" height="62.5">
+    <img src="public/favicon.ico" alt="Logo" width="60" height="60">
   </a>
 
   <h4 align="center">Heazy.</h4>

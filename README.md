@@ -13,7 +13,7 @@
     <img src="public/favicon.ico" alt="Logo" width="60" height="60">
   </a>
 
-  <h4 align="center">Heazy.</h4>
+  <h4 align="center">heazy.studio</h4>
 
   <p align="center">
     Generate stylish SVG design assets with ease.

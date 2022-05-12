@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://heazy.studio/">
-    <img src="src/Logo.svg" alt="Logo" width="215" height="62.5">
+    <img src="public/favicon.ico" alt="Logo" width="215" height="62.5">
   </a>
 
   <h4 align="center">Heazy.</h4>
@@ -20,7 +20,7 @@
     <br/>
     Developed by <a href="https://www.linkedin.com/in/maxim-buz-17a2a717b/">Maxim Buz</a>
     <br/>
-    <a href="https://landingpage-tau-henna.vercel.app/">View Demo</a>
+    <a href="https://heazy.studio/">heazy.studio</a>
   </p>
 </div>
 
@@ -63,6 +63,8 @@ heazy.studio was created by using the following awesome tools:
 * [React.js](https://reactjs.org/)
 * [Chakra UI](https://chakra-ui.com/)
 
+Note: All path-algorithms were painstakingly coded by hand with vanilla TypeScript. They are still work in progress!
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -92,4 +94,4 @@ Project Link: [https://github.com/MaximBuz/heazy-svg-creator](https://github.com
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/maxim-buz-17a2a717b/
-[product-screenshot]: ./public/screenshot.png
+[product-screenshot]: ./github-screenshot.png

@@ -9,7 +9,7 @@ import StackedWave from './components/Waves';
 import Corners from './components/Corners';
 
 // Design
-import { Flex, Container, Circle } from '@chakra-ui/react';
+import { Flex, Container, Circle, Box, Icon } from '@chakra-ui/react';
 import Lottie from 'lottie-react';
 import LogoAnimation from './LogoAnimation.json';
 
@@ -29,6 +29,7 @@ import CornerOptions from './components/RightMenu/Corners/CornerOptions';
 import Marker from './components/Marker';
 import useMarkerOptions from './utils/customHooks/useMarkerOptions';
 import MarkerOptions from './components/RightMenu/Marker/MarkerOptions';
+import SliderIconWrapper from './components/RightMenu/SliderIconWrapper';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -94,11 +95,18 @@ function App() {
 
   /* --------- SHOW ANIMATION ON INITIAL RENDER --------- */
   const [initialAnimation, setInitialAnimation] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<number>(1);
 
   useEffect(() => {
-    setTimeout(() => {
-      setInitialAnimation(false);
-    }, 5000);
+    (async () => {
+      await setTimeout(() => {
+        setIsVisible(0);
+      }, 2000);
+
+      await setTimeout(() => {
+        setInitialAnimation(false);
+      }, 4000);
+    })();
   }, []);
 
   return (
@@ -120,6 +128,8 @@ function App() {
             left: ' 50%',
             top: '50%',
             transform: 'translate(-50%, -50%)',
+            opacity: isVisible,
+            transition: 'all 1s ease',
           }}
         >
           <Lottie
@@ -175,6 +185,47 @@ function App() {
             <DiceIcon />
           </Circle>
         </Container>
+
+        {/* ------ ZOOM BUTTONS ----- */}
+        <Flex position="absolute" gap="8px" direction="column" bottom="15px" right="335px" id="testing">
+          <Icon
+            as="button"
+            onClick={() => {}}
+            boxSize="10"
+            viewBox="0 0 24 24"
+            rounded="full"
+            outline="5px solid #141820"
+            p="2.5"
+            bg="#313640"
+            transition="0.2s"
+            _hover={{ background: '#373d48', cursor: 'pointer', transform: 'scale(1.1)' }}
+          >
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              fill="white"
+              d="M15,10H12V7a1,1,0,0,0-2,0v3H7a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V12h3a1,1,0,0,0,0-2Zm6.71,10.29L18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"
+            />
+          </Icon>
+
+          <Icon
+            as="button"
+            onClick={() => {}}
+            boxSize="10"
+            viewBox="0 0 24 24"
+            rounded="full"
+            outline="5px solid #141820"
+            p="2.5"
+            bg="#313640"
+            transition="0.2s"
+            _hover={{ background: '#373d48', cursor: 'pointer', transform: 'scale(1.1)' }}
+          >
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              fill="white"
+              d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Zm4-8H7a1,1,0,0,0,0,2h8a1,1,0,0,0,0-2Z"
+            />
+          </Icon>
+        </Flex>
 
         {/* ------ RIGHT MENU ----- */}
         <RightMenu

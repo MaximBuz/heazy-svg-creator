@@ -152,20 +152,25 @@ function App() {
       >
         {/* ------ LEFT MENU ----- */}
         <LeftMenu setDesign={setDesign}></LeftMenu>
-        <Container
-          sx={{ transform: 'scale(1)' }}
-          justifyContent="center"
-          alignContent="center"
-          centerContent
-          padding="3"
-          m="0"
-        >
-          {/* ------ CANVAS ----- */}
-          {renderDesign()}
 
-          {/* ------ RANDOMIZE BUTTON ----- */}
+        {/* ------ CANVAS ----- */}
+        <Container justifyContent="center" alignContent="center" centerContent padding="3" m="0">
+          {renderDesign()}
+        </Container>
+
+        {/* ------ ZOOM BUTTONS ----- */}
+        <Flex
+          transform="rotate(-20deg)"
+          position="absolute"
+          bottom="10px"
+          right="335px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {/* randomize dice */}
           <Circle
-            maxWidth={80}
+            maxW="80px"
+            maxH="80px"
             as={motion.button}
             justifyContent="center"
             alignItems="center"
@@ -175,56 +180,67 @@ function App() {
             onClick={() => setSeed(seed + 1)}
             border="8px"
             borderColor="#141820"
-            position="relative"
-            bottom="40px"
-            marginBottom="-60px"
             // @ts-ignore
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, rotate: -10 }}
             whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
+            position="relative"
+            left="10px"
           >
             <DiceIcon />
           </Circle>
-        </Container>
+          <Flex direction="column">
+            <Circle
+              maxW="80px"
+              maxH="80px"
+              as={motion.button}
+              justifyContent="center"
+              alignItems="center"
+              bgColor="#313640"
+              p="2"
+              centerContent
+              onClick={() => setSeed(seed + 1)}
+              border="8px"
+              borderColor="#141820"
+              // @ts-ignore
+              whileHover={{ scale: 1.1, rotate: -10 }}
+              whileTap={{ scale: 0.9, rotate: 10 }}
+              position="relative"
+              top="4px"
+              left="2px"
+            >
+              <Icon boxSize="5" viewBox="0 0 24 24">
+                <path
+                  fill="white"
+                  d="M15,10H12V7a1,1,0,0,0-2,0v3H7a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V12h3a1,1,0,0,0,0-2Zm6.71,10.29L18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"
+                />
+              </Icon>
+            </Circle>
 
-        {/* ------ ZOOM BUTTONS ----- */}
-        <Flex position="absolute" gap="8px" direction="column" bottom="15px" right="335px" id="testing">
-          <Icon
-            as="button"
-            onClick={() => {}}
-            boxSize="10"
-            viewBox="0 0 24 24"
-            rounded="full"
-            outline="5px solid #141820"
-            p="2.5"
-            bg="#313640"
-            transition="0.2s"
-            _hover={{ background: '#373d48', cursor: 'pointer', transform: 'scale(1.1)' }}
-          >
-            <path
-              xmlns="http://www.w3.org/2000/svg"
-              fill="white"
-              d="M15,10H12V7a1,1,0,0,0-2,0v3H7a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V12h3a1,1,0,0,0,0-2Zm6.71,10.29L18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"
-            />
-          </Icon>
-
-          <Icon
-            as="button"
-            onClick={() => {}}
-            boxSize="10"
-            viewBox="0 0 24 24"
-            rounded="full"
-            outline="5px solid #141820"
-            p="2.5"
-            bg="#313640"
-            transition="0.2s"
-            _hover={{ background: '#373d48', cursor: 'pointer', transform: 'scale(1.1)' }}
-          >
-            <path
-              xmlns="http://www.w3.org/2000/svg"
-              fill="white"
-              d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Zm4-8H7a1,1,0,0,0,0,2h8a1,1,0,0,0,0-2Z"
-            />
-          </Icon>
+            <Circle
+              maxW="80px"
+              maxH="80px"
+              as={motion.button}
+              justifyContent="center"
+              alignItems="center"
+              bgColor="#313640"
+              p="2"
+              centerContent
+              onClick={() => setSeed(seed + 1)}
+              border="8px"
+              borderColor="#141820"
+              // @ts-ignore
+              whileHover={{ scale: 1.1, rotate: -10 }}
+              whileTap={{ scale: 0.9, rotate: 10 }}
+            >
+              <Icon boxSize="5" viewBox="0 0 24 24">
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                  d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Zm4-8H7a1,1,0,0,0,0,2h8a1,1,0,0,0,0-2Z"
+                />
+              </Icon>
+            </Circle>
+          </Flex>
         </Flex>
 
         {/* ------ RIGHT MENU ----- */}

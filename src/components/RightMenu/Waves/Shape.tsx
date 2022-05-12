@@ -88,11 +88,11 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 25)}>
+        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 0.1)}>
           <VelocityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="velocity" value={velocity} min={0} max={250} onChange={(val) => setVelocity(val)}>
+        <Slider aria-label="velocity" value={velocity} step={0.1} min={0} max={1} onChange={(val) => setVelocity(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
@@ -101,7 +101,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
 
         <SliderIconWrapper
           viewBox={'0 0 412 286'}
-          onClick={() => velocity < 250 && setVelocity(velocity + 25)}
+          onClick={() => velocity < 1 && setVelocity(velocity + 0.1)}
         >
           <VelocityRight />
         </SliderIconWrapper>
@@ -113,11 +113,11 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 0 && setBreaks(breaks - 1)}>
+        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 1 && setBreaks(breaks - 1)}>
           <ComplexityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="complexity" value={breaks} min={0} max={20} onChange={(val) => setBreaks(val)}>
+        <Slider aria-label="complexity" value={breaks} min={1} max={20} onChange={(val) => setBreaks(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>

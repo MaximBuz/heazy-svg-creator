@@ -22,17 +22,16 @@ export function smoothWavePath(
     const stackHeightOffset = stack * distance * (stack * distance);
 
     // beginning of each wave
-    const data = [`M0 ${waveHeight + stackHeightOffset}`];
+    const data = [`M0 ${waveHeight + stackHeightOffset + (random(seed + stack) - 0.5) * velocity * equal}`];
 
     // save previous wave for handle2
     let previous;
 
     // generate random waves based on passed parameters
     for (let waveNo = 1; waveNo <= breaks; waveNo++) {
-      velocity = 1;
       // calculate random components for y and handles
       const randomPartY = (random(seed + stack + waveNo) - 0.5) * velocity;
-      const randomPartX = random(seed + stack + waveNo * 10)
+      const randomPartX = random(seed + stack + waveNo + breaks)
 
       // calculate x and y of next point
       let x = waveNo * equal;

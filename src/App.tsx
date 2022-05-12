@@ -35,6 +35,9 @@ function App() {
   /* --------- RANDOMNESS STATE --------- */
   const [seed, setSeed] = useState<number>(0);
 
+  /* --------- ZOOMING --------- */
+  const [zoom, setZoom] = useState<number>(1);
+
   /* --------- DIMENSION STATE --------- */
   const [width, setWidth] = useState<number>(900);
   const [height, setHeight] = useState<number>(650);
@@ -154,11 +157,19 @@ function App() {
         <LeftMenu setDesign={setDesign}></LeftMenu>
 
         {/* ------ CANVAS ----- */}
-        <Container justifyContent="center" alignContent="center" centerContent padding="3" m="0">
+        <Container
+          transform={`scale(${zoom})`}
+          transition="transform 0.3s cubic-bezier(0,.5,.5,1)"
+          justifyContent="center"
+          alignContent="center"
+          centerContent
+          padding="3"
+          m="0"
+        >
           {renderDesign()}
         </Container>
 
-        {/* ------ ZOOM BUTTONS ----- */}
+        {/* ------ CONTROLLERS ----- */}
         <Flex
           transform="rotate(-20deg)"
           position="absolute"
@@ -188,7 +199,9 @@ function App() {
           >
             <DiceIcon />
           </Circle>
+
           <Flex direction="column">
+            {/* ZOOM IN  */}
             <Circle
               maxW="80px"
               maxH="80px"
@@ -198,7 +211,7 @@ function App() {
               bgColor="#313640"
               p="2"
               centerContent
-              onClick={() => setSeed(seed + 1)}
+              onClick={() => setZoom((zoom) => zoom + 0.1)}
               border="8px"
               borderColor="#141820"
               // @ts-ignore
@@ -216,6 +229,7 @@ function App() {
               </Icon>
             </Circle>
 
+            {/* ZOOM OUT  */}
             <Circle
               maxW="80px"
               maxH="80px"
@@ -225,7 +239,7 @@ function App() {
               bgColor="#313640"
               p="2"
               centerContent
-              onClick={() => setSeed(seed + 1)}
+              onClick={() => setZoom((zoom) => zoom - 0.1)}
               border="8px"
               borderColor="#141820"
               // @ts-ignore

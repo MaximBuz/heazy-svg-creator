@@ -47,10 +47,10 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://heazy.studio/)
 
-heazy.studio let's you generate cool SVG designs for your website projects (or presentations if thats your thing).
-Generate unique and funky vector graphics within minutes, without the pain of learning any advanced graphics editing tool like Adobe's illustrator.
+Heazy let's you generate cool SVG designs for your website projects (and presentations, if thats your thing).
+Easily generate unique and funky vector graphics within minutes right inside your browser, without having to learn any advanced graphical tools like Adobe illustrator.
 
-You can easily download your desings and reuse them in React, HTML, Adobe Products, PowerPoint etc.
+You can download your desings and reuse the code in React, HTML, Adobe Products, PowerPoint etc.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -60,21 +60,12 @@ You can easily download your desings and reuse them in React, HTML, Adobe Produc
 
 heazy.studio was created by using the following awesome tools:
 
+* [TypeScript](https://www.typescriptlang.org/)
 * [React.js](https://reactjs.org/)
 * [Chakra UI](https://chakra-ui.com/)
 
-Note: All path-algorithms were painstakingly coded by hand with vanilla TypeScript. They are still work in progress!
+Note: All path-algorithms were painstakingly coded by hand with vanilla TypeScript. They are still work in progress! Please do not expect perfection at this point :)
 
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-### Installation
-
-1. ```sh
-   Coming Soon...
-   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

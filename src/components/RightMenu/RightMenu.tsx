@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, ReactNode, SetStateAction, useRef } from 'react';
+import React, { Dispatch, ReactElement, ReactNode, Ref, SetStateAction, useRef } from 'react';
 
 // Design
 import {
@@ -21,8 +21,10 @@ import { Drawer, DrawerBody, DrawerHeader, DrawerContent } from '@chakra-ui/reac
 // Utils
 import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icons';
+import { downloadSvgAsPng } from '../../utils/downloadBlob';
 
 export interface IRightMenuProps {
+  svgRef: Ref<SVGAElement | null>;
   onClick: () => void;
   width: number;
   height: number;
@@ -34,6 +36,7 @@ export interface IRightMenuProps {
 }
 
 const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
+  svgRef,
   onClick,
   width,
   height,
@@ -118,7 +121,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           <Button leftIcon={<DownloadIcon />} onClick={onClick} colorScheme="blue" variant="solid">
             Download SVG
           </Button>
-          <Button colorScheme="gray" variant="outline">
+          <Button onClick={ (e) => downloadSvgAsPng(e, svgRef) } colorScheme="gray" variant="outline">
             PNG
           </Button>
         </Stack>

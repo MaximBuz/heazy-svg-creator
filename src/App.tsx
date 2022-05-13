@@ -14,7 +14,7 @@ import Lottie from 'lottie-react';
 import LogoAnimation from './LogoAnimation.json';
 
 // Utils
-import { downloadBlob } from './utils/downloadBlob';
+import { downloadBlob, downloadSvgAsPng } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 
@@ -268,6 +268,7 @@ function App() {
         {/* ------ RIGHT MENU ----- */}
         <RightMenu
           onClick={downloadSVG}
+          svgRef={svgRef}
           handleWidthChange={setWidth}
           handleHeightChange={setHeight}
           width = {canvasDimensions.width}

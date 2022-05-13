@@ -43,6 +43,8 @@ const Waves: React.FunctionComponent<IWaveProps> = ({
       xmlnsXlink="http://www.w3.org/1999/xlink"
       version="1.1"
       ref={svgRef}
+      enableBackground={`new 0 0 ${width} ${height}`}
+      xmlSpace='preserve'
     >
       <g transform-origin="center" transform={"scale(1, 1) rotate(0)"}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>

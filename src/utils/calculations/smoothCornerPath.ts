@@ -45,7 +45,11 @@ export function smoothCornerPath(
    
       // get X and Y coordinates
       const pointCoordinate = pointCoordinates[waveNo]
-      const [x, y] = [pointCoordinate[0] - stackHeightOffset, pointCoordinate[1] - stackHeightOffset]
+      let [x, y] = [pointCoordinate[0] - stackHeightOffset, pointCoordinate[1] - stackHeightOffset]
+
+      // randomize X and Y coordinates
+      x += randomPartX;
+      y += randomPartY;
 
       // construct full BezierCurve (C) coordinates
       const coords = {
@@ -64,6 +68,10 @@ export function smoothCornerPath(
         x,
         y,
       };
+
+      // handle if first or last point (cause they need to be at the edge of the canvas)
+      if (waveNo === 0) { coords.x = 0; coords.y = waveSize; }
+      if (waveNo + 1 === breaks) { coords.x = waveSize; coords.y = 0; }
 
       // save previous wave for a smooth handle2
       previous = coords;

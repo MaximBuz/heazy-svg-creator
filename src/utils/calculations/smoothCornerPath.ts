@@ -70,7 +70,10 @@ export function smoothCornerPath(
       };
 
       // handle if first or last point (cause they need to be at the edge of the canvas)
-      if (waveNo === 0) { coords.x = 0; coords.y = waveSize; }
+      if (waveNo === 0) {
+        coords.x = 0; coords.y = waveSize;
+        coords.handle2.x = 0 /* some random number to the right */;
+      }
       if (waveNo + 1 === breaks) { coords.x = waveSize; coords.y = 0; }
 
       // save previous wave for a smooth handle2

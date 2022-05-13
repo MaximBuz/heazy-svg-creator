@@ -14,7 +14,7 @@ interface ICubicBezierCoords {
   y: number;
 }
 
-export function smoothCornerPath(
+export function edgyCornerPath(
   seed: number,
   width: number,
   height: number,

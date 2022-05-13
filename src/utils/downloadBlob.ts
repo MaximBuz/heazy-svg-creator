@@ -28,13 +28,13 @@ export function downloadSvgAsPng(e, svgRef) {
   const h = parseInt(svgRef.current.getAttribute('height'));
   const img_to_download = document.createElement('img');
   img_to_download.src = 'data:image/svg+xml;base64,' + base64doc;
+  
   img_to_download.onload = function () {
     //@ts-expect-error
     canvas.setAttribute('width', w);
     //@ts-expect-error
     canvas.setAttribute('height', h);
     const context = canvas.getContext('2d');
-    //context.clearRect(0, 0, w, h);
     context.drawImage(img_to_download, 0, 0, w, h);
     const dataURL = canvas.toDataURL('image/png');
     const a = document.createElement('a');
@@ -43,6 +43,6 @@ export function downloadSvgAsPng(e, svgRef) {
     a.href = dataURL;
     a.dispatchEvent(my_evt);
 
-    //canvas.parentNode.removeChild(canvas);
+    canvas.parentNode.removeChild(canvas);
   };
 }

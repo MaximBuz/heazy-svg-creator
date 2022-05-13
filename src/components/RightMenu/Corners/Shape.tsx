@@ -112,18 +112,18 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 2 && setBreaks(breaks - 1)}>
+        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 4 && setBreaks(breaks - 1)}>
           <ComplexityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="complexity" value={breaks} min={2} max={5} onChange={(val) => setBreaks(val)}>
+        <Slider aria-label="complexity" value={breaks} min={4} max={10} onChange={(val) => setBreaks(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 5 && setBreaks(breaks + 1)}>
+        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 10 && setBreaks(breaks + 1)}>
           <ComplexityRight />
         </SliderIconWrapper>
       </HStack>

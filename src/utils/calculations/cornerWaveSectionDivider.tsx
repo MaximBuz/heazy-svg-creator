@@ -5,7 +5,7 @@ export function getShrinkingSections (sections:number, waveSize:number): [number
   const cuts = [];
 
   for (let cut = 1; cut < sections; cut++) {
-    let sectionSize = remainingWaveSize / 3;
+    let sectionSize = remainingWaveSize / (sections / 2);
     cuts.push(sectionSize);
     remainingWaveSize = remainingWaveSize - sectionSize;
   }

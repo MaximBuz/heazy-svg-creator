@@ -14,7 +14,6 @@ export function smoothCornerPath(
   stroke: boolean
 ): string[] {
   let waveSize = height * (1 - balance);
-  breaks = 4
   const sectionCuts = getShrinkingSections(breaks, waveSize);
 
   // save stacks of waves here

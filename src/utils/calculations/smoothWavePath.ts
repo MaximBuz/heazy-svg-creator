@@ -30,8 +30,8 @@ export function smoothWavePath(
     // generate random waves based on passed parameters
     for (let waveNo = 1; waveNo <= breaks; waveNo++) {
       // calculate random components for y and handles
-      const randomPartY = (random(seed + stack + waveNo) - 0.5) * velocity;
       const randomPartX = random(seed + stack + waveNo + breaks)
+      const randomPartY = (random(seed + stack + waveNo) - 0.5) * velocity;
 
       // calculate x and y of next point
       let x = waveNo * equal;
@@ -41,13 +41,13 @@ export function smoothWavePath(
         handle1: {
           x: previous
             ? previous.x + (previous.x - previous.handle2.x)
-            : randomPartX + equal / 4  + (equal / 4 * randomPartX), // split 'equal' into 5 parts and go to right into second zone
+            : equal / 4  + (equal / 4 * randomPartX), // split 'equal' into 4 parts and go to right into second zone
           y: previous
             ? previous.y + (previous.y - previous.handle2.y)
             : waveHeight + stackHeightOffset + (equal/2 * randomPartY),
         },
         handle2: {
-          x: x - equal / 4 - (equal / 4 * randomPartX), // split 'equal' into 5 parts and go to left into second to last zone
+          x: x - equal / 4 - (equal / 4 * randomPartX), // split 'equal' into 4 parts and go to left into second to last zone
           y: y + randomPartY * 50,
         },
         x,

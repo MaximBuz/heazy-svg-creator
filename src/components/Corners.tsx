@@ -1,8 +1,8 @@
 import React from 'react';
-import { smoothWavePath } from '../utils/calculations/smoothWavePath';
 import { peakWavePath } from '../utils/calculations/peakWavePath';
 import { ICornerProps } from '../utils/types/cornerProps';
 import { smoothCornerPath } from '../utils/calculations/smoothCornerPath';
+import { edgyCornerPath } from '../utils/calculations/edgyCornerPath';
 
 const Corners: React.FunctionComponent<ICornerProps> = ({
   svgRef,
@@ -27,6 +27,9 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
   strokeShrink,
   direction,
 }) => {
+  /* 
+  //TODO: Make a version with mirror or independent corners!
+  */
   let firstCorner, secondCorner;
   if (type === 'smooth') {
     firstCorner = smoothCornerPath(
@@ -52,7 +55,28 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
       stroke,
     );
   } else {
-    firstCorner = peakWavePath(seed, width, height, balance, velocity,breaks , stacks, distance, stroke);
+    firstCorner = edgyCornerPath(
+      seed,
+      width,
+      height,
+      balance,
+      velocity,
+      breaks,
+      stacks,
+      distance,
+      stroke,
+    );
+    secondCorner = edgyCornerPath(
+      seed * 2,
+      width,
+      height,
+      balance,
+      velocity,
+      breaks,
+      stacks,
+      distance,
+      stroke,
+    );
   }
   const randomClassId = Math.round(Math.random() * 100);
   return (

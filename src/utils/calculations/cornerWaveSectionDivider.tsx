@@ -6,7 +6,7 @@ export function getCoordinates (sections:number, waveSize:number): [number, numb
 
   // calculate shrinking parts (until last section)
   for (let cut = 1; cut < sections; cut++) {
-    let sectionSize = remainingWaveSize / (sections / 1.5);
+    let sectionSize = remainingWaveSize / (sections);
     cuts.push(sectionSize);
     remainingWaveSize = remainingWaveSize - sectionSize;
   }

@@ -18,6 +18,19 @@ export function smoothCornerPath(
 
   velocity = 1;
 
+  const sections = breaks;
+  let remainingWaveSize = waveSize;
+  const cuts = [];
+
+  // calculate the ever smaller getting sections
+  for (let cut = 0; cut < sections; cut++) {
+    let sectionSize = remainingWaveSize / 2;
+    cuts.push(sectionSize)
+    remainingWaveSize = remainingWaveSize - sectionSize
+  }
+
+  cuts.forEach((_, index) => cuts[index] = cuts[index] + remainingWaveSize/sections)
+
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     // calculate height offset for each stack

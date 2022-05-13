@@ -1,26 +1,13 @@
-import { Buffer } from 'buffer';
-
-export function downloadBlob(blob: Blob, filename: string) {
-  const objectUrl = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = objectUrl;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
-}
-
-export function downloadSVGAsText(svgRef, filename) {
-  const base64doc = Buffer.from(svgRef.current.outerHTML, 'base64');
+export function downloadSVGAsText(svgRef) {
+  const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
   const a = document.createElement('a');
   const e = new MouseEvent('click');
-  a.download = filename + '.svg';
-  a.href = 'data:image/svg+xml;base64' + base64doc;
+  a.download = 'download.svg';
+  a.href = 'data:image/svg+xml;base64,' + base64doc;
   a.dispatchEvent(e);
 }
 
-export function downloadSvgAsPng(e, svgRef) {
+export function downloadSvgAsPng(svgRef) {
   const canvas = document.createElement('canvas');
 
   const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
@@ -28,7 +15,7 @@ export function downloadSvgAsPng(e, svgRef) {
   const h = parseInt(svgRef.current.getAttribute('height'));
   const img_to_download = document.createElement('img');
   img_to_download.src = 'data:image/svg+xml;base64,' + base64doc;
-  
+
   img_to_download.onload = function () {
     //@ts-expect-error
     canvas.setAttribute('width', w);

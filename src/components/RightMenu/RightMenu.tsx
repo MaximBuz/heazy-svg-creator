@@ -21,11 +21,10 @@ import { Drawer, DrawerBody, DrawerHeader, DrawerContent } from '@chakra-ui/reac
 // Utils
 import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icons';
-import { downloadSvgAsPng } from '../../utils/downloadBlob';
+import { downloadSvgAsPng, downloadSVGAsText } from '../../utils/downloadBlob';
 
 export interface IRightMenuProps {
   svgRef: Ref<SVGAElement | null>;
-  onClick: () => void;
   width: number;
   height: number;
   widthRatio: number;
@@ -37,7 +36,6 @@ export interface IRightMenuProps {
 
 const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   svgRef,
-  onClick,
   width,
   height,
   widthRatio,
@@ -94,7 +92,9 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
         >
           <Flex direction="column" textAlign="left">
             <Heading fontSize="sm" fontWeight="bolder">{`${widthRatio}:${heightRatio}`}</Heading>
-            <Heading fontSize="sm" fontWeight="light" opacity={0.7}>{`${Math.floor(width)} x ${Math.floor(height)}`}</Heading>
+            <Heading fontSize="sm" fontWeight="light" opacity={0.7}>{`${Math.floor(width)} x ${Math.floor(
+              height
+            )}`}</Heading>
             {/* Devices stuff */}
           </Flex>
           <ChevronRightIcon boxSize={6} />
@@ -118,10 +118,15 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
         alignItems="center"
       >
         <Stack direction="row" spacing={4}>
-          <Button leftIcon={<DownloadIcon />} onClick={onClick} colorScheme="blue" variant="solid">
+          <Button
+            leftIcon={<DownloadIcon />}
+            onClick={() => downloadSVGAsText(svgRef)}
+            colorScheme="blue"
+            variant="solid"
+          >
             Download SVG
           </Button>
-          <Button onClick={ (e) => downloadSvgAsPng(e, svgRef) } colorScheme="gray" variant="outline">
+          <Button onClick={() => downloadSvgAsPng(svgRef)} colorScheme="gray" variant="outline">
             PNG
           </Button>
         </Stack>

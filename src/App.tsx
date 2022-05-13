@@ -14,7 +14,6 @@ import Lottie from 'lottie-react';
 import LogoAnimation from './LogoAnimation.json';
 
 // Utils
-import { downloadBlob, downloadSvgAsPng } from './utils/downloadBlob';
 import { motion } from 'framer-motion';
 import { IDesignModes } from './utils/types/designModes';
 
@@ -56,11 +55,6 @@ function App() {
 
   /* --------- DOWNLOADING --------- */
   const svgRef = useRef<SVGAElement | null>(null);
-  const downloadSVG = useCallback(() => {
-    const svg = svgRef.current?.outerHTML;
-    const blob = new Blob([svg as BlobPart], { type: 'image/svg+xml' });
-    downloadBlob(blob, 'design.svg');
-  }, []);
 
   /* --------- OPTION STATES --------- */
   const waveOptions = useWaveOptions();
@@ -267,7 +261,6 @@ function App() {
 
         {/* ------ RIGHT MENU ----- */}
         <RightMenu
-          onClick={downloadSVG}
           svgRef={svgRef}
           handleWidthChange={setWidth}
           handleHeightChange={setHeight}

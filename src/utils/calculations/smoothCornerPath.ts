@@ -14,6 +14,7 @@ export function smoothCornerPath(
   stroke: boolean
 ): string[] {
   let waveSize = height * (1 - balance);
+  breaks = 4
   const sectionCuts = getShrinkingSections(breaks, waveSize);
 
   // save stacks of waves here
@@ -41,8 +42,8 @@ export function smoothCornerPath(
       const randomPartY = (rndm(seed + stack + waveNo) - 0.5) * velocity;
 
       // calculate the coordinates
-      let x = sectionEnds[0] /* - stackHeightOffset */
-      let y = sectionEnds[1] /* - stackHeightOffset */
+      let x = sectionEnds[0] - stackHeightOffset
+      let y = sectionEnds[1] - stackHeightOffset
 
       const coords = {
         handle1: {

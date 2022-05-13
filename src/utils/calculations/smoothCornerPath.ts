@@ -1,5 +1,6 @@
 // calculates svg data attribute for wave with smooth peaks
 import { generateRandomNumber as rndm } from './randomNumber';
+import { getShrinkingSections } from './cornerWaveSectionDivider';
 
 export function smoothCornerPath(
   seed: number,
@@ -13,23 +14,10 @@ export function smoothCornerPath(
   stroke: boolean
 ): string[] {
   let waveSize = height * (1 - balance);
-  let equal = waveSize / breaks;
+  const sectionCuts = getShrinkingSections(breaks, waveSize);
+
+  // save stacks of waves here
   const waves = [];
-
-  velocity = 1;
-
-  const sections = breaks;
-  let remainingWaveSize = waveSize;
-  const cuts = [];
-
-  // calculate the ever smaller getting sections
-  for (let cut = 0; cut < sections; cut++) {
-    let sectionSize = remainingWaveSize / 2;
-    cuts.push(sectionSize)
-    remainingWaveSize = remainingWaveSize - sectionSize
-  }
-
-  cuts.forEach((_, index) => cuts[index] = cuts[index] + remainingWaveSize/sections)
 
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
@@ -43,26 +31,31 @@ export function smoothCornerPath(
     let previous;
 
     // generate random waves based on passed parameters
-    for (let waveNo = 1; waveNo < breaks; waveNo++) {
+    for (let waveNo = 0; waveNo < breaks; waveNo++) {
+
+      // get sectionEnds
+      const sectionEnds = sectionCuts[waveNo]
+      
       // calculate random components for y and handles
       const randomPartX = (rndm(seed + stack + waveNo + breaks) - 0.5) * velocity;
       const randomPartY = (rndm(seed + stack + waveNo) - 0.5) * velocity;
 
-      let x = waveNo * equal - stackHeightOffset - (equal / 1.5 * randomPartX);
-      let y = waveSize - waveNo * equal - stackHeightOffset - (equal / 1.5 * randomPartY);
+      // calculate the coordinates
+      let x = sectionEnds[0] /* - stackHeightOffset */
+      let y = sectionEnds[1] /* - stackHeightOffset */
 
       const coords = {
         handle1: {
           x: previous
-            ? previous.x + (previous.x - previous.handle2.x)
-            : equal / 4 + (equal / 4) * randomPartX, // split 'equal' into 4 parts and go to right into second zone
+            ? previous.x /* + (previous.x - previous.handle2.x) */
+            : x,
           y: previous
-            ? previous.y + (previous.y - previous.handle2.y)
-            : waveSize + stackHeightOffset /* + (equal / 2) * randomPartY */,
+            ? previous.y /* + (previous.y - previous.handle2.y) */
+            : y ,
         },
         handle2: {
-          x: x - equal / 4 - (equal / 4) * randomPartX, // split 'equal' into 4 parts and go to left into second to last zone
-          y: y + equal / 4 + (equal / 4) * randomPartY,
+          x: x , 
+          y: y ,
         },
         x,
         y,
@@ -79,22 +72,7 @@ export function smoothCornerPath(
     // Last Coordinate
 
     // if it's a filled wave, close of bottom
-    data.push(`C `) &&
-      // handle1 of last point
-      data.push(
-        `${previous.x - previous.handle2.x + previous.x}
-         ${previous.y - previous.handle2.y + previous.y} `
-      ) &&
-      // handle2 of last point
-      data.push(
-        `${waveSize - stackHeightOffset} 
-         ${equal / 4 - (equal / 4) * rndm(seed) * velocity} `
-      ) &&
-      // x and y of last point
-      data.push(`${waveSize - stackHeightOffset} 0 `) &&
-      // close
-      !stroke &&
-      data.push(`L0 0Z`);
+    !stroke && data.push(`L0 0Z`);
 
     // push each wave to waves array
     waves.push(data.join(' '));

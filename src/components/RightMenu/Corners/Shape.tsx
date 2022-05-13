@@ -87,11 +87,11 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 1)}>
+        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 0.1)}>
           <VelocityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="velocity" value={velocity} min={0} max={50} onChange={(val) => setVelocity(val)}>
+        <Slider aria-label="velocity" value={velocity} min={0} max={1} step={0.1} onChange={(val) => setVelocity(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
@@ -100,7 +100,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
 
         <SliderIconWrapper
           viewBox={'0 0 412 286'}
-          onClick={() => velocity < 50 && setVelocity(velocity + 1)}
+          onClick={() => velocity < 1 && setVelocity(velocity + 0.1)}
         >
           <VelocityRight />
         </SliderIconWrapper>

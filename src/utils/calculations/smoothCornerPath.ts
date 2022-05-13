@@ -25,8 +25,8 @@ export function smoothCornerPath(
   distance: number,
   stroke: boolean
 ): string[] {
-  let waveSize = ((width + height) / 2) * (1 - balance);
-  const pointCoordinates = getCoordinates(breaks, waveSize);
+  let firstWaveSize = ((width + height) / 2) * (1 - balance);
+  const pointCoordinates = getCoordinates(breaks, firstWaveSize);
 
   // save stacks of waves here
   const waves = [];
@@ -50,51 +50,59 @@ export function smoothCornerPath(
 
     // generate random waves based on passed parameters
     for (let waveNo = 0; waveNo < breaks; waveNo++) {
+      const currentWaveSize = firstWaveSize - stackHeightOffset;
       
       // get X and Y coordinates
       const pointCoordinate = pointCoordinates[waveNo];
-      let [x, y] = [pointCoordinate[0] - stackHeightOffset, pointCoordinate[1] - stackHeightOffset];
+      let [initialX, initialY] = [pointCoordinate[0] - stackHeightOffset, pointCoordinate[1] - stackHeightOffset];
       
       // calculate random components for y and handles
-      const randomPartX = (rndm(seed + stack + waveNo + breaks) - 0.5) * velocity;
-      const randomPartY = (rndm(seed + stack + waveNo) - 0.5) * velocity;
+      const random = rndm(seed + stack + waveNo);
+      const signedRandomPart = (random - 0.5) * velocity;
+      const unsignedRandomPart = random * velocity;
 
       // randomize X and Y coordinates
-      x += randomPartX * waveSize / 5;
-      y += randomPartY * waveSize / 5;
+      const x = initialX + signedRandomPart * currentWaveSize / 3 ;
+      const y = initialY + signedRandomPart * currentWaveSize / 3 ;
 
       // construct BezierCurve (C) coordinates
       const coords: Partial<ICubicBezierCoords> = {}
 
-      coords.x = x
-      coords.y = y
+      coords.x = x + signedRandomPart * currentWaveSize / 3 ;
+      coords.y = y + signedRandomPart * currentWaveSize / 3 ;
 
       coords.handle1 = {}
-      coords.handle1.x = previous?.x /* + (previous.x - previous.handle2.x) */
-      coords.handle1.y = previous?.y /* + (previous.y - previous.handle2.y) */
+      coords.handle1.x = previous?.x + (previous?.x - previous?.handle2.x)
+      coords.handle1.y = previous?.y + (previous?.y - previous?.handle2.y)
       
       coords.handle2 = {}
-      coords.handle2.x = x
-      coords.handle2.y = y
+      coords.handle2.x = x - ((x - previous?.x) / 4) - ((x - previous?.x) / 4) * unsignedRandomPart;
+      coords.handle2.y = y + ((previous?.y - y) / 4) + ((previous?.y - y) / 4) * unsignedRandomPart;
 
       // handle if first point (needs to be at the edge of the canvas)
       if (waveNo === 0) {
         coords.handle1.x = 0;
         coords.handle1.y = 0;
 
-        coords.handle2.x = 0 /* some random number to the right */;
-        coords.handle2.y = waveSize - stackHeightOffset;
+        coords.handle2.x = 0;
+        coords.handle2.y = currentWaveSize;
 
         coords.x = 0;
-        coords.y = waveSize - stackHeightOffset;
+        coords.y = currentWaveSize + signedRandomPart * currentWaveSize / 5;
+      }
+
+      // handle first handle from edge going slightly to the right
+      if (waveNo === 1) {
+        coords.handle1.x = 0 + unsignedRandomPart * currentWaveSize / 3;;
+        coords.handle1.y = currentWaveSize + signedRandomPart * currentWaveSize / 5;
       }
 
       // handle if last point (needs to be at the edge of the canvas)
       if (waveNo + 1 === breaks) {
-        coords.handle2.x = waveSize - stackHeightOffset; 
-        coords.handle2.y = 0 /* some random number to the right */;
+        coords.handle2.x = currentWaveSize; 
+        coords.handle2.y = 0 + unsignedRandomPart * currentWaveSize / 3;
 
-        coords.x = waveSize - stackHeightOffset;
+        coords.x = currentWaveSize + signedRandomPart * currentWaveSize / 5;;;
         coords.y = 0;
       }
 

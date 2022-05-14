@@ -67,7 +67,7 @@ export function smoothCornerPath(
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     const currentWaveSize = initialWaveSize - stack * distance
-    const anchorPoints = getRandomAnchors(seed + stack, velocity, breaks, currentWaveSize);
+    const anchorPoints = getRandomAnchors(seed * stack, velocity, breaks, currentWaveSize);
 
     let commands;
     let path;

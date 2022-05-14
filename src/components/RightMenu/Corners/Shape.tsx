@@ -21,21 +21,13 @@ import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
+import { ICornerShapeProps } from '../../../utils/types/cornerProps';
+import { ICornerShapeSetterProps } from '../../../utils/types/cornerSetterProps';
+import Smooth from './Icons/Smooth';
+import Edgy from './Icons/Edgy';
 
-export interface IShapeProps {
-  balance: number;
-  velocity: number;
-  breaks: number;
-  stacks: number;
-  distance: number;
-  setBalance: Dispatch<SetStateAction<number>>;
-  setVelocity: Dispatch<SetStateAction<number>>;
-  setBreaks: Dispatch<SetStateAction<number>>;
-  setStacks: Dispatch<SetStateAction<number>>;
-  setDistance: Dispatch<SetStateAction<number>>;
-}
 
-const Shape: React.FunctionComponent<IShapeProps> = ({
+const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps> = ({
   balance,
   setBalance,
   velocity,
@@ -46,6 +38,8 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
   setStacks,
   distance,
   setDistance,
+  smooth,
+  setSmooth
 }) => {
   return (
     <>
@@ -128,11 +122,33 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
         </SliderIconWrapper>
       </HStack>
 
+      {/* ----- SMOOTH SLIDER ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Smoothness
+      </Heading>
+
+      <HStack>
+        <SliderIconWrapper viewBox={'0 0 420 200'} onClick={() => smooth > 0.05 && setSmooth(smooth - 0.05)}>
+          <Edgy />
+        </SliderIconWrapper>
+
+        <Slider aria-label="complexity" value={smooth} step={0.01} min={0} max={0.2} onChange={(val) => setSmooth(val)}>
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => smooth < 0.25 && setSmooth(smooth + 0.05)}>
+          <Smooth />
+        </SliderIconWrapper>
+      </HStack>
+
       {/* ----- LAYERS INPUT ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Layers
       </Heading>
-      <NumberInput defaultValue={stacks} min={0} max={2} onChange={(val) => setStacks(Number(val))}>
+      <NumberInput defaultValue={stacks} min={0} max={5} onChange={(val) => setStacks(Number(val))}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />

@@ -7,7 +7,6 @@ const useCornerOptions = (): {
   set: ICornerAllSetterProps;
 } => {
   const [solid, setSolid] = useState<number>(0);
-  const [smooth, setSmooth] = useState<number>(1);
 
   const [topLeftCorner, setTopLeftCorner] = useState<boolean>(true);
   const [topRightCorner, setTopRightCorner] = useState<boolean>(false);
@@ -31,10 +30,10 @@ const useCornerOptions = (): {
   const [distance, setDistance] = useState<number>(100);
   const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
+  const [smooth, setSmooth] = useState<number>(0.2);
 
   return {
     get: {
-      type: smooth === 1 ? 'smooth' : 'peak',
       solid,
 
       topLeftCorner,
@@ -60,6 +59,7 @@ const useCornerOptions = (): {
       stroke: solid ? true : false,
       strokeShrink,
       strokeWidth,
+      smooth
     },
     set: {
       setSolid,

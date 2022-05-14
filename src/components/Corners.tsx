@@ -5,7 +5,6 @@ import { edgyCornerPath } from '../utils/calculations/edgyCornerPath';
 
 const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
   svgRef,
-  type,
   seed,
   width,
   height,
@@ -24,6 +23,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
   stroke,
   strokeWidth,
   strokeShrink,
+  smooth,
 
   startColor,
   endColor,
@@ -36,32 +36,18 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
 }) => {
   let topLeft, topRight, bottomLeft, bottomRight, mirrored;
 
-  // If mirrored, generate only on path, else, each on its own (smooth)
-  if (mirror && type === 'smooth') {
-    mirrored = smoothCornerPath(seed, width, height, balance, velocity, breaks, stacks,distance, stroke);
-  } else if (!mirror && type === "smooth") {
+  // If mirrored, generate only on path, else, each on its own
+  if (mirror) {
+    mirrored = smoothCornerPath(seed, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth);
+  } else {
     topLeftCorner &&
-      (topLeft = smoothCornerPath(seed, width, height, balance, velocity, breaks, stacks,distance, stroke));
+      (topLeft = smoothCornerPath(seed, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
     topRightCorner &&
-      (topRight = smoothCornerPath(seed + 1, width, height, balance, velocity, breaks, stacks,distance, stroke));
+      (topRight = smoothCornerPath(seed + 1, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
     bottomLeftCorner &&
-      (bottomLeft = smoothCornerPath(seed + 2, width, height, balance, velocity, breaks, stacks,distance, stroke));
+      (bottomLeft = smoothCornerPath(seed + 2, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
     bottomRightCorner &&
-      (bottomRight = smoothCornerPath(seed + 3, width, height, balance, velocity, breaks, stacks,distance, stroke));
-  }
-
-  // If mirrored, generate only on path, else, each on its own (peak)
-  if (mirror && type === 'peak') {
-    mirrored = edgyCornerPath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke);
-  } else if (!mirror && type === "peak") {
-    topLeftCorner &&
-      (topLeft = edgyCornerPath(seed, width, height, balance, velocity, breaks, stacks, distance, stroke));
-    topRightCorner &&
-      (topRight = edgyCornerPath(seed + 1, width, height, balance, velocity, breaks, stacks, distance, stroke));
-    bottomLeftCorner &&
-      (bottomLeft = edgyCornerPath(seed + 2, width, height, balance, velocity, breaks, stacks, distance, stroke));
-    bottomRightCorner &&
-      (bottomRight = edgyCornerPath(seed + 3, width, height, balance, velocity, breaks, stacks, distance, stroke));
+      (bottomRight = smoothCornerPath(seed + 3, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
   }
 
   const randomClassId = Math.round(Math.random() * 100);
@@ -81,14 +67,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {topLeftCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-        <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+        <linearGradient id={`linear-gradient-${randomClassId}`}>
           <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
           <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
             <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
           </filter>
         )}
@@ -98,14 +84,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
             d={mirror ? mirrored[index] : wave}
             fill="none"
             strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
             strokeWidth={
               strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / mirrored.length) * index : strokeWidth
             }
             style={{
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
             }}
           ></path>
         ))}
@@ -116,14 +102,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {/* ----- TOP RIGHT CORNER ----- */}
       {topRightCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, 1) rotate(0)'}>
-        <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+        <linearGradient id={`linear-gradient-${randomClassId}`}>
           <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
           <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
             <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
           </filter>
         )}
@@ -133,8 +119,8 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
             d={mirror ? mirrored[index] : wave}
             fill="none"
             strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
             strokeWidth={
               strokeWidth && strokeShrink
                 ? strokeWidth - (strokeWidth / mirrored.length) * index
@@ -142,7 +128,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
             }
             style={{
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
             }}
           ></path>
         ))}
@@ -153,14 +139,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {/* ----- BOTTOM LEFT CORNER ----- */}
       {bottomLeftCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+          <linearGradient id={`linear-gradient-${randomClassId}`}>
             <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
             <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
           </linearGradient>
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
           {!stroke && (
-            <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
               <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
             </filter>
           )}
@@ -170,8 +156,8 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               d={mirror ? mirrored[index] : wave}
               fill="none"
               strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
               strokeWidth={
                 strokeWidth && strokeShrink
                   ? strokeWidth - (strokeWidth / mirrored.length) * index
@@ -179,7 +165,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               }
               style={{
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
               }}
             ></path>
           ))}
@@ -189,14 +175,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {/* ----- BOTTOM RIGHT CORNER ----- */}
       {bottomRightCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+          <linearGradient id={`linear-gradient-${randomClassId}`}>
             <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
             <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
           </linearGradient>
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
           {!stroke && (
-            <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
               <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
             </filter>
           )}
@@ -206,8 +192,8 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               d={mirror ? mirrored[index] : wave}
               fill="none"
               strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
               strokeWidth={
                 strokeWidth && strokeShrink
                   ? strokeWidth - (strokeWidth / mirrored.length) * index
@@ -215,7 +201,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               }
               style={{
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
               }}
             ></path>
           ))}
@@ -236,7 +222,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       ref={svgRef}
     >
       <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-      <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+      <linearGradient id={`linear-gradient-${randomClassId}`}>
         <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
         <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
       </linearGradient>
@@ -247,7 +233,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
             <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
           </filter>
         )}
@@ -257,14 +243,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
             d={mirror ? mirrored[index] : wave}
             fill="none"
             strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
             strokeWidth={
               strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / topLeft.length) * index : strokeWidth
             }
             style={{
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
             }}
           ></path>
         ))}
@@ -275,14 +261,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {/* ----- TOP RIGHT CORNER ----- */}
       {topRightCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, 1) rotate(0)'}>
-        <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+        <linearGradient id={`linear-gradient-${randomClassId}`}>
           <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
           <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (
-          <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
             <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
           </filter>
         )}
@@ -292,8 +278,8 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
             d={mirror ? mirrored[index] : wave}
             fill="none"
             strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
             strokeWidth={
               strokeWidth && strokeShrink
                 ? strokeWidth - (strokeWidth / topRight.length) * index
@@ -301,7 +287,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
             }
             style={{
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
             }}
           ></path>
         ))}
@@ -312,14 +298,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {/* ----- BOTTOM LEFT CORNER ----- */}
       {bottomLeftCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+          <linearGradient id={`linear-gradient-${randomClassId}`}>
             <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
             <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
           </linearGradient>
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
           {!stroke && (
-            <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
               <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
             </filter>
           )}
@@ -329,8 +315,8 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               d={mirror ? mirrored[index] : wave}
               fill="none"
               strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
               strokeWidth={
                 strokeWidth && strokeShrink
                   ? strokeWidth - (strokeWidth / bottomLeft.length) * index
@@ -338,7 +324,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               }
               style={{
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
               }}
             ></path>
           ))}
@@ -348,14 +334,14 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       {/* ----- BOTTOM RIGHT CORNER ----- */}
       {bottomRightCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+          <linearGradient id={`linear-gradient-${randomClassId}`}>
             <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
             <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
           </linearGradient>
 
           {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
           {!stroke && (
-            <filter id={`shadow-${type}-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
+            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
               <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
             </filter>
           )}
@@ -365,8 +351,8 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               d={mirror ? mirrored[index] : wave}
               fill="none"
               strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${type}-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined}
+              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
+              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
               strokeWidth={
                 strokeWidth && strokeShrink
                   ? strokeWidth - (strokeWidth / bottomRight.length) * index
@@ -374,7 +360,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
               }
               style={{
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${type}-${randomClassId})` : undefined,
+                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
               }}
             ></path>
           ))}

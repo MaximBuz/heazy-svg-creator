@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface ICornerVariantsSetterProps {
-  setSmooth: Dispatch<SetStateAction<number>>;
   setSolid: Dispatch<SetStateAction<number>>;
 }
 
@@ -21,6 +20,7 @@ export interface ICornerShapeSetterProps {
   setDistance: Dispatch<SetStateAction<number>>;
   setStrokeShrink: Dispatch<SetStateAction<boolean>>;
   setStrokeWidth: Dispatch<SetStateAction<number>>;
+  setSmooth: Dispatch<SetStateAction<number>>;
 }
 
 export interface ICornerColorSetterProps {

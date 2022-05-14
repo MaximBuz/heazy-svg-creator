@@ -6,7 +6,6 @@ export interface ICornerProps {
 }
 
 export interface ICornerVariantsProps {
-  type: 'smooth' | 'peak';
   stroke: boolean; // DOPPELT ??
   solid: number;
 }
@@ -27,6 +26,7 @@ export interface ICornerShapeProps {
   breaks: number;
   stacks: number;
   distance: number;
+  smooth: number
 }
 
 export interface ICornerColorProps {

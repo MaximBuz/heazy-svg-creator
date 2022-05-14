@@ -13,6 +13,7 @@ import Color from './Color';
 import { ICornerAllSetterProps } from '../../../utils/types/cornerSetterProps';
 import { ICornerAllProps } from '../../../utils/types/cornerProps';
 import Shadow from './Shadow';
+import Position from './Position';
 
 const CornerOptions: React.FunctionComponent<
   ICornerAllSetterProps &
@@ -22,10 +23,10 @@ const CornerOptions: React.FunctionComponent<
     <>
       <Variants {...props}></Variants>
       <Divider />
-      <Shape   {...props}></Shape>
+      <Position {...props}></Position>
       <Divider />
-      {/* <Direction {...props}></Direction> */}
-      {/* <Divider/> */}
+      <Shape   {...props}></Shape>
+      <Divider/>
       <Color {...props}></Color>
       <Divider></Divider>
       <Shadow {...props}></Shadow>

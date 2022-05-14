@@ -1,10 +1,10 @@
 import React from 'react';
 import { peakWavePath } from '../utils/calculations/peakWavePath';
-import { ICornerProps } from '../utils/types/cornerProps';
+import { ICornerAllProps, ICornerProps } from '../utils/types/cornerProps';
 import { smoothCornerPath } from '../utils/calculations/smoothCornerPath';
 import { edgyCornerPath } from '../utils/calculations/edgyCornerPath';
 
-const Corners: React.FunctionComponent<ICornerProps> = ({
+const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
   svgRef,
   type,
   seed,
@@ -15,8 +15,8 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
   breaks,
   stacks,
   distance,
-  startWaveColor,
-  stopWaveColor,
+  startColor,
+  endColor,
   bgColor,
   shadowX,
   shadowY,
@@ -25,7 +25,6 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
   stroke,
   strokeWidth,
   strokeShrink,
-  direction,
 }) => {
   /* 
   //TODO: Make a version with mirror or independent corners!
@@ -93,8 +92,8 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
       <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
-          <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
+          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
+          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
@@ -127,8 +126,8 @@ const Corners: React.FunctionComponent<ICornerProps> = ({
       {/* ----- SECOND CORNER ----- */}
       <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, -1) rotate(0)'}>
         <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
-          <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
+          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
+          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}

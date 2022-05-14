@@ -1,21 +1,29 @@
 import { useState } from 'react';
-import { ICornerProps } from '../types/cornerProps';
-import { ICornerSetterProps } from '../types/cornerSetterProps';
+import { ICornerAllProps } from '../types/cornerProps';
+import { ICornerAllSetterProps } from '../types/cornerSetterProps';
 
 const useCornerOptions = (): {
-  get: Omit<ICornerProps, 'seed' | 'width' | 'height' | 'svgRef'>;
-  set: ICornerSetterProps;
+  get: ICornerAllProps;
+  set: ICornerAllSetterProps;
 } => {
   const [solid, setSolid] = useState<number>(0);
   const [smooth, setSmooth] = useState<number>(1);
-  const [direction, setDirection] = useState<number>(0);
+
+  const [topLeftCorner, setTopLeftCorner] = useState<boolean>(true);
+  const [topRightCorner, setTopRightCorner] = useState<boolean>(false);
+  const [bottomLeftCorner, setBottomLeftCorner] = useState<boolean>(false);
+  const [bottomRightCorner, setBottomRightCorner] = useState<boolean>(true);
+  const [mirror, setMirror] = useState<boolean>(false);
+
   const [bgColor, setBgColor] = useState<string>('#ff0071ff');
-  const [startWaveColor, setStartWaveColor] = useState<string>('#95ffda');
-  const [stopWaveColor, setStopWaveColor] = useState<string>('#95ffa1ff');
+  const [startColor, setStartColor] = useState<string>('#95ffda');
+  const [endColor, setEndColor] = useState<string>('#95ffa1ff');
+
   const [shadowX, setShadowX] = useState<number>(0);
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowColor, setShadowColor] = useState<string>('#00000061');
+
   const [balance, setBalance] = useState<number>(0.3);
   const [velocity, setVelocity] = useState<number>(1);
   const [breaks, setBreaks] = useState<number>(4);
@@ -27,35 +35,51 @@ const useCornerOptions = (): {
   return {
     get: {
       type: smooth === 1 ? 'smooth' : 'peak',
-      direction,
+      solid,
+
+      topLeftCorner,
+      topRightCorner,
+      bottomLeftCorner,
+      bottomRightCorner,
+      mirror,
+
       bgColor,
-      startWaveColor,
-      stopWaveColor,
+      startColor,
+      endColor,
+
       shadowX,
       shadowY,
       shadowSD,
       shadowColor,
+
       balance,
       velocity,
       breaks,
       stacks,
       distance,
       stroke: solid ? true : false,
-      solid,
       strokeShrink,
       strokeWidth,
     },
     set: {
       setSolid,
       setSmooth,
-      setDirection,
+
+      setTopLeftCorner,
+      setTopRightCorner,
+      setBottomLeftCorner,
+      setBottomRightCorner,
+      setMirror,
+
       setBgColor,
-      setStartWaveColor,
-      setStopWaveColor,
+      setStartColor,
+      setEndColor,
+
       setShadowX,
       setShadowY,
       setShadowSD,
       setShadowColor,
+      
       setBalance,
       setVelocity,
       setBreaks,

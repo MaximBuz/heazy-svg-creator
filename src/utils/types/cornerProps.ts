@@ -3,22 +3,48 @@ export interface ICornerProps {
   seed: number;
   width: number;
   height: number;
+}
+
+export interface ICornerVariantsProps {
   type: 'smooth' | 'peak';
-  stroke: boolean;
+  stroke: boolean; // DOPPELT ??
   solid: number;
+}
+
+export interface ICornerPositionProps {
+  topLeftCorner: boolean;
+  topRightCorner: boolean;
+  bottomLeftCorner: boolean;
+  bottomRightCorner: boolean;
+  mirror: boolean;
+}
+
+export interface ICornerShapeProps {
   strokeWidth: number;
   strokeShrink: boolean;
-  startWaveColor: string;
-  stopWaveColor: string;
-  bgColor: string;
-  shadowX: number;
-  shadowY: number;
-  shadowSD: number;
-  shadowColor: string;
   balance: number;
   velocity: number;
   breaks: number;
   stacks: number;
   distance: number;
-  direction: number;
 }
+
+export interface ICornerColorProps {
+  startColor: string;
+  endColor: string;
+  bgColor: string;
+}
+
+export interface ICornerShadowProps {
+  shadowX: number;
+  shadowY: number;
+  shadowSD: number;
+  shadowColor: string;
+}
+
+export type ICornerAllProps =
+  ICornerShapeProps &
+  ICornerVariantsProps &
+  ICornerPositionProps &
+  ICornerColorProps &
+  ICornerShadowProps;

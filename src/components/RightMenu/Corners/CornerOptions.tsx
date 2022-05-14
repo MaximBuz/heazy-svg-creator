@@ -10,13 +10,13 @@ import Shape from './Shape';
 import Color from './Color';
 
 // Types
-import { ICornerSetterProps } from '../../../utils/types/cornerSetterProps';
-import { ICornerProps } from '../../../utils/types/cornerProps';
+import { ICornerAllSetterProps } from '../../../utils/types/cornerSetterProps';
+import { ICornerAllProps } from '../../../utils/types/cornerProps';
 import Shadow from './Shadow';
 
 const CornerOptions: React.FunctionComponent<
-  Omit<ICornerSetterProps, 'seed' | 'width' | 'height' | 'svgRef'> &
-    Omit<ICornerProps, 'seed' | 'width' | 'height' | 'svgRef'>
+  ICornerAllSetterProps &
+   ICornerAllProps
 > = (props) => {
   return (
     <>

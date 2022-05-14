@@ -10,12 +10,12 @@ import {
   PopoverContent,
   PopoverArrow,
   PopoverBody,
-  Icon,
 } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
-import { start } from 'repl';
 import rgbHex from 'rgb-hex';
+import { ICornerColorProps } from '../../../utils/types/cornerProps';
+import { ICornerColorSetterProps } from '../../../utils/types/cornerSetterProps';
 import HideColorButton from '../HideColorButton';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
@@ -23,19 +23,19 @@ const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigg
 export interface IColorProps {
   setBgColor: Dispatch<SetStateAction<string>>;
   bgColor: string;
-  setStartWaveColor: Dispatch<SetStateAction<string>>;
-  startWaveColor: string;
-  setStopWaveColor: Dispatch<SetStateAction<string>>;
-  stopWaveColor: string;
+  setStartColor: Dispatch<SetStateAction<string>>;
+  startColor: string;
+  setEndColor: Dispatch<SetStateAction<string>>;
+  endColor: string;
 }
 
-const Color: React.FunctionComponent<IColorProps> = ({
+const Color: React.FunctionComponent<ICornerColorProps & ICornerColorSetterProps> = ({
   bgColor,
   setBgColor,
-  startWaveColor,
-  setStartWaveColor,
-  stopWaveColor,
-  setStopWaveColor,
+  startColor,
+  setStartColor,
+  endColor,
+  setEndColor,
 }) => {
   return (
     <>
@@ -92,7 +92,7 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={startWaveColor}
+                bgColor={startColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -102,8 +102,8 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
-                value={startWaveColor.replace('#', '')}
-                onChange={(e) => setStartWaveColor(`#${e.target.value}`)}
+                value={startColor.replace('#', '')}
+                onChange={(e) => setStartColor(`#${e.target.value}`)}
               />
             </InputGroup>
           </HStack>
@@ -111,9 +111,9 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={startWaveColor}
+                color={startColor}
                 onChange={(col) =>
-                  setStartWaveColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))
+                  setStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))
                 }
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
@@ -122,7 +122,7 @@ const Color: React.FunctionComponent<IColorProps> = ({
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={startWaveColor} setColor={setStartWaveColor} />
+        <HideColorButton color={startColor} setColor={setStartColor} />
       </HStack>
 
       {/* Wave Start Color */}
@@ -135,7 +135,7 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={stopWaveColor}
+                bgColor={endColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -145,8 +145,8 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
-                value={stopWaveColor.replace('#', '')}
-                onChange={(e) => setStopWaveColor(`#${e.target.value}`)}
+                value={endColor.replace('#', '')}
+                onChange={(e) => setEndColor(`#${e.target.value}`)}
               />
             </InputGroup>
           </HStack>
@@ -154,8 +154,8 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={stopWaveColor}
-                onChange={(col) => setStopWaveColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                color={endColor}
+                onChange={(col) => setEndColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"
@@ -163,7 +163,7 @@ const Color: React.FunctionComponent<IColorProps> = ({
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={stopWaveColor} setColor={setStopWaveColor} />
+        <HideColorButton color={endColor} setColor={setEndColor} />
       </HStack>
     </>
   );

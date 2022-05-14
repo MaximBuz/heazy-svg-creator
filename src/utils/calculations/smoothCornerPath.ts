@@ -41,7 +41,7 @@ export function smoothCornerPath(
 
     /* 
     ----------------------
-    HERE HANDLE IF STROKE!!
+    TODO: HERE HANDLE IF STROKE!!
     ----------------------
     */
 
@@ -51,6 +51,12 @@ export function smoothCornerPath(
     // generate random waves based on passed parameters
     for (let waveNo = 0; waveNo < breaks; waveNo++) {
       const currentWaveSize = firstWaveSize - stackHeightOffset;
+
+      /* 
+      ------------------------------------------------------------------
+      TODO: First place all points, second calculate handles!
+      ------------------------------------------------------------------
+      */
       
       // get X and Y coordinates
       const pointCoordinate = pointCoordinates[waveNo];

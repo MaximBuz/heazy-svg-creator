@@ -235,15 +235,15 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
       version="1.1"
       ref={svgRef}
     >
+      <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
+      <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
+        <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
+        <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
+      </linearGradient>
 
       {/* ----- TOP LEFT CORNER ----- */}
       {topLeftCorner && (
         <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, 1) rotate(0)'}>
-        <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-        <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
-          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-        </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {!stroke && (

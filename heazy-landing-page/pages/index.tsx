@@ -56,7 +56,7 @@ const Home: NextPage = () => {
               <ListItem fontSize="lg" listStyleType="none">
                 Designs
               </ListItem>
-              <Button rounded="full" _hover={{ bg: '#05f', color: 'white' }}>
+              <Button as="a" href="https://app.heazy.studio/" rounded="full" _hover={{ bg: '#05f', color: 'white' }}>
                 Try it out!
               </Button>
             </UnorderedList>
@@ -81,7 +81,7 @@ const Home: NextPage = () => {
                 </span>
               </Heading>
               <Flex alignItems="center" gap="15px">
-                <Button rounded="full" size="lg" _hover={{ bg: '#05f', color: 'white' }}>
+                <Button as="a" href="https://app.heazy.studio/" rounded="full" size="lg" _hover={{ bg: '#05f', color: 'white' }}>
                   Start Designing
                 </Button>
                 <Text>

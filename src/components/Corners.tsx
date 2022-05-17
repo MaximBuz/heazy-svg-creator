@@ -1,7 +1,6 @@
 import React from 'react';
 import { ICornerAllProps, ICornerProps } from '../utils/types/cornerProps';
 import { smoothCornerPath } from '../utils/calculations/smoothCornerPath';
-import { edgyCornerPath } from '../utils/calculations/edgyCornerPath';
 
 const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
   svgRef,

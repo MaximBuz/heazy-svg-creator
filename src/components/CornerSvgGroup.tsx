@@ -1,4 +1,5 @@
 import React from 'react';
+import { ICornerSvgGroup } from '../utils/types/cornerSvgGroup';
 function getTransformation (direction: number):string {
   switch (direction) {
     case 0: {
@@ -16,24 +17,7 @@ function getTransformation (direction: number):string {
   }
 }
 
-interface SvgDirectionProps {
-  width: number;
-  height: number;
-  stroke: boolean;
-  strokeWidth: number;
-  strokeShrink: boolean;
-  classId: number;
-  startColor: string;
-  endColor: string;
-  shadowX: number;
-  shadowY: number;
-  shadowSD: number;
-  shadowColor: string;
-  path: any[];
-  direction: number;
-}
-
-const CornerSvgGroup: React.FunctionComponent<SvgDirectionProps> = (props) => {
+const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
 
   // destructure some params
   const { width, height, classId } = props;

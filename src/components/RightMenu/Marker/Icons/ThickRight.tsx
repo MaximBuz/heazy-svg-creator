@@ -5,9 +5,9 @@ const ThickRight: React.FunctionComponent = () => {
         xmlns="http://www.w3.org/2000/svg"
         d="M46.7239 237.914L92.2003 80.5443L133.239 333L216.718 45L280.465 248.886C294.884 180.924 328.276 45 328.276 45"
         stroke="white"
-        stroke-width="74"
-        stroke-linecap="square"
-        stroke-linejoin="bevel"
+        strokeWidth="74"
+        strokeLinecap="square"
+        strokeLinejoin="bevel"
       />
     </>
   );

@@ -6,10 +6,10 @@ const Solid: React.FunctionComponent = () => {
         d="M193.735 15C125.145 15 127.148 70.9385 15 38.5385V177H395V15C268.333 69 268.333 15 193.735 15Z"
         fill="white"
         stroke="white"
-        stroke-width="30"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-dasharray="1 1"
+        strokeWidth="30"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeDasharray="1 1"
       />
     </>
   );

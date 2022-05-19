@@ -1,372 +1,94 @@
 import React from 'react';
 import { ICornerAllProps, ICornerProps } from '../utils/types/cornerProps';
 import { smoothCornerPath } from '../utils/calculations/smoothCornerPath';
+import CornerSvgGroup from './CornerSvgGroup';
+import SvgCanvas from './SvgCanvas';
 
-const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = ({
-  svgRef,
-  seed,
-  width,
-  height,
+const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props) => {
+  // set up params that are needed to generate a path
+  const pathParams = [
+    props.width,
+    props.height,
+    props.balance,
+    props.velocity,
+    props.breaks,
+    props.stacks,
+    props.distance,
+    props.stroke,
+    props.smooth,
+  ] as const;
 
-  topLeftCorner,
-  topRightCorner,
-  bottomLeftCorner,
-  bottomRightCorner,
-  mirror,
+  // set up params that are needed to generate the svg group for the wave
+  const svgGroupProps = {
+    width: props.width,
+    height: props.height,
+    stroke: props.stroke,
+    strokeWidth: props.strokeWidth,
+    strokeShrink: props.strokeShrink,
+    classId: Math.round(Math.random() * 100),
+    startColor: props.startColor,
+    endColor: props.endColor,
+    shadowX: props.shadowX,
+    shadowY: props.shadowY,
+    shadowSD: props.shadowSD,
+    shadowColor: props.shadowColor,
+  };
 
-  balance,
-  velocity,
-  breaks,
-  stacks,
-  distance,
-  stroke,
-  strokeWidth,
-  strokeShrink,
-  smooth,
+  // set up params that are needed to generate the full svg element
+  const svgElementProps = {
+    width: props.width,
+    height: props.height,
+    ref: props.svgRef,
+  };
 
-  startColor,
-  endColor,
-  bgColor,
-
-  shadowX,
-  shadowY,
-  shadowSD,
-  shadowColor,
-}) => {
+  /*  -----GENERATE PATHS----- */
   let topLeft, topRight, bottomLeft, bottomRight, mirrored;
-
-  // If mirrored, generate only on path, else, each on its own
-  if (mirror) {
-    mirrored = smoothCornerPath(seed, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth);
+  if (props.mirror) {
+    // If mirrored, generate only on path and mirror it
+    mirrored = smoothCornerPath(props.seed, ...pathParams);
   } else {
-    topLeftCorner &&
-      (topLeft = smoothCornerPath(seed, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
-    topRightCorner &&
-      (topRight = smoothCornerPath(seed + 1, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
-    bottomLeftCorner &&
-      (bottomLeft = smoothCornerPath(seed + 2, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
-    bottomRightCorner &&
-      (bottomRight = smoothCornerPath(seed + 3, width, height, balance, velocity, breaks, stacks,distance, stroke, smooth));
+    // else generate unique ones for each corner
+    props.topLeftCorner && (topLeft = smoothCornerPath(props.seed, ...pathParams));
+    props.topRightCorner && (topRight = smoothCornerPath(props.seed + 1, ...pathParams));
+    props.bottomLeftCorner && (bottomLeft = smoothCornerPath(props.seed + 2, ...pathParams));
+    props.bottomRightCorner && (bottomRight = smoothCornerPath(props.seed + 3, ...pathParams));
   }
 
-  const randomClassId = Math.round(Math.random() * 100);
+  /* ------IF MIRROR------ */
+  if (props.mirror)
+    return (
+      <SvgCanvas {...svgElementProps}>
+        <rect x="0" y="0" width={props.width} height={props.height} fill={props.bgColor}></rect>
+        {/* TOP LEFT CORNER */}
+        {props.topLeftCorner && <CornerSvgGroup path={mirrored} direction={0} {...svgGroupProps} />}
 
-  if (mirror) return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      height={height}
-      width={width}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      ref={svgRef}
-    >
+        {/* TOP RIGHT CORNER */}
+        {props.topRightCorner && <CornerSvgGroup path={mirrored} direction={1} {...svgGroupProps} />}
 
-      {/* ----- TOP LEFT CORNER ----- */}
-      {topLeftCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, 1) rotate(0)'}>
-        <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-        <linearGradient id={`linear-gradient-${randomClassId}`}>
-          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-        </linearGradient>
+        {/* BOTTOM LEFT CORNER */}
+        {props.bottomLeftCorner && <CornerSvgGroup path={mirrored} direction={2} {...svgGroupProps} />}
 
-        {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        {!stroke && (
-          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-            <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-          </filter>
-        )}
-        {mirrored.map((wave, index) => (
-          <path
-            key={index}
-            d={mirror ? mirrored[index] : wave}
-            fill="none"
-            strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-            strokeWidth={
-              strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / mirrored.length) * index : strokeWidth
-            }
-            style={{
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-            }}
-          ></path>
-        ))}
-      </g>
-      )}
-      
+        {/* BOTTOM RIGHT CORNER */}
+        {props.bottomRightCorner && <CornerSvgGroup path={mirrored} direction={3} {...svgGroupProps} />}
+      </SvgCanvas>
+    );
 
-      {/* ----- TOP RIGHT CORNER ----- */}
-      {topRightCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, 1) rotate(0)'}>
-        <linearGradient id={`linear-gradient-${randomClassId}`}>
-          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-        </linearGradient>
+  /* -----IF NO MIRROR----- */
+  return (
+    <SvgCanvas {...svgElementProps}>
+      <rect x="0" y="0" width={props.width} height={props.height} fill={props.bgColor}></rect>
+      {/* TOP LEFT CORNER */}
+      {props.topLeftCorner && <CornerSvgGroup path={topLeft} direction={0} {...svgGroupProps} />}
 
-        {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        {!stroke && (
-          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-            <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-          </filter>
-        )}
-        {mirrored.map((wave, index) => (
-          <path
-            key={index}
-            d={mirror ? mirrored[index] : wave}
-            fill="none"
-            strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-            strokeWidth={
-              strokeWidth && strokeShrink
-                ? strokeWidth - (strokeWidth / mirrored.length) * index
-                : strokeWidth
-            }
-            style={{
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-            }}
-          ></path>
-        ))}
-      </g>
-      )}
-      
+      {/* TOP RIGHT CORNER */}
+      {props.topRightCorner && <CornerSvgGroup path={topRight} direction={1} {...svgGroupProps} />}
 
-      {/* ----- BOTTOM LEFT CORNER ----- */}
-      {bottomLeftCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${randomClassId}`}>
-            <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-            <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-          </linearGradient>
+      {/* BOTTOM LEFT CORNER */}
+      {props.bottomLeftCorner && <CornerSvgGroup path={bottomLeft} direction={2} {...svgGroupProps} />}
 
-          {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-          {!stroke && (
-            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-              <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-            </filter>
-          )}
-          {mirrored.map((wave, index) => (
-            <path
-              key={index}
-              d={mirror ? mirrored[index] : wave}
-              fill="none"
-              strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-              strokeWidth={
-                strokeWidth && strokeShrink
-                  ? strokeWidth - (strokeWidth / mirrored.length) * index
-                  : strokeWidth
-              }
-              style={{
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-              }}
-            ></path>
-          ))}
-        </g>
-      )}
-
-      {/* ----- BOTTOM RIGHT CORNER ----- */}
-      {bottomRightCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${randomClassId}`}>
-            <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-            <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-          </linearGradient>
-
-          {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-          {!stroke && (
-            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-              <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-            </filter>
-          )}
-          {mirrored.map((wave, index) => (
-            <path
-              key={index}
-              d={mirror ? mirrored[index] : wave}
-              fill="none"
-              strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-              strokeWidth={
-                strokeWidth && strokeShrink
-                  ? strokeWidth - (strokeWidth / mirrored.length) * index
-                  : strokeWidth
-              }
-              style={{
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-              }}
-            ></path>
-          ))}
-        </g>
-      )}
-
-    </svg>
-  );
-
-  return (  
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      height={height}
-      width={width}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      ref={svgRef}
-    >
-      <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
-      <linearGradient id={`linear-gradient-${randomClassId}`}>
-        <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-        <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-      </linearGradient>
-
-      {/* ----- TOP LEFT CORNER ----- */}
-      {topLeftCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, 1) rotate(0)'}>
-
-        {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        {!stroke && (
-          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-            <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-          </filter>
-        )}
-        {topLeft.map((wave, index) => (
-          <path
-            key={index}
-            d={mirror ? mirrored[index] : wave}
-            fill="none"
-            strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-            strokeWidth={
-              strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / topLeft.length) * index : strokeWidth
-            }
-            style={{
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-            }}
-          ></path>
-        ))}
-      </g>
-      )}
-      
-
-      {/* ----- TOP RIGHT CORNER ----- */}
-      {topRightCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, 1) rotate(0)'}>
-        <linearGradient id={`linear-gradient-${randomClassId}`}>
-          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-        </linearGradient>
-
-        {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        {!stroke && (
-          <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-            <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-          </filter>
-        )}
-        {topRight.map((wave, index) => (
-          <path
-            key={index}
-            d={mirror ? mirrored[index] : wave}
-            fill="none"
-            strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-            strokeWidth={
-              strokeWidth && strokeShrink
-                ? strokeWidth - (strokeWidth / topRight.length) * index
-                : strokeWidth
-            }
-            style={{
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-            }}
-          ></path>
-        ))}
-      </g>
-      )}
-      
-
-      {/* ----- BOTTOM LEFT CORNER ----- */}
-      {bottomLeftCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${randomClassId}`}>
-            <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-            <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-          </linearGradient>
-
-          {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-          {!stroke && (
-            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-              <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-            </filter>
-          )}
-          {bottomLeft.map((wave, index) => (
-            <path
-              key={index}
-              d={mirror ? mirrored[index] : wave}
-              fill="none"
-              strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-              strokeWidth={
-                strokeWidth && strokeShrink
-                  ? strokeWidth - (strokeWidth / bottomLeft.length) * index
-                  : strokeWidth
-              }
-              style={{
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-              }}
-            ></path>
-          ))}
-        </g>
-      )}
-
-      {/* ----- BOTTOM RIGHT CORNER ----- */}
-      {bottomRightCorner && (
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={'scale(-1, -1) rotate(0)'}>
-          <linearGradient id={`linear-gradient-${randomClassId}`}>
-            <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
-            <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
-          </linearGradient>
-
-          {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-          {!stroke && (
-            <filter id={`shadow-${randomClassId}`} x="-20%" width="150%" y="-20%" height="150%">
-              <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
-            </filter>
-          )}
-          {bottomRight.map((wave, index) => (
-            <path
-              key={index}
-              d={mirror ? mirrored[index] : wave}
-              fill="none"
-              strokeLinecap="round"
-              filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-              stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
-              strokeWidth={
-                strokeWidth && strokeShrink
-                  ? strokeWidth - (strokeWidth / bottomRight.length) * index
-                  : strokeWidth
-              }
-              style={{
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-                fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
-              }}
-            ></path>
-          ))}
-        </g>
-      )}
-
-    </svg>
+      {/* BOTTOM RIGHT CORNER */}
+      {props.bottomRightCorner && <CornerSvgGroup path={bottomRight} direction={3} {...svgGroupProps} />}
+    </SvgCanvas>
   );
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { smoothWavePath } from '../utils/calculations/smoothWavePath';
 import { peakWavePath } from '../utils/calculations/peakWavePath';
 import { IWaveProps } from '../utils/types/waveProps';
+import SvgCanvas from './SvgCanvas';
 
 
 const Waves: React.FunctionComponent<IWaveProps> = ({
@@ -35,17 +36,7 @@ const Waves: React.FunctionComponent<IWaveProps> = ({
   }
   const randomClassId = Math.round(Math.random() * 100);
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      height={height}
-      width={width}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      ref={svgRef}
-      enableBackground={`new 0 0 ${width} ${height}`}
-      xmlSpace='preserve'
-    >
+    <SvgCanvas width={width} height={height} ref={svgRef}>
       <g transform-origin="center" transform={"scale(1, 1) rotate(0)"}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${type}-${randomClassId}`}>
@@ -84,7 +75,7 @@ const Waves: React.FunctionComponent<IWaveProps> = ({
           ></path>
         ))}
       </g>
-    </svg>
+    </SvgCanvas>
   );
 };
 

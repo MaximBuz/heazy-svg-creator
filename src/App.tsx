@@ -30,6 +30,7 @@ import useMarkerOptions from './utils/customHooks/useMarkerOptions';
 import MarkerOptions from './components/RightMenu/Marker/MarkerOptions';
 import { aspectRatio } from './utils/calculations/aspectRatio';
 import { ICanvasDimensions } from './utils/types/canvasDimensions';
+import useCanvasDimensions from './utils/customHooks/useCanvasDimensions';
 
 function App() {
   /* --------- RANDOMNESS STATE --------- */
@@ -39,16 +40,7 @@ function App() {
   const [zoom, setZoom] = useState<number>(1);
 
   /* --------- DIMENSION STATE --------- */
-  const [width, setWidth] = useState<number>(800);
-  const [height, setHeight] = useState<number>(600);
-  const canvasDimensions = useMemo<ICanvasDimensions>(() => {
-    return {
-      width: width,
-      height: height,
-      widthRatio: aspectRatio(width / height, 50)[0],
-      heightRatio: aspectRatio(width / height, 50)[1],
-    };
-  }, [width, height]);
+  const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
 
   /* --------- VARIANT STATE --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');

@@ -1,5 +1,5 @@
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber as random } from './randomNumber';
+import { generateRandomNumber as random } from '../randomNumber';
 
 export function smoothWavePath(
   seed: number,

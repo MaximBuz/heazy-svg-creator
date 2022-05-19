@@ -1,5 +1,5 @@
 // calculates svg data attribute for wave with peaky peaks
-import { generateRandomNumber } from './randomNumber';
+import { generateRandomNumber } from '../randomNumber';
 
 export function peakWavePath(
   seed: number,

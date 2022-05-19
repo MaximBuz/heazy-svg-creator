@@ -1,6 +1,6 @@
 import React from 'react';
-import { smoothWavePath } from '../utils/calculations/smoothWavePath';
-import { peakWavePath } from '../utils/calculations/peakWavePath';
+import { smoothWavePath } from '../utils/calculations/wave-paths/smoothWavePath';
+import { peakWavePath } from '../utils/calculations/wave-paths/peakWavePath';
 import { IWaveProps } from '../utils/types/waveProps';
 import SvgCanvas from './SvgCanvas';
 

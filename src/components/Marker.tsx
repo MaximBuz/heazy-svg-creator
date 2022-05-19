@@ -1,5 +1,5 @@
 import React from 'react';
-import { markerPath } from '../utils/calculations/markerPath';
+import { markerPath } from '../utils/calculations/marker-paths/markerPath';
 import { IMarkerAllProps, IMarkerProps } from '../utils/types/markerProps';
 import SvgCanvas from './SvgCanvas';
 

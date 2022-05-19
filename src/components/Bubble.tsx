@@ -1,5 +1,5 @@
 import React from 'react';
-import { bubblePath } from '../utils/calculations/bubblePath';
+import { bubblePath } from '../utils/calculations/bubble-paths/bubblePath';
 import { generateRandomNumber } from '../utils/calculations/randomNumber';
 import { IBubbleProps } from '../utils/types/bubbleProps';
 import SvgCanvas from './SvgCanvas';

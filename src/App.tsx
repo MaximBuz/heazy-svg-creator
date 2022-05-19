@@ -96,6 +96,7 @@ function App() {
 
   return (
     <>
+      {/* ------ PLAY INITIAL ANIMATION ON STARTUP ----- */}
       <InitialAnimation />
 
       <Flex

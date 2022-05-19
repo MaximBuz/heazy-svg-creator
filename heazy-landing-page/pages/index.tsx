@@ -28,8 +28,8 @@ const Home: NextPage = () => {
           <Hero />
         </div>
 
-          {/*-------- FEATURES SECTION --------*/}
-          <Features />
+        {/*-------- FEATURES SECTION --------*/}
+        <Features />
 
         {/*-------- INSPIRATIONS SECTION --------*/}
         <Inspirations />

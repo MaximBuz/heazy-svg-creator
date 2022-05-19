@@ -16,7 +16,7 @@ const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
       mt="10"
       direction="column"
       width="100%"
-      height="110vh"
+      minHeight="110vh"
       justifyContent="flex-start"
       alignItems="center"
       textAlign="center"
@@ -27,7 +27,7 @@ const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
         Heazy is{' '}
         <span
           style={{
-            backgroundImage: 'linear-gradient(29deg,#00c58d 0%,#05f 87%)',
+            backgroundImage: 'linear-gradient(29deg,#d3dd11 0%,#ff0084 87%)',
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             WebkitBackgroundClip: 'text',

@@ -1,4 +1,4 @@
-const zip = (a, b) => a.map((k, i) => [k, b[i]]);
+import { zip } from '../../zipArray';
 
 export function getCoordinates (sections:number, waveSize:number): [number, number][] {
   let remainingWaveSize = waveSize;

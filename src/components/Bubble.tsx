@@ -13,6 +13,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
   const { shadowColor, shadowSD, shadowX, shadowY } = props;
   const { bgColor, startColor, endColor } = props;
 
+  // generate path
   const pathData = bubblePath(seed, width, height, velocity, size);
 
   const randomClassId = Math.round(Math.random() * 100);

@@ -8,25 +8,42 @@ import { motion } from 'framer-motion';
 import { IDesignModes } from '../utils/types/designModes';
 
 export interface IThumbnailProps {
+  isActive: boolean;
   image: string;
   caption: IDesignModes;
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
 }
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ image, caption, setDesign }) => {
+const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, caption, setDesign }) => {
   return (
     <Flex
       justifyContent="center"
       alignItems="center"
       p="4"
       position="relative"
-      _hover={{ background: '#2e3643', cursor: 'pointer' }}
+      transition="0.5s"
+      _hover={{ background: '#3b4453', cursor: 'pointer' }}
       onClick={() => {
         setDesign(caption);
       }}
     >
-      <Box rounded="xl" w="100%" h="100%" overflow="hidden">
-        <Image w="100%" as={motion.img} whileHover={{ scale: 1.25 }} src={image} rounded="xl" />
+      <Box
+        transition="0.5s"
+        boxShadow={isActive ? '0px 0px 0px 5px #90CCF4' : null}
+        rounded="xl"
+        w="100%"
+        h="100%"
+        overflow="hidden"
+        background="transparent"
+      >
+        <Image
+          w="100%"
+          boxShadow={isActive ? '0px 0px 0px 5px #90CCF4' : null}
+          as={motion.img}
+          whileHover={{ scale: 1.15 }}
+          src={image}
+          rounded="xl"
+        />
       </Box>
       <Text
         as={motion.p}

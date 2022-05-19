@@ -1,5 +1,5 @@
 // React
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Components
 import Bubble from './components/Blob';
@@ -28,27 +28,26 @@ import CornerOptions from './components/RightMenu/Corners/CornerOptions';
 import Marker from './components/Marker';
 import useMarkerOptions from './utils/customHooks/useMarkerOptions';
 import MarkerOptions from './components/RightMenu/Marker/MarkerOptions';
-import { aspectRatio } from './utils/calculations/aspectRatio';
-import { ICanvasDimensions } from './utils/types/canvasDimensions';
 import useCanvasDimensions from './utils/customHooks/useCanvasDimensions';
+import useInitialAnimation from './utils/customHooks/useInitialAnimation';
 
 function App() {
-  /* --------- RANDOMNESS STATE --------- */
+  /* --------- RANDOMNESS --------- */
   const [seed, setSeed] = useState<number>(0);
 
   /* --------- ZOOMING --------- */
   const [zoom, setZoom] = useState<number>(1);
 
-  /* --------- DIMENSION STATE --------- */
+  /* --------- DIMENSION --------- */
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
 
-  /* --------- VARIANT STATE --------- */
-  const [design, setDesign] = useState<IDesignModes>('waves');
-
-  /* --------- DOWNLOADING --------- */
+  /* --------- SVG REF FOR DOWNLOADING --------- */
   const svgRef = useRef<SVGAElement | null>(null);
 
-  /* --------- OPTION STATES --------- */
+  /* --------- WHICH DESIGN --------- */
+  const [design, setDesign] = useState<IDesignModes>('waves');
+
+  /* --------- DESIGN OPTIONS --------- */
   const waveOptions = useWaveOptions();
   const bubbleOptions = useBubbleOptions();
   const cornerOptions = useCornerOptions();
@@ -58,19 +57,27 @@ function App() {
   const renderDesign = useCallback(() => {
     switch (design) {
       case 'waves': {
-        return <StackedWave width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
+        return <StackedWave {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
       }
       case 'bubble': {
-        return <Bubble width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
+        return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
       }
       case 'corners': {
-        return <Corners width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
+        return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
       }
       case 'marker': {
-        return <Marker width={canvasDimensions.width} height={canvasDimensions.height} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
+        return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
       }
     }
-  }, [design, seed, canvasDimensions, waveOptions.get, bubbleOptions.get, cornerOptions.get, markerOptions.get]);
+  }, [
+    design,
+    seed,
+    canvasDimensions,
+    waveOptions.get,
+    bubbleOptions.get,
+    cornerOptions.get,
+    markerOptions.get,
+  ]);
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderMenu = useCallback(() => {
@@ -91,24 +98,11 @@ function App() {
   }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
 
   /* --------- SHOW ANIMATION ON INITIAL RENDER --------- */
-  const [initialAnimation, setInitialAnimation] = useState<boolean>(true);
-  const [isVisible, setIsVisible] = useState<number>(1);
-
-  useEffect(() => {
-    (async () => {
-      await setTimeout(() => {
-        setIsVisible(0);
-      }, 2000);
-
-      await setTimeout(() => {
-        setInitialAnimation(false);
-      }, 4000);
-    })();
-  }, []);
+  const [animationIsRunning, opacity] = useInitialAnimation();
 
   return (
     <>
-      {initialAnimation && (
+      {animationIsRunning && (
         <Flex
           direction="row"
           overflow="hidden"
@@ -125,7 +119,7 @@ function App() {
             left: ' 50%',
             top: '50%',
             transform: 'translate(-50%, -50%)',
-            opacity: isVisible,
+            opacity: opacity,
             transition: 'all 1s ease',
           }}
         >
@@ -148,7 +142,7 @@ function App() {
         h="100vh"
       >
         {/* ------ LEFT MENU ----- */}
-        <LeftMenu setDesign={setDesign}></LeftMenu>
+        <LeftMenu activeDesign={design} setDesign={setDesign}></LeftMenu>
 
         {/* ------ CANVAS ----- */}
         <Container
@@ -256,10 +250,10 @@ function App() {
           svgRef={svgRef}
           handleWidthChange={setWidth}
           handleHeightChange={setHeight}
-          width = {canvasDimensions.width}
-          height = {canvasDimensions.height}
-          widthRatio = {canvasDimensions.widthRatio}
-          heightRatio = {canvasDimensions.heightRatio}
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
+          widthRatio={canvasDimensions.widthRatio}
+          heightRatio={canvasDimensions.heightRatio}
         >
           {renderMenu()}
         </RightMenu>

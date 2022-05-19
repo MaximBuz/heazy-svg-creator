@@ -9,17 +9,16 @@ import bubble from '../Thumbnails/bubble.svg';
 import Logo from '../Logo.svg';
 import { UilLinkedin } from '@iconscout/react-unicons';
 
-
-
 // Utils
 import Thumbnail from './Thumbnail';
 import { IDesignModes } from '../utils/types/designModes';
 
 export interface ILeftMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
+  activeDesign: string;
 }
 
-const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({setDesign}) => {
+const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({ activeDesign, setDesign }) => {
   return (
     <Flex
       minW="180px"
@@ -52,10 +51,10 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({setDesign}) => {
           '&::-webkit-scrollbar': { display: 'none' },
         }}
       >
-        <Thumbnail setDesign={setDesign} image={stackedWave} caption="waves"></Thumbnail>
-        <Thumbnail setDesign={setDesign} image={bubble} caption="bubble"></Thumbnail>
-        <Thumbnail setDesign={setDesign} image={smoothStage} caption="corners"></Thumbnail>
-        <Thumbnail setDesign={setDesign} image={marker} caption="marker"></Thumbnail>
+        <Thumbnail isActive={activeDesign === "waves"} setDesign={setDesign} image={stackedWave} caption="waves"></Thumbnail>
+        <Thumbnail isActive={activeDesign === "bubble"} setDesign={setDesign} image={bubble} caption="bubble"></Thumbnail>
+        <Thumbnail isActive={activeDesign === "corners"} setDesign={setDesign} image={smoothStage} caption="corners"></Thumbnail>
+        <Thumbnail isActive={activeDesign === "marker"} setDesign={setDesign} image={marker} caption="marker"></Thumbnail>
       </Stack>
 
       <Flex

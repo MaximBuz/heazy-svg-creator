@@ -1,6 +1,6 @@
 import React from 'react';
 import { smoothWavePath } from '../utils/calculations/wave-paths/smoothWavePath';
-import { IWaveAllProps, IWaveProps, } from '../utils/types/waveProps';
+import { IWaveAllProps, IWaveProps } from '../utils/types/waveProps';
 import SvgCanvas from './SvgCanvas';
 
 const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {

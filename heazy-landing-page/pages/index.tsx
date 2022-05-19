@@ -63,9 +63,9 @@ const Home: NextPage = () => {
           </Flex>
 
           {/* HERO TITLE */}
-          <Flex mt="-80px" height="100%" justifyContent="space-between" alignItems="center" wrap="wrap">
-            <Flex direction="column" gap="20px">
-              <Heading fontWeight="700" fontSize="3em">
+          <Flex gap={50} direction='column' justifyContent="center" alignItems="center">
+            <Flex height="70vh" direction="column" textAlign="center" justifyContent="center" alignItems="center" gap="20px">
+              <Heading fontWeight="700" fontSize="4em">
                 The design you want.
                 <br />
                 Without the{' '}
@@ -77,15 +77,15 @@ const Home: NextPage = () => {
                     WebkitBackgroundClip: 'text',
                   }}
                 >
-                  design <br /> time.
+                  design time.
                 </span>
               </Heading>
-              <Flex alignItems="center" gap="15px">
+              <Flex direction="column" alignItems="center" gap="5px">
                 <Button as="a" href="https://app.heazy.studio/" rounded="full" size="lg" _hover={{ bg: '#05f', color: 'white' }}>
                   Start Designing
                 </Button>
-                <Text>
-                  Free for ever. <br /> No signup required.
+                <Text opacity={0.5}>
+                  Free for ever. No signup required.
                 </Text>
               </Flex>
             </Flex>
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
               autoPlay
               loop
               muted
-              width="55%"
+              width="70%"
               height="auto"
               style={{
                 borderRadius: '10px',

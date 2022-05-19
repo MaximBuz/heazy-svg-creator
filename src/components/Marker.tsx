@@ -1,44 +1,24 @@
 import React from 'react';
 import { markerPath } from '../utils/calculations/markerPath';
 import { IMarkerAllProps, IMarkerProps } from '../utils/types/markerProps';
+import SvgCanvas from './SvgCanvas';
 
-const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = ({
-  svgRef,
-  seed,
-  width,
-  height,
-  lineCap,
-  lineJoin,
-  strokeWidth,
-  startColor,
-  endColor,
-  bgColor,
-  shadowX,
-  shadowY,
-  shadowSD,
-  shadowColor,
-  markerHeight,
-  zickZacks,
-  ghost,
-  ghostStartColor,
-  ghostEndColor,
-  padding,
-  mirror,
-  yPosition,
-  pressure,
-}) => {
+const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = (props) => {
+
+  // destructure some params
+  const { width, height, svgRef, seed } = props;
+  const { lineCap, lineJoin, strokeWidth } = props;
+  const { markerHeight, zickZacks, padding, pressure } = props;
+  const { mirror, yPosition } = props;
+  const { ghost, ghostStartColor, ghostEndColor } = props;
+  const { shadowColor, shadowSD, shadowX, shadowY } = props;
+  const { bgColor, startColor, endColor } = props;
+
+  // Generate path
   const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);
   const randomClassId = Math.round(Math.random() * 100);
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      height={height}
-      width={width}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      ref={svgRef}
-    >
+    <SvgCanvas width={width} height={ height} ref={svgRef} >
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${randomClassId}`}>
@@ -85,7 +65,7 @@ const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = ({
           }}
         ></path>
       </g>
-    </svg>
+    </SvgCanvas>
   );
 };
 

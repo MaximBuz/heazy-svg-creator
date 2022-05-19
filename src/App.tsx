@@ -2,7 +2,7 @@
 import { useCallback, useRef, useState } from 'react';
 
 // Components
-import Bubble from './components/Blob';
+import Bubble from './components/Bubble';
 import LeftMenu from './components/LeftMenu';
 import RightMenu from './components/RightMenu/RightMenu';
 import StackedWave from './components/Waves';

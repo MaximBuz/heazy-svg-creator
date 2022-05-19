@@ -8,6 +8,7 @@ import marker from '../Thumbnails/marker.svg';
 import bubble from '../Thumbnails/bubble.svg';
 import Logo from '../Logo.svg';
 import { UilLinkedin } from '@iconscout/react-unicons';
+import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
@@ -51,10 +52,30 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({ activeDesign, setDe
           '&::-webkit-scrollbar': { display: 'none' },
         }}
       >
-        <Thumbnail isActive={activeDesign === "waves"} setDesign={setDesign} image={stackedWave} caption="waves"></Thumbnail>
-        <Thumbnail isActive={activeDesign === "bubble"} setDesign={setDesign} image={bubble} caption="bubble"></Thumbnail>
-        <Thumbnail isActive={activeDesign === "corners"} setDesign={setDesign} image={smoothStage} caption="corners"></Thumbnail>
-        <Thumbnail isActive={activeDesign === "marker"} setDesign={setDesign} image={marker} caption="marker"></Thumbnail>
+        <Thumbnail
+          isActive={activeDesign === 'waves'}
+          setDesign={setDesign}
+          image={stackedWave}
+          caption="waves"
+        ></Thumbnail>
+        <Thumbnail
+          isActive={activeDesign === 'bubble'}
+          setDesign={setDesign}
+          image={bubble}
+          caption="bubble"
+        ></Thumbnail>
+        <Thumbnail
+          isActive={activeDesign === 'corners'}
+          setDesign={setDesign}
+          image={smoothStage}
+          caption="corners"
+        ></Thumbnail>
+        <Thumbnail
+          isActive={activeDesign === 'marker'}
+          setDesign={setDesign}
+          image={marker}
+          caption="marker"
+        ></Thumbnail>
       </Stack>
 
       <Flex
@@ -66,11 +87,21 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({ activeDesign, setDe
         bgColor="#262a33"
         justifyContent="space-around"
         alignItems="center"
+        direction='column'
       >
         <Heading lineHeight="1em" fontWeight="lighter" fontSize="2xl" fontFamily="Karla, sans-serif;">
           HEAZY.
         </Heading>
-        <Icon as={UilLinkedin} boxSize="8" cursor="pointer"></Icon>
+        {/* <Icon as={UilLinkedin} boxSize="8" cursor="pointer"></Icon> */}
+        <GitHubButton
+          href="https://github.com/MaximBuz/heazy-svg-creator"
+          data-color-scheme="no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;"
+          data-size="small"
+          data-show-count="true"
+          aria-label="Star MaximBuz/heazy-svg-creator on GitHub"
+        >
+          Star
+        </GitHubButton>
       </Flex>
     </Flex>
   );

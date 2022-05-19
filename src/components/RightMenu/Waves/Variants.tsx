@@ -1,6 +1,3 @@
-// React
-import { Dispatch, SetStateAction } from 'react';
-
 // Layout
 import {
   Heading,
@@ -23,18 +20,8 @@ import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import Edgy from './Icons/Edgy';
-import Smooth from './Icons/Smooth';
-
-type Props = {
-  setSolid: Dispatch<SetStateAction<number>>;
-  solid: number;
-  setStrokeShrink: Dispatch<SetStateAction<boolean>>;
-  strokeShrink: boolean;
-  setStrokeWidth: Dispatch<SetStateAction<number>>;
-  strokeWidth: number;
-  setSmooth: Dispatch<SetStateAction<number>>;
-};
+import { IWaveVariantsProps } from '../../../utils/types/waveProps';
+import { IWaveVariantsSetterProps } from '../../../utils/types/waveSetterProps';
 
 export default function Variants({
   setSolid,
@@ -43,8 +30,7 @@ export default function Variants({
   strokeShrink,
   setStrokeWidth,
   strokeWidth,
-  setSmooth,
-}: Props) {
+}: (IWaveVariantsSetterProps & IWaveVariantsProps)) {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">

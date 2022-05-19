@@ -1,10 +1,9 @@
 import React from 'react';
 import { smoothWavePath } from '../utils/calculations/wave-paths/smoothWavePath';
-import { peakWavePath } from '../utils/calculations/wave-paths/peakWavePath';
-import { IWaveProps } from '../utils/types/waveProps';
+import { IWaveAllProps, IWaveProps, } from '../utils/types/waveProps';
 import SvgCanvas from './SvgCanvas';
 
-const Waves: React.FunctionComponent<IWaveProps> = (props) => {
+const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
   // set up params that are needed to generate a path
   const pathParams = [
     props.seed,
@@ -21,9 +20,9 @@ const Waves: React.FunctionComponent<IWaveProps> = (props) => {
 
   // destructure some params
   const { width, height, svgRef } = props;
-  const { stroke, strokeShrink, strokeWidth, smooth } = props;
+  const { stroke, strokeShrink, strokeWidth } = props;
   const { shadowColor, shadowSD, shadowX, shadowY } = props;
-  const { bgColor, startWaveColor, stopWaveColor } = props;
+  const { bgColor, startColor, endColor } = props;
 
   // generate paths
   let wavesData = smoothWavePath(...pathParams);
@@ -35,8 +34,8 @@ const Waves: React.FunctionComponent<IWaveProps> = (props) => {
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${randomClassId}`}>
-          <stop offset="0%" stopColor={startWaveColor} stopOpacity="100%" />
-          <stop offset="100%" stopColor={stopWaveColor} stopOpacity="100%" />
+          <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
+          <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}

@@ -3,22 +3,39 @@ export interface IWaveProps {
   seed: number;
   width: number;
   height: number;
-  stroke: boolean;
+}
+
+export interface IWaveVariantsProps {
+  stroke: boolean; // DOPPELT ??
   solid: number;
   strokeWidth: number;
   strokeShrink: boolean;
-  startWaveColor: string;
-  stopWaveColor: string;
-  bgColor: string;
-  shadowX: number;
-  shadowY: number;
-  shadowSD: number;
-  shadowColor: string;
+}
+
+export interface IWaveShapeProps {
   balance: number;
   velocity: number;
   breaks: number;
   stacks: number;
   distance: number;
-  direction: number;
   smooth: number
 }
+
+export interface IWaveColorProps {
+  startColor: string;
+  endColor: string;
+  bgColor: string;
+}
+
+export interface IWaveShadowProps {
+  shadowX: number;
+  shadowY: number;
+  shadowSD: number;
+  shadowColor: string;
+}
+
+export type IWaveAllProps =
+  IWaveShapeProps &
+  IWaveVariantsProps &
+  IWaveColorProps &
+  IWaveShadowProps;

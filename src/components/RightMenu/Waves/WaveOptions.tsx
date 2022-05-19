@@ -6,19 +6,15 @@ import { Divider } from '@chakra-ui/react';
 
 // Components
 import Color from './Color';
-import Direction from './Direction';
 import Shadow from './Shadow';
 import Shape from './Shape';
 import Variants from './Variants';
 
 // Types
-import { IWaveSetterProps } from '../../../utils/types/waveSetterProps';
-import { IWaveProps } from '../../../utils/types/waveProps';
+import { IWaveAllSetterProps } from '../../../utils/types/waveSetterProps';
+import { IWaveAllProps } from '../../../utils/types/waveProps';
 
-const WaveOptions: React.FunctionComponent<
-  Omit<IWaveSetterProps, 'seed' | 'width' | 'height' | 'svgRef'> &
-  Omit<IWaveProps, 'seed' | 'width' | 'height' | 'svgRef'>
-> = (props) => {
+const WaveOptions: React.FunctionComponent<IWaveAllSetterProps & IWaveAllProps> = (props) => {
   return (
     <>
       <Variants {...props}></Variants>

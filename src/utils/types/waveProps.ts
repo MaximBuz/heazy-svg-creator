@@ -3,7 +3,6 @@ export interface IWaveProps {
   seed: number;
   width: number;
   height: number;
-  type: 'smooth' | 'peak';
   stroke: boolean;
   solid: number;
   strokeWidth: number;
@@ -21,4 +20,5 @@ export interface IWaveProps {
   stacks: number;
   distance: number;
   direction: number;
+  smooth: number
 }

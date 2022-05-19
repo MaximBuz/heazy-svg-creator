@@ -21,6 +21,8 @@ import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
+import Edgy from './Icons/Edgy';
+import Smooth from './Icons/Smooth';
 
 export interface IShapeProps {
   balance: number;
@@ -28,11 +30,13 @@ export interface IShapeProps {
   breaks: number;
   stacks: number;
   distance: number;
+  smooth: number;
   setBalance: Dispatch<SetStateAction<number>>;
   setVelocity: Dispatch<SetStateAction<number>>;
   setBreaks: Dispatch<SetStateAction<number>>;
   setStacks: Dispatch<SetStateAction<number>>;
   setDistance: Dispatch<SetStateAction<number>>;
+  setSmooth: Dispatch<SetStateAction<number>>;
 }
 
 const Shape: React.FunctionComponent<IShapeProps> = ({
@@ -46,6 +50,8 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
   setStacks,
   distance,
   setDistance,
+  smooth,
+  setSmooth
 }) => {
   return (
     <>
@@ -91,7 +97,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           <VelocityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="velocity" value={velocity} step={0.1} min={0} max={1} onChange={(val) => setVelocity(val)}>
+        <Slider aria-label="velocity" value={velocity} step={0.1} min={0.1} max={1} onChange={(val) => setVelocity(val)}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
@@ -125,6 +131,28 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
 
         <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 20 && setBreaks(breaks + 1)}>
           <ComplexityRight />
+        </SliderIconWrapper>
+      </HStack>
+
+      {/* ----- SMOOTH SLIDER ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Smoothness
+      </Heading>
+
+      <HStack>
+        <SliderIconWrapper viewBox={'0 0 420 200'} onClick={() => smooth > 0.05 && setSmooth(smooth - 0.05)}>
+          <Edgy />
+        </SliderIconWrapper>
+
+        <Slider aria-label="complexity" value={smooth} step={0.01} min={0} max={0.2} onChange={(val) => setSmooth(val)}>
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => smooth < 0.25 && setSmooth(smooth + 0.05)}>
+          <Smooth />
         </SliderIconWrapper>
       </HStack>
 

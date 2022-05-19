@@ -85,40 +85,6 @@ export default function Variants({
         </TabList>
       </Tabs>
 
-      {/* ------ SMOOTH vs. PEAK ------ */}
-      <Tabs onChange={(index) => setSmooth(index)} defaultIndex={1} isFitted variant="unstyled">
-        <TabList>
-          <Tab
-            roundedTopLeft={10}
-            roundedBottomLeft={10}
-            bgColor="#262a33"
-            _hover={{ background: '#2e3643', cursor: 'pointer' }}
-            _selected={{ background: '#363e4a' }}
-            display="flex"
-            flexDirection="column"
-          >
-            <Icon boxSize="5" viewBox="0 0 452 189" color="white">
-              <Edgy />
-            </Icon>
-            Edgy
-          </Tab>
-          <Tab
-            roundedTopRight={10}
-            roundedBottomRight={10}
-            bgColor="#262a33"
-            _hover={{ background: '#2e3643', cursor: 'pointer' }}
-            _selected={{ background: '#363e4a' }}
-            display="flex"
-            flexDirection="column"
-          >
-            <Icon boxSize="5" viewBox="0 0 412 219" color="white">
-              <Smooth />
-            </Icon>
-            Smooth
-          </Tab>
-        </TabList>
-      </Tabs>
-
       {/* ------ LINE STROKE OPTIONS ------ */}
       {solid === 1 && (
         <>

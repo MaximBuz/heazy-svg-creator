@@ -24,12 +24,11 @@ const useWaveOptions = (): {
   const [distance, setDistance] = useState<number>(100);
   const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
-  // const [smooth, setSmooth] = useState<number>(0.2);
-  const [smooth, setSmooth] = useState<number>(1);
+  const [smooth, setSmooth] = useState<number>(0.2);
 
   return {
     get: {
-      type: smooth === 1 ? 'smooth' : 'peak',
+      smooth,
       direction,
       bgColor,
       startWaveColor,

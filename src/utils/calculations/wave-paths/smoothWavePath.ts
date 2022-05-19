@@ -43,7 +43,8 @@ export function smoothWavePath(
   breaks: number,
   stacks: number,
   distance: number,
-  stroke: boolean
+  stroke: boolean,
+  smooth: number
 ): string[] {
   let initialWaveSize = height * (1 - balance);
 
@@ -61,13 +62,13 @@ export function smoothWavePath(
     if (stroke) {
       //@ts-ignore
       commands = anchorPoints.reduce((acc, point, index, array) => {
-        return `${acc} ${getBezier(point, index, array, 0.2)}`; // change this
+        return `${acc} ${getBezier(point, index, array, smooth)}`; // change this
       });
       path = [`M${anchorPoints[0][0]} ${anchorPoints[0][1]}`, commands];
     } else {
       //@ts-ignore
       commands = anchorPoints.reduce((acc, point, index, array) => {
-        return `${acc} ${getBezier(point, index, array, 0.2)}`; // change this
+        return `${acc} ${getBezier(point, index, array, smooth)}`; // change this
       });
       path = [`M0 0`, commands];
       path.push(`L${width} ${height}`, `L0 ${height}Z`);

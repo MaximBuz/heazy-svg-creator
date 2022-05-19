@@ -1,6 +1,4 @@
 import React from 'react';
-import { ICornerAllProps, ICornerProps } from '../utils/types/cornerProps';
-
 function getTransformation (direction: number):string {
   switch (direction) {
     case 0: {
@@ -35,26 +33,16 @@ interface SvgDirectionProps {
   direction: number;
 }
 
-const CornerSvgGroup: React.FunctionComponent<SvgDirectionProps> = ({
-  width,
-  height,
+const CornerSvgGroup: React.FunctionComponent<SvgDirectionProps> = (props) => {
 
-  path,
-  stroke,
-  strokeWidth,
-  strokeShrink,
+  // destructure some params
+  const { width, height, classId } = props;
+  const { path, strokeShrink, stroke, strokeWidth } = props;
+  const { direction } = props;
+  const { shadowColor, shadowSD, shadowX, shadowY } = props;
+  const { startColor, endColor } = props;
 
-  direction,
-  classId,
-
-  startColor,
-  endColor,
-
-  shadowX,
-  shadowY,
-  shadowSD,
-  shadowColor,
-}) => {
+  // get transformatio property for mirroring
   const scale = getTransformation(direction)
 
   return (

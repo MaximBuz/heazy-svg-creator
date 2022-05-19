@@ -18,7 +18,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
 
   const randomClassId = Math.round(Math.random() * 100);
   return (
-    <SvgCanvas width={width} height={height} ref={svgRef}>
+    <SvgCanvas width={width} height={height} svgRef={svgRef}>
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${randomClassId}`}>

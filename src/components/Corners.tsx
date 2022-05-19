@@ -38,7 +38,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props)
   const svgElementProps = {
     width: props.width,
     height: props.height,
-    ref: props.svgRef,
+    svgRef: props.svgRef,
   };
 
   /*  -----GENERATE PATHS----- */

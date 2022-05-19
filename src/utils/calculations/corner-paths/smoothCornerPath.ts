@@ -22,7 +22,7 @@ function getRandomAnchors(
     const pointCoordinate = pointCoordinates[waveNo];
     let [initialX, initialY] = [pointCoordinate[0], pointCoordinate[1]];
 
-    // calculate random components for y and handles
+    // calculate random components for y
     const random = rndm(seed + waveNo);
     const signedRandomPart = (random - 0.5) * velocity;
 

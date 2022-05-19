@@ -1,5 +1,38 @@
+import { getBezier } from './../pathSmoothener';
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber as random } from '../randomNumber';
+import { generateRandomNumber as rndm } from '../randomNumber';
+import { getCoordinates as getInitialCoords } from './waveSectionDivider';
+
+function getRandomAnchors(
+  seed: number,
+  velocity: number,
+  breaks: number,
+  waveSize: number,
+  width: number
+): [number, number][] {
+  // generate initial (non-random) x- and y-coordinates
+  const pointCoordinates = getInitialCoords(breaks, width, waveSize);
+
+  // save x and y coordinates for the wave
+  const coordinates = [];
+
+  for (let waveNo = 0; waveNo <= breaks; waveNo++) {
+    // get X and Y coordinates
+    const pointCoordinate = pointCoordinates[waveNo];
+    let [initialX, initialY] = [pointCoordinate[0], pointCoordinate[1]];
+
+    // calculate random components for y
+    const random = rndm(seed + waveNo);
+    const signedRandomPart = (random - 0.5) * velocity;
+
+    // randomize y coordinate
+    let y = initialY + (signedRandomPart * waveSize) / 3;
+    let x = initialX;
+
+    coordinates.push([x, y]);
+  }
+  return coordinates;
+}
 
 export function smoothWavePath(
   seed: number,
@@ -12,60 +45,34 @@ export function smoothWavePath(
   distance: number,
   stroke: boolean
 ): string[] {
-  let waveHeight = height * balance;
-  let equal = width / breaks;
+  let initialWaveSize = height * (1 - balance);
+
+  // save each full wave in here
   const waves = [];
 
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
-    // calculate height offset for each stack
-    const stackHeightOffset = stack * distance * (stack * distance);
+    const currentWaveSize = initialWaveSize + stack * distance;
+    const anchorPoints = getRandomAnchors(seed * (stack + 1), velocity, breaks, currentWaveSize, width);
 
-    // beginning of each wave
-    const data = [`M0 ${waveHeight + stackHeightOffset + (random(seed + stack) - 0.5) * velocity * equal}`];
+    let commands;
+    let path;
 
-    // save previous wave for handle2
-    let previous;
-
-    // generate random waves based on passed parameters
-    for (let waveNo = 1; waveNo <= breaks; waveNo++) {
-      // calculate random components for y and handles
-      const randomPartX = random(seed + stack + waveNo + breaks)
-      const randomPartY = (random(seed + stack + waveNo) - 0.5) * velocity;
-
-      // calculate x and y of next point
-      let x = waveNo * equal;
-      let y = waveHeight + stackHeightOffset + (equal * randomPartY);
-
-      const coords = {
-        handle1: {
-          x: previous
-            ? previous.x + (previous.x - previous.handle2.x)
-            : equal / 4  + (equal / 4 * randomPartX), // split 'equal' into 4 parts and go to right into second zone
-          y: previous
-            ? previous.y + (previous.y - previous.handle2.y)
-            : waveHeight + stackHeightOffset + (equal/2 * randomPartY),
-        },
-        handle2: {
-          x: x - equal / 4 - (equal / 4 * randomPartX), // split 'equal' into 4 parts and go to left into second to last zone
-          y: y + randomPartY * 50,
-        },
-        x,
-        y,
-      };
-
-      previous = coords;
-      // push path snippet to data array
-      data.push(
-        `C${coords.handle1.x} ${coords.handle1.y} ${coords.handle2.x} ${coords.handle2.y} ${coords.x} ${coords.y}`
-      );
+    if (stroke) {
+      //@ts-ignore
+      commands = anchorPoints.reduce((acc, point, index, array) => {
+        return `${acc} ${getBezier(point, index, array, 0.2)}`; // change this
+      });
+      path = [`M${anchorPoints[0][0]} ${anchorPoints[0][1]}`, commands];
+    } else {
+      //@ts-ignore
+      commands = anchorPoints.reduce((acc, point, index, array) => {
+        return `${acc} ${getBezier(point, index, array, 0.2)}`; // change this
+      });
+      path = [`M0 0`, commands];
+      path.push(`L${width} ${height}`, `L0 ${height}Z`);
     }
-
-    // if it's a filled wave, close of bottom
-    !stroke && data.push(`L${width} ${height}`, `L0 ${height}Z`);
-
-    // push each wave to waves array
-    waves.push(data.join(' '));
+    waves.push(path.join(' '));
   }
   return waves;
 }

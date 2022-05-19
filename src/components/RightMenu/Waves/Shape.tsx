@@ -1,7 +1,6 @@
 import {
   Heading,
   HStack,
-  Icon,
   Slider,
   SliderTrack,
   SliderFilledTrack,
@@ -146,7 +145,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
         Layer Distance
       </Heading>
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 446 123'} onClick={() => distance > 0 && setDistance(distance - 1)}>
+        <SliderIconWrapper viewBox={'0 0 446 123'} onClick={() => distance >= 25 && setDistance(distance - 25)}>
           <DistanceLeft />
         </SliderIconWrapper>
 
@@ -154,7 +153,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           aria-label="layer-distance"
           value={distance}
           min={0}
-          max={10}
+          max={150}
           onChange={(val) => setDistance(val)}
         >
           <SliderTrack>
@@ -163,7 +162,7 @@ const Shape: React.FunctionComponent<IShapeProps> = ({
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 445 303'} onClick={() => distance < 10 && setDistance(distance + 1)}>
+        <SliderIconWrapper viewBox={'0 0 445 303'} onClick={() => distance <= 125 && setDistance(distance + 25)}>
           <DistanceRight />
         </SliderIconWrapper>
       </HStack>

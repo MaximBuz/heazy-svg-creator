@@ -7,7 +7,7 @@ const useWaveOptions = (): {
   set: IWaveSetterProps;
 } => {
   const [solid, setSolid] = useState<number>(0);
-  const [smooth, setSmooth] = useState<number>(1);
+
   const [direction, setDirection] = useState<number>(0);
   const [bgColor, setBgColor] = useState<string>('#002438');
   const [startWaveColor, setStartWaveColor] = useState<string>('#ff0005ff');
@@ -16,13 +16,16 @@ const useWaveOptions = (): {
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowColor, setShadowColor] = useState<string>('#00000061');
+
   const [balance, setBalance] = useState<number>(0.5);
-  const [velocity, setVelocity] = useState<number>(0.5);
-  const [breaks, setBreaks] = useState<number>(2);
-  const [stacks, setStacks] = useState<number>(4);
-  const [distance, setDistance] = useState<number>(3.5);
+  const [velocity, setVelocity] = useState<number>(1);
+  const [breaks, setBreaks] = useState<number>(4);
+  const [stacks, setStacks] = useState<number>(2);
+  const [distance, setDistance] = useState<number>(100);
   const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
+  // const [smooth, setSmooth] = useState<number>(0.2);
+  const [smooth, setSmooth] = useState<number>(1);
 
   return {
     get: {

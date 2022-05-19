@@ -1,6 +1,6 @@
 import { zip } from '../../zipArray';
 
-export function getCoordinates (sections: number, width: number, waveSize): [number, number][] {
+export function getCoordinates (sections: number, width: number, waveSize: number): [number, number][] {
   const equal = width / sections;
   const x = [];
   const y = [];

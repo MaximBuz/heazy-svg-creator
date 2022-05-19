@@ -11,7 +11,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
 import BalanceLeft from './Icons/BalanceLeft';
 import BalanceRight from './Icons/BalanceRight';

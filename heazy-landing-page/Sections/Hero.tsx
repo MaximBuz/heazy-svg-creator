@@ -41,20 +41,20 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
               href="https://app.heazy.studio/"
               rounded="full"
               size="lg"
-              _hover={{ bg: '#05f', color: 'white' }}
+              _hover={{ bg: '#05f', color: 'white', transform:"scale(1.05)" }}
             >
               Start Designing
             </Button>
             <Text opacity={0.5}>Free for ever. No signup required.</Text>
           </Flex>
         </Flex>
-        <Flex height="80vh" justifyContent="center" alignItems="flex-start">
+        <Flex height="100vh" justifyContent="center" alignItems="flex-start">
           <video
             playsInline
             autoPlay
             loop
             muted
-            width="80%"
+            width="85%"
             height="auto"
             style={{
               borderRadius: '10px',

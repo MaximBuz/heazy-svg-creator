@@ -2,26 +2,24 @@ import { Box, Flex, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 import SectionDivider from '../Components/SectionDivider';
-import OverviewBG from '../public/overview-bg.png';
 
 export interface IInspirationsProps {}
 
 const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
   return (
     <Flex
-      // backgroundImage={` url('${OverviewBG.src}')`}
+      id="inspirations"
+      backgroundImage="/inspiration-bg.png"
       position="relative"
       backgroundRepeat="no-repeat"
-      backgroundPosition="bottom"
+      backgroundPosition="top"
       backgroundSize="contain"
-      mt="10"
       direction="column"
       width="100%"
       justifyContent="flex-start"
       alignItems="center"
       textAlign="center"
       gap="50px"
-      minHeight="75vh"
     >
       <SectionDivider text="Inspirations" />
       <Heading fontWeight="700" fontSize="3em">
@@ -37,22 +35,23 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
           inspires.
         </span>
         <br />
-        No more hours of thinking.
+        Instantly cure design fatigue.
       </Heading>
 
       {/* IMAGE WRAPPER */}
-      <Flex  justifyContent="space-between" p="0 20%" width="100%" gap="20px" wrap="wrap">
+      <Flex justifyContent="space-between" p="0 20%" width="100%" gap="20px" wrap="wrap">
         {/* IMAGE ROW */}
         <Flex height="43vh" width="100%" justifyContent="center" gap="20px">
           <Box
             position="relative"
             width="50%"
             height="100%"
-            boxShadow="0 0px 8px -4px #0d1117"
             transition="0.5s"
             rounded="sm"
+            boxShadow="0 0px 35px -5px #152238"
             _hover={{
               transform: 'scale(1.05)',
+              boxShadow: '0 0px 35px 2px #233860',
             }}
           >
             <Image
@@ -67,11 +66,12 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
             position="relative"
             width="50%"
             height="100%"
-            boxShadow="0 0px 8px -4px #0d1117"
             transition="0.5s"
             rounded="sm"
+            boxShadow="0 0px 35px -5px #152238"
             _hover={{
               transform: 'scale(1.05)',
+              boxShadow: '0 0px 35px 2px #233860',
             }}
           >
             <Image
@@ -88,11 +88,12 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
             position="relative"
             width="50%"
             height="100%"
-            boxShadow="0 0px 8px -4px #0d1117"
             transition="0.5s"
             rounded="sm"
+            boxShadow="0 0px 35px -5px #152238"
             _hover={{
               transform: 'scale(1.05)',
+              boxShadow: '0 0px 35px 2px #233860',
             }}
           >
             <Image
@@ -107,11 +108,12 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
               position="relative"
               width="100%"
               height="50%"
-              boxShadow="0 0px 8px -4px #0d1117"
               transition="0.5s"
               rounded="sm"
+              boxShadow="0 0px 35px -5px #152238"
               _hover={{
                 transform: 'scale(1.05)',
+                boxShadow: '0 0px 35px 2px #233860',
               }}
             >
               <Image
@@ -125,11 +127,12 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
               position="relative"
               width="100%"
               height="50%"
-              boxShadow="0 0px 8px -4px #0d1117"
               transition="0.5s"
               rounded="sm"
+              boxShadow="0 0px 35px -5px #152238"
               _hover={{
                 transform: 'scale(1.05)',
+                boxShadow: '0 0px 35px 2px #233860',
               }}
             >
               <Image

@@ -9,11 +9,11 @@ export interface IFeaturesProps {}
 const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
   return (
     <Flex
+      id="features"
       backgroundImage={` url('${OverviewBG.src}')`}
       backgroundRepeat="no-repeat"
       backgroundPosition="bottom"
       backgroundSize="contain"
-      mt="10"
       direction="column"
       width="100%"
       minHeight="110vh"

@@ -18,20 +18,33 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
     >
       <Image src={Logo} alt="heazy svg creator logo" width="35px" height="35px" />
       <UnorderedList display="flex" alignItems="center" justifyContent="center" gap="40px">
-        <ListItem fontSize="lg" listStyleType="none">
+        <ListItem
+          as="a"
+          href="#features"
+          fontSize="lg"
+          listStyleType="none"
+          cursor="pointer"
+          transition="0.3s"
+          _hover={{ color: 'white', transform: 'scale(1.05)' }}
+        >
           Features
         </ListItem>
-        <ListItem fontSize="lg" listStyleType="none">
+        <ListItem
+          as="a"
+          fontSize="lg"
+          href="#inspirations"
+          listStyleType="none"
+          cursor="pointer"
+          transition="0.3s"
+          _hover={{ color: 'white', transform: 'scale(1.05)' }}
+        >
           Inspirations
-        </ListItem>
-        <ListItem fontSize="lg" listStyleType="none">
-          Designs
         </ListItem>
         <Button
           as="a"
           href="https://app.heazy.studio/"
           rounded="full"
-          _hover={{ bg: '#05f', color: 'white' }}
+          _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
         >
           Try it out!
         </Button>

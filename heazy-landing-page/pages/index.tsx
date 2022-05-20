@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Call2Action from '../Sections/Call2Action';
 import Features from '../Sections/Features';
 
 import Hero from '../Sections/Hero';
@@ -33,6 +34,10 @@ const Home: NextPage = () => {
 
         {/*-------- INSPIRATIONS SECTION --------*/}
         <Inspirations />
+
+        {/*-------- C2A SECTION --------*/}
+        <Call2Action/>
+
       </main>
       <footer></footer>
     </div>

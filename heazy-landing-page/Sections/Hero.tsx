@@ -20,7 +20,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
           alignItems="center"
           gap="20px"
         >
-          <Heading fontWeight="700" fontSize="4em">
+          <Heading fontWeight="800" fontSize="4em">
             The design you want.
             <br />
             Without the{' '}

@@ -20,6 +20,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
       alignItems="center"
       textAlign="center"
       gap="50px"
+      mb="10%"
     >
       <SectionDivider text="Inspirations" />
       <Heading fontWeight="700" fontSize="3em">

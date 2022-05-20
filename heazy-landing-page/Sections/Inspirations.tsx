@@ -37,85 +37,110 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
           inspires.
         </span>
         <br />
-        You know it when you see it.
+        No more hours of thinking.
       </Heading>
 
-      <Flex justifyContent="space-between" p="0 8em" width="100%" gap="20px" wrap="wrap">
-        <Box
-          position="relative"
-          width="580px"
-          height="380px"
-          boxShadow="0 0px 8px -4px #0d1117"
-          transition="0.3s"
-          _hover={{
-            backdropFilter: 'blur(3px)',
-            boxShadow: 'inset 0 0 0 1px #162c41, 0 0px 35px -5px #152238',
-            transform: 'scale(1.05)',
-          }}
-        >
-          <Image src="/heazy-fear.png" layout='fill' objectFit="cover" alt="heazy-svg-generator-inspiration"></Image>
-        </Box>
+      {/* IMAGE WRAPPER */}
+      <Flex  justifyContent="space-between" p="0 20%" width="100%" gap="20px" wrap="wrap">
+        {/* IMAGE ROW */}
+        <Flex height="43vh" width="100%" justifyContent="center" gap="20px">
+          <Box
+            position="relative"
+            width="50%"
+            height="100%"
+            boxShadow="0 0px 8px -4px #0d1117"
+            transition="0.5s"
+            rounded="sm"
+            _hover={{
+              transform: 'scale(1.05)',
+            }}
+          >
+            <Image
+              src="/heazy-masterclass.png"
+              layout="fill"
+              objectFit="cover"
+              alt="heazy-svg-generator-inspiration"
+            ></Image>
+          </Box>
 
-        <Box
-          position="relative"
-          width="580px"
-          height="380px"
-          boxShadow="0 0px 8px -4px #0d1117"
-          transition="0.3s"
-          _hover={{
-            backdropFilter: 'blur(3px)',
-            boxShadow: 'inset 0 0 0 1px #162c41, 0 0px 35px -5px #152238',
-            transform: 'scale(1.05)',
-          }}
-        >
-          <Image src="/heazy-landing.png" layout='fill' objectFit="cover" alt="heazy-svg-generator-inspiration"></Image>
-        </Box>
+          <Box
+            position="relative"
+            width="50%"
+            height="100%"
+            boxShadow="0 0px 8px -4px #0d1117"
+            transition="0.5s"
+            rounded="sm"
+            _hover={{
+              transform: 'scale(1.05)',
+            }}
+          >
+            <Image
+              src="/heazy-sessions.png"
+              layout="fill"
+              objectFit="cover"
+              alt="heazy-svg-generator-inspiration"
+            ></Image>
+          </Box>
+        </Flex>
 
-        <Box
-          position="relative"
-          height="550px"
-          width="30%"
-          boxShadow="0 0px 8px -4px #0d1117"
-          transition="0.3s"
-          _hover={{
-            backdropFilter: 'blur(3px)',
-            boxShadow: 'inset 0 0 0 1px #162c41, 0 0px 35px -5px #152238',
-            transform: 'scale(1.05)',
-          }}
-        >
-          <Image src="/heazy-login.png" layout='fill' objectFit="cover" alt="heazy-svg-generator-inspiration"></Image>
-        </Box>
-
-        <Box
-          position="relative"
-          height="550px"
-          width="60%"
-          boxShadow="0 0px 8px -4px #0d1117"
-          transition="0.3s"
-          _hover={{
-            backdropFilter: 'blur(3px)',
-            boxShadow: 'inset 0 0 0 1px #162c41, 0 0px 35px -5px #152238',
-            transform: 'scale(1.05)',
-          }}
-        >
-          <Image src="/heazy-sessions.png" layout='fill' objectFit="cover" alt="heazy-svg-generator-inspiration"></Image>
-        </Box>
-
-        <Box
-          position="relative"
-          height="370px"
-          width="40%"
-          boxShadow="0 0px 8px -4px #0d1117"
-          transition="0.3s"
-          _hover={{
-            backdropFilter: 'blur(3px)',
-            boxShadow: 'inset 0 0 0 1px #162c41, 0 0px 35px -5px #152238',
-            transform: 'scale(1.05)',
-          }}
-        >
-          <Image src="/heazy-masterclass.png" layout='fill' objectFit="cover" alt="heazy-svg-generator-inspiration"></Image>
-        </Box>
-
+        <Flex height="75vh" width="100%" justifyContent="center" gap="20px">
+          <Box
+            position="relative"
+            width="50%"
+            height="100%"
+            boxShadow="0 0px 8px -4px #0d1117"
+            transition="0.5s"
+            rounded="sm"
+            _hover={{
+              transform: 'scale(1.05)',
+            }}
+          >
+            <Image
+              src="/heazy-login.png"
+              layout="fill"
+              objectFit="cover"
+              alt="heazy-svg-generator-inspiration"
+            ></Image>
+          </Box>
+          <Flex gap="20px" direction="column" width="50%" height="100%">
+            <Box
+              position="relative"
+              width="100%"
+              height="50%"
+              boxShadow="0 0px 8px -4px #0d1117"
+              transition="0.5s"
+              rounded="sm"
+              _hover={{
+                transform: 'scale(1.05)',
+              }}
+            >
+              <Image
+                src="/heazy-fear.png"
+                layout="fill"
+                objectFit="cover"
+                alt="heazy-svg-generator-inspiration"
+              ></Image>
+            </Box>
+            <Box
+              position="relative"
+              width="100%"
+              height="50%"
+              boxShadow="0 0px 8px -4px #0d1117"
+              transition="0.5s"
+              rounded="sm"
+              _hover={{
+                transform: 'scale(1.05)',
+              }}
+            >
+              <Image
+                src="/heazy-landing.png"
+                layout="fill"
+                objectFit="cover"
+                alt="heazy-svg-generator-inspiration"
+              ></Image>
+            </Box>
+          </Flex>
+        </Flex>
       </Flex>
     </Flex>
   );

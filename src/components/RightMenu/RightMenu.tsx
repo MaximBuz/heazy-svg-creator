@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, ReactNode, Ref, SetStateAction, useRef } from 'react';
+import React, { Dispatch, ReactNode, Ref, SetStateAction, useRef } from 'react';
 
 // Design
 import {
@@ -15,13 +15,22 @@ import {
   InputRightElement,
   HStack,
   Spacer,
+  IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  useToast,
 } from '@chakra-ui/react';
 import { Drawer, DrawerBody, DrawerHeader, DrawerContent } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
-import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from '@chakra-ui/icons';
-import { downloadSvgAsPng, downloadSVGAsText } from '../../utils/downloadBlob';
+import { ChevronLeftIcon, ChevronRightIcon, CopyIcon, DownloadIcon } from '@chakra-ui/icons';
+import { downloadSvgAsPng, downloadSVGAsText, downloadSvgAsReact, downloadSvgAsReactTS } from '../../utils/downloadBlob';
 
 export interface IRightMenuProps {
   svgRef: Ref<SVGAElement | null>;
@@ -44,6 +53,9 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   handleHeightChange,
   children,
 }) => {
+
+  const toast = useToast();
+
   const {
     isOpen: isDimensionDrawerOpen,
     onOpen: onDimensionDrawerOpen,
@@ -117,7 +129,7 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
         justifyContent="space-around"
         alignItems="center"
       >
-        <Stack direction="row" spacing={4}>
+        <Stack direction="row" spacing={2}>
           <Button
             leftIcon={<DownloadIcon />}
             onClick={() => downloadSVGAsText(svgRef)}
@@ -129,6 +141,41 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
           <Button onClick={() => downloadSvgAsPng(svgRef)} colorScheme="gray" variant="outline">
             PNG
           </Button>
+
+          <Popover gutter={15}>
+            {/* @ts-ignore */}
+            <PopoverTrigger>
+              <IconButton
+                icon={<CopyIcon />}
+                // onClick={() => downloadSVGAsText(svgRef)}
+                colorScheme="gray"
+                variant="outline"
+                aria-label="Download JavaScript Snippet"
+              />
+            </PopoverTrigger>
+            <PopoverContent _focus={{boxShadow: "none"}}>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>Copy Snippet to Clipboard</PopoverHeader>
+              <PopoverBody>
+                <HStack justifyContent="space-between">
+                  <Button flex="0.5" onClick={() => {
+                    downloadSvgAsReact(svgRef);
+                    toast({title: "Copied to clipboard!", status: "success", isClosable: true})
+                  }} colorScheme="gray" variant="outline">
+                    React
+                  </Button>
+                  <Button flex="1" onClick={() => {
+                    downloadSvgAsReactTS(svgRef);
+                    toast({title: "Copied to clipboard!", status: "success", isClosable: true})
+                  }} colorScheme="gray" variant="outline">
+                    React TypeScript
+                  </Button>
+
+                </HStack>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </Stack>
       </Flex>
 

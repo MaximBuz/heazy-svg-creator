@@ -7,6 +7,15 @@ export function downloadSVGAsText(svgRef) {
   a.dispatchEvent(e);
 }
 
+
+export function downloadSvgAsReact (svgRef) {
+  navigator.clipboard.writeText(svgRef.current.outerHTML);
+}
+
+export function downloadSvgAsReactTS (svgRef) {
+  navigator.clipboard.writeText(svgRef.current.outerHTML);
+}
+
 export function downloadSvgAsPng(svgRef) {
   const canvas = document.createElement('canvas');
 

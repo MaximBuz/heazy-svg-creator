@@ -1,3 +1,5 @@
+import { svgToJsx } from './regexHelpers';
+
 export function downloadSVGAsText(svgRef) {
   const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
   const a = document.createElement('a');
@@ -8,32 +10,35 @@ export function downloadSVGAsText(svgRef) {
 }
 
 export function downloadSvgAsReact(svgRef) {
-  navigator.clipboard.writeText(svgRef.current.outerHTML);
+  const svg = svgRef.current.outerHTML;
+  const snippet = `
+  export default function SvgDesign() {
+    return (
+      <>
+        ${svgToJsx(svg)}
+      </>
+    )
+  }
+  
+  `;
+  navigator.clipboard.writeText(snippet);
 }
 
-export function downloadSvgAsReactTS (svgRef) {
-  /* const svg = svgRef.current.outerHTML;
-  const [style] = svg.match(/ (style=")(.*)(") /g)
-  style.replace('style="', "")
+export function downloadSvgAsReactTS(svgRef) {
+  const svg = svgRef.current.outerHTML;
 
   const snippet = `
   const SvgDesign: React.FunctionComponent = () => {
     return (
       <>
-        ${svgRef.current.outerHTML
-          .replaceAll('stroke-width', 'strokeWidth')
-          .replaceAll('stroke-linecap', 'strokeLinecap')
-          .replaceAll('stroke-linejoin', 'strokeLinejoin')
-          .replaceAll('stroke-dasharray', 'strokeDasharray')
-          .replaceAll('xmlns:xlink', 'xmlnsXlink')
-        }
+        ${svgToJsx(svg)}
       </>
     );
   };
   
   export default SvgDesign;
   `;
-  navigator.clipboard.writeText(snippet); */
+  navigator.clipboard.writeText(snippet);
 }
 
 export function downloadSvgAsPng(svgRef) {

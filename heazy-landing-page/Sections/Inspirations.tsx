@@ -40,12 +40,12 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
       </Heading>
 
       {/* IMAGE WRAPPER */}
-      <Flex justifyContent="space-between" p="0 20%" width="100%" gap="20px" wrap="wrap">
+      <Flex justifyContent="space-between" padding={{base: "0 1em", md: "0 5%", lg: "0 20%"}} width="100%" gap="20px" wrap="wrap">
         {/* IMAGE ROW */}
-        <Flex height="43vh" width="100%" justifyContent="center" gap="20px">
+        <Flex direction={{base: "column", lg: "row"}} height={{base: "95vh",lg: "43vh"}} width="100%" justifyContent="center" gap="20px">
           <Box
             position="relative"
-            width="50%"
+            width={{base: "100%", lg: "50%"}}
             height="100%"
             transition="0.5s"
             rounded="sm"
@@ -65,7 +65,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
 
           <Box
             position="relative"
-            width="50%"
+            width={{base: "100%", lg: "50%"}}
             height="100%"
             transition="0.5s"
             rounded="sm"
@@ -84,10 +84,10 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
           </Box>
         </Flex>
 
-        <Flex height="75vh" width="100%" justifyContent="center" gap="20px">
+        <Flex direction={{base: "column", lg: "row"}} height={{base: "200vh",lg: "75vh"}} width="100%" justifyContent="center" gap="20px">
           <Box
             position="relative"
-            width="50%"
+            width={{base: "100%", lg: "50%"}}
             height="100%"
             transition="0.5s"
             rounded="sm"
@@ -104,11 +104,11 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
               alt="heazy-svg-generator-inspiration"
             ></Image>
           </Box>
-          <Flex gap="20px" direction="column" width="50%" height="100%">
+          <Flex gap="20px" direction="column" width={{base: "100%", lg: "50%"}} height="100%">
             <Box
               position="relative"
               width="100%"
-              height="50%"
+              height={{base: "40%", lg:"50%"}}
               transition="0.5s"
               rounded="sm"
               boxShadow="0 0px 35px -5px #152238"

@@ -30,7 +30,7 @@ import InitialAnimation from './components/InitialAnimation';
 
 function App() {
   /* --------- RANDOMNESS --------- */
-  const [seed, setSeed] = useState<number>(0);
+  const [seed, setSeed] = useState<number>(1);
 
   /* --------- ZOOMING --------- */
   const [zoom, setZoom] = useState<number>(1);

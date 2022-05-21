@@ -64,7 +64,7 @@ heazy.studio was created by using the following awesome tools:
 * [React.js](https://reactjs.org/)
 * [Chakra UI](https://chakra-ui.com/)
 
-Note: All path-algorithms were painstakingly coded by hand with vanilla TypeScript. They are still work in progress! Please do not expect perfection at this point :)
+Note: All path-algorithms were painstakingly coded by hand with vanilla TypeScript. They are still work in progress!
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>

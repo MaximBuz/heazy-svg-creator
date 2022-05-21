@@ -7,13 +7,33 @@ export function downloadSVGAsText(svgRef) {
   a.dispatchEvent(e);
 }
 
-
-export function downloadSvgAsReact (svgRef) {
+export function downloadSvgAsReact(svgRef) {
   navigator.clipboard.writeText(svgRef.current.outerHTML);
 }
 
 export function downloadSvgAsReactTS (svgRef) {
-  navigator.clipboard.writeText(svgRef.current.outerHTML);
+  /* const svg = svgRef.current.outerHTML;
+  const [style] = svg.match(/ (style=")(.*)(") /g)
+  style.replace('style="', "")
+
+  const snippet = `
+  const SvgDesign: React.FunctionComponent = () => {
+    return (
+      <>
+        ${svgRef.current.outerHTML
+          .replaceAll('stroke-width', 'strokeWidth')
+          .replaceAll('stroke-linecap', 'strokeLinecap')
+          .replaceAll('stroke-linejoin', 'strokeLinejoin')
+          .replaceAll('stroke-dasharray', 'strokeDasharray')
+          .replaceAll('xmlns:xlink', 'xmlnsXlink')
+        }
+      </>
+    );
+  };
+  
+  export default SvgDesign;
+  `;
+  navigator.clipboard.writeText(snippet); */
 }
 
 export function downloadSvgAsPng(svgRef) {

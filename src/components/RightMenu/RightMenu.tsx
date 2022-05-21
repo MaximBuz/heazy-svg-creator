@@ -24,13 +24,19 @@ import {
   PopoverHeader,
   PopoverTrigger,
   useToast,
+  Icon,
 } from '@chakra-ui/react';
 import { Drawer, DrawerBody, DrawerHeader, DrawerContent } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, CopyIcon, DownloadIcon } from '@chakra-ui/icons';
-import { downloadSvgAsPng, downloadSVGAsText, downloadSvgAsReact, downloadSvgAsReactTS } from '../../utils/downloadBlob';
+import {
+  downloadSvgAsPng,
+  downloadSVGAsText,
+  downloadSvgAsReact,
+  downloadSvgAsReactTS,
+} from '../../utils/downloadBlob';
 
 export interface IRightMenuProps {
   svgRef: Ref<SVGAElement | null>;
@@ -53,7 +59,6 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
   handleHeightChange,
   children,
 }) => {
-
   const toast = useToast();
 
   const {
@@ -146,32 +151,47 @@ const RightMenu: React.FunctionComponent<IRightMenuProps> = ({
             {/* @ts-ignore */}
             <PopoverTrigger>
               <IconButton
-                icon={<CopyIcon />}
-                // onClick={() => downloadSVGAsText(svgRef)}
+                icon={
+                  <Icon viewBox="0 0 24 24">
+                    <path
+                      fill="white"
+                      d="M6,6A2,2,0,0,1,8,4,1,1,0,0,0,8,2,4,4,0,0,0,4,6V9a2,2,0,0,1-2,2,1,1,0,0,0,0,2,2,2,0,0,1,2,2v3a4,4,0,0,0,4,4,1,1,0,0,0,0-2,2,2,0,0,1-2-2V15a4,4,0,0,0-1.38-3A4,4,0,0,0,6,9Zm16,5a2,2,0,0,1-2-2V6a4,4,0,0,0-4-4,1,1,0,0,0,0,2,2,2,0,0,1,2,2V9a4,4,0,0,0,1.38,3A4,4,0,0,0,18,15v3a2,2,0,0,1-2,2,1,1,0,0,0,0,2,4,4,0,0,0,4-4V15a2,2,0,0,1,2-2,1,1,0,0,0,0-2Z"
+                    />
+                  </Icon>
+                }
                 colorScheme="gray"
                 variant="outline"
                 aria-label="Download JavaScript Snippet"
               />
             </PopoverTrigger>
-            <PopoverContent _focus={{boxShadow: "none"}}>
+            <PopoverContent _focus={{ boxShadow: 'none' }}>
               <PopoverArrow />
               <PopoverCloseButton />
               <PopoverHeader>Copy Snippet to Clipboard</PopoverHeader>
               <PopoverBody>
                 <HStack justifyContent="space-between">
-                  <Button flex="0.5" onClick={() => {
-                    downloadSvgAsReact(svgRef);
-                    toast({title: "Copied to clipboard!", status: "success", isClosable: true})
-                  }} colorScheme="gray" variant="outline">
+                  <Button
+                    flex="0.5"
+                    onClick={() => {
+                      downloadSvgAsReact(svgRef);
+                      toast({ title: 'Copied to clipboard!', status: 'success', isClosable: true });
+                    }}
+                    colorScheme="gray"
+                    variant="outline"
+                  >
                     React
                   </Button>
-                  <Button flex="1" onClick={() => {
-                    downloadSvgAsReactTS(svgRef);
-                    toast({title: "Copied to clipboard!", status: "success", isClosable: true})
-                  }} colorScheme="gray" variant="outline">
+                  <Button
+                    flex="1"
+                    onClick={() => {
+                      downloadSvgAsReactTS(svgRef);
+                      toast({ title: 'Copied to clipboard!', status: 'success', isClosable: true });
+                    }}
+                    colorScheme="gray"
+                    variant="outline"
+                  >
                     React TypeScript
                   </Button>
-
                 </HStack>
               </PopoverBody>
             </PopoverContent>

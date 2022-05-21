@@ -1,3 +1,4 @@
+import { Box, Container } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Call2Action from '../Sections/Call2Action';
@@ -16,18 +17,16 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <div
+        <Box
+          width="100%"
           className="gradient-bg"
-          style={{
-            padding: '0 10em',
-            backgroundPosition: 'top',
-            backgroundImage:
-              'linear-gradient(0,rgb(18, 20, 28,0) 7%,rgb(18, 20, 28, 0) 20%),radial-gradient(circle farthest-side at -170% 170%,#1A202C 48%,rgb(18, 20, 28,0) 65%),radial-gradient(circle farthest-corner at -55% -125%,rgb(18, 20, 28,0) 50%,rgb(18, 20, 28) 70%,rgb(18, 20, 28,0) 72%),radial-gradient(circle farthest-corner at 0 -50%,rgb(18, 20, 28) 32%,hsla(0,0%,100%,0) 62%),radial-gradient(circle farthest-side at 0 -25%,#007252 50%,rgb(18, 20, 28,0) 72%),radial-gradient(circle farthest-corner at 50% -100%,#05f 26%,rgb(18, 20, 28,0) 72%);',
-          }}
+          padding={{base: "0 1.5em",lg:"0 10em"}}
+          bgPos="top"
+          bgImage="linear-gradient(0,rgb(18, 20, 28,0) 7%,rgb(18, 20, 28, 0) 20%),radial-gradient(circle farthest-side at -170% 170%,#1A202C 48%,rgb(18, 20, 28,0) 65%),radial-gradient(circle farthest-corner at -55% -125%,rgb(18, 20, 28,0) 50%,rgb(18, 20, 28) 70%,rgb(18, 20, 28,0) 72%),radial-gradient(circle farthest-corner at 0 -50%,rgb(18, 20, 28) 32%,hsla(0,0%,100%,0) 62%),radial-gradient(circle farthest-side at 0 -25%,#007252 50%,rgb(18, 20, 28,0) 72%),radial-gradient(circle farthest-corner at 50% -100%,#05f 26%,rgb(18, 20, 28,0) 72%);"
         >
           {/*-------- HERO SECTION --------*/}
           <Hero />
-        </div>
+        </Box>
 
         {/*-------- FEATURES SECTION --------*/}
         <Features />

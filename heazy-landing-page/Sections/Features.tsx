@@ -17,6 +17,7 @@ const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
       direction="column"
       width="100%"
       minHeight="110vh"
+      mb={{base: "10em", lg: "0"}}
       justifyContent="flex-start"
       alignItems="center"
       textAlign="center"

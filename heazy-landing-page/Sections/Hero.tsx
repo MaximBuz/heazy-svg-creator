@@ -13,7 +13,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
       {/* HERO TITLE */}
       <Flex gap={50} direction="column" justifyContent="center" alignItems="center">
         <Flex
-          height="75vh"
+          minHeight="75vh"
           direction="column"
           textAlign="center"
           justifyContent="center"
@@ -48,7 +48,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             <Text opacity={0.5}>Free for ever. No signup required.</Text>
           </Flex>
         </Flex>
-        <Flex height="100vh" justifyContent="center" alignItems="flex-start">
+        <Flex height={{base: "50vh",lg:"100vh"}} justifyContent="center" alignItems="flex-start">
           <video
             playsInline
             autoPlay

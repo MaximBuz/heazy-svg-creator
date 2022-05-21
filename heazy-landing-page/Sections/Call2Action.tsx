@@ -1,7 +1,5 @@
-import { Flex, HStack, Divider, Heading, Text, Container, Button } from '@chakra-ui/react';
+import { Flex, Heading, Text, Button } from '@chakra-ui/react';
 import React from 'react';
-import OverviewBG from '../public/overview-bg.png';
-import SectionDivider from '../Components/SectionDivider';
 
 export interface ICall2ActionProps {}
 

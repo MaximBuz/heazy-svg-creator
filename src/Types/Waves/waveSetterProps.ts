@@ -1,5 +1,5 @@
-import { IShadowDispatcher } from './shadowProps';
-import { IColorDispatcher } from './colorProps';
+import { IShadowDispatcher } from '../Marker/shadowProps';
+import { IColorDispatcher } from '../colorProps';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IWaveVariantsSetterProps {

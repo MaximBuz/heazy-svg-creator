@@ -9,8 +9,8 @@ import {
 } from '@chakra-ui/react';
 
 // Icons
-import { ICornerPositionProps } from '../../../Types/cornerProps';
-import { ICornerPositionSetterProps } from '../../../Types/cornerSetterProps';
+import { ICornerPositionProps } from '../../../Types/Corners/cornerProps';
+import { ICornerPositionSetterProps } from '../../../Types/Corners/cornerSetterProps';
 
 export default function Position({
   topLeftCorner,

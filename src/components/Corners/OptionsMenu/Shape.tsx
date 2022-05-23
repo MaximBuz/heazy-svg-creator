@@ -21,8 +21,8 @@ import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
-import { ICornerShapeProps } from '../../../Types/cornerProps';
-import { ICornerShapeSetterProps } from '../../../Types/cornerSetterProps';
+import { ICornerShapeProps } from '../../../Types/Corners/cornerProps';
+import { ICornerShapeSetterProps } from '../../../Types/Corners/cornerSetterProps';
 import Smooth from './Icons/Smooth';
 import Edgy from './Icons/Edgy';
 

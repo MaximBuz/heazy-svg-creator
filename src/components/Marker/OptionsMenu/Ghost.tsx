@@ -18,8 +18,8 @@ import {
 import React from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import { IMarkerGhostProps } from '../../../Types/markerProps';
-import { IMarkerGhostSetterProps } from '../../../Types/markerSetterProps';
+import { IMarkerGhostProps } from '../../../Types/Marker/markerProps';
+import { IMarkerGhostSetterProps } from '../../../Types/Marker/markerSetterProps';
 import HideColorButton from '../../OptionsMenu/HideColorButton';
 import GhostLeft from './Icons/GhostLeft';
 import GhostRight from './Icons/GhostRight';

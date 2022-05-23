@@ -1,5 +1,5 @@
 import { IShadow } from './shadowProps';
-import { IColors } from './colorProps';
+import { IColors } from '../colorProps';
 
 export interface IMarkerProps {
   svgRef: any;

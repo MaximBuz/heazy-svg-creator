@@ -11,8 +11,8 @@ import Shape from './Shape';
 import Variants from './Variants';
 
 // Types
-import { IWaveAllSetterProps } from '../../../Types/waveSetterProps';
-import { IWaveAllProps } from '../../../Types/waveProps';
+import { IWaveAllSetterProps } from '../../../Types/Waves/waveSetterProps';
+import { IWaveAllProps } from '../../../Types/Waves/waveProps';
 
 const WaveOptions: React.FunctionComponent<IWaveAllSetterProps & IWaveAllProps> = (props) => {
   return (

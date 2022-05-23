@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
-import { IColorDispatcher } from './colorProps';
-import { IShadowDispatcher } from './shadowProps';
+import { IColorDispatcher } from '../colorProps';
+import { IShadowDispatcher } from '../Marker/shadowProps';
 
 export interface ICornerVariantsSetterProps {
   setSolid: Dispatch<SetStateAction<number>>;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { IBubbleProps } from '../../../Types/bubbleProps';
-import { IBubbleSetterProps } from '../../../Types/bubbleSetterProps';
+import { IBubbleProps } from '../../../Types/Bubble/bubbleProps';
+import { IBubbleSetterProps } from '../../../Types/Bubble/bubbleSetterProps';
 
 const useBubbleOptions = (): {
   get: Omit<IBubbleProps, 'seed' | 'width' | 'height' | 'svgRef'>;

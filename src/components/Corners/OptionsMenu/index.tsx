@@ -11,8 +11,8 @@ import ShadowOptions from '../../OptionsMenu/ShadowOptions';
 import ColorOptions from '../../OptionsMenu/ColorOptions';
 
 // Types
-import { ICornerAllSetterProps } from '../../../Types/cornerSetterProps';
-import { ICornerAllProps } from '../../../Types/cornerProps';
+import { ICornerAllSetterProps } from '../../../Types/Corners/cornerSetterProps';
+import { ICornerAllProps } from '../../../Types/Corners/cornerProps';
 import Position from './Position';
 
 const CornerOptions: React.FunctionComponent<ICornerAllSetterProps & ICornerAllProps> = (props) => {

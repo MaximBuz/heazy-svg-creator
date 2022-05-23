@@ -1,10 +1,10 @@
 import React, { useId } from 'react';
 import { bubblePath } from '../../../Utilities/Algorithms/Bubble/bubblePath';
 import { generateRandomNumber } from '../../../Utilities/Helpers/randomNumber';
-import { IBubbleProps } from './Types/bubbleProps';
+import { IBubbleAllProps, IBubbleProps } from './Types/bubbleProps';
 import SvgCanvas from '../Canvas/SvgCanvas';
 
-const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
+const Bubble: React.FunctionComponent<IBubbleProps & IBubbleAllProps> = (props) => {
 
   // destructure some params
   const { width, height, svgRef, seed } = props;

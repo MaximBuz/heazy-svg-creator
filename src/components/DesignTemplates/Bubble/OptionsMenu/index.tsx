@@ -8,16 +8,13 @@ import { Divider } from '@chakra-ui/react';
 import Variants from './Variants';
 
 // Types
-import { IBubbleProps } from '../Types/bubbleProps';
-import { IBubbleSetterProps } from '../Types/bubbleSetterProps';
+import { IBubbleAllProps } from '../Types/bubbleProps';
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
+import { IBubbleAllSetterProps } from '../Types/bubbleSetterProps';
 
-const BubbleOptions: React.FunctionComponent<
-  Omit<IBubbleSetterProps, 'seed' | 'width' | 'height' | 'svgRef'> &
-    Omit<IBubbleProps, 'seed' | 'width' | 'height' | 'svgRef'>
-> = (props) => {
+const BubbleOptions: React.FunctionComponent<IBubbleAllProps & IBubbleAllSetterProps> = (props) => {
   return (
     <>
       <Variants {...props}></Variants>

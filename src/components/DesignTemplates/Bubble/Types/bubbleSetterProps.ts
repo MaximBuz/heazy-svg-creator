@@ -1,15 +1,20 @@
 import { Dispatch, SetStateAction } from 'react';
+import { IColorDispatcher } from '../../../OptionsMenu/ColorOptions/Types/colorProps';
+import { IShadowDispatcher } from '../../../OptionsMenu/ShadowOptions/Types/shadowProps';
 
-export interface IBubbleSetterProps {
-  setSize: Dispatch<SetStateAction<number>>;
+export interface IBubbleVariantsSetterProps {
   setSolid: Dispatch<SetStateAction<number>>;
-  setBgColor: Dispatch<SetStateAction<string>>;
-  setStartColor: Dispatch<SetStateAction<string>>;
-  setEndColor: Dispatch<SetStateAction<string>>;
-  setShadowX: Dispatch<SetStateAction<number>>;
-  setShadowY: Dispatch<SetStateAction<number>>;
-  setShadowSD: Dispatch<SetStateAction<number>>;
-  setShadowColor: Dispatch<SetStateAction<string>>;
-  setVelocity: Dispatch<SetStateAction<number>>;
   setStrokeWidth: Dispatch<SetStateAction<number>>;
 }
+
+export interface IBubbleShapeSetterProps {
+  setVelocity: Dispatch<SetStateAction<number>>;
+  setSize: Dispatch<SetStateAction<number>>;
+}
+
+
+export type IBubbleAllSetterProps =
+  IBubbleShapeSetterProps &
+  IBubbleVariantsSetterProps &
+  IColorDispatcher &
+  IShadowDispatcher;

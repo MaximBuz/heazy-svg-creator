@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { IBubbleProps } from '../Types/bubbleProps';
-import { IBubbleSetterProps } from '../Types/bubbleSetterProps';
+import { IBubbleAllProps } from '../Types/bubbleProps';
+import { IBubbleAllSetterProps } from '../Types/bubbleSetterProps';
 
 const useBubbleOptions = (): {
-  get: Omit<IBubbleProps, 'seed' | 'width' | 'height' | 'svgRef'>;
-  set: IBubbleSetterProps;
+  get: IBubbleAllProps
+  set: IBubbleAllSetterProps;
 } => {
   const [solid, setSolid] = useState<number>(0);
   const [size, setSize] = useState<number>(150);

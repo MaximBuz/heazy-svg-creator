@@ -14,8 +14,8 @@ import {
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import { ICornerColorProps } from '../../../utils/types/cornerProps';
-import { ICornerColorSetterProps } from '../../../utils/types/cornerSetterProps';
+import { ICornerColorProps } from '../../../Types/cornerProps';
+import { ICornerColorSetterProps } from '../../../Types/cornerSetterProps';
 import HideColorButton from '../HideColorButton';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;

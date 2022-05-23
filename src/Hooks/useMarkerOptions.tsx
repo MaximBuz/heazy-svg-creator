@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { IMarkerAllProps } from '../types/markerProps';
-import { IMarkerAllSetterProps } from '../types/markerSetterProps';
+import { IMarkerAllProps } from '../Types/markerProps';
+import { IMarkerAllSetterProps } from '../Types/markerSetterProps';
 
 const useMarkerOptions = (): {
   get: IMarkerAllProps;

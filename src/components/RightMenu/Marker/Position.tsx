@@ -11,8 +11,8 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
-import { IMarkerPositionProps } from '../../../utils/types/markerProps';
-import { IMarkerPositionSetterProps } from '../../../utils/types/markerSetterProps';
+import { IMarkerPositionProps } from '../../../Types/markerProps';
+import { IMarkerPositionSetterProps } from '../../../Types/markerSetterProps';
 import PaddingLeft from './Icons/PaddingLeft';
 import PaddingRight from './Icons/PaddingRight';
 import YPosLeft from './Icons/YPosLeft';

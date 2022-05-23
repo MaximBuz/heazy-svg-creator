@@ -1,5 +1,5 @@
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber as rndm } from '../randomNumber';
+import { generateRandomNumber as rndm } from '../../Helpers/randomNumber';
 import { getCoordinates as getInitialCoords } from './cornerWaveSectionDivider';
 import { getBezier } from '../pathSmoothener';
 

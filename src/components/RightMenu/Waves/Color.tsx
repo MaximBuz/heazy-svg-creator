@@ -14,8 +14,8 @@ import {
 import React from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import { IWaveColorProps } from '../../../utils/types/waveProps';
-import { IWaveColorSetterProps } from '../../../utils/types/waveSetterProps';
+import { IWaveColorProps } from '../../../Types/waveProps';
+import { IWaveColorSetterProps } from '../../../Types/waveSetterProps';
 import HideColorButton from '../HideColorButton';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;

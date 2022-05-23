@@ -1,18 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
 // Design
-import { Flex, Stack, Image, Heading, Icon } from '@chakra-ui/react';
+import { Flex, Stack, Image, Heading } from '@chakra-ui/react';
 import stackedWave from '../Thumbnails/stackedWaves.svg';
 import smoothStage from '../Thumbnails/smoothStage.svg';
 import marker from '../Thumbnails/marker.svg';
 import bubble from '../Thumbnails/bubble.svg';
-import Logo from '../Logo.svg';
-import { UilLinkedin } from '@iconscout/react-unicons';
+import Logo from '../Assets/Logo.svg';
 import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
-import { IDesignModes } from '../utils/types/designModes';
+import { IDesignModes } from '../Types/designModes';
 
 export interface ILeftMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;

@@ -1,32 +1,24 @@
 import { useState } from 'react';
-import { ICornerAllProps } from '../types/cornerProps';
-import { ICornerAllSetterProps } from '../types/cornerSetterProps';
+import { IWaveAllProps } from '../Types/waveProps';
+import { IWaveAllSetterProps } from '../Types/waveSetterProps';
 
-const useCornerOptions = (): {
-  get: ICornerAllProps;
-  set: ICornerAllSetterProps;
+const useWaveOptions = (): {
+  get: IWaveAllProps;
+  set: IWaveAllSetterProps;
 } => {
   const [solid, setSolid] = useState<number>(0);
-
-  const [topLeftCorner, setTopLeftCorner] = useState<boolean>(true);
-  const [topRightCorner, setTopRightCorner] = useState<boolean>(false);
-  const [bottomLeftCorner, setBottomLeftCorner] = useState<boolean>(false);
-  const [bottomRightCorner, setBottomRightCorner] = useState<boolean>(true);
-  const [mirror, setMirror] = useState<boolean>(false);
-
-  const [bgColor, setBgColor] = useState<string>('#ff0071ff');
-  const [startColor, setStartColor] = useState<string>('#95ffda');
-  const [endColor, setEndColor] = useState<string>('#95ffa1ff');
-
+  const [bgColor, setBgColor] = useState<string>('#002438');
+  const [startColor, setStartColor] = useState<string>('#ff0005ff');
+  const [endColor, setEndColor] = useState<string>('#ff0092ff');
   const [shadowX, setShadowX] = useState<number>(0);
   const [shadowY, setShadowY] = useState<number>(0);
   const [shadowSD, setShadowSD] = useState<number>(10);
   const [shadowColor, setShadowColor] = useState<string>('#00000061');
 
-  const [balance, setBalance] = useState<number>(0.3);
+  const [balance, setBalance] = useState<number>(0.5);
   const [velocity, setVelocity] = useState<number>(1);
   const [breaks, setBreaks] = useState<number>(4);
-  const [stacks, setStacks] = useState<number>(0);
+  const [stacks, setStacks] = useState<number>(2);
   const [distance, setDistance] = useState<number>(100);
   const [strokeShrink, setStrokeShrink] = useState<boolean>(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(1);
@@ -34,52 +26,34 @@ const useCornerOptions = (): {
 
   return {
     get: {
-      solid,
-
-      topLeftCorner,
-      topRightCorner,
-      bottomLeftCorner,
-      bottomRightCorner,
-      mirror,
-
+      smooth,
       bgColor,
       startColor,
       endColor,
-
       shadowX,
       shadowY,
       shadowSD,
       shadowColor,
-
       balance,
       velocity,
       breaks,
       stacks,
       distance,
       stroke: solid ? true : false,
+      solid,
       strokeShrink,
       strokeWidth,
-      smooth
     },
     set: {
       setSolid,
       setSmooth,
-
-      setTopLeftCorner,
-      setTopRightCorner,
-      setBottomLeftCorner,
-      setBottomRightCorner,
-      setMirror,
-
       setBgColor,
       setStartColor,
       setEndColor,
-
       setShadowX,
       setShadowY,
       setShadowSD,
       setShadowColor,
-      
       setBalance,
       setVelocity,
       setBreaks,
@@ -91,4 +65,4 @@ const useCornerOptions = (): {
   };
 };
 
-export default useCornerOptions;
+export default useWaveOptions;

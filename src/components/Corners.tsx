@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
-import { ICornerAllProps, ICornerProps } from '../utils/types/cornerProps';
-import { smoothCornerPath } from '../utils/calculations/corner-paths/smoothCornerPath';
+import { ICornerAllProps, ICornerProps } from '../Types/cornerProps';
+import { smoothCornerPath } from '../Utilities/Algorithms/Corners/smoothCornerPath';
 import CornerSvgGroup from './CornerSvgGroup';
 import SvgCanvas from './SvgCanvas';
 

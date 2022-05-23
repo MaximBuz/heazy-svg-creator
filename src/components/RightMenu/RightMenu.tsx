@@ -36,7 +36,7 @@ import {
   downloadSVGAsText,
   downloadSvgAsReact,
   downloadSvgAsReactTS,
-} from '../../utils/downloadBlob';
+} from '../../Utilities/Helpers/downloadBlob';
 
 export interface IRightMenuProps {
   svgRef: Ref<SVGAElement | null>;

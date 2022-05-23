@@ -2,31 +2,31 @@
 import { useCallback, useRef, useState } from 'react';
 
 // Components
-import Bubble from './components/Bubble';
-import LeftMenu from './components/LeftMenu';
-import RightMenu from './components/RightMenu/RightMenu';
-import StackedWave from './components/Waves';
-import Corners from './components/Corners';
+import Bubble from './Components/Bubble';
+import LeftMenu from './Components/LeftMenu';
+import RightMenu from './Components/RightMenu/RightMenu';
+import StackedWave from './Components/Waves';
+import Corners from './Components/Corners';
 
 // Design
 import { Flex, Container } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from './utils/types/designModes';
+import { IDesignModes } from './Types/designModes';
 
 // Components
-import WaveOptions from './components/RightMenu/Waves/WaveOptions';
-import useWaveOptions from './utils/customHooks/useWaveOptions';
-import useBubbleOptions from './utils/customHooks/useBubbleOptions';
-import BubbleOptions from './components/RightMenu/Bubble/BubbleOptions';
-import useCornerOptions from './utils/customHooks/useCornerOptions';
-import CornerOptions from './components/RightMenu/Corners/CornerOptions';
-import Marker from './components/Marker';
-import useMarkerOptions from './utils/customHooks/useMarkerOptions';
-import MarkerOptions from './components/RightMenu/Marker/MarkerOptions';
-import useCanvasDimensions from './utils/customHooks/useCanvasDimensions';
-import CanvasControls from './components/CanvasControls';
-import InitialAnimation from './components/InitialAnimation';
+import WaveOptions from './Components/RightMenu/Waves/WaveOptions';
+import useWaveOptions from './Hooks/useWaveOptions';
+import useBubbleOptions from './Hooks/useBubbleOptions';
+import BubbleOptions from './Components/RightMenu/Bubble/BubbleOptions';
+import useCornerOptions from './Hooks/useCornerOptions';
+import CornerOptions from './Components/RightMenu/Corners/CornerOptions';
+import Marker from './Components/Marker';
+import useMarkerOptions from './Hooks/useMarkerOptions';
+import MarkerOptions from './Components/RightMenu/Marker/MarkerOptions';
+import useCanvasDimensions from './Hooks/useCanvasDimensions';
+import CanvasControls from './Components/CanvasControls';
+import InitialAnimation from './Components/InitialAnimation';
 
 function App() {
   /* --------- RANDOMNESS --------- */

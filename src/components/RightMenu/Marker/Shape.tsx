@@ -13,8 +13,8 @@ import {
 import React from 'react';
 import SliderIconWrapper from '../SliderIconWrapper';
 
-import { IMarkerShapeProps } from '../../../utils/types/markerProps';
-import { IMarkerShapeSetterProps } from '../../../utils/types/markerSetterProps';
+import { IMarkerShapeProps } from '../../../Types/markerProps';
+import { IMarkerShapeSetterProps } from '../../../Types/markerSetterProps';
 import ThickLeft from './Icons/ThickLeft';
 import ThickRight from './Icons/ThickRight';
 import HeightLeft from './Icons/HeightLeft';

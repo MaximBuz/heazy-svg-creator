@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
-import { markerPath } from '../utils/calculations/marker-paths/markerPath';
-import { IMarkerAllProps, IMarkerProps } from '../utils/types/markerProps';
+import { markerPath } from '../Utilities/Algorithms/Marker/markerPath';
+import { IMarkerAllProps, IMarkerProps } from '../Types/markerProps';
 import SvgCanvas from './SvgCanvas';
 
 const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = (props) => {

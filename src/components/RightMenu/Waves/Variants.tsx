@@ -20,8 +20,8 @@ import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import { IWaveVariantsProps } from '../../../utils/types/waveProps';
-import { IWaveVariantsSetterProps } from '../../../utils/types/waveSetterProps';
+import { IWaveVariantsProps } from '../../../Types/waveProps';
+import { IWaveVariantsSetterProps } from '../../../Types/waveSetterProps';
 
 export default function Variants({
   setSolid,

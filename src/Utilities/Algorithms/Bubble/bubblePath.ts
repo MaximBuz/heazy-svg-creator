@@ -1,5 +1,5 @@
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber as random } from '../randomNumber';
+import { generateRandomNumber as random } from '../../Helpers/randomNumber';
 
 export function bubblePath(seed: number, width: number, height: number, velocity: number, size: number) {
   // calculate center point

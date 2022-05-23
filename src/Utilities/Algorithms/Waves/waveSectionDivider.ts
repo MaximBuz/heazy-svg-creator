@@ -1,4 +1,4 @@
-import { zip } from '../../zipArray';
+import { zip } from '../../Helpers/zipArray';
 
 export function getCoordinates (sections: number, width: number, waveSize: number): [number, number][] {
   const equal = width / sections;

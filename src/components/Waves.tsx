@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
-import { smoothWavePath } from '../utils/calculations/wave-paths/smoothWavePath';
-import { IWaveAllProps, IWaveProps } from '../utils/types/waveProps';
+import { smoothWavePath } from '../Utilities/Algorithms/Waves/smoothWavePath';
+import { IWaveAllProps, IWaveProps } from '../Types/waveProps';
 import SvgCanvas from './SvgCanvas';
 
 const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {

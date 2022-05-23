@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
-import LogoAnimation from '../LogoAnimation.json';
+import LogoAnimation from '../Assets/LogoAnimation.json';
 
 function InitialAnimation() {
   const [isRunning, setIsRunning] = useState<boolean>(true);

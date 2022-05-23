@@ -8,8 +8,8 @@ import { Divider } from '@chakra-ui/react';
 import Shape from './Shape';
 import Color from './Color';
 import Shadow from './Shadow';
-import { IMarkerAllSetterProps } from '../../../utils/types/markerSetterProps';
-import { IMarkerAllProps } from '../../../utils/types/markerProps';
+import { IMarkerAllSetterProps } from '../../../Types/markerSetterProps';
+import { IMarkerAllProps } from '../../../Types/markerProps';
 import Position from './Position';
 import Ghost from './Ghost';
 

@@ -14,8 +14,8 @@ import {
 import React from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import { IMarkerColorProps } from '../../../utils/types/markerProps';
-import { IMarkerColorSetterProps } from '../../../utils/types/markerSetterProps';
+import { IMarkerColorProps } from '../../../Types/markerProps';
+import { IMarkerColorSetterProps } from '../../../Types/markerSetterProps';
 import HideColorButton from '../HideColorButton';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;

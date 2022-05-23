@@ -8,8 +8,8 @@ import { Divider } from '@chakra-ui/react';
 import Variants from './Variants';
 
 // Types
-import { IBubbleProps } from '../../../utils/types/bubbleProps';
-import { IBubbleSetterProps } from '../../../utils/types/bubbleSetterProps';
+import { IBubbleProps } from '../../../Types/bubbleProps';
+import { IBubbleSetterProps } from '../../../Types/bubbleSetterProps';
 import Shape from './Shape';
 import Color from './Color';
 import Shadow from './Shadow';

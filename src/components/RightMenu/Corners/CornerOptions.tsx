@@ -10,8 +10,8 @@ import Shape from './Shape';
 import Color from './Color';
 
 // Types
-import { ICornerAllSetterProps } from '../../../utils/types/cornerSetterProps';
-import { ICornerAllProps } from '../../../utils/types/cornerProps';
+import { ICornerAllSetterProps } from '../../../Types/cornerSetterProps';
+import { ICornerAllProps } from '../../../Types/cornerProps';
 import Shadow from './Shadow';
 import Position from './Position';
 

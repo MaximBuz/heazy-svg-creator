@@ -27,8 +27,8 @@ import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
 import Edgy from './Icons/Edgy';
 import Smooth from './Icons/Smooth';
-import { ICornerPositionProps } from '../../../utils/types/cornerProps';
-import { ICornerPositionSetterProps } from '../../../utils/types/cornerSetterProps';
+import { ICornerPositionProps } from '../../../Types/cornerProps';
+import { ICornerPositionSetterProps } from '../../../Types/cornerSetterProps';
 
 export default function Position({
   topLeftCorner,

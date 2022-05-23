@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { markerPath } from '../utils/calculations/marker-paths/markerPath';
 import { IMarkerAllProps, IMarkerProps } from '../utils/types/markerProps';
 import SvgCanvas from './SvgCanvas';
@@ -16,7 +16,7 @@ const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = (props) 
 
   // Generate path
   const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);
-  const randomClassId = Math.round(Math.random() * 100);
+  const randomClassId = useId();
   return (
     <SvgCanvas width={width} height={ height} svgRef={svgRef} >
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>

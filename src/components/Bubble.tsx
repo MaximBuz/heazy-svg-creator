@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { bubblePath } from '../utils/calculations/bubble-paths/bubblePath';
 import { generateRandomNumber } from '../utils/calculations/randomNumber';
 import { IBubbleProps } from '../utils/types/bubbleProps';
@@ -16,7 +16,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
   // generate path
   const pathData = bubblePath(seed, width, height, velocity, size);
 
-  const randomClassId = Math.round(Math.random() * 100);
+  const randomClassId = useId()
   return (
     <SvgCanvas width={width} height={height} svgRef={svgRef}>
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { ICornerAllProps, ICornerProps } from '../utils/types/cornerProps';
 import { smoothCornerPath } from '../utils/calculations/corner-paths/smoothCornerPath';
 import CornerSvgGroup from './CornerSvgGroup';
@@ -25,7 +25,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props)
     stroke: props.stroke,
     strokeWidth: props.strokeWidth,
     strokeShrink: props.strokeShrink,
-    classId: Math.round(Math.random() * 100),
+    classId: useId(),
     startColor: props.startColor,
     endColor: props.endColor,
     shadowX: props.shadowX,

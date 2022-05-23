@@ -4,7 +4,7 @@ export interface ICornerSvgGroup {
   stroke: boolean;
   strokeWidth: number;
   strokeShrink: boolean;
-  classId: number;
+  classId: string;
   startColor: string;
   endColor: string;
   shadowX: number;

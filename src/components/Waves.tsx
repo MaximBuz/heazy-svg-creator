@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { smoothWavePath } from '../utils/calculations/wave-paths/smoothWavePath';
 import { IWaveAllProps, IWaveProps } from '../utils/types/waveProps';
 import SvgCanvas from './SvgCanvas';
@@ -27,7 +27,7 @@ const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
   // generate paths
   let wavesData = smoothWavePath(...pathParams);
 
-  const randomClassId = Math.round(Math.random() * 100);
+  const randomClassId = useId();
 
   return (
     <SvgCanvas width={width} height={height} svgRef={svgRef}>

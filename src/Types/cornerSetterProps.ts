@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
+import { IColorDispatcher } from './colorProps';
+import { IShadowDispatcher } from './shadowProps';
 
 export interface ICornerVariantsSetterProps {
   setSolid: Dispatch<SetStateAction<number>>;
@@ -23,22 +25,9 @@ export interface ICornerShapeSetterProps {
   setSmooth: Dispatch<SetStateAction<number>>;
 }
 
-export interface ICornerColorSetterProps {
-  setStartColor: Dispatch<SetStateAction<string>>;
-  setEndColor: Dispatch<SetStateAction<string>>;
-  setBgColor: Dispatch<SetStateAction<string>>;
-}
-
-export interface ICornerShadowSetterProps {
-  setShadowX: Dispatch<SetStateAction<number>>;
-  setShadowY: Dispatch<SetStateAction<number>>;
-  setShadowSD: Dispatch<SetStateAction<number>>;
-  setShadowColor: Dispatch<SetStateAction<string>>;
-}
-
 export type ICornerAllSetterProps =
   ICornerShapeSetterProps &
   ICornerVariantsSetterProps &
   ICornerPositionSetterProps &
-  ICornerColorSetterProps &
-  ICornerShadowSetterProps;
+  IColorDispatcher &
+  IShadowDispatcher;

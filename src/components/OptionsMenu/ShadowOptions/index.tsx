@@ -1,3 +1,7 @@
+// React
+import React from 'react';
+
+// Styles
 import {
   Heading,
   Slider,
@@ -15,34 +19,21 @@ import {
   PopoverArrow,
   PopoverBody,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+
+// Components
+import HideColorButton from '../HideColorButton';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import HideColorButton from '../HideColorButton';
 
-export interface IShadowOptionsProps {
-  shadowX: number;
-  setShadowX: Dispatch<SetStateAction<number>>;
-  shadowY: number;
-  setShadowY: Dispatch<SetStateAction<number>>;
-  shadowSD: number;
-  setShadowSD: Dispatch<SetStateAction<number>>;
-  shadowColor: string;
-  setShadowColor: Dispatch<SetStateAction<string>>;
-}
+// Types
+import { IShadow, IShadowDispatcher } from '../../../Types/shadowProps';
 
-const PopoverTrigger: React.FC<{ children: React.ReactNode; }> = OrigPopoverTrigger;
+const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-const ShadowOptions: React.FunctionComponent<IShadowOptionsProps> = ({
-  shadowX,
-  setShadowX,
-  shadowSD,
-  setShadowSD,
-  shadowColor,
-  setShadowColor,
-  shadowY,
-  setShadowY,
-}) => {
+const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (props) => {
+  const { setShadowX, setShadowSD, setShadowColor, setShadowY } = props;
+  const { shadowX, shadowSD, shadowColor, shadowY } = props;
+
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">

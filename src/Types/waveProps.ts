@@ -1,3 +1,6 @@
+import { IColors } from './colorProps';
+import { IShadow } from './shadowProps';
+
 export interface IWaveProps {
   svgRef: any;
   seed: number;
@@ -21,21 +24,8 @@ export interface IWaveShapeProps {
   smooth: number
 }
 
-export interface IWaveColorProps {
-  startColor: string;
-  endColor: string;
-  bgColor: string;
-}
-
-export interface IWaveShadowProps {
-  shadowX: number;
-  shadowY: number;
-  shadowSD: number;
-  shadowColor: string;
-}
-
 export type IWaveAllProps =
   IWaveShapeProps &
   IWaveVariantsProps &
-  IWaveColorProps &
-  IWaveShadowProps;
+  IColors &
+  IShadow;

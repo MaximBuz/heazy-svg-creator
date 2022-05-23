@@ -1,3 +1,6 @@
+import { IShadow } from './shadowProps';
+import { IColors } from './colorProps';
+
 export interface IMarkerProps {
   svgRef: any;
   seed: number;
@@ -27,17 +30,5 @@ export interface IMarkerGhostProps {
   ghostEndColor: string;
 }
 
-export interface IMarkerColorProps {
-  startColor: string;
-  endColor: string;
-  bgColor: string;
-}
 
-export interface IMarkerShadowProps {
-  shadowX: number;
-  shadowY: number;
-  shadowSD: number;
-  shadowColor: string;
-}
-
-export type IMarkerAllProps = IMarkerShapeProps & IMarkerPositionProps & IMarkerGhostProps & IMarkerColorProps & IMarkerShadowProps;
+export type IMarkerAllProps = IMarkerShapeProps & IMarkerPositionProps & IMarkerGhostProps & IColors & IShadow;

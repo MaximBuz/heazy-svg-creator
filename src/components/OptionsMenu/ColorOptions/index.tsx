@@ -1,3 +1,7 @@
+// React
+import React from 'react';
+
+// Styles
 import {
   Heading,
   HStack,
@@ -11,30 +15,21 @@ import {
   PopoverArrow,
   PopoverBody,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+
+// Components
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
 import HideColorButton from '../../OptionsMenu/HideColorButton';
 
+// Types
+import { IColorDispatcher, IColors } from '../../../Types/colorProps';
+
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-export interface IColorOptionsProps {
-  setBgColor: Dispatch<SetStateAction<string>>;
-  bgColor: string;
-  setStartColor: Dispatch<SetStateAction<string>>;
-  startColor: string;
-  setEndColor: Dispatch<SetStateAction<string>>;
-  endColor: string;
-}
+const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props) => {
+  const { setBgColor, setStartColor, setEndColor } = props;
+  const { bgColor, startColor, endColor } = props;
 
-const ColorOptions: React.FunctionComponent<IColorOptionsProps> = ({
-  setBgColor,
-  bgColor,
-  setStartColor,
-  startColor,
-  setEndColor,
-  endColor,
-}) => {
   return (
     <>
       {/* -------------- COLOR -------------- */}

@@ -1,3 +1,5 @@
+import { IShadowDispatcher } from './shadowProps';
+import { IColorDispatcher } from './colorProps';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IMarkerShapeSetterProps {
@@ -22,21 +24,9 @@ export interface IMarkerGhostSetterProps {
   setGhostEndColor: Dispatch<SetStateAction<string>>;
 }
 
-export interface IMarkerColorSetterProps {
-  setStartColor: Dispatch<SetStateAction<string>>;
-  setEndColor: Dispatch<SetStateAction<string>>;
-  setBgColor: Dispatch<SetStateAction<string>>;
-}
-
-export interface IMarkerShadowSetterProps {
-  setShadowX: Dispatch<SetStateAction<number>>;
-  setShadowY: Dispatch<SetStateAction<number>>;
-  setShadowSD: Dispatch<SetStateAction<number>>;
-  setShadowColor: Dispatch<SetStateAction<string>>;
-}
 
 export type IMarkerAllSetterProps = IMarkerShapeSetterProps &
   IMarkerPositionSetterProps &
   IMarkerGhostSetterProps &
-  IMarkerColorSetterProps &
-  IMarkerShadowSetterProps;
+  IColorDispatcher &
+  IShadowDispatcher;

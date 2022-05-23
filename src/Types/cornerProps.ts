@@ -1,3 +1,5 @@
+import { IColors } from './colorProps';
+import { IShadow } from './shadowProps';
 export interface ICornerProps {
   svgRef: any;
   seed: number;
@@ -29,22 +31,9 @@ export interface ICornerShapeProps {
   smooth: number
 }
 
-export interface ICornerColorProps {
-  startColor: string;
-  endColor: string;
-  bgColor: string;
-}
-
-export interface ICornerShadowProps {
-  shadowX: number;
-  shadowY: number;
-  shadowSD: number;
-  shadowColor: string;
-}
-
 export type ICornerAllProps =
   ICornerShapeProps &
   ICornerVariantsProps &
   ICornerPositionProps &
-  ICornerColorProps &
-  ICornerShadowProps;
+  IColors &
+  IShadow;

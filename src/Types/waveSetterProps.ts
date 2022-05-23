@@ -1,3 +1,5 @@
+import { IShadowDispatcher } from './shadowProps';
+import { IColorDispatcher } from './colorProps';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IWaveVariantsSetterProps {
@@ -15,21 +17,9 @@ export interface IWaveShapeSetterProps {
   setSmooth: Dispatch<SetStateAction<number>>;
 }
 
-export interface IWaveColorSetterProps {
-  setStartColor: Dispatch<SetStateAction<string>>;
-  setEndColor: Dispatch<SetStateAction<string>>;
-  setBgColor: Dispatch<SetStateAction<string>>;
-}
-
-export interface IWaveShadowSetterProps {
-  setShadowX: Dispatch<SetStateAction<number>>;
-  setShadowY: Dispatch<SetStateAction<number>>;
-  setShadowSD: Dispatch<SetStateAction<number>>;
-  setShadowColor: Dispatch<SetStateAction<string>>;
-}
 
 export type IWaveAllSetterProps =
   IWaveShapeSetterProps &
   IWaveVariantsSetterProps &
-  IWaveColorSetterProps &
-  IWaveShadowSetterProps;
+  IColorDispatcher &
+  IShadowDispatcher;

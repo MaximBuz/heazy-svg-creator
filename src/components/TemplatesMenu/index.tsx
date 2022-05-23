@@ -11,7 +11,7 @@ import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
-import { IDesignModes } from '../DesignTemplates/Canvas/Types/designModes';
+import { IDesignModes } from '../Designs/Canvas/Types/designModes';
 
 export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;

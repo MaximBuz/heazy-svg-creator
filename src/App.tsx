@@ -2,30 +2,30 @@
 import { useCallback, useRef, useState } from 'react';
 
 // Components
-import Bubble from './Components/DesignTemplates/Bubble';
+import Bubble from './Components/Designs/Bubble';
 import TemplateMenu from './Components/TemplatesMenu';
 import OptionsMenu from './Components/OptionsMenu';
-import StackedWave from './Components/DesignTemplates/Waves';
-import Corners from './Components/DesignTemplates/Corners';
+import StackedWave from './Components/Designs/Waves';
+import Corners from './Components/Designs/Corners';
 
 // Design
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from './Components/DesignTemplates/Canvas/Types/designModes';
+import { IDesignModes } from './Components/Designs/Canvas/Types/designModes';
 
 // Components
-import WaveOptions from './Components/DesignTemplates/Waves/OptionsMenu';
-import useWaveOptions from './Components/DesignTemplates/Waves/OptionsMenu/useWaveOptions';
-import useBubbleOptions from './Components/DesignTemplates/Bubble/OptionsMenu/useBubbleOptions';
-import BubbleOptions from './Components/DesignTemplates/Bubble/OptionsMenu';
-import useCornerOptions from './Components/DesignTemplates/Corners/OptionsMenu/useCornerOptions';
-import CornerOptions from './Components/DesignTemplates/Corners/OptionsMenu';
-import Marker from './Components/DesignTemplates/Marker';
-import useMarkerOptions from './Components/DesignTemplates/Marker/OptionsMenu/useMarkerOptions';
-import MarkerOptions from './Components/DesignTemplates/Marker/OptionsMenu';
-import useCanvasDimensions from './Components/DesignTemplates/Canvas/useCanvasDimensions';
-import CanvasControls from './Components/DesignTemplates/Canvas/CanvasControls';
+import WaveOptions from './Components/Designs/Waves/OptionsMenu';
+import useWaveOptions from './Components/Designs/Waves/OptionsMenu/useWaveOptions';
+import useBubbleOptions from './Components/Designs/Bubble/OptionsMenu/useBubbleOptions';
+import BubbleOptions from './Components/Designs/Bubble/OptionsMenu';
+import useCornerOptions from './Components/Designs/Corners/OptionsMenu/useCornerOptions';
+import CornerOptions from './Components/Designs/Corners/OptionsMenu';
+import Marker from './Components/Designs/Marker';
+import useMarkerOptions from './Components/Designs/Marker/OptionsMenu/useMarkerOptions';
+import MarkerOptions from './Components/Designs/Marker/OptionsMenu';
+import useCanvasDimensions from './Components/Designs/Canvas/useCanvasDimensions';
+import CanvasControls from './Components/Designs/Canvas/CanvasControls';
 import InitialAnimation from './Components/InitialAnimation';
 
 function App() {

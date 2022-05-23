@@ -3,13 +3,13 @@ import { useCallback, useRef, useState } from 'react';
 
 // Components
 import Bubble from './Components/Bubble';
-import LeftMenu from './Components/TemplatesMenu';
-import RightMenu from './Components/OptionsMenu/RightMenu';
+import TemplateMenu from './Components/TemplatesMenu';
+import OptionsMenu from './Components/OptionsMenu';
 import StackedWave from './Components/Waves';
 import Corners from './Components/Corners';
 
 // Design
-import { Flex, Container } from '@chakra-ui/react';
+import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
 import { IDesignModes } from './Types/designModes';
@@ -51,7 +51,7 @@ function App() {
   const markerOptions = useMarkerOptions();
 
   /* --------- RENDER CANVAS --------- */
-  const renderDesign = useCallback(() => {
+  const renderCanvas = useCallback(() => {
     switch (design) {
       case 'waves': {
         return <StackedWave {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
@@ -77,7 +77,7 @@ function App() {
   ]);
 
   /* --------- RENDER RIGHT MENU --------- */
-  const renderMenu = useCallback(() => {
+  const renderOptionsMenu = useCallback(() => {
     switch (design) {
       case 'waves': {
         return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
@@ -94,40 +94,43 @@ function App() {
     }
   }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
 
+  /* --------- STYLES --------- */
+  const wrapperStyles: FlexProps = {
+    direction: 'row',
+    bgColor: '#141820',
+    overflow: 'hidden',
+    justifyContent: 'space-between',
+    w: '100vw',
+    h: '100vh',
+  };
+  const canvasStyles: ContainerProps = {
+    transform: `scale(${zoom})`,
+    transition: 'transform 0.3s cubic-bezier(0,.5,.5,1)',
+    justifyContent: 'center',
+    alignContent: 'center',
+    centerContent: true,
+    padding: '3',
+    m: '0',
+  };
   return (
     <>
       {/* ------ PLAY INITIAL ANIMATION ON STARTUP ----- */}
       <InitialAnimation />
 
-      <Flex
-        direction="row"
-        bgColor="#141820"
-        overflow="hidden"
-        justifyContent="space-between"
-        w="100vw"
-        h="100vh"
-      >
+      <Flex {...wrapperStyles}>
         {/* ------ LEFT MENU ----- */}
-        <LeftMenu activeDesign={design} setDesign={setDesign}></LeftMenu>
+        <TemplateMenu activeDesign={design} setDesign={setDesign}></TemplateMenu>
 
         {/* ------ CANVAS ----- */}
-        <Container
-          transform={`scale(${zoom})`}
-          transition="transform 0.3s cubic-bezier(0,.5,.5,1)"
-          justifyContent="center"
-          alignContent="center"
-          centerContent
-          padding="3"
-          m="0"
-        >
-          {renderDesign()}
+        <Container {...canvasStyles}>
+          {renderCanvas()}
         </Container>
 
-        {/* ------ CONTROLLERS ----- */}
+        {/* ------ CONTROLLS ----- */}
         <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
 
         {/* ------ RIGHT MENU ----- */}
-        <RightMenu
+        <OptionsMenu
           svgRef={svgRef}
           handleWidthChange={setWidth}
           handleHeightChange={setHeight}
@@ -136,8 +139,8 @@ function App() {
           widthRatio={canvasDimensions.widthRatio}
           heightRatio={canvasDimensions.heightRatio}
         >
-          {renderMenu()}
-        </RightMenu>
+          {renderOptionsMenu()}
+        </OptionsMenu>
       </Flex>
     </>
   );

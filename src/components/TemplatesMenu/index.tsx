@@ -13,12 +13,12 @@ import GitHubButton from 'react-github-btn';
 import Thumbnail from './Thumbnail';
 import { IDesignModes } from '../../Types/designModes';
 
-export interface ILeftMenuProps {
+export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
   activeDesign: string;
 }
 
-const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({ activeDesign, setDesign }) => {
+const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesign, setDesign }) => {
   return (
     <Flex
       minW="180px"
@@ -106,4 +106,4 @@ const LeftMenu: React.FunctionComponent<ILeftMenuProps> = ({ activeDesign, setDe
   );
 };
 
-export default LeftMenu;
+export default TemplateMenu;

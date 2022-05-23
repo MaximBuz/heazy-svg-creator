@@ -22,7 +22,7 @@ import rgbHex from 'rgb-hex';
 import HideColorButton from '../../OptionsMenu/HideColorButton';
 
 // Types
-import { IColorDispatcher, IColors } from '../../../Types/colorProps';
+import { IColorDispatcher, IColors } from './Types/colorProps';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 

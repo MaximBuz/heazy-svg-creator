@@ -1,5 +1,5 @@
-import { IColors } from '../colorProps';
-import { IShadow } from '../Marker/shadowProps';
+import { IColors } from '../../OptionsMenu/ColorOptions/Types/colorProps';
+import { IShadow } from '../../OptionsMenu/ShadowOptions/Types/shadowProps';
 export interface ICornerProps {
   svgRef: any;
   seed: number;

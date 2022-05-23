@@ -12,8 +12,8 @@ import Position from './Position';
 import Ghost from './Ghost';
 
 // Types
-import { IMarkerAllSetterProps } from '../../../Types/Marker/markerSetterProps';
-import { IMarkerAllProps } from '../../../Types/Marker/markerProps';
+import { IMarkerAllSetterProps } from '../Types/markerSetterProps';
+import { IMarkerAllProps } from '../Types/markerProps';
 
 const MarkerOptions: React.FunctionComponent<IMarkerAllSetterProps & IMarkerAllProps> = (props) => {
   return (

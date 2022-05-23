@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { IWaveAllProps } from '../../../Types/Waves/waveProps';
-import { IWaveAllSetterProps } from '../../../Types/Waves/waveSetterProps';
+import { IWaveAllProps } from '../Types/waveProps';
+import { IWaveAllSetterProps } from '../Types/waveSetterProps';
 
 const useWaveOptions = (): {
   get: IWaveAllProps;

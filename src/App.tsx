@@ -12,7 +12,7 @@ import Corners from './Components/Corners';
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from './Types/designModes';
+import { IDesignModes } from './Components/Canvas/Types/designModes';
 
 // Components
 import WaveOptions from './Components/Waves/OptionsMenu';

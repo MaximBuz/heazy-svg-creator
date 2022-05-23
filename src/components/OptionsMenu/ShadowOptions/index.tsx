@@ -26,7 +26,7 @@ import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
 
 // Types
-import { IShadow, IShadowDispatcher } from '../../../Types/Marker/shadowProps';
+import { IShadow, IShadowDispatcher } from './Types/shadowProps';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 

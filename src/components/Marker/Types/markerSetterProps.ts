@@ -1,5 +1,5 @@
-import { IShadowDispatcher } from './shadowProps';
-import { IColorDispatcher } from '../colorProps';
+import { IShadowDispatcher } from '../../OptionsMenu/ShadowOptions/Types/shadowProps';
+import { IColorDispatcher } from '../../OptionsMenu/ColorOptions/Types/colorProps';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IMarkerShapeSetterProps {

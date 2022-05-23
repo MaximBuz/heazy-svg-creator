@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ICornerAllProps } from '../../../Types/Corners/cornerProps';
-import { ICornerAllSetterProps } from '../../../Types/Corners/cornerSetterProps';
+import { ICornerAllProps } from '../Types/cornerProps';
+import { ICornerAllSetterProps } from '../Types/cornerSetterProps';
 
 const useCornerOptions = (): {
   get: ICornerAllProps;

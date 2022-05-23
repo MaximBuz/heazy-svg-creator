@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { aspectRatio } from '../Utilities/Helpers/aspectRatio';
+import { getAspectRatio } from '../Utilities/Helpers/getAspectRatio';
 import { ICanvasDimensions } from '../Types/canvasDimensions';
 
 const useCanvasDimensions = (
@@ -12,8 +12,8 @@ const useCanvasDimensions = (
     return {
       width: width,
       height: height,
-      widthRatio: aspectRatio(width / height, 50)[0],
-      heightRatio: aspectRatio(width / height, 50)[1],
+      widthRatio: getAspectRatio(width / height, 50)[0],
+      heightRatio: getAspectRatio(width / height, 50)[1],
     };
   }, [width, height]);
 

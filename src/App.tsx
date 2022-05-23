@@ -3,8 +3,8 @@ import { useCallback, useRef, useState } from 'react';
 
 // Components
 import Bubble from './Components/Bubble';
-import LeftMenu from './Components/LeftMenu';
-import RightMenu from './Components/RightMenu/RightMenu';
+import LeftMenu from './Components/TemplatesMenu';
+import RightMenu from './Components/OptionsMenu/RightMenu';
 import StackedWave from './Components/Waves';
 import Corners from './Components/Corners';
 
@@ -15,17 +15,17 @@ import { Flex, Container } from '@chakra-ui/react';
 import { IDesignModes } from './Types/designModes';
 
 // Components
-import WaveOptions from './Components/RightMenu/Waves/WaveOptions';
+import WaveOptions from './Components/Waves/OptionsMenu';
 import useWaveOptions from './Hooks/useWaveOptions';
 import useBubbleOptions from './Hooks/useBubbleOptions';
-import BubbleOptions from './Components/RightMenu/Bubble/BubbleOptions';
+import BubbleOptions from './Components/Bubble/OptionsMenu';
 import useCornerOptions from './Hooks/useCornerOptions';
-import CornerOptions from './Components/RightMenu/Corners/CornerOptions';
+import CornerOptions from './Components/Corners/OptionsMenu';
 import Marker from './Components/Marker';
 import useMarkerOptions from './Hooks/useMarkerOptions';
-import MarkerOptions from './Components/RightMenu/Marker/MarkerOptions';
+import MarkerOptions from './Components/Marker/OptionsMenu';
 import useCanvasDimensions from './Hooks/useCanvasDimensions';
-import CanvasControls from './Components/CanvasControls';
+import CanvasControls from './Components/Canvas/CanvasControls';
 import InitialAnimation from './Components/InitialAnimation';
 
 function App() {

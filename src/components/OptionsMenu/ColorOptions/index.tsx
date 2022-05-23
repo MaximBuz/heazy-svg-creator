@@ -10,17 +10,15 @@ import {
   PopoverContent,
   PopoverArrow,
   PopoverBody,
-  Icon,
 } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
-import { start } from 'repl';
 import rgbHex from 'rgb-hex';
 import HideColorButton from '../../OptionsMenu/HideColorButton';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-export interface IColorProps {
+export interface IColorOptionsProps {
   setBgColor: Dispatch<SetStateAction<string>>;
   bgColor: string;
   setStartColor: Dispatch<SetStateAction<string>>;
@@ -29,7 +27,7 @@ export interface IColorProps {
   endColor: string;
 }
 
-const Color: React.FunctionComponent<IColorProps> = ({
+const ColorOptions: React.FunctionComponent<IColorOptionsProps> = ({
   setBgColor,
   bgColor,
   setStartColor,
@@ -72,7 +70,6 @@ const Color: React.FunctionComponent<IColorProps> = ({
               <ColorPicker
                 color={bgColor}
                 onChange={(col) => setBgColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
-                /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"
               ></ColorPicker>
@@ -112,10 +109,7 @@ const Color: React.FunctionComponent<IColorProps> = ({
             <PopoverBody>
               <ColorPicker
                 color={startColor}
-                onChange={(col) =>
-                  setStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))
-                }
-                /* WE NEED OPACITY / ALPHA TOO */
+                onChange={(col) => setStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
                 onColor
                 width="200px"
               ></ColorPicker>
@@ -144,10 +138,7 @@ const Color: React.FunctionComponent<IColorProps> = ({
             </PopoverTrigger>
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
-              <Input
-                value={endColor.replace('#', '')}
-                onChange={(e) => setEndColor(`#${e.target.value}`)}
-              />
+              <Input value={endColor.replace('#', '')} onChange={(e) => setEndColor(`#${e.target.value}`)} />
             </InputGroup>
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
@@ -156,7 +147,6 @@ const Color: React.FunctionComponent<IColorProps> = ({
               <ColorPicker
                 color={endColor}
                 onChange={(col) => setEndColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
-                /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"
               ></ColorPicker>
@@ -169,4 +159,4 @@ const Color: React.FunctionComponent<IColorProps> = ({
   );
 };
 
-export default Color;
+export default ColorOptions;

@@ -7,29 +7,26 @@ import { Divider } from '@chakra-ui/react';
 // Components
 import Variants from './Variants';
 import Shape from './Shape';
-import Color from './Color';
+import ShadowOptions from '../../OptionsMenu/ShadowOptions';
+import ColorOptions from '../../OptionsMenu/ColorOptions';
 
 // Types
 import { ICornerAllSetterProps } from '../../../Types/cornerSetterProps';
 import { ICornerAllProps } from '../../../Types/cornerProps';
-import Shadow from './Shadow';
 import Position from './Position';
 
-const CornerOptions: React.FunctionComponent<
-  ICornerAllSetterProps &
-   ICornerAllProps
-> = (props) => {
+const CornerOptions: React.FunctionComponent<ICornerAllSetterProps & ICornerAllProps> = (props) => {
   return (
     <>
       <Variants {...props}></Variants>
       <Divider />
       <Position {...props}></Position>
       <Divider />
-      <Shape   {...props}></Shape>
-      <Divider/>
-      <Color {...props}></Color>
+      <Shape {...props}></Shape>
+      <Divider />
+      <ColorOptions {...props}></ColorOptions>
       <Divider></Divider>
-      <Shadow {...props}></Shadow>
+      <ShadowOptions {...props}></ShadowOptions>
     </>
   );
 };

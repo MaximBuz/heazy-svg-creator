@@ -16,15 +16,15 @@ import { IDesignModes } from './Types/designModes';
 
 // Components
 import WaveOptions from './Components/Waves/OptionsMenu';
-import useWaveOptions from './Hooks/useWaveOptions';
-import useBubbleOptions from './Hooks/useBubbleOptions';
+import useWaveOptions from './Components/Waves/OptionsMenu/useWaveOptions';
+import useBubbleOptions from './Components/Bubble/OptionsMenu/useBubbleOptions';
 import BubbleOptions from './Components/Bubble/OptionsMenu';
-import useCornerOptions from './Hooks/useCornerOptions';
+import useCornerOptions from './Components/Corners/OptionsMenu/useCornerOptions';
 import CornerOptions from './Components/Corners/OptionsMenu';
 import Marker from './Components/Marker';
-import useMarkerOptions from './Hooks/useMarkerOptions';
+import useMarkerOptions from './Components/Marker/OptionsMenu/useMarkerOptions';
 import MarkerOptions from './Components/Marker/OptionsMenu';
-import useCanvasDimensions from './Hooks/useCanvasDimensions';
+import useCanvasDimensions from './Components/Canvas/useCanvasDimensions';
 import CanvasControls from './Components/Canvas/CanvasControls';
 import InitialAnimation from './Components/InitialAnimation';
 

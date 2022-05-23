@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { getAspectRatio } from '../Utilities/Helpers/getAspectRatio';
-import { ICanvasDimensions } from '../Types/canvasDimensions';
+import { getAspectRatio } from '../../Utilities/Helpers/getAspectRatio';
+import { ICanvasDimensions } from '../../Types/canvasDimensions';
 
 const useCanvasDimensions = (
   defaultWidth = 800,

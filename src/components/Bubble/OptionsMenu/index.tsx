@@ -11,12 +11,12 @@ import Variants from './Variants';
 import { IBubbleProps } from '../../../Types/bubbleProps';
 import { IBubbleSetterProps } from '../../../Types/bubbleSetterProps';
 import Shape from './Shape';
-import Color from './Color';
-import Shadow from './Shadow';
+import ColorOptions from '../../OptionsMenu/ColorOptions';
+import ShadowOptions from '../../OptionsMenu/ShadowOptions';
 
 const BubbleOptions: React.FunctionComponent<
   Omit<IBubbleSetterProps, 'seed' | 'width' | 'height' | 'svgRef'> &
-  Omit<IBubbleProps, 'seed' | 'width' | 'height' | 'svgRef'>
+    Omit<IBubbleProps, 'seed' | 'width' | 'height' | 'svgRef'>
 > = (props) => {
   return (
     <>
@@ -24,9 +24,9 @@ const BubbleOptions: React.FunctionComponent<
       <Divider />
       <Shape {...props}></Shape>
       <Divider />
-      <Color {...props}></Color>
+      <ColorOptions {...props}></ColorOptions>
       <Divider></Divider>
-      <Shadow {...props}></Shadow>
+      <ShadowOptions {...props}></ShadowOptions>
     </>
   );
 };

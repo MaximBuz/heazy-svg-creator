@@ -5,8 +5,8 @@ import React from 'react';
 import { Divider } from '@chakra-ui/react';
 
 // Components
-import Color from './Color';
-import Shadow from './Shadow';
+import ShadowOptions from '../../OptionsMenu/ShadowOptions';
+import ColorOptions from '../../OptionsMenu/ColorOptions';
 import Shape from './Shape';
 import Variants from './Variants';
 
@@ -21,11 +21,9 @@ const WaveOptions: React.FunctionComponent<IWaveAllSetterProps & IWaveAllProps> 
       <Divider />
       <Shape {...props}></Shape>
       <Divider />
-      {/* <Direction {...props}></Direction> */}
-      {/* <Divider/> */}
-      <Color {...props}></Color>
+      <ColorOptions {...props}></ColorOptions>
       <Divider></Divider>
-      <Shadow {...props}></Shadow>
+      <ShadowOptions {...props}></ShadowOptions>
     </>
   );
 };

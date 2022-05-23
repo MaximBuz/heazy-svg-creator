@@ -18,9 +18,9 @@ import {
 import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import HideColorButton from '../../OptionsMenu/HideColorButton';
+import HideColorButton from '../HideColorButton';
 
-export interface IShadowProps {
+export interface IShadowOptionsProps {
   shadowX: number;
   setShadowX: Dispatch<SetStateAction<number>>;
   shadowY: number;
@@ -31,9 +31,9 @@ export interface IShadowProps {
   setShadowColor: Dispatch<SetStateAction<string>>;
 }
 
-const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
+const PopoverTrigger: React.FC<{ children: React.ReactNode; }> = OrigPopoverTrigger;
 
-const Shadow: React.FunctionComponent<IShadowProps> = ({
+const ShadowOptions: React.FunctionComponent<IShadowOptionsProps> = ({
   shadowX,
   setShadowX,
   shadowSD,
@@ -139,4 +139,4 @@ const Shadow: React.FunctionComponent<IShadowProps> = ({
   );
 };
 
-export default Shadow;
+export default ShadowOptions;

@@ -5,15 +5,15 @@ import React from 'react';
 import { Divider } from '@chakra-ui/react';
 
 // Components
+import ShadowOptions from '../../OptionsMenu/ShadowOptions';
+import ColorOptions from '../../OptionsMenu/ColorOptions';
 import Shape from './Shape';
-import Color from './Color';
-import Shadow from './Shadow';
-import { IMarkerAllSetterProps } from '../../../Types/markerSetterProps';
-import { IMarkerAllProps } from '../../../Types/markerProps';
 import Position from './Position';
 import Ghost from './Ghost';
 
 // Types
+import { IMarkerAllSetterProps } from '../../../Types/markerSetterProps';
+import { IMarkerAllProps } from '../../../Types/markerProps';
 
 const MarkerOptions: React.FunctionComponent<IMarkerAllSetterProps & IMarkerAllProps> = (props) => {
   return (
@@ -24,9 +24,9 @@ const MarkerOptions: React.FunctionComponent<IMarkerAllSetterProps & IMarkerAllP
       <Divider></Divider>
       <Ghost {...props}></Ghost>
       <Divider></Divider>
-      <Color {...props}></Color>
+      <ColorOptions {...props}></ColorOptions>
       <Divider/>
-      <Shadow {...props}></Shadow>
+      <ShadowOptions {...props}></ShadowOptions>
     </>
   );
 };

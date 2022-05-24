@@ -40,13 +40,27 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
       </Heading>
 
       {/* IMAGE WRAPPER */}
-      <Flex justifyContent="space-between" padding={{base: "0 1em", md: "0 5%", lg: "0 20%"}} width="100%" gap="20px" wrap="wrap">
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        padding={{ base: '0 1em', md: '0 5%', lg: '0 20%' }}
+        width="100%"
+        gap="20px"
+        wrap="wrap"
+      >
         {/* IMAGE ROW */}
-        <Flex direction={{base: "column", lg: "row"}} height={{base: "95vh",lg: "43vh"}} width="100%" justifyContent="center" gap="20px">
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          height={{ base: '100vh', lg: '30vh', xl: '40vh', '2xl': '47.5vh' }}
+          width="100%"
+          justifyContent="center"
+          alignItems="center"
+          gap="20px"
+        >
           <Box
             position="relative"
-            width={{base: "100%", lg: "50%"}}
-            height={["75%", "100%", "500%", "100%", "110%"]}
+            width={['100%', '100%', '70%', '100%']}
+            height={['35%', '50%', '45%', '100%']}
             overflow="hidden"
             transition="0.5s"
             rounded="sm"
@@ -66,8 +80,8 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
 
           <Box
             position="relative"
-            width={{base: "100%", lg: "50%"}}
-            height="100%"
+            width={['100%', '100%', '70%', '100%']}
+            height={['60%', '50%', '55%', '100%']}
             transition="0.5s"
             rounded="sm"
             boxShadow="0 0px 35px -5px #152238"
@@ -85,10 +99,17 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
           </Box>
         </Flex>
 
-        <Flex direction={{base: "column", lg: "row"}} height={{base: "200vh",lg: "75vh"}} width="100%" justifyContent="center" gap="20px">
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          height={{ base: '200vh', lg: '80vh', xl: "75vh" }}
+          width={['100%', '100%', '70%', '100%']}
+          justifyContent="center"
+          alignItems="center"
+          gap="20px"
+        >
           <Box
             position="relative"
-            width={{base: "100%", lg: "50%"}}
+            width={{ base: '100%', lg: '50%' }}
             height="100%"
             transition="0.5s"
             rounded="sm"
@@ -105,11 +126,18 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
               alt="heazy-svg-generator-inspiration"
             ></Image>
           </Box>
-          <Flex gap="20px" direction="column" width={{base: "100%", lg: "50%"}} height="100%">
+          <Flex
+            gap="20px"
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            width={{ base: '100%', lg: '50%' }}
+            height="100%"
+          >
             <Box
               position="relative"
               width="100%"
-              height={{base: "40%", lg:"50%"}}
+              height={{ base: '40%', lg: '50%' }}
               transition="0.5s"
               rounded="sm"
               boxShadow="0 0px 35px -5px #152238"

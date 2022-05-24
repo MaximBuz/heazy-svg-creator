@@ -12,7 +12,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
       justifyContent="space-between"
       width="100%"
       height="80px"
-      mt="20px"
+      mt={{base: "10px", md:"20px"}}
       mr=" auto"
       ml=" auto"
     >
@@ -41,6 +41,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
           Inspirations
         </ListItem>
         <Button
+          display={{base: "none", sm: "flex"}}
           as="a"
           href="https://app.heazy.studio/"
           rounded="full"

@@ -1,7 +1,7 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
-import SectionDivider from '../Components/SectionDivider';
+import SectionDivider from '../components/SectionDivider';
 
 export interface IInspirationsProps {}
 
@@ -46,7 +46,8 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
           <Box
             position="relative"
             width={{base: "100%", lg: "50%"}}
-            height="100%"
+            height={["75%", "100%", "500%", "100%", "110%"]}
+            overflow="hidden"
             transition="0.5s"
             rounded="sm"
             boxShadow="0 0px 35px -5px #152238"

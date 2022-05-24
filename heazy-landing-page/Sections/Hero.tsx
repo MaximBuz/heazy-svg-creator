@@ -1,6 +1,6 @@
 import { Flex, Button, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
-import Navbar from '../Components/Navbar';
+import Navbar from '../components/Navbar';
 
 export interface IHeroProps {}
 
@@ -48,7 +48,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             <Text opacity={0.5}>Free for ever. No signup required.</Text>
           </Flex>
         </Flex>
-        <Flex height={{base: "50vh",lg:"100vh"}} justifyContent="center" alignItems="flex-start">
+        <Flex mb="10em" justifyContent="center" alignItems="flex-start">
           <video
             playsInline
             autoPlay

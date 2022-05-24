@@ -1,8 +1,8 @@
 import { Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 import OverviewBG from '../public/overview-bg.png';
-import FeatureCard from '../Components/FeatureCard';
-import SectionDivider from '../Components/SectionDivider';
+import FeatureCard from '../components/FeatureCard';
+import SectionDivider from '../components/SectionDivider';
 
 export interface IFeaturesProps {}
 
@@ -16,8 +16,7 @@ const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
       backgroundSize="contain"
       direction="column"
       width="100%"
-      minHeight="110vh"
-      mb={{base: "10em", lg: "0"}}
+      mb={{ base: "10em" }}
       justifyContent="flex-start"
       alignItems="center"
       textAlign="center"
@@ -42,7 +41,7 @@ const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
 
       {/* FEATURE TILES */}
 
-      <Flex padding={{base: "0 10%", md: "0 20%", "2xl": "0 30%"}} flexWrap="wrap" gap="35px" justifyContent="center" alignItems="center">
+      <Flex padding={["0 1em", "0 2em", "0 100px", "0 200px", "0 300px", "0 500px"]} flexWrap="wrap" gap="35px" justifyContent="center" alignItems="center">
         <FeatureCard
           text="Heazy let's you create beautiful vector visuals that can be re-sized to any resolution without loosing quality."
           icon="/resize-icon.svg"

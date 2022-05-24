@@ -29,43 +29,31 @@ import CanvasControls from './Components/Designs/Canvas/CanvasControls';
 import InitialAnimation from './Components/InitialAnimation';
 
 function App() {
-  /* --------- RANDOMNESS --------- */
+  /* --------- CANVAS STATE --------- */
   const [seed, setSeed] = useState<number>(1);
-
-  /* --------- ZOOMING --------- */
   const [zoom, setZoom] = useState<number>(1);
-
-  /* --------- DIMENSION --------- */
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
-
-  /* --------- SVG REF FOR DOWNLOADING --------- */
-  const svgRef = useRef<SVGAElement | null>(null);
-
-  /* --------- WHICH DESIGN --------- */
   const [design, setDesign] = useState<IDesignModes>('waves');
 
-  /* --------- DESIGN OPTIONS --------- */
+  /* --------- OPTIONS MENU STATE --------- */
   const waveOptions = useWaveOptions();
   const bubbleOptions = useBubbleOptions();
   const cornerOptions = useCornerOptions();
   const markerOptions = useMarkerOptions();
 
+  /* --------- SVG REF FOR DOWNLOADING --------- */
+  const svgRef = useRef<SVGAElement | null>(null);
+
   /* --------- RENDER CANVAS --------- */
   const renderCanvas = useCallback(() => {
-    switch (design) {
-      case 'waves': {
-        return <StackedWave {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
-      }
-      case 'bubble': {
-        return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
-      }
-      case 'corners': {
-        return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
-      }
-      case 'marker': {
-        return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
-      }
-    }
+    if (design === 'waves')
+      return <StackedWave {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
+    if (design === 'bubble')
+      return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
+    if (design === 'corners')
+      return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
+    if (design === 'marker')
+      return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
   }, [
     design,
     seed,
@@ -112,6 +100,7 @@ function App() {
     padding: '3',
     m: '0',
   };
+
   return (
     <>
       {/* ------ PLAY INITIAL ANIMATION ON STARTUP ----- */}
@@ -122,9 +111,7 @@ function App() {
         <TemplateMenu activeDesign={design} setDesign={setDesign}></TemplateMenu>
 
         {/* ------ CANVAS ----- */}
-        <Container {...canvasStyles}>
-          {renderCanvas()}
-        </Container>
+        <Container {...canvasStyles}>{renderCanvas()}</Container>
 
         {/* ------ CONTROLLS ----- */}
         <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
@@ -134,10 +121,7 @@ function App() {
           svgRef={svgRef}
           handleWidthChange={setWidth}
           handleHeightChange={setHeight}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-          widthRatio={canvasDimensions.widthRatio}
-          heightRatio={canvasDimensions.heightRatio}
+          dimensions={canvasDimensions}
         >
           {renderOptionsMenu()}
         </OptionsMenu>

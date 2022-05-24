@@ -20,9 +20,9 @@ import {
 import React, { Dispatch, SetStateAction } from 'react';
 
 export interface IDimensionsDrawerProps {
-  isDimensionDrawerOpen: boolean;
-  onDimensionDrawerClose: () => void;
-  dimensionDrawerButtonRef: any;
+  isOpen: boolean;
+  onClose: () => void;
+  drawerButtonRef: any;
   handleHeightChange: Dispatch<SetStateAction<number>>;
   handleWidthChange: Dispatch<SetStateAction<number>>;
   height: number;
@@ -30,21 +30,16 @@ export interface IDimensionsDrawerProps {
 }
 
 const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
-  isDimensionDrawerOpen,
-  onDimensionDrawerClose,
-  dimensionDrawerButtonRef,
+  isOpen,
+  onClose,
+  drawerButtonRef,
   handleHeightChange,
   handleWidthChange,
   height,
   width,
 }) => {
   return (
-    <Drawer
-      isOpen={isDimensionDrawerOpen}
-      placement="right"
-      onClose={onDimensionDrawerClose}
-      finalFocusRef={dimensionDrawerButtonRef}
-    >
+    <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={drawerButtonRef}>
       {/* <DrawerOverlay /> */}
       <DrawerContent bgColor="#1c1f27">
         <DrawerHeader>
@@ -59,7 +54,7 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                 rounded="full"
                 centerContent
               >
-                <ChevronLeftIcon onClick={onDimensionDrawerClose} />
+                <ChevronLeftIcon onClick={onClose} />
               </Circle>
               <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
                 Dimensions

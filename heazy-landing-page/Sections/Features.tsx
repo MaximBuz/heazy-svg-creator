@@ -6,7 +6,7 @@ import SectionDivider from '../components/SectionDivider';
 
 export interface IFeaturesProps {}
 
-const Features: React.FunctionComponent<IFeaturesProps> = (props) => {
+const Features: React.FunctionComponent<IFeaturesProps> = () => {
   return (
     <Flex
       id="features"

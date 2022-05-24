@@ -1,11 +1,11 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
-import SectionDivider from '../components/SectionDivider';
+import SectionDivider from '../Components/SectionDivider';
 
 export interface IInspirationsProps {}
 
-const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
+const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
   return (
     <Flex
       id="inspirations"
@@ -23,7 +23,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
       mb="10%"
     >
       <SectionDivider text="Inspirations" />
-      <Heading fontWeight="700" fontSize="3em">
+      <Heading fontWeight="700" fontSize={{base: "2em", lg: "3em"}}>
         Heazy{' '}
         <span
           style={{
@@ -101,7 +101,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
 
         <Flex
           direction={{ base: 'column', lg: 'row' }}
-          height={{ base: '200vh', lg: '80vh', xl: "75vh" }}
+          height={{ base: '150vh', lg: '80vh', xl: "75vh" }}
           width={['100%', '100%', '70%', '100%']}
           justifyContent="center"
           alignItems="center"
@@ -156,7 +156,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = (props) => {
             <Box
               position="relative"
               width="100%"
-              height="50%"
+              height="60%"
               transition="0.5s"
               rounded="sm"
               boxShadow="0 0px 35px -5px #152238"

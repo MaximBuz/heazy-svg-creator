@@ -2,11 +2,11 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 // Design
 import { Flex, Stack, Image, Heading } from '@chakra-ui/react';
-import stackedWave from '../../Assets/Thumbnails/stackedWaves.svg';
-import smoothStage from '../../Assets/Thumbnails/smoothStage.svg';
-import marker from '../../Assets/Thumbnails/marker.svg';
-import bubble from '../../Assets/Thumbnails/bubble.svg';
-import Logo from '../../Assets/Logo.svg';
+import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
+import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
+import marker from '../../assets/Thumbnails/marker.svg';
+import bubble from '../../assets/Thumbnails/bubble.svg';
+import Logo from '../../assets/Logo.svg';
 import GitHubButton from 'react-github-btn';
 
 // Utils

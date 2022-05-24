@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int             @id @default(autoincrement())
+  email    String          @unique
+  username String?
+  waves    WaveOptions[]
+  bubbles  BubbleOptions[]
+  corners  CornerOptions[]
+  markers  MarkerOptions[]
+}
+
+model BubbleOptions {
+  id          Int     @id @default(autoincrement())
+  name        String
+  user        User    @relation(fields: [userId], references: [id])
+  seed        Float
+  stroke      Boolean
+  solid       Float
+  strokeWidth Float
+  velocity    Float
+  size        Float
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     Float
+  shadowY     Float
+  shadowSD    Float
+  shadowColor String
+  userId      Int
+}
+
+model WaveOptions {
+  id   Int    @id @default(autoincrement())
+  name String
+  user User   @relation(fields: [userId], references: [id])
+
+  seed         Float
+  stroke       Boolean
+  solid        Float
+  strokeWidth  Float
+  strokeShrink Boolean
+
+  balance  Float
+  velocity Float
+  breaks   Float
+  stacks   Float
+  distance Float
+  smooth   Float
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     Float
+  shadowY     Float
+  shadowSD    Float
+  shadowColor String
+
+  userId Int
+}
+
+model CornerOptions {
+  id   Int    @id @default(autoincrement())
+  name String
+  user User   @relation(fields: [userId], references: [id])
+
+  seed   Float
+  stroke Boolean
+  solid  Float
+
+  strokeWidth  Float
+  strokeShrink Boolean
+  balance      Float
+  velocity     Float
+  breaks       Float
+  stacks       Float
+  distance     Float
+  smooth       Float
+
+  topLeftCorner     Boolean
+  topRightCorner    Boolean
+  bottomLeftCorner  Boolean
+  bottomRightCorner Boolean
+  mirror            Boolean
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     Float
+  shadowY     Float
+  shadowSD    Float
+  shadowColor String
+
+  designId Float
+  userId   Int
+}
+
+model MarkerOptions {
+  id   Int    @id @default(autoincrement())
+  name String
+  user User   @relation(fields: [userId], references: [id])
+
+  seed Float
+
+  lineCap      String
+  lineJoin     String
+  strokeWidth  Float
+  markerHeight Float
+  zickZacks    Float
+  pressure     Float
+
+  padding   Float
+  mirror    Boolean
+  yPosition Float
+
+  ghost           Boolean
+  ghostSize       Float
+  ghostStartColor String
+  ghostEndColor   String
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     Float
+  shadowY     Float
+  shadowSD    Float
+  shadowColor String
+
+  userId Int
+}

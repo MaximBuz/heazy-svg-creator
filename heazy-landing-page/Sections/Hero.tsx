@@ -58,7 +58,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             height="auto"
             style={{
               borderRadius: '10px',
-              boxShadow: 'rgb(0 0 0 / 20%) 0px 4px 20px;',
+              boxShadow: 'rgb(0 0 0 / 20%) 0px 4px 20px',
             }}
           >
             <source src="/hero-video.mp4" type="video/mp4" />

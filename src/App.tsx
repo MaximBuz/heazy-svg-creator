@@ -2,31 +2,31 @@
 import { useCallback, useRef, useState } from 'react';
 
 // Components
-import Bubble from './Components/Designs/Bubble';
-import TemplateMenu from './Components/TemplatesMenu';
-import OptionsMenu from './Components/OptionsMenu';
-import StackedWave from './Components/Designs/Waves';
-import Corners from './Components/Designs/Corners';
+import {
+  InitialAnimation,
+  Waves,
+  WaveOptions,
+  useWaveOptions,
+  Bubble,
+  BubbleOptions,
+  useBubbleOptions,
+  Corners,
+  CornerOptions,
+  useCornerOptions,
+  Marker,
+  MarkerOptions,
+  useMarkerOptions,
+  CanvasControls,
+  useCanvasDimensions,
+  TemplateMenu,
+  OptionsMenu,
+} from './Components';
 
-// Design
+// Styling
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
 import { IDesignModes } from './Components/Designs/Canvas/Types/designModes';
-
-// Components
-import WaveOptions from './Components/Designs/Waves/OptionsMenu';
-import useWaveOptions from './Components/Designs/Waves/OptionsMenu/useWaveOptions';
-import useBubbleOptions from './Components/Designs/Bubble/OptionsMenu/useBubbleOptions';
-import BubbleOptions from './Components/Designs/Bubble/OptionsMenu';
-import useCornerOptions from './Components/Designs/Corners/OptionsMenu/useCornerOptions';
-import CornerOptions from './Components/Designs/Corners/OptionsMenu';
-import Marker from './Components/Designs/Marker';
-import useMarkerOptions from './Components/Designs/Marker/OptionsMenu/useMarkerOptions';
-import MarkerOptions from './Components/Designs/Marker/OptionsMenu';
-import useCanvasDimensions from './Components/Designs/Canvas/useCanvasDimensions';
-import CanvasControls from './Components/Designs/Canvas/CanvasControls';
-import InitialAnimation from './Components/InitialAnimation';
 
 function App() {
   /* --------- CANVAS STATE --------- */
@@ -47,7 +47,7 @@ function App() {
   /* --------- RENDER CANVAS --------- */
   const renderCanvas = useCallback(() => {
     if (design === 'waves')
-      return <StackedWave {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
+      return <Waves {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
     if (design === 'bubble')
       return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
     if (design === 'corners')
@@ -93,26 +93,12 @@ function App() {
 
   return (
     <>
-      {/* ------ PLAY INITIAL ANIMATION ON STARTUP ----- */}
       <InitialAnimation />
-
       <Flex {...wrapperStyles}>
-        {/* ------ LEFT MENU ----- */}
         <TemplateMenu activeDesign={design} setDesign={setDesign}></TemplateMenu>
-
-        {/* ------ CANVAS ----- */}
         <Container {...canvasStyles}>{renderCanvas()}</Container>
-
-        {/* ------ CONTROLLS ----- */}
         <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
-
-        {/* ------ RIGHT MENU ----- */}
-        <OptionsMenu
-          svgRef={svgRef}
-          setWidth={setWidth}
-          setHeight={setHeight}
-          dimensions={canvasDimensions}
-        >
+        <OptionsMenu svgRef={svgRef} setWidth={setWidth} setHeight={setHeight} dimensions={canvasDimensions}>
           {renderOptionsMenu()}
         </OptionsMenu>
       </Flex>

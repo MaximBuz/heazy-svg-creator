@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
-import { bubblePath } from '../../../Utilities/Algorithms/Bubble/bubblePath';
-import { generateRandomNumber } from '../../../Utilities/Helpers/randomNumber';
+import { bubblePath } from '../../../utils/path-algorithms/Bubble/bubblePath';
+import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 import { IBubbleAllProps, IBubbleProps } from './Types/bubbleProps';
-import SvgCanvas from '../Canvas/SvgCanvas';
+import SvgCanvas from '../../Canvas/SvgCanvas';
 
 const Bubble: React.FunctionComponent<IBubbleProps & IBubbleAllProps> = (props) => {
 

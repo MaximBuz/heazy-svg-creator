@@ -9,7 +9,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { contentWrapperStyles, dimensionsButtonStyles, wrapperStyles } from './Styles';
 import DimensionsDrawer from './DimensionsDrawer';
 import DownloadSection from './DownloadSection';
-import { ICanvasDimensions } from '../Designs/Canvas/Types/canvasDimensions';
+import { ICanvasDimensions } from '../Canvas/Types/canvasDimensions';
 
 export interface IOptionsMenuProps {
   svgRef: Ref<SVGAElement | null>;

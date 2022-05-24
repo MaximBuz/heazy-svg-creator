@@ -5,7 +5,7 @@ import { Flex, Text, Image, Box } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
-import { IDesignModes } from '../Designs/Canvas/Types/designModes';
+import { IDesignModes } from '../Canvas/Types/designModes';
 
 export interface IThumbnailProps {
   isActive: boolean;

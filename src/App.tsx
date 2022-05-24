@@ -20,13 +20,13 @@ import {
   useCanvasDimensions,
   TemplateMenu,
   OptionsMenu,
-} from './Components';
+} from './components';
 
 // Styling
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from './Components/Designs/Canvas/Types/designModes';
+import { IDesignModes } from './components/Canvas/Types/designModes';
 
 function App() {
   /* --------- CANVAS STATE --------- */

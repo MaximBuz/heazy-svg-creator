@@ -1,6 +1,6 @@
 import { getBezier } from '../pathSmoothener';
 // calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber as rndm } from '../../Helpers/randomNumber';
+import { generateRandomNumber as rndm } from '../../helpers/randomNumber';
 import { getCoordinates as getInitialCoords } from './waveSectionDivider';
 
 function getRandomAnchors(

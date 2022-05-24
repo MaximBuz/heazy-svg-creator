@@ -16,8 +16,8 @@ import Marker from './Designs/Marker';
 import MarkerOptions from './Designs/Marker/OptionsMenu';
 import useMarkerOptions from './Designs/Marker/OptionsMenu/useMarkerOptions';
 
-import CanvasControls from './Designs/Canvas/CanvasControls';
-import useCanvasDimensions from './Designs/Canvas/useCanvasDimensions';
+import CanvasControls from './Canvas/CanvasControls';
+import useCanvasDimensions from './Canvas/useCanvasDimensions';
 
 import TemplateMenu from './TemplatesMenu';
 import OptionsMenu from './OptionsMenu';

@@ -20,7 +20,7 @@ import {
   downloadSvgAsPng,
   downloadSvgAsReact,
   downloadSvgAsReactTS,
-} from '../../Utilities/Helpers/downloadBlob';
+} from '../../utils/helpers/downloadBlob';
 import { downloadSectionStyles } from './Styles';
 
 export interface IDownloadSectionProps {

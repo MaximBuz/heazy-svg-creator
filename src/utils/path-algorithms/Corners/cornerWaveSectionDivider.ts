@@ -1,4 +1,4 @@
-import { zip } from '../../Helpers/zipArray';
+import { zip } from '../../helpers/zipArray';
 
 export function getCoordinates (sections:number, waveSize:number): [number, number][] {
   let remainingWaveSize = waveSize;

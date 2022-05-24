@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
 import { ICornerAllProps, ICornerProps } from './Types/cornerProps';
-import { smoothCornerPath } from '../../../Utilities/Algorithms/Corners/smoothCornerPath';
+import { smoothCornerPath } from '../../../utils/path-algorithms/Corners/smoothCornerPath';
 import CornerSvgGroup from './CornerSvgGroup';
-import SvgCanvas from '../Canvas/SvgCanvas';
+import SvgCanvas from '../../Canvas/SvgCanvas';
 
 const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props) => {
   // set up params that are needed to generate a path

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { getAspectRatio } from '../../../Utilities/Helpers/getAspectRatio';
+import { getAspectRatio } from '../../utils/helpers/getAspectRatio';
 import { ICanvasDimensions } from './Types/canvasDimensions';
 
 const useCanvasDimensions = (

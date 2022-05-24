@@ -19,7 +19,7 @@ import {
 // Components
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import HideColorButton from '../../OptionsMenu/HideColorButton';
+import HideColorButton from '../HideColorButton';
 
 // Types
 import { IColorDispatcher, IColors } from './Types/colorProps';

@@ -1,0 +1,167 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  username String?
+  designs  Design[]
+}
+
+model Design {
+  id              Int            @id @default(autoincrement())
+  name            String
+  user            User           @relation(fields: [userId], references: [id])
+  userId          Int
+  type            Type           @relation(fields: [typeId], references: [id])
+  typeId          Int
+  bubble          BubbleOptions? @relation(fields: [bubbleOptionsId], references: [id])
+  bubbleOptionsId Int?
+  WaveOptions     WaveOptions?   @relation(fields: [waveOptionsId], references: [id])
+  waveOptionsId   Int?
+  CornerOptions   CornerOptions? @relation(fields: [cornerOptionsId], references: [id])
+  cornerOptionsId Int?
+  MarkerOptions   MarkerOptions? @relation(fields: [markerOptionsId], references: [id])
+  markerOptionsId Int?
+}
+
+model Type {
+  id            Int             @id @default(autoincrement())
+  name          String
+  Design        Design[]
+  BubbleOptions BubbleOptions[]
+  WaveOptions   WaveOptions[]
+  CornerOptions CornerOptions[]
+  MarkerOptions MarkerOptions[]
+}
+
+model BubbleOptions {
+  id     Int      @id @default(autoincrement())
+  type   Type     @relation(fields: [typeId], references: [id])
+  design Design[]
+  typeId Int
+
+  seed        Int
+  stroke      Boolean
+  solid       Int
+  strokeWidth Int
+  velocity    Int
+  size        Int
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     String
+  shadowY     String
+  shadowSD    Int
+  shadowColor String
+}
+
+model WaveOptions {
+  id     Int      @id @default(autoincrement())
+  type   Type     @relation(fields: [typeId], references: [id])
+  design Design[]
+  typeId Int
+
+  seed         Int
+  stroke       Boolean
+  solid        Int
+  strokeWidth  Int
+  strokeShrink Boolean
+
+  balance  Int
+  velocity Int
+  breaks   Int
+  stacks   Int
+  distance Int
+  smooth   Int
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     String
+  shadowY     String
+  shadowSD    Int
+  shadowColor String
+}
+
+model CornerOptions {
+  id     Int      @id @default(autoincrement())
+  type   Type     @relation(fields: [typeId], references: [id])
+  design Design[]
+  typeId Int
+
+  seed   Int
+  stroke Boolean
+  solid  Int
+
+  strokeWidth  Int
+  strokeShrink Boolean
+  balance      Int
+  velocity     Int
+  breaks       Int
+  stacks       Int
+  distance     Int
+  smooth       Int
+
+  topLeftCorner     Boolean
+  topRightCorner    Boolean
+  bottomLeftCorner  Boolean
+  bottomRightCorner Boolean
+  mirror            Boolean
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     String
+  shadowY     String
+  shadowSD    Int
+  shadowColor String
+}
+
+model MarkerOptions {
+  id     Int      @id @default(autoincrement())
+  type   Type     @relation(fields: [typeId], references: [id])
+  design Design[]
+  typeId Int
+
+  seed Int
+
+  lineCap      String
+  lineJoin     String
+  strokeWidth  Int
+  markerHeight Int
+  zickZacks    Int
+  pressure     Int
+
+  padding   Int
+  mirror    Boolean
+  yPosition Int
+
+  ghost           Boolean
+  ghostSize       Int
+  ghostStartColor String
+  ghostEndColor   String
+
+  startColor String
+  endColor   String
+  bgColor    String
+
+  shadowX     String
+  shadowY     String
+  shadowSD    Int
+  shadowColor String
+}

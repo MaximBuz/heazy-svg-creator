@@ -18,8 +18,9 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
       alignItems="center"
       width="100%"
       height="100vh"
+      padding={["0 1.5em"]}
     >
-      <Heading fontWeight="800" fontSize="4em" lineHeight={1}>
+      <Heading fontWeight="800" fontSize={{base: "2.5em", lg: "4em"}} lineHeight={1}>
         What are you wating for?<br></br>
         <span
           style={{

@@ -1,8 +1,8 @@
 import { Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 import OverviewBG from '../public/overview-bg.png';
-import FeatureCard from '../components/FeatureCard';
-import SectionDivider from '../components/SectionDivider';
+import FeatureCard from '../Components/FeatureCard';
+import SectionDivider from '../Components/SectionDivider';
 
 export interface IFeaturesProps {}
 
@@ -23,7 +23,7 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
       gap="50px"
     >
       <SectionDivider text="Features"/>
-      <Heading fontWeight="700" fontSize="3em">
+      <Heading fontWeight="700" fontSize={{base: "2em", lg: "3em"}}>
         Heazy is{' '}
         <span
           style={{

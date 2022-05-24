@@ -1,6 +1,6 @@
 import { Flex, Button, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../Components/Navbar';
 
 export interface IHeroProps {}
 
@@ -20,7 +20,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
           alignItems="center"
           gap="20px"
         >
-          <Heading fontWeight="800" fontSize="4em">
+          <Heading fontWeight="800" fontSize={{base: "3em", lg: "4em"}}>
             The design you want.
             <br />
             Without the{' '}

@@ -33,6 +33,7 @@ export function markerPath(
 
   // add the starting point
   path.unshift(`M ${padding} ${yPosition}`);
-
+  console.log(path.join(" "));
+  
   return path.join(' ');
 }

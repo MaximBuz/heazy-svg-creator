@@ -91,5 +91,7 @@ export function smoothCornerPath(
     // push each wave to waves array
     waves.push(path.join(' '));
   }
+  console.log(waves);
+  
   return waves;
 }

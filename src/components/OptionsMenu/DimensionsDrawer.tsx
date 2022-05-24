@@ -23,8 +23,8 @@ export interface IDimensionsDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   drawerButtonRef: any;
-  handleHeightChange: Dispatch<SetStateAction<number>>;
-  handleWidthChange: Dispatch<SetStateAction<number>>;
+  setHeight: Dispatch<SetStateAction<number>>;
+  setWidth: Dispatch<SetStateAction<number>>;
   height: number;
   width: number;
 }
@@ -33,8 +33,8 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
   isOpen,
   onClose,
   drawerButtonRef,
-  handleHeightChange,
-  handleWidthChange,
+  setHeight,
+  setWidth,
   height,
   width,
 }) => {
@@ -74,7 +74,7 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                   fontSize="sm"
                   children="w"
                 />
-                <Input value={width} onChange={(e) => handleWidthChange(Number(e.target.value))} />
+                <Input value={width} onChange={(e) => setWidth(Number(e.target.value))} />
                 <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
               </InputGroup>
               <InputGroup>
@@ -85,7 +85,7 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                   pointerEvents="none"
                   children="h"
                 />
-                <Input value={height} onChange={(e) => handleHeightChange(Number(e.target.value))} />
+                <Input value={height} onChange={(e) => setHeight(Number(e.target.value))} />
                 <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
               </InputGroup>
             </HStack>
@@ -97,48 +97,48 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
             <Divider></Divider>
             <Button
               onClick={() => {
-                handleHeightChange(504);
-                handleWidthChange(896);
+                setHeight(504);
+                setWidth(896);
               }}
             >
               16 : 9
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(720);
-                handleWidthChange(900);
+                setHeight(720);
+                setWidth(900);
               }}
             >
               5 : 4
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(675);
-                handleWidthChange(900);
+                setHeight(675);
+                setWidth(900);
               }}
             >
               4 : 3
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(600);
-                handleWidthChange(900);
+                setHeight(600);
+                setWidth(900);
               }}
             >
               3 : 2
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(450);
-                handleWidthChange(900);
+                setHeight(450);
+                setWidth(900);
               }}
             >
               2 : 1
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(700);
-                handleWidthChange(700);
+                setHeight(700);
+                setWidth(700);
               }}
             >
               1 : 1
@@ -151,40 +151,40 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
             <Divider></Divider>
             <Button
               onClick={() => {
-                handleHeightChange(504);
-                handleWidthChange(896);
+                setHeight(504);
+                setWidth(896);
               }}
             >
               Full HD
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(565);
-                handleWidthChange(904);
+                setHeight(565);
+                setWidth(904);
               }}
             >
               MacBook
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(2532 / 3.75);
-                handleWidthChange(1170 / 3.75);
+                setHeight(2532 / 3.75);
+                setWidth(1170 / 3.75);
               }}
             >
               iPhone 13
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(3040 / 4.5);
-                handleWidthChange(1440 / 4.5);
+                setHeight(3040 / 4.5);
+                setWidth(1440 / 4.5);
               }}
             >
               Galaxy S10
             </Button>
             <Button
               onClick={() => {
-                handleHeightChange(1334 / 2);
-                handleWidthChange(750 / 2);
+                setHeight(1334 / 2);
+                setWidth(750 / 2);
               }}
             >
               iPhone SE

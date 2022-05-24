@@ -32,8 +32,8 @@ function App() {
   /* --------- CANVAS STATE --------- */
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
-  const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
   const [design, setDesign] = useState<IDesignModes>('waves');
+  const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
 
   /* --------- OPTIONS MENU STATE --------- */
   const waveOptions = useWaveOptions();
@@ -66,20 +66,10 @@ function App() {
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderOptionsMenu = useCallback(() => {
-    switch (design) {
-      case 'waves': {
-        return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
-      }
-      case 'bubble': {
-        return <BubbleOptions {...bubbleOptions.get} {...bubbleOptions.set} />;
-      }
-      case 'corners': {
-        return <CornerOptions {...cornerOptions.get} {...cornerOptions.set} />;
-      }
-      case 'marker': {
-        return <MarkerOptions {...markerOptions.get} {...markerOptions.set} />;
-      }
-    }
+    if (design === 'waves') return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
+    if (design === 'bubble') return <BubbleOptions {...bubbleOptions.get} {...bubbleOptions.set} />;
+    if (design === 'corners') return <CornerOptions {...cornerOptions.get} {...cornerOptions.set} />;
+    if (design === 'marker') return <MarkerOptions {...markerOptions.get} {...markerOptions.set} />;
   }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
 
   /* --------- STYLES --------- */
@@ -119,8 +109,8 @@ function App() {
         {/* ------ RIGHT MENU ----- */}
         <OptionsMenu
           svgRef={svgRef}
-          handleWidthChange={setWidth}
-          handleHeightChange={setHeight}
+          setWidth={setWidth}
+          setHeight={setHeight}
           dimensions={canvasDimensions}
         >
           {renderOptionsMenu()}

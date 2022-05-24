@@ -14,8 +14,8 @@ import { ICanvasDimensions } from '../Designs/Canvas/Types/canvasDimensions';
 export interface IOptionsMenuProps {
   svgRef: Ref<SVGAElement | null>;
   dimensions: ICanvasDimensions;
-  handleWidthChange: Dispatch<SetStateAction<number>>;
-  handleHeightChange: Dispatch<SetStateAction<number>>;
+  setWidth: Dispatch<SetStateAction<number>>;
+  setHeight: Dispatch<SetStateAction<number>>;
   children: ReactNode;
 }
 
@@ -23,7 +23,7 @@ const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = (props) => {
   /* ---------- PROPS ---------- */
   const { svgRef, children, dimensions } = props;
   const { width, widthRatio, height, heightRatio } = dimensions;
-  const { handleWidthChange, handleHeightChange } = props;
+  const { setWidth, setHeight } = props;
 
   /* ---------- NOTIFICATIONS ---------- */
   const toast = useToast();
@@ -63,8 +63,8 @@ const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = (props) => {
         isOpen={isOpen}
         onClose={onClose}
         drawerButtonRef={drawerButtonRef}
-        handleHeightChange={handleHeightChange}
-        handleWidthChange={handleWidthChange}
+        setHeight={setHeight}
+        setWidth={setWidth}
         height={height}
         width={width}
       />

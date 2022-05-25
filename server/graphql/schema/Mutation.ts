@@ -50,7 +50,6 @@ type Mutation {
     shadowColor: String!
     userId: Int!
   ): WaveOptions
-}
 
   createNewCorners(
     name: String!
@@ -111,4 +110,5 @@ type Mutation {
     shadowColor: String!
     userId: Int!
   ): MarkerOptions
+ }
 `;

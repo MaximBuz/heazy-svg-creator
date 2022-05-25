@@ -6,6 +6,7 @@ const userData: Prisma.UserCreateInput[] = [
   {
     username: 'maximbuz',
     email: 'mbuz.maxim@gmail.com',
+    firebaseId: "ipwbeufpwiefub",
     bubbles: {
       create: [
         {
@@ -44,12 +45,13 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    username: 'maxim',
-    email: 'mbuz@gmail.com',
+    username: 'peter',
+    email: 'peter@gmail.com',
+    firebaseId: "aelikeaoq3q",
     bubbles: {
       create: [
         {
-          name: 'Bubble Design',
+          name: 'Peters bubble Design',
           seed: 1,
           stroke: false,
           solid: 0,
@@ -65,7 +67,7 @@ const userData: Prisma.UserCreateInput[] = [
           shadowColor: '#00000000',
         },
         {
-          name: 'Different Bubbles',
+          name: 'peters second Bubbles',
           seed: 2,
           stroke: true,
           solid: 0,
@@ -86,30 +88,29 @@ const userData: Prisma.UserCreateInput[] = [
   {
     username: 'hanni',
     email: 'hanni@gmail.com',
+    firebaseId: "23p7erbh32pi7",
     waves: {
-      create: 
-        {
-          name: 'Different wave',
-          seed: 1,
-          stroke: false,
-          solid: 0,
-          strokeWidth: 1,
-          strokeShrink: false,
-          balance: 0.5,
-          velocity: 1,
-          breaks: 4,
-          stacks: 2,
-          distance: 100,
-          smooth: 0.2,
-          startColor: '#001e35',
-          endColor: '#001b2f',
-          bgColor: '#FBAE3C',
-          shadowX: 0,
-          shadowY: 0,
-          shadowSD: 10,
-          shadowColor: '#00000000',
-        },
-      
+      create: {
+        name: 'Different wave',
+        seed: 1,
+        stroke: false,
+        solid: 0,
+        strokeWidth: 1,
+        strokeShrink: false,
+        balance: 0.5,
+        velocity: 1,
+        breaks: 4,
+        stacks: 2,
+        distance: 100,
+        smooth: 0.2,
+        startColor: '#001e35',
+        endColor: '#001b2f',
+        bgColor: '#FBAE3C',
+        shadowX: 0,
+        shadowY: 0,
+        shadowSD: 10,
+        shadowColor: '#00000000',
+      },
     },
   },
 ];

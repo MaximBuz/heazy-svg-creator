@@ -12,8 +12,9 @@ datasource db {
 
 model User {
   id       Int             @id @default(autoincrement())
+  firebaseId String        @unique
   email    String          @unique
-  username String?
+  username String
   waves    WaveOptions[]
   bubbles  BubbleOptions[]
   corners  CornerOptions[]
@@ -24,10 +25,11 @@ model BubbleOptions {
   id          Int     @id @default(autoincrement())
   name        String
   user        User    @relation(fields: [userId], references: [id])
-  seed        Float
+  seed        Int
+
   stroke      Boolean
-  solid       Float
-  strokeWidth Float
+  solid       Int
+  strokeWidth Int
   velocity    Float
   size        Float
 
@@ -46,24 +48,22 @@ model WaveOptions {
   id   Int    @id @default(autoincrement())
   name String
   user User   @relation(fields: [userId], references: [id])
+  seed         Int
 
-  seed         Float
   stroke       Boolean
-  solid        Float
-  strokeWidth  Float
+  solid        Int
+  strokeWidth  Int
   strokeShrink Boolean
-
   balance  Float
   velocity Float
-  breaks   Float
-  stacks   Float
-  distance Float
+  breaks   Int
+  stacks   Int
+  distance Int
   smooth   Float
 
   startColor String
   endColor   String
   bgColor    String
-
   shadowX     Float
   shadowY     Float
   shadowSD    Float
@@ -76,18 +76,17 @@ model CornerOptions {
   id   Int    @id @default(autoincrement())
   name String
   user User   @relation(fields: [userId], references: [id])
-
   seed   Float
-  stroke Boolean
-  solid  Float
 
-  strokeWidth  Float
+  stroke Boolean
+  solid  Int
+  strokeWidth  Int
   strokeShrink Boolean
   balance      Float
-  velocity     Float
-  breaks       Float
-  stacks       Float
-  distance     Float
+  velocity     Int
+  breaks       Int
+  stacks       Int
+  distance     Int
   smooth       Float
 
   topLeftCorner     Boolean
@@ -113,14 +112,13 @@ model MarkerOptions {
   id   Int    @id @default(autoincrement())
   name String
   user User   @relation(fields: [userId], references: [id])
-
   seed Float
 
   lineCap      String
   lineJoin     String
-  strokeWidth  Float
-  markerHeight Float
-  zickZacks    Float
+  strokeWidth  Int
+  markerHeight Int
+  zickZacks    Int
   pressure     Float
 
   padding   Float

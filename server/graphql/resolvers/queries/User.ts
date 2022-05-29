@@ -1,5 +1,15 @@
 import { Context } from '../../../context';
 
-export function getUserById(_parent: any, _args: { id: number }, context: Context) {}
+export async function getUserById(_parent: any, _args: { id: number }, context: Context) {
+  const user = await context.prisma.user.findFirst({
+    where: { id: _args.id },
+  });
+  return user;
+}
 
-export function getUserByFirebaseId(_parent: any, _args: { id: string }, context: Context) {}
+export async function getUserByFirebaseId (_parent: any, _args: { id: string; }, context: Context) {
+  const user = await context.prisma.user.findFirst({
+    where: { firebaseId: _args.id },
+  });
+  return user;
+}

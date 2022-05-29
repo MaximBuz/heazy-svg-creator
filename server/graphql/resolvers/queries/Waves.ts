@@ -18,7 +18,7 @@ export async function getWavesByFirebaseId(_parent: any, _args: { id: string }, 
   return waves;
 }
 
-export async function getWavesById(_parent: any, _args: { id: number }, context: Context) {
+export async function getWaveById(_parent: any, _args: { id: number }, context: Context) {
   const wave = await context.prisma.waveOptions.findFirst({
     where: { id: _args.id },
   });

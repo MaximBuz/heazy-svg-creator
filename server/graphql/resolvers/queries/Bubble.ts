@@ -15,6 +15,7 @@ export async function getBubblesByFirebaseId(_parent: any, _args: { id: string }
       },
     },
   });
+  return bubbles
 }
 
 export async function getBubbleById(_parent: any, _args: { id: number }, context: Context) {

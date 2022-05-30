@@ -96,7 +96,7 @@ const Ghost: React.FunctionComponent<{
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
                 value={state.ghostStartColor.replace('#', '')}
-                onChange={(e) => setState(prev => ({...prev, ghostStartColor: `#${e.target.value}`}))}
+                onChange={(e) => setState((prev) => ({ ...prev, ghostStartColor: `#${e.target.value}` }))}
               />
             </InputGroup>
           </HStack>
@@ -106,7 +106,10 @@ const Ghost: React.FunctionComponent<{
               <ColorPicker
                 color={state.ghostStartColor}
                 onChange={(col) =>
-                  setState(prev => ({...prev, ghostStartColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a}))
+                  setState((prev) => ({
+                    ...prev,
+                    ghostStartColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                  }))
                 }
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
@@ -142,7 +145,7 @@ const Ghost: React.FunctionComponent<{
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
                 value={state.ghostEndColor.replace('#', '')}
-                onChange={(e) => setState(prev => ({...prev, ghostEndColor: `#${e.target.value}`}))}
+                onChange={(e) => setState((prev) => ({ ...prev, ghostEndColor: `#${e.target.value}` }))}
               />
             </InputGroup>
           </HStack>
@@ -151,7 +154,12 @@ const Ghost: React.FunctionComponent<{
             <PopoverBody>
               <ColorPicker
                 color={state.ghostEndColor}
-                onChange={(col) => setState(prev => ({...prev, ghostEndColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a)}))}
+                onChange={(col) =>
+                  setState((prev) => ({
+                    ...prev,
+                    ghostEndColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                  }))
+                }
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"
@@ -159,8 +167,10 @@ const Ghost: React.FunctionComponent<{
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={state.ghostEndColor}
-          setColor={(col:string) => setState(prev => ({...prev, ghostEndColor: col}))} />
+        <HideColorButton
+          color={state.ghostEndColor}
+          setColor={(col: string) => setState((prev) => ({ ...prev, ghostEndColor: col }))}
+        />
       </HStack>
     </>
   );

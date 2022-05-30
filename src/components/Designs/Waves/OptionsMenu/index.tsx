@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';
@@ -11,10 +11,12 @@ import Shape from './Shape';
 import Variants from './Variants';
 
 // Types
-import { IWaveAllSetterProps } from '../Types/waveSetterProps';
 import { IWaveAllProps } from '../Types/waveProps';
 
-const WaveOptions: React.FunctionComponent<IWaveAllSetterProps & IWaveAllProps> = (props) => {
+const WaveOptions: React.FunctionComponent<{
+  state: IWaveAllProps;
+  setState: Dispatch<SetStateAction<IWaveAllProps>>;
+}> = (props) => {
   return (
     <>
       <Variants {...props}></Variants>

@@ -6,7 +6,6 @@ import {
   InitialAnimation,
   Waves,
   WaveOptions,
-  useWaveOptions,
   Bubble,
   BubbleOptions,
   useBubbleOptions,
@@ -27,6 +26,8 @@ import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
 import { IDesignModes } from './components/Canvas/Types/designModes';
+import { IWaveAllProps } from './components/Designs/Waves/Types/waveProps';
+import { initialWaveState } from './components/Designs/Waves/OptionsMenu/initialState';
 
 function App() {
   /* --------- CANVAS STATE --------- */
@@ -36,7 +37,8 @@ function App() {
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
 
   /* --------- OPTIONS MENU STATE --------- */
-  const waveOptions = useWaveOptions();
+  // const waveOptions = useWaveOptions();
+  const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
   const bubbleOptions = useBubbleOptions();
   const cornerOptions = useCornerOptions();
   const markerOptions = useMarkerOptions();
@@ -46,31 +48,22 @@ function App() {
 
   /* --------- RENDER CANVAS --------- */
   const renderCanvas = useCallback(() => {
-    if (design === 'waves')
-      return <Waves {...canvasDimensions} svgRef={svgRef} seed={seed} {...waveOptions.get} />;
+    if (design === 'waves') return <Waves {...canvasDimensions} {...waveState} svgRef={svgRef} seed={seed} />;
     if (design === 'bubble')
       return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} {...bubbleOptions.get} />;
     if (design === 'corners')
       return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} {...cornerOptions.get} />;
     if (design === 'marker')
       return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} {...markerOptions.get} />;
-  }, [
-    design,
-    seed,
-    canvasDimensions,
-    waveOptions.get,
-    bubbleOptions.get,
-    cornerOptions.get,
-    markerOptions.get,
-  ]);
+  }, [design, seed, canvasDimensions, waveState, bubbleOptions.get, cornerOptions.get, markerOptions.get]);
 
   /* --------- RENDER RIGHT MENU --------- */
   const renderOptionsMenu = useCallback(() => {
-    if (design === 'waves') return <WaveOptions {...waveOptions.get} {...waveOptions.set} />;
+    if (design === 'waves') return <WaveOptions state={waveState} setState={setWaveState} />;
     if (design === 'bubble') return <BubbleOptions {...bubbleOptions.get} {...bubbleOptions.set} />;
     if (design === 'corners') return <CornerOptions {...cornerOptions.get} {...cornerOptions.set} />;
     if (design === 'marker') return <MarkerOptions {...markerOptions.get} {...markerOptions.set} />;
-  }, [design, waveOptions, bubbleOptions, cornerOptions, markerOptions]);
+  }, [design, waveState, bubbleOptions, cornerOptions, markerOptions]);
 
   /* --------- STYLES --------- */
   const wrapperStyles: FlexProps = {

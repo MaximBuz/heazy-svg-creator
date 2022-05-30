@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Styles
 import {
@@ -26,14 +26,20 @@ import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
 
 // Types
-import { IShadow, IShadowDispatcher } from './Types/shadowProps';
+import { IWaveAllProps } from '../../Designs/Waves/Types/waveProps';
+import { IBubbleAllProps } from '../../Designs/Bubble/Types/bubbleProps';
+import { IMarkerAllProps } from '../../Designs/Marker/Types/markerProps';
+import { ICornerAllProps } from '../../Designs/Corners/Types/cornerProps';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (props) => {
-  const { setShadowX, setShadowSD, setShadowColor, setShadowY } = props;
-  const { shadowX, shadowSD, shadowColor, shadowY } = props;
+type IShadowOptionProps =
+  | { state: IWaveAllProps; setState: Dispatch<SetStateAction<IWaveAllProps>> }
+  | { state: IBubbleAllProps; setState: Dispatch<SetStateAction<IBubbleAllProps>> }
+  | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> };
+// | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
 
+const ShadowOptions: React.FunctionComponent<IShadowOptionProps> = ({ state, setState }) => {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">
@@ -45,10 +51,10 @@ const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (pro
       </Heading>
       <Slider
         aria-label="shadow-x-offset"
-        defaultValue={shadowX}
+        defaultValue={state.shadowX}
         min={-50}
         max={50}
-        onChange={(val) => setShadowX(val)}
+        onChange={(val) => setState((prev) => ({ ...prev, shadowX: val }))}
       >
         <SliderTrack>
           <SliderFilledTrack />
@@ -61,10 +67,10 @@ const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (pro
       </Heading>
       <Slider
         aria-label="shadow-y-offset"
-        defaultValue={shadowY}
+        defaultValue={state.shadowY}
         min={-10}
         max={50}
-        onChange={(val) => setShadowY(val)}
+        onChange={(val) => setState((prev) => ({ ...prev, shadowY: val }))}
       >
         <SliderTrack>
           <SliderFilledTrack />
@@ -77,10 +83,10 @@ const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (pro
       </Heading>
       <Slider
         aria-label="shadow-blur-radius"
-        defaultValue={shadowSD}
+        defaultValue={state.shadowSD}
         min={0}
         max={25}
-        onChange={(val) => setShadowSD(val)}
+        onChange={(val) => setState((prev) => ({ ...prev, shadowSD: val }))}
       >
         <SliderTrack>
           <SliderFilledTrack />
@@ -97,7 +103,7 @@ const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (pro
               <Circle
                 as="button"
                 size="36px"
-                bgColor={shadowColor}
+                bgColor={state.shadowColor}
                 boxShadow="0 0 0 1px #52555A"
                 sx={{ transition: '0.3s' }}
                 _hover={{ boxShadow: '0 0 0 2px #d0d0d0' }}
@@ -106,18 +112,27 @@ const ShadowOptions: React.FunctionComponent<IShadow & IShadowDispatcher> = (pro
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
-                value={shadowColor.replace('#', '')}
-                onChange={(e) => setShadowColor(`#${e.target.value}`)}
+                value={state.shadowColor.replace('#', '')}
+                onChange={(e) => setState((prev) => ({ ...prev, shadowColor: `#${e.target.value}` }))}
               />
             </InputGroup>
-            <HideColorButton color={shadowColor} setColor={setShadowColor} />
+            <HideColorButton
+              color={state.shadowColor}
+              setColor={(color) => setState((prev) => ({ ...prev, shadowColor: color }))}
+            />
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={shadowColor}
-                onChange={(col) => setShadowColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                color={state.shadowColor}
+                // onChange={(col) => setShadowColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                onChange={(col) =>
+                  setState((prev) => ({
+                    ...prev,
+                    shadowColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                  }))
+                }
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"

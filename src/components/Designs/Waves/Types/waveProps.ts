@@ -9,8 +9,7 @@ export interface IWaveProps {
 }
 
 export interface IWaveVariantsProps {
-  stroke: boolean; // DOPPELT ??
-  solid: number;
+  solid: boolean;
   strokeWidth: number;
   strokeShrink: boolean;
 }

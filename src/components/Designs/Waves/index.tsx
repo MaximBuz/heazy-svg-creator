@@ -14,13 +14,13 @@ const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
     props.breaks,
     props.stacks,
     props.distance,
-    props.stroke,
+    props.solid,
     props.smooth,
   ] as const;
 
   // destructure some params
   const { width, height, svgRef } = props;
-  const { stroke, strokeShrink, strokeWidth } = props;
+  const { solid, strokeShrink, strokeWidth } = props;
   const { shadowColor, shadowSD, shadowX, shadowY } = props;
   const { bgColor, startColor, endColor } = props;
 
@@ -39,7 +39,7 @@ const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        {!stroke && (
+        {solid && (
           <filter id={`shadow-${randomClassId}`} x={0} width="100%" y="-20%" height="150%">
             <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
           </filter>
@@ -50,8 +50,8 @@ const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
             d={wave}
             fill="none"
             strokeLinecap="round"
-            filter={!stroke ? `url(#shadow-${randomClassId})` : undefined}
-            stroke={stroke ? `url(#linear-gradient-${randomClassId})` : undefined}
+            filter={solid ? `url(#shadow-${randomClassId})` : undefined}
+            stroke={!solid ? `url(#linear-gradient-${randomClassId})` : undefined}
             strokeWidth={
               strokeWidth && strokeShrink
                 ? strokeWidth - (strokeWidth / wavesData.length) * index
@@ -59,7 +59,7 @@ const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
             }
             style={{
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
-              fill: !stroke ? `url(#linear-gradient-${randomClassId})` : undefined,
+              fill: solid ? `url(#linear-gradient-${randomClassId})` : undefined,
             }}
           ></path>
         ))}

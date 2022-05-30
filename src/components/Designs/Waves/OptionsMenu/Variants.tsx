@@ -13,24 +13,19 @@ import {
   Tabs,
 } from '@chakra-ui/react';
 
-
 // Icons
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import { IWaveVariantsProps } from '../Types/waveProps';
-import { IWaveVariantsSetterProps } from '../Types/waveSetterProps';
+import { IWaveAllProps } from '../Types/waveProps';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function Variants({
-  setSolid,
-  solid,
-  setStrokeShrink,
-  strokeShrink,
-  setStrokeWidth,
-  strokeWidth,
-}: (IWaveVariantsSetterProps & IWaveVariantsProps)) {
+const Variants: React.FunctionComponent<{
+  state: IWaveAllProps;
+  setState: Dispatch<SetStateAction<IWaveAllProps>>;
+}> = ({ state, setState }) => {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">
@@ -38,7 +33,12 @@ export default function Variants({
       </Heading>
 
       {/* ------ SOLID vs. OUTLINE ------ */}
-      <Tabs onChange={(index) => setSolid(index)} defaultIndex={0} isFitted variant="unstyled">
+      <Tabs
+        onChange={(index) => setState((prev) => ({ ...prev, solid: index === 0 ? true : false }))}
+        defaultIndex={0}
+        isFitted
+        variant="unstyled"
+      >
         <TabList>
           <Tab
             roundedTopLeft={10}
@@ -72,7 +72,7 @@ export default function Variants({
       </Tabs>
 
       {/* ------ LINE STROKE OPTIONS ------ */}
-      {solid === 1 && (
+      {!state.solid && (
         <>
           <Heading as="h4" size="xs" opacity={0.5}>
             Line width
@@ -80,18 +80,20 @@ export default function Variants({
           <HStack>
             <SliderIconWrapper
               viewBox="0 0 394 366"
-              onClick={() => strokeWidth > 0 && setStrokeWidth(strokeWidth - 1)}
+              onClick={() =>
+                state.strokeWidth > 0 && setState((prev) => ({ ...prev, strokeWidth: prev.strokeWidth - 1 }))
+              }
             >
               <LineWidthLeft />
             </SliderIconWrapper>
 
             <Slider
               aria-label="balance"
-              value={strokeWidth}
+              value={state.strokeWidth}
               min={0}
               max={50}
               step={0.5}
-              onChange={(val) => setStrokeWidth(val)}
+              onChange={(val) => setState((prev) => ({ ...prev, strokeWidth: val }))}
             >
               <SliderTrack>
                 <SliderFilledTrack />
@@ -101,7 +103,10 @@ export default function Variants({
 
             <SliderIconWrapper
               viewBox="0 0 433 325"
-              onClick={() => strokeWidth < 50 && setStrokeWidth(strokeWidth + 1)}
+              onClick={() =>
+                state.strokeWidth < 50 &&
+                setState((prev) => ({ ...prev, strokeWidth: state.strokeWidth + 1 }))
+              }
             >
               <LineWidthRight />
             </SliderIconWrapper>
@@ -110,10 +115,15 @@ export default function Variants({
             <Heading as="h4" size="xs" opacity={0.5}>
               Shrink lines progressively
             </Heading>
-            <Switch size="lg" onChange={() => setStrokeShrink(!strokeShrink)} />
+            <Switch
+              size="lg"
+              onChange={() => setState((prev) => ({ ...prev, strokeShrink: !state.strokeShrink }))}
+            />
           </HStack>
         </>
       )}
     </>
   );
-}
+};
+
+export default Variants;

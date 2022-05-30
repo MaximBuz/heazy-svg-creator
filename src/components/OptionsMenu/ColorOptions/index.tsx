@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Styles
 import {
@@ -22,14 +22,20 @@ import rgbHex from 'rgb-hex';
 import HideColorButton from '../HideColorButton';
 
 // Types
-import { IColorDispatcher, IColors } from './Types/colorProps';
+import { IWaveAllProps } from '../../Designs/Waves/Types/waveProps';
+import { IBubbleAllProps } from '../../Designs/Bubble/Types/bubbleProps';
+import { IMarkerAllProps } from '../../Designs/Marker/Types/markerProps';
+import { ICornerAllProps } from '../../Designs/Corners/Types/cornerProps';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props) => {
-  const { setBgColor, setStartColor, setEndColor } = props;
-  const { bgColor, startColor, endColor } = props;
+type IColorOptionProps =
+  | { state: IWaveAllProps; setState: Dispatch<SetStateAction<IWaveAllProps>> }
+  | { state: IBubbleAllProps; setState: Dispatch<SetStateAction<IBubbleAllProps>> }
+  | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> }
+  // | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
 
+const ColorOptions: React.FunctionComponent<IColorOptionProps> = ({ state, setState }) => {
   return (
     <>
       {/* -------------- COLOR -------------- */}
@@ -47,7 +53,7 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={bgColor}
+                bgColor={state.bgColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -56,22 +62,33 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             </PopoverTrigger>
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
-              <Input value={bgColor.replace('#', '')} onChange={(e) => setBgColor(`#${e.target.value}`)} />
+              <Input
+                value={state.bgColor.replace('#', '')}
+                onChange={(e) => setState((prev) => ({ ...prev, bgColor: `#${e.target.value}` }))}
+              />
             </InputGroup>
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={bgColor}
-                onChange={(col) => setBgColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                color={state.bgColor}
+                onChange={(col) =>
+                  setState((prev) => ({
+                    ...prev,
+                    bgColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                  }))
+                }
                 onColor
                 width="200px"
               ></ColorPicker>
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={bgColor} setColor={setBgColor} />
+        <HideColorButton
+          color={state.bgColor}
+          setColor={(color) => setState((prev) => ({ ...prev, bgColor: color }))}
+        />
       </HStack>
 
       {/* Wave Start Color */}
@@ -84,7 +101,7 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={startColor}
+                bgColor={state.startColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -94,8 +111,8 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
-                value={startColor.replace('#', '')}
-                onChange={(e) => setStartColor(`#${e.target.value}`)}
+                value={state.startColor.replace('#', '')}
+                onChange={(e) => setState((prev) => ({ ...prev, startColor: `#${e.target.value}` }))}
               />
             </InputGroup>
           </HStack>
@@ -103,15 +120,23 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={startColor}
-                onChange={(col) => setStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                color={state.startColor}
+                onChange={(col) =>
+                  setState((prev) => ({
+                    ...prev,
+                    startColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                  }))
+                }
                 onColor
                 width="200px"
               ></ColorPicker>
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={startColor} setColor={setStartColor} />
+        <HideColorButton
+          color={state.startColor}
+          setColor={(color) => setState((prev) => ({ ...prev, startColor: color }))}
+        />
       </HStack>
 
       {/* Wave Start Color */}
@@ -124,7 +149,7 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={endColor}
+                bgColor={state.endColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -133,22 +158,33 @@ const ColorOptions: React.FunctionComponent<IColors & IColorDispatcher> = (props
             </PopoverTrigger>
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
-              <Input value={endColor.replace('#', '')} onChange={(e) => setEndColor(`#${e.target.value}`)} />
+              <Input
+                value={state.endColor.replace('#', '')}
+                onChange={(e) => setState((prev) => ({ ...prev, endColor: `#${e.target.value}` }))}
+              />
             </InputGroup>
           </HStack>
           <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={endColor}
-                onChange={(col) => setEndColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                color={state.endColor}
+                onChange={(col) =>
+                  setState((prev) => ({
+                    ...prev,
+                    endColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                  }))
+                }
                 onColor
                 width="200px"
               ></ColorPicker>
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={endColor} setColor={setEndColor} />
+        <HideColorButton
+          color={state.endColor}
+          setColor={(color) => setState((prev) => ({ ...prev, endColor: color }))}
+        />
       </HStack>
     </>
   );

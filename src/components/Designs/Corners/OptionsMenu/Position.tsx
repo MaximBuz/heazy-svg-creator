@@ -1,58 +1,60 @@
 // Layout
-import {
-  Checkbox,
-  CheckboxGroup,
-  Flex,
-  Heading,
-  HStack,
-  Switch,
-} from '@chakra-ui/react';
+import { Checkbox, CheckboxGroup, Flex, Heading, HStack, Switch } from '@chakra-ui/react';
+import { Dispatch, SetStateAction } from 'react';
 
 // Icons
-import { ICornerPositionProps } from '../Types/cornerProps';
-import { ICornerPositionSetterProps } from '../Types/cornerSetterProps';
+import { ICornerAllProps } from '../Types/cornerProps';
 
-export default function Position({
-  topLeftCorner,
-  topRightCorner,
-  bottomLeftCorner,
-  bottomRightCorner,
-  mirror,
-  setTopLeftCorner,
-  setTopRightCorner,
-  setBottomLeftCorner,
-  setBottomRightCorner,
-  setMirror,
-}: ICornerPositionProps & ICornerPositionSetterProps) {
+const Position: React.FunctionComponent<{
+  state: ICornerAllProps;
+  setState: Dispatch<SetStateAction<ICornerAllProps>>;
+}> = ({ state, setState }) => {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">
         Position
       </Heading>
 
-       {/* CORNER CHECKBOXES */}
+      {/* CORNER CHECKBOXES */}
       <CheckboxGroup>
         <Flex justifyContent="space-between">
+          <Flex direction="column" gap="10px">
+            <Checkbox
+              isChecked={state.topLeftCorner}
+              onChange={() => {
+                setState((prev) => ({ ...prev, topLeftCorner: !prev.topLeftCorner }));
+              }}
+            >
+              Top left
+            </Checkbox>
+            <Checkbox
+              isChecked={state.bottomLeftCorner}
+              onChange={() => {
+                setState((prev) => ({ ...prev, bottomLeftCorner: !prev.bottomLeftCorner }));
+              }}
+            >
+              Bottom left
+            </Checkbox>
+          </Flex>
 
           <Flex direction="column" gap="10px">
-            <Checkbox isChecked={topLeftCorner} onChange={
-              () => {setTopLeftCorner((topLeftCorner)=> !topLeftCorner)}
-            }>Top left</Checkbox>
-             <Checkbox isChecked={bottomLeftCorner} onChange={
-              () => {setBottomLeftCorner((bottomLeftCorner)=> !bottomLeftCorner)}
-            }>Bottom left</Checkbox>
-            
+            <Checkbox
+              isChecked={state.topRightCorner}
+              onChange={() => {
+                setState((prev) => ({ ...prev, topLeftCorner: !prev.topRightCorner }));
+              }}
+            >
+              Top right
+            </Checkbox>
+            <Checkbox
+              isChecked={state.bottomRightCorner}
+              onChange={() => {
+                setState((prev) => ({ ...prev, topLeftCorner: !prev.bottomRightCorner }));
+              }}
+            >
+              Bottom right
+            </Checkbox>
           </Flex>
-          
-          <Flex direction="column" gap="10px">
-            <Checkbox isChecked={topRightCorner} onChange={
-              () => {setTopRightCorner((topRightCorner)=> !topRightCorner)}
-            }>Top right</Checkbox>
-            <Checkbox isChecked={bottomRightCorner} onChange={
-              () => {setBottomRightCorner((bottomRightCorner)=> !bottomRightCorner)}
-            }>Bottom right</Checkbox>
-          </Flex>
-
         </Flex>
       </CheckboxGroup>
 
@@ -61,8 +63,15 @@ export default function Position({
         <Heading as="h4" size="xs" opacity={0.5}>
           Mirror all edges
         </Heading>
-        <Switch size="lg" onChange={() => setMirror(!mirror)} />
+        <Switch
+          size="lg"
+          onChange={() => {
+            setState((prev) => ({ ...prev, mirror: !prev.mirror }));
+          }}
+        />
       </HStack>
     </>
   );
-}
+};
+
+export default Position;

@@ -8,8 +8,7 @@ export interface ICornerProps {
 }
 
 export interface ICornerVariantsProps {
-  stroke: boolean; // DOPPELT ??
-  solid: number;
+  solid: boolean;
 }
 
 export interface ICornerPositionProps {

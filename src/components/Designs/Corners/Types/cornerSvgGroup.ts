@@ -1,7 +1,7 @@
 export interface ICornerSvgGroup {
   width: number;
   height: number;
-  stroke: boolean;
+  solid: boolean;
   strokeWidth: number;
   strokeShrink: boolean;
   classId: string;

@@ -1,0 +1,25 @@
+import { ICornerAllProps } from './Types/cornerProps';
+
+export const initialCornerState: ICornerAllProps = {
+  solid: true,
+  topLeftCorner: true,
+  topRightCorner: false,
+  bottomLeftCorner: false,
+  bottomRightCorner: true,
+  mirror: false,
+  bgColor: '#ff0071ff',
+  startColor: '#95ffda',
+  endColor: '#95ffa1ff',
+  shadowX: 0,
+  shadowY: 0,
+  shadowSD: 10,
+  shadowColor: '#00000061',
+  balance: 0.3,
+  velocity: 1,
+  breaks: 4,
+  stacks: 0,
+  distance: 100,
+  strokeShrink: false,
+  strokeWidth: 1,
+  smooth: 0.2,
+};

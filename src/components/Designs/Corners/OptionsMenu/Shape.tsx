@@ -11,7 +11,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import BalanceLeft from './Icons/BalanceLeft';
 import BalanceRight from './Icons/BalanceRight';
@@ -21,26 +21,14 @@ import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
-import { ICornerShapeProps } from '../Types/cornerProps';
-import { ICornerShapeSetterProps } from '../Types/cornerSetterProps';
+import { ICornerAllProps, ICornerShapeProps } from '../Types/cornerProps';
 import Smooth from './Icons/Smooth';
 import Edgy from './Icons/Edgy';
 
-
-const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps> = ({
-  balance,
-  setBalance,
-  velocity,
-  setVelocity,
-  breaks,
-  setBreaks,
-  stacks,
-  setStacks,
-  distance,
-  setDistance,
-  smooth,
-  setSmooth
-}) => {
+const Shape: React.FunctionComponent<{
+  state: ICornerAllProps;
+  setState: Dispatch<SetStateAction<ICornerAllProps>>;
+}> = ({ state, setState }) => {
   return (
     <>
       {/* ----- HEADLINE ------ */}
@@ -54,23 +42,29 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 456 456'} onClick={() => balance > 0 && setBalance(balance - 0.1)}>
+        <SliderIconWrapper
+          viewBox={'0 0 456 456'}
+          onClick={() => state.balance > 0 && setState((prev) => ({ ...prev, balance: prev.balance - 0.1 }))}
+        >
           <BalanceLeft />
         </SliderIconWrapper>
         <Slider
           aria-label="balance"
-          value={balance}
+          value={state.balance}
           min={0}
           max={1}
           step={0.01}
-          onChange={(val) => setBalance(val)}
+          onChange={(val) => setState((prev) => ({ ...prev, balance: val }))}
         >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
         </Slider>
-        <SliderIconWrapper viewBox={'0 0 456 456'} onClick={() => balance < 1 && setBalance(balance + 0.1)}>
+        <SliderIconWrapper
+          viewBox={'0 0 456 456'}
+          onClick={() => state.balance < 1 && setState((prev) => ({ ...prev, balance: prev.balance + 0.1 }))}
+        >
           <BalanceRight />
         </SliderIconWrapper>
       </HStack>
@@ -81,11 +75,23 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 413 88'} onClick={() => velocity > 0 && setVelocity(velocity - 0.1)}>
+        <SliderIconWrapper
+          viewBox={'0 0 413 88'}
+          onClick={() =>
+            state.velocity > 0 && setState((prev) => ({ ...prev, velocity: state.velocity - 0.1 }))
+          }
+        >
           <VelocityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="velocity" value={velocity} min={0} max={1} step={0.1} onChange={(val) => setVelocity(val)}>
+        <Slider
+          aria-label="velocity"
+          value={state.velocity}
+          min={0}
+          max={1}
+          step={0.1}
+          onChange={(val) => setState((prev) => ({ ...prev, velocity: val }))}
+        >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
@@ -94,7 +100,9 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
 
         <SliderIconWrapper
           viewBox={'0 0 412 286'}
-          onClick={() => velocity < 1 && setVelocity(velocity + 0.1)}
+          onClick={() =>
+            state.velocity < 1 && setState((prev) => ({ ...prev, velocity: prev.velocity + 0.1 }))
+          }
         >
           <VelocityRight />
         </SliderIconWrapper>
@@ -106,18 +114,30 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 420 78'} onClick={() => breaks > 2 && setBreaks(breaks - 1)}>
+        <SliderIconWrapper
+          viewBox={'0 0 420 78'}
+          onClick={() => state.breaks > 2 && setState((prev) => ({ ...prev, breaks: prev.breaks - 1 }))}
+        >
           <ComplexityLeft />
         </SliderIconWrapper>
 
-        <Slider aria-label="complexity" value={breaks} min={2} max={10} onChange={(val) => setBreaks(val)}>
+        <Slider
+          aria-label="complexity"
+          value={state.breaks}
+          min={2}
+          max={10}
+          onChange={(val) => setState((prev) => ({ ...prev, breaks: val }))}
+        >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => breaks < 10 && setBreaks(breaks + 1)}>
+        <SliderIconWrapper
+          viewBox={'0 0 432 158'}
+          onClick={() => state.breaks < 10 && setState((prev) => ({ ...prev, breaks: prev.breaks + 1 }))}
+        >
           <ComplexityRight />
         </SliderIconWrapper>
       </HStack>
@@ -128,18 +148,31 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 420 200'} onClick={() => smooth > 0.05 && setSmooth(smooth - 0.05)}>
+        <SliderIconWrapper
+          viewBox={'0 0 420 200'}
+          onClick={() => state.smooth > 0.05 && setState((prev) => ({ ...prev, smooth: prev.smooth - 0.05 }))}
+        >
           <Edgy />
         </SliderIconWrapper>
 
-        <Slider aria-label="complexity" value={smooth} step={0.01} min={0} max={0.2} onChange={(val) => setSmooth(val)}>
+        <Slider
+          aria-label="smootheness"
+          value={state.smooth}
+          step={0.01}
+          min={0}
+          max={0.2}
+          onChange={(val) => setState((prev) => ({ ...prev, smooth: val }))}
+        >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 432 158'} onClick={() => smooth < 0.25 && setSmooth(smooth + 0.05)}>
+        <SliderIconWrapper
+          viewBox={'0 0 432 158'}
+          onClick={() => state.smooth < 0.25 && setState((prev) => ({ ...prev, smooth: prev.smooth + 0.05 }))}
+        >
           <Smooth />
         </SliderIconWrapper>
       </HStack>
@@ -148,7 +181,12 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
       <Heading as="h4" size="xs" opacity={0.5}>
         Layers
       </Heading>
-      <NumberInput defaultValue={stacks} min={0} max={5} onChange={(val) => setStacks(Number(val))}>
+      <NumberInput
+        defaultValue={state.stacks}
+        min={0}
+        max={5}
+        onChange={(val) => setState((prev) => ({ ...prev, stacks: Number(val) }))}
+      >
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
@@ -161,16 +199,21 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
         Layer Distance
       </Heading>
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 446 123'} onClick={() => distance >= 25 && setDistance(distance - 25)}>
+        <SliderIconWrapper
+          viewBox={'0 0 446 123'}
+          onClick={() =>
+            state.distance >= 25 && setState((prev) => ({ ...prev, distance: prev.distance - 25 }))
+          }
+        >
           <DistanceLeft />
         </SliderIconWrapper>
 
         <Slider
           aria-label="layer-distance"
-          value={distance}
+          value={state.distance}
           min={0}
           max={150}
-          onChange={(val) => setDistance(val)}
+          onChange={(val) => setState((prev) => ({ ...prev, distance: val }))}
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -178,7 +221,12 @@ const Shape: React.FunctionComponent<ICornerShapeProps & ICornerShapeSetterProps
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 445 303'} onClick={() => distance <= 125 && setDistance(distance + 25)}>
+        <SliderIconWrapper
+          viewBox={'0 0 445 303'}
+          onClick={() =>
+            state.distance <= 125 && setState((prev) => ({ ...prev, distance: prev.distance + 25 }))
+          }
+        >
           <DistanceRight />
         </SliderIconWrapper>
       </HStack>

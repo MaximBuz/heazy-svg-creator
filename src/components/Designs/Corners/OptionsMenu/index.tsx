@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';
@@ -11,11 +11,13 @@ import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 
 // Types
-import { ICornerAllSetterProps } from '../Types/cornerSetterProps';
 import { ICornerAllProps } from '../Types/cornerProps';
 import Position from './Position';
 
-const CornerOptions: React.FunctionComponent<ICornerAllSetterProps & ICornerAllProps> = (props) => {
+const CornerOptions: React.FunctionComponent<{
+  state: ICornerAllProps;
+  setState: Dispatch<SetStateAction<ICornerAllProps>>;
+}> = (props) => {
   return (
     <>
       <Variants {...props}></Variants>

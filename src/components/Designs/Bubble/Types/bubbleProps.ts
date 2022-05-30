@@ -10,8 +10,7 @@ export interface IBubbleProps {
 }
 
 export interface IBubbleVariantsProps {
-  stroke: boolean; // DOPPELT ??
-  solid: number;
+  solid: boolean;
   strokeWidth: number;
 }
 

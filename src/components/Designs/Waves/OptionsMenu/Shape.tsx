@@ -157,7 +157,7 @@ const Shape: React.FunctionComponent<{
         </SliderIconWrapper>
 
         <Slider
-          aria-label="complexity"
+          aria-label="smootheness"
           value={state.smooth}
           step={0.01}
           min={0}

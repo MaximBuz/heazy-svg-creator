@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';
@@ -12,9 +12,11 @@ import { IBubbleAllProps } from '../Types/bubbleProps';
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
-import { IBubbleAllSetterProps } from '../Types/bubbleSetterProps';
 
-const BubbleOptions: React.FunctionComponent<IBubbleAllProps & IBubbleAllSetterProps> = (props) => {
+const BubbleOptions: React.FunctionComponent<{
+  state: IBubbleAllProps;
+  setState: Dispatch<SetStateAction<IBubbleAllProps>>;
+}> = (props) => {
   return (
     <>
       <Variants {...props}></Variants>

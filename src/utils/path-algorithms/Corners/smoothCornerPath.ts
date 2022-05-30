@@ -56,7 +56,7 @@ export function smoothCornerPath(
   breaks: number,
   stacks: number,
   distance: number,
-  stroke: boolean,
+  solid: boolean,
   smoothing: number
 ): string[] {
   let initialWaveSize = ((width + height) / 2) * (1 - balance);
@@ -73,7 +73,7 @@ export function smoothCornerPath(
     let path;
 
     // In case the wave is not filled, remove start and end line on the edges
-    if (stroke) {
+    if (!solid) {
       //@ts-ignore
       commands = anchorPoints.reduce((acc, point, index, array) => {
         return `${acc} ${getBezier(point, index, array, smoothing)}`;

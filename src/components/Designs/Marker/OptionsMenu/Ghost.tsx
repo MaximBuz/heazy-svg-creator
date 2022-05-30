@@ -15,27 +15,20 @@ import {
   Tab,
   Icon,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import { IMarkerGhostProps } from '../Types/markerProps';
-import { IMarkerGhostSetterProps } from '../Types/markerSetterProps';
+import { IMarkerAllProps } from '../Types/markerProps';
 import HideColorButton from '../../../OptionsMenu/HideColorButton';
 import GhostLeft from './Icons/GhostLeft';
 import GhostRight from './Icons/GhostRight';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps> = ({
-  ghost,
-  ghostSize,
-  ghostStartColor,
-  ghostEndColor,
-  setGhost,
-  setGhostSize,
-  setGhostStartColor,
-  setGhostEndColor,
-}) => {
+const Ghost: React.FunctionComponent<{
+  state: IMarkerAllProps;
+  setState: Dispatch<SetStateAction<IMarkerAllProps>>;
+}> = ({ state, setState }) => {
   return (
     <>
       {/* -------------- GHOST -------------- */}
@@ -45,8 +38,8 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
 
       {/* ------ GHOST? ------ */}
       <Tabs
-        onChange={(index) => setGhost(index === 0 ? false : true)}
-        defaultIndex={ghost === false ? 0 : 1}
+        onChange={(index) => setState((prev) => ({ ...prev, ghost: index === 0 ? false : true }))}
+        defaultIndex={state.ghost === false ? 0 : 1}
         isFitted
         variant="unstyled"
       >
@@ -92,7 +85,7 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={ghostStartColor}
+                bgColor={state.ghostStartColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -102,8 +95,8 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
-                value={ghostStartColor.replace('#', '')}
-                onChange={(e) => setGhostStartColor(`#${e.target.value}`)}
+                value={state.ghostStartColor.replace('#', '')}
+                onChange={(e) => setState(prev => ({...prev, ghostStartColor: `#${e.target.value}`}))}
               />
             </InputGroup>
           </HStack>
@@ -111,9 +104,9 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={ghostStartColor}
+                color={state.ghostStartColor}
                 onChange={(col) =>
-                  setGhostStartColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))
+                  setState(prev => ({...prev, ghostStartColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a}))
                 }
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
@@ -122,7 +115,10 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={ghostStartColor} setColor={setGhostStartColor} />
+        <HideColorButton
+          color={state.ghostStartColor}
+          setColor={(color: string) => setState((prev) => ({ ...prev, ghostStartColor: color }))}
+        />
       </HStack>
 
       {/* Ghost End Color */}
@@ -135,7 +131,7 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <PopoverTrigger>
               <Circle
                 size="36px"
-                bgColor={ghostEndColor}
+                bgColor={state.ghostEndColor}
                 boxShadow="0 0 0 1px #52555A"
                 as="button"
                 sx={{ transition: '0.3s' }}
@@ -145,8 +141,8 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <InputGroup>
               <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
               <Input
-                value={ghostEndColor.replace('#', '')}
-                onChange={(e) => setGhostEndColor(`#${e.target.value}`)}
+                value={state.ghostEndColor.replace('#', '')}
+                onChange={(e) => setState(prev => ({...prev, ghostEndColor: `#${e.target.value}`}))}
               />
             </InputGroup>
           </HStack>
@@ -154,8 +150,8 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
-                color={ghostEndColor}
-                onChange={(col) => setGhostEndColor('#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a))}
+                color={state.ghostEndColor}
+                onChange={(col) => setState(prev => ({...prev, ghostEndColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a)}))}
                 /* WE NEED OPACITY / ALPHA TOO */
                 onColor
                 width="200px"
@@ -163,7 +159,8 @@ const Ghost: React.FunctionComponent<IMarkerGhostProps & IMarkerGhostSetterProps
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <HideColorButton color={ghostEndColor} setColor={setGhostEndColor} />
+        <HideColorButton color={state.ghostEndColor}
+          setColor={(col:string) => setState(prev => ({...prev, ghostEndColor: col}))} />
       </HStack>
     </>
   );

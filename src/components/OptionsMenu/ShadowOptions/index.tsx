@@ -36,8 +36,8 @@ const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigg
 type IShadowOptionProps =
   | { state: IWaveAllProps; setState: Dispatch<SetStateAction<IWaveAllProps>> }
   | { state: IBubbleAllProps; setState: Dispatch<SetStateAction<IBubbleAllProps>> }
-  | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> };
-// | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
+  | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> }
+  | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> };
 
 const ShadowOptions: React.FunctionComponent<IShadowOptionProps> = ({ state, setState }) => {
   return (

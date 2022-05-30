@@ -9,24 +9,18 @@ import {
   TabList,
   Tab,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
-import { IMarkerPositionProps } from '../Types/markerProps';
-import { IMarkerPositionSetterProps } from '../Types/markerSetterProps';
+import { IMarkerAllProps } from '../Types/markerProps';
 import PaddingLeft from './Icons/PaddingLeft';
 import PaddingRight from './Icons/PaddingRight';
 import YPosLeft from './Icons/YPosLeft';
 import YPosRight from './Icons/YPosRight';
 
-const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSetterProps> = ({
-  padding,
-  mirror,
-  yPosition,
-
-  setPadding,
-  setMirror,
-  setYPosition,
-}) => {
+const Position: React.FunctionComponent<{
+  state: IMarkerAllProps;
+  setState: Dispatch<SetStateAction<IMarkerAllProps>>;
+}> = ({ state, setState }) => {
   return (
     <>
       {/* ----- HEADLINE ------ */}
@@ -39,8 +33,8 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
         Mirror
       </Heading>
       <Tabs
-        onChange={(index) => setMirror(index === 0 ? false : true)}
-        defaultIndex={mirror === false ? 0 : 1}
+        onChange={(index) => setState((prev) => ({ ...prev, mirror: index === 0 ? false : true }))}
+        defaultIndex={state.mirror === false ? 0 : 1}
         isFitted
         variant="unstyled"
       >
@@ -86,17 +80,19 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => yPosition > -200 && setYPosition(yPosition - 100)}
+          onClick={() =>
+            state.yPosition > -200 && setState((prev) => ({ ...prev, yPosition: prev.yPosition - 100 }))
+          }
         >
-          <YPosLeft/>
+          <YPosLeft />
         </SliderIconWrapper>
 
         <Slider
           aria-label="size"
-          value={yPosition}
+          value={state.yPosition}
           min={-200}
           max={1500}
-          onChange={(val) => setYPosition(val)}
+          onChange={(val) => setState((prev) => ({ ...prev, yPosition: val }))}
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -106,9 +102,11 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
 
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => yPosition < 1500 && setYPosition(yPosition + 100)}
+          onClick={() =>
+            state.yPosition < 1500 && setState((prev) => ({ ...prev, yPosition: prev.yPosition + 100 }))
+          }
         >
-          <YPosRight/>
+          <YPosRight />
         </SliderIconWrapper>
       </HStack>
 
@@ -118,19 +116,33 @@ const Position: React.FunctionComponent<IMarkerPositionProps & IMarkerPositionSe
       </Heading>
 
       <HStack>
-        <SliderIconWrapper viewBox={'0 0 24 24'} onClick={() => padding > -200 && setPadding(padding - 10)}>
-          <PaddingRight/>
+        <SliderIconWrapper
+          viewBox={'0 0 24 24'}
+          onClick={() =>
+            state.padding > -200 && setState((prev) => ({ ...prev, padding: prev.padding - 10 }))
+          }
+        >
+          <PaddingRight />
         </SliderIconWrapper>
 
-        <Slider aria-label="size" value={padding} min={-200} max={200} onChange={(val) => setPadding(val)}>
+        <Slider
+          aria-label="size"
+          value={state.padding}
+          min={-200}
+          max={200}
+          onChange={(val) => setState((prev) => ({ ...prev, padding: val }))}
+        >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
         </Slider>
 
-        <SliderIconWrapper viewBox={'0 0 24 24'} onClick={() => padding < 200 && setPadding(padding + 10)}>
-          <PaddingLeft/>
+        <SliderIconWrapper
+          viewBox={'0 0 24 24'}
+          onClick={() => state.padding < 200 && setState((prev) => ({ ...prev, padding: prev.padding + 10 }))}
+        >
+          <PaddingLeft />
         </SliderIconWrapper>
       </HStack>
     </>

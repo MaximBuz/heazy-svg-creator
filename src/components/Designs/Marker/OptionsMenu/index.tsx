@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';
@@ -10,12 +10,14 @@ import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import Shape from './Shape';
 import Position from './Position';
 import Ghost from './Ghost';
-
-// Types
-import { IMarkerAllSetterProps } from '../Types/markerSetterProps';
 import { IMarkerAllProps } from '../Types/markerProps';
 
-const MarkerOptions: React.FunctionComponent<IMarkerAllSetterProps & IMarkerAllProps> = (props) => {
+// Types
+
+const MarkerOptions: React.FunctionComponent<{
+  state: IMarkerAllProps;
+  setState: Dispatch<SetStateAction<IMarkerAllProps>>;
+}> = (props) => {
   return (
     <>
       <Shape {...props}></Shape>

@@ -14,7 +14,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props)
     props.breaks,
     props.stacks,
     props.distance,
-    props.stroke,
+    props.solid,
     props.smooth,
   ] as const;
 
@@ -22,7 +22,7 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props)
   const svgGroupProps = {
     width: props.width,
     height: props.height,
-    stroke: props.stroke,
+    solid: props.solid,
     strokeWidth: props.strokeWidth,
     strokeShrink: props.strokeShrink,
     classId: useId(),

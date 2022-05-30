@@ -33,7 +33,7 @@ type IColorOptionProps =
   | { state: IWaveAllProps; setState: Dispatch<SetStateAction<IWaveAllProps>> }
   | { state: IBubbleAllProps; setState: Dispatch<SetStateAction<IBubbleAllProps>> }
   | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> }
-  // | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
+  | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
 
 const ColorOptions: React.FunctionComponent<IColorOptionProps> = ({ state, setState }) => {
   return (

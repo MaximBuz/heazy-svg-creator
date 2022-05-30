@@ -41,7 +41,7 @@ const Position: React.FunctionComponent<{
             <Checkbox
               isChecked={state.topRightCorner}
               onChange={() => {
-                setState((prev) => ({ ...prev, topLeftCorner: !prev.topRightCorner }));
+                setState((prev) => ({ ...prev, topRightCorner: !prev.topRightCorner }));
               }}
             >
               Top right
@@ -49,7 +49,7 @@ const Position: React.FunctionComponent<{
             <Checkbox
               isChecked={state.bottomRightCorner}
               onChange={() => {
-                setState((prev) => ({ ...prev, topLeftCorner: !prev.bottomRightCorner }));
+                setState((prev) => ({ ...prev, bottomRightCorner: !prev.bottomRightCorner }));
               }}
             >
               Bottom right

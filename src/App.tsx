@@ -45,11 +45,10 @@ function App() {
   const [bubbleState, setBubbleState] = useState<IBubbleAllProps>(initialBubbleState);
   const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
   const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
-  
+
   /* --------- RENDERING --------- */
   const renderCanvas = useCallback(() => {
-    if (design === 'waves')
-      return <Waves {...canvasDimensions} {...waveState} svgRef={svgRef} seed={seed} />;
+    if (design === 'waves') return <Waves {...canvasDimensions} {...waveState} svgRef={svgRef} seed={seed} />;
     if (design === 'bubble')
       return <Bubble {...canvasDimensions} {...bubbleState} svgRef={svgRef} seed={seed} />;
     if (design === 'corners')

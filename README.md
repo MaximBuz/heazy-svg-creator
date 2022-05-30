@@ -48,7 +48,7 @@
 [![Product Name Screen Shot][product-screenshot]](https://heazy.studio/)
 
 Heazy let's you generate cool SVG designs for your website projects (and presentations, if thats your thing).
-Easily generate unique and funky vector graphics within minutes right inside your browser, without having to learn any advanced graphical tools like Adobe illustrator.
+Easily generate unique and funky vector graphics within minutes right inside your browser, without having to learn any advanced tools like Adobe Illustrator.
 
 You can download your designs in PNG and SVG, or copy code snippets for your JavaScript or TypeScript React projects.
 

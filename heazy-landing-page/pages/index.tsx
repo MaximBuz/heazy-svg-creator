@@ -1,5 +1,5 @@
 import Meta from '../partials/seo-meta';
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Call2Action from '../Sections/Call2Action';
@@ -7,6 +7,7 @@ import Features from '../Sections/Features';
 
 import Hero from '../Sections/Hero';
 import Inspirations from '../Sections/Inspirations';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
@@ -21,7 +22,7 @@ const Home: NextPage = () => {
       <div style={{ fontFamily: 'Karla, sans-serif', color: '#c5cfd9' }}>
         <Head>
           <title>Heazy - SVG Studio</title>
-          <meta name="description" content="Generate unique SVG design assets with ease" />
+          <meta name="Home - Heazy" content="Generate unique SVG design assets with ease" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -46,6 +47,17 @@ const Home: NextPage = () => {
           {/*-------- C2A SECTION --------*/}
           <Call2Action />
         </main>
+        <Flex
+          height="50px"
+          justifyContent="center"
+          alignItems="center"
+          position="absolute"
+          bottom="0"
+          background="transparent"
+          width="100%"
+        >
+          <Link href="/privacy">Privacy Notice</Link>
+        </Flex>
         <footer></footer>
       </div>
     </>

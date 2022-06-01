@@ -15,6 +15,7 @@ import {
   Circle,
   Divider,
   Input,
+  FormControl,
 } from '@chakra-ui/react';
 import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
@@ -31,6 +32,9 @@ import { IDesignModes } from '../Canvas/Types/designModes';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 
+// Firebase
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
 export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
   activeDesign: string;
@@ -38,13 +42,33 @@ export interface ITemplateMenuProps {
 
 const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesign, setDesign }) => {
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
+
+  /* Registration */
   const [registrationMode, setRegistrationMode] = useState(false);
 
+  function handleRegistration(e) {
+    e.preventDefault();
+
+    const auth = getAuth();
+    const email = e.target['registration-email'].value;
+    const password = e.target['registration-pw'].value;
+    const confirmPassword = e.target['registration-pw-confirm'].value;
+
+    password === confirmPassword &&
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Handle Sign In Context!
+          const user = userCredential.user;
+          e.target.reset();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+  }
+
+  // Drawer with Framer Motion
   const UserSection = chakra(motion.div, {
-    /**
-     * Allow motion props and the children prop to be forwarded.
-     * All other chakra props not matching the motion props will still be forwarded.
-     */
     shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
   });
 
@@ -226,10 +250,25 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
                     Welcome to heazy!
                   </Heading>
                 </Box>
-                <Input mt={5} placeholder="Email" type="email"></Input>
-                <Input placeholder="Password" type="password"></Input>
-                <Input placeholder="Repeat your password" type="password"></Input>
-                <Button mt={5}>Register</Button>
+                <form onSubmit={handleRegistration}>
+                  <FormControl isRequired>
+                    <Input name="registration-email" mt={5} placeholder="Email" type="email"></Input>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <Input mt="10px" name="registration-pw" placeholder="Password" type="password"></Input>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <Input
+                      mt="10px"
+                      name="registration-pw-confirm"
+                      placeholder="Repeat your password"
+                      type="password"
+                    ></Input>
+                  </FormControl>
+                  <Button width="100%" type="submit" mt={5}>
+                    Register
+                  </Button>
+                </form>
                 <Text color="#ffffff81" fontSize="xs">
                   Already have an account?{' '}
                   <Text

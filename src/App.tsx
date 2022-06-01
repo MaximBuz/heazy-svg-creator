@@ -32,7 +32,32 @@ import { ICornerAllProps } from './components/Designs/Corners/Types/cornerProps'
 import { initialMarkerState } from './components/Designs/Marker/initialState';
 import { IMarkerAllProps } from './components/Designs/Marker/Types/markerProps';
 
+import gql from 'graphql-tag';
+import { useUserQuery } from './graphql/generated';
+
+gql`
+  query User($id: String!) {
+    getUserByFirebaseId(id: $id) {
+      id
+      firebaseId
+      email
+      username
+      bubbles {
+        name
+        id
+        seed
+        stroke
+        velocity
+      }
+    }
+  }
+`;
+
 function App() {
+  /* --------- Fetching --------- */
+  const { data } = useUserQuery({ id: 'qoizbqo3zifb' });
+  console.log(data.getUserByFirebaseId.bubbles);
+
   /* --------- CANVAS STATE --------- */
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);

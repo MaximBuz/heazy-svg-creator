@@ -5,27 +5,33 @@ import './App.css';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import theme from './utils/theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <ChakraProvider resetCSS={true} theme={theme}>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `window.goatcounter = {
+    <QueryClientProvider client={queryClient}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ChakraProvider resetCSS={true} theme={theme}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.goatcounter = {
           path: function(p) { return "app." + p }
       }`,
-        }}
-      />
-      <script
-        data-goatcounter="https://heazy.goatcounter.com/count"
-        async
-        src="//gc.zgo.at/count.js"
-      ></script>
+          }}
+        />
+        <script
+          data-goatcounter="https://heazy.goatcounter.com/count"
+          async
+          src="//gc.zgo.at/count.js"
+        ></script>
 
-      <App />
-    </ChakraProvider>
+        <App />
+      </ChakraProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

@@ -18,12 +18,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve"
   },
   "typeRoots": [
     "src/index.d.ts"
   ],
   "include": [
     "src"
-  ]
+, "src/graphql"  ]
 }

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 // Design
 import {
@@ -15,7 +15,6 @@ import {
   Circle,
   Divider,
   Input,
-  Link,
 } from '@chakra-ui/react';
 import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
@@ -23,6 +22,7 @@ import marker from '../../assets/Thumbnails/marker.svg';
 import bubble from '../../assets/Thumbnails/bubble.svg';
 import Logo from '../../assets/Logo.svg';
 import Login from '../../assets/Login.svg';
+import Register from '../../assets/Register.svg';
 import GitHubButton from 'react-github-btn';
 
 // Utils
@@ -37,7 +37,8 @@ export interface ITemplateMenuProps {
 }
 
 const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesign, setDesign }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
+  const [registrationMode, setRegistrationMode] = useState(false);
 
   const UserSection = chakra(motion.div, {
     /**
@@ -138,7 +139,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
         pos="absolute"
         top="18px"
         width="215px"
-        onClick={onOpen}
+        onClick={openUserSpace}
         transition="0.3s"
         _hover={{ width: '335px', background: '#373d48', cursor: 'pointer' }}
         roundedBottomRight="full"
@@ -161,7 +162,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
         </Icon>
       </Flex>
       <AnimatePresence>
-        {isOpen && (
+        {userSpaceIsOpen && (
           <UserSection
             position="absolute"
             as={motion.div}
@@ -189,7 +190,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
               <Flex alignItems="center" justifyContent="center">
                 <Circle
                   as="button"
-                  onClick={onClose}
+                  onClick={closeUserSpace}
                   padding={1}
                   _hover={{ background: '#2e3643', cursor: 'pointer' }}
                   position="absolute"
@@ -197,7 +198,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
                   rounded="full"
                   centerContent
                 >
-                  <ChevronLeftIcon onClick={onClose} />
+                  <ChevronLeftIcon onClick={closeUserSpace} />
                 </Circle>
                 <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
                   Personal Space
@@ -207,33 +208,74 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
             </Stack>
 
             {/* LOGGED IN? */}
-            <Flex
-              direction="column"
-              mt="1em"
-              textAlign="center"
-              gap="10px"
-              height="90%"
-              justifyContent="center"
-            >
-              <Image src={Login} h="20%"></Image>
-              <Box mt="1em">
-                <Heading as="h4" size="md" fontWeight={800}>
-                  Welcome Back.{' '}
-                </Heading>
-                <Heading as="h5" size="md" fontWeight={300}>
-                  You've been missed!
-                </Heading>
-              </Box>
-              <Input mt={5} placeholder="Email" type="email"></Input>
-              <Input placeholder="Password" type="password"></Input>
-              <Button mt={5}>Sign In</Button>
-              <Text color="#ffffff81" fontSize="xs">
-                Don't have an account?{' '}
-                <Text color="#ffffffcd" display="inline">
-                  Register
+            {registrationMode ? (
+              <Flex
+                direction="column"
+                mt="1em"
+                textAlign="center"
+                gap="10px"
+                height="90%"
+                justifyContent="center"
+              >
+                <Image src={Register} h="20%"></Image>
+                <Box mt="1em">
+                  <Heading as="h4" size="md" fontWeight={800}>
+                    Let's sign up
+                  </Heading>
+                  <Heading as="h5" size="md" fontWeight={300}>
+                    Welcome to heazy!
+                  </Heading>
+                </Box>
+                <Input mt={5} placeholder="Email" type="email"></Input>
+                <Input placeholder="Password" type="password"></Input>
+                <Input placeholder="Repeat your password" type="password"></Input>
+                <Button mt={5}>Register</Button>
+                <Text color="#ffffff81" fontSize="xs">
+                  Already have an account?{' '}
+                  <Text
+                    _hover={{ cursor: 'pointer' }}
+                    onClick={() => setRegistrationMode(false)}
+                    color="#ffffffcd"
+                    display="inline"
+                  >
+                    Sign in
+                  </Text>
                 </Text>
-              </Text>
-            </Flex>
+              </Flex>
+            ) : (
+              <Flex
+                direction="column"
+                mt="1em"
+                textAlign="center"
+                gap="10px"
+                height="90%"
+                justifyContent="center"
+              >
+                <Image src={Login} h="20%"></Image>
+                <Box mt="1em">
+                  <Heading as="h4" size="md" fontWeight={800}>
+                    Welcome Back.{' '}
+                  </Heading>
+                  <Heading as="h5" size="md" fontWeight={300}>
+                    You've been missed!
+                  </Heading>
+                </Box>
+                <Input mt={5} placeholder="Email" type="email"></Input>
+                <Input placeholder="Password" type="password"></Input>
+                <Button mt={5}>Sign In</Button>
+                <Text color="#ffffff81" fontSize="xs">
+                  Don't have an account?{' '}
+                  <Text
+                    _hover={{ cursor: 'pointer' }}
+                    onClick={() => setRegistrationMode(true)}
+                    color="#ffffffcd"
+                    display="inline"
+                  >
+                    Register
+                  </Text>
+                </Text>
+              </Flex>
+            )}
           </UserSection>
         )}
       </AnimatePresence>

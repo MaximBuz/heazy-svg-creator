@@ -15,6 +15,7 @@ import {
   Circle,
   Divider,
   Input,
+  Link,
 } from '@chakra-ui/react';
 import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
@@ -206,8 +207,15 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
             </Stack>
 
             {/* LOGGED IN? */}
-            <Flex direction="column" mt="1em" textAlign="center" gap="10px" height="90%" justifyContent="center">
-            <Image src={Login} h="20%"></Image>
+            <Flex
+              direction="column"
+              mt="1em"
+              textAlign="center"
+              gap="10px"
+              height="90%"
+              justifyContent="center"
+            >
+              <Image src={Login} h="20%"></Image>
               <Box mt="1em">
                 <Heading as="h4" size="md" fontWeight={800}>
                   Welcome Back.{' '}
@@ -219,6 +227,12 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
               <Input mt={5} placeholder="Email" type="email"></Input>
               <Input placeholder="Password" type="password"></Input>
               <Button mt={5}>Sign In</Button>
+              <Text color="#ffffff81" fontSize="xs">
+                Don't have an account?{' '}
+                <Text color="#ffffffcd" display="inline">
+                  Register
+                </Text>
+              </Text>
             </Flex>
           </UserSection>
         )}

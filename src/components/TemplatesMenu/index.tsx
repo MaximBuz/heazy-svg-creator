@@ -1,17 +1,34 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
 // Design
-import { Flex, Stack, Image, Heading } from '@chakra-ui/react';
+import {
+  Flex,
+  Stack,
+  Image,
+  Heading,
+  Button,
+  useDisclosure,
+  chakra,
+  Icon,
+  Box,
+  Text,
+  Circle,
+  Divider,
+  Input,
+} from '@chakra-ui/react';
 import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
 import marker from '../../assets/Thumbnails/marker.svg';
 import bubble from '../../assets/Thumbnails/bubble.svg';
 import Logo from '../../assets/Logo.svg';
+import Login from '../../assets/Login.svg';
 import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
 import { IDesignModes } from '../Canvas/Types/designModes';
+import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
 export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
@@ -19,90 +36,194 @@ export interface ITemplateMenuProps {
 }
 
 const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesign, setDesign }) => {
-  return (
-    <Flex
-      minW="180px"
-      maxW="180px"
-      height="100vh"
-      bgColor="#1c1f27"
-      direction="column"
-      boxShadow="dark-lg"
-      p="0"
-      h="100%"
-      zIndex={20}
-    >
-      <Flex
-        minW="180px"
-        maxW="180px"
-        height="70px"
-        zIndex={20}
-        bgColor="#262a33"
-        justifyContent="space-around"
-        alignItems="center"
-      >
-        <Image src={Logo} h="50%"></Image>
-      </Flex>
-      <Stack
-        spacing={0}
-        scrollBehavior="smooth"
-        overflow="scroll"
-        flexGrow={1}
-        sx={{
-          '&::-webkit-scrollbar': { display: 'none' },
-        }}
-      >
-        <Thumbnail
-          isActive={activeDesign === 'waves'}
-          setDesign={setDesign}
-          image={stackedWave}
-          caption="waves"
-        ></Thumbnail>
-        <Thumbnail
-          isActive={activeDesign === 'bubble'}
-          setDesign={setDesign}
-          image={bubble}
-          caption="bubble"
-        ></Thumbnail>
-        <Thumbnail
-          isActive={activeDesign === 'corners'}
-          setDesign={setDesign}
-          image={smoothStage}
-          caption="corners"
-        ></Thumbnail>
-        <Thumbnail
-          isActive={activeDesign === 'marker'}
-          setDesign={setDesign}
-          image={marker}
-          caption="marker"
-        ></Thumbnail>
-      </Stack>
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const UserSection = chakra(motion.div, {
+    /**
+     * Allow motion props and the children prop to be forwarded.
+     * All other chakra props not matching the motion props will still be forwarded.
+     */
+    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
+  });
+
+  return (
+    <>
       <Flex
         minW="180px"
         maxW="180px"
-        height="70px"
-        minH="70px"
-        zIndex={20}
-        bgColor="#262a33"
-        justifyContent="space-around"
-        alignItems="center"
-        direction='column'
+        height="100vh"
+        bgColor="#1c1f27"
+        direction="column"
+        boxShadow="dark-lg"
+        p="0"
+        h="100%"
+        zIndex={2}
       >
-        <Heading lineHeight="1em" fontWeight="lighter" fontSize="2xl" fontFamily="Karla, sans-serif;">
-          HEAZY.
-        </Heading>
-        {/* <Icon as={UilLinkedin} boxSize="8" cursor="pointer"></Icon> */}
-        <GitHubButton
-          href="https://github.com/MaximBuz/heazy-svg-creator"
-          data-color-scheme="no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;"
-          data-size="small"
-          data-show-count="true"
-          aria-label="Star MaximBuz/heazy-svg-creator on GitHub"
+        <Flex
+          minW="180px"
+          maxW="180px"
+          height="70px"
+          zIndex={2}
+          bgColor="#262a33"
+          justifyContent="space-around"
+          alignItems="center"
         >
-          Star
-        </GitHubButton>
+          <Image src={Logo} h="50%"></Image>
+        </Flex>
+        <Stack
+          spacing={0}
+          scrollBehavior="smooth"
+          overflow="scroll"
+          flexGrow={1}
+          sx={{
+            '&::-webkit-scrollbar': { display: 'none' },
+          }}
+        >
+          <Thumbnail
+            isActive={activeDesign === 'waves'}
+            setDesign={setDesign}
+            image={stackedWave}
+            caption="waves"
+          ></Thumbnail>
+          <Thumbnail
+            isActive={activeDesign === 'bubble'}
+            setDesign={setDesign}
+            image={bubble}
+            caption="bubble"
+          ></Thumbnail>
+          <Thumbnail
+            isActive={activeDesign === 'corners'}
+            setDesign={setDesign}
+            image={smoothStage}
+            caption="corners"
+          ></Thumbnail>
+          <Thumbnail
+            isActive={activeDesign === 'marker'}
+            setDesign={setDesign}
+            image={marker}
+            caption="marker"
+          ></Thumbnail>
+        </Stack>
+
+        <Flex
+          minW="180px"
+          maxW="180px"
+          height="70px"
+          minH="70px"
+          zIndex={2}
+          bgColor="#262a33"
+          justifyContent="space-around"
+          alignItems="center"
+          direction="column"
+        >
+          <Heading lineHeight="1em" fontWeight="lighter" fontSize="2xl" fontFamily="Karla, sans-serif;">
+            HEAZY.
+          </Heading>
+          {/* <Icon as={UilLinkedin} boxSize="8" cursor="pointer"></Icon> */}
+          <GitHubButton
+            href="https://github.com/MaximBuz/heazy-svg-creator"
+            data-color-scheme="no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;"
+            data-size="small"
+            data-show-count="true"
+            aria-label="Star MaximBuz/heazy-svg-creator on GitHub"
+          >
+            Star
+          </GitHubButton>
+        </Flex>
       </Flex>
-    </Flex>
+
+      {/* USER SPACE DRAWER */}
+      <Flex
+        pos="absolute"
+        top="18px"
+        width="215px"
+        onClick={onOpen}
+        transition="0.3s"
+        _hover={{ width: '335px', background: '#373d48', cursor: 'pointer' }}
+        roundedBottomRight="full"
+        roundedTopRight="full"
+        justifyContent="flex-end"
+        alignItems="center"
+        bg="#262e3a"
+        fill="none"
+        p="2"
+        gap="10px"
+      >
+        <Heading as="h4" size="xs">
+          Personal Space
+        </Heading>
+        <Icon boxSize="5" viewBox="0 0 24 24" fill="white" opacity={0.9}>
+          <path
+            xmlns="http://www.w3.org/2000/svg"
+            d="M12,2A10,10,0,0,0,4.65,18.76h0a10,10,0,0,0,14.7,0h0A10,10,0,0,0,12,2Zm0,18a8,8,0,0,1-5.55-2.25,6,6,0,0,1,11.1,0A8,8,0,0,1,12,20ZM10,10a2,2,0,1,1,2,2A2,2,0,0,1,10,10Zm8.91,6A8,8,0,0,0,15,12.62a4,4,0,1,0-6,0A8,8,0,0,0,5.09,16,7.92,7.92,0,0,1,4,12a8,8,0,0,1,16,0A7.92,7.92,0,0,1,18.91,16Z"
+          />
+        </Icon>
+      </Flex>
+      <AnimatePresence>
+        {isOpen && (
+          <UserSection
+            position="absolute"
+            as={motion.div}
+            minW="250px"
+            maxW="250px"
+            height="100vh"
+            bgColor="#1c1f27"
+            direction="column"
+            boxShadow="dark-lg"
+            p={5}
+            h="100%"
+            zIndex={1}
+            initial={{ left: 0 }}
+            animate={{ left: '180px' }}
+            exit={{ left: '-85px' }}
+            //@ts-expect-error
+            transition={{
+              duration: 0.4,
+              type: 'spring',
+              bounce: 0,
+            }}
+          >
+            {/* HEADING */}
+            <Stack spacing={2.5}>
+              <Flex alignItems="center" justifyContent="center">
+                <Circle
+                  as="button"
+                  onClick={onClose}
+                  padding={1}
+                  _hover={{ background: '#2e3643', cursor: 'pointer' }}
+                  position="absolute"
+                  left="5"
+                  rounded="full"
+                  centerContent
+                >
+                  <ChevronLeftIcon onClick={onClose} />
+                </Circle>
+                <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
+                  Personal Space
+                </Heading>
+              </Flex>
+              <Divider></Divider>
+            </Stack>
+
+            {/* LOGGED IN? */}
+            <Flex direction="column" mt="1em" textAlign="center" gap="10px" height="90%" justifyContent="center">
+            <Image src={Login} h="20%"></Image>
+              <Box mt="1em">
+                <Heading as="h4" size="md" fontWeight={800}>
+                  Welcome Back.{' '}
+                </Heading>
+                <Heading as="h5" size="md" fontWeight={300}>
+                  You've been missed!
+                </Heading>
+              </Box>
+              <Input mt={5} placeholder="Email" type="email"></Input>
+              <Input placeholder="Password" type="password"></Input>
+              <Button mt={5}>Sign In</Button>
+            </Flex>
+          </UserSection>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

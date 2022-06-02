@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, memo, SetStateAction, useState } from 'react';
 
 // Design
 import {
@@ -40,7 +40,7 @@ export interface ITemplateMenuProps {
   activeDesign: string;
 }
 
-const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesign, setDesign }) => {
+const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ activeDesign, setDesign }) => {
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
 
   /* Registration */
@@ -320,6 +320,6 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = ({ activeDesig
       </AnimatePresence>
     </>
   );
-};
+});
 
 export default TemplateMenu;

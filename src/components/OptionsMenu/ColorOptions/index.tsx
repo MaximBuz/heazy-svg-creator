@@ -1,5 +1,5 @@
 // React
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, memo, SetStateAction } from 'react';
 
 // Styles
 import {
@@ -35,7 +35,7 @@ type IColorOptionProps =
   | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> }
   | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
 
-const ColorOptions: React.FunctionComponent<IColorOptionProps> = ({ state, setState }) => {
+const ColorOptions: React.FunctionComponent<IColorOptionProps> = memo(({ state, setState }) => {
   return (
     <>
       {/* -------------- COLOR -------------- */}
@@ -188,6 +188,6 @@ const ColorOptions: React.FunctionComponent<IColorOptionProps> = ({ state, setSt
       </HStack>
     </>
   );
-};
+});
 
 export default ColorOptions;

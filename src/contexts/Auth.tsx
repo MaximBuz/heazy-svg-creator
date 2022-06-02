@@ -23,7 +23,7 @@ interface IAuth {
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
- return useContext(AuthContext);
+ return useContext<IAuth>(AuthContext);
 }
 
 export function AuthProvider({ children }) {

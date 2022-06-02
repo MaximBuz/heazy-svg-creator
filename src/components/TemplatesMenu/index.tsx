@@ -16,6 +16,8 @@ import {
   Divider,
   Input,
   FormControl,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react';
 import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
@@ -32,8 +34,7 @@ import { IDesignModes } from '../Canvas/Types/designModes';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 
-// Firebase
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '../../contexts/Auth';
 
 export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
@@ -44,27 +45,30 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
 
   /* Registration */
+  const { signup } = useAuth();
   const [registrationMode, setRegistrationMode] = useState(false);
+  const [registrationError, setRegistrationError] = useState('');
+  const [registrationLoading, setRegistrationLoading] = useState(false);
 
   function handleRegistration(e) {
     e.preventDefault();
-
-    const auth = getAuth();
     const email = e.target['registration-email'].value;
     const password = e.target['registration-pw'].value;
     const confirmPassword = e.target['registration-pw-confirm'].value;
+    console.log(email, password, confirmPassword);
 
-    // password === confirmPassword &&
-    //   createUserWithEmailAndPassword(auth, email, password)
-    //     .then((userCredential) => {
-    //       // Handle Sign In Context!
-    //       const user = userCredential.user;
-    //       e.target.reset();
-    //     })
-    //     .catch((error) => {
-    //       const errorCode = error.code;
-    //       const errorMessage = error.message;
-    //     });
+    if (password === confirmPassword) {
+      setRegistrationLoading(true);
+      signup(email, password)
+        .then(() => {
+          setRegistrationError('');
+          setRegistrationLoading(false);
+        })
+        .catch((err) => setRegistrationError(err))
+        .finally(() => setRegistrationLoading(false));
+    } else {
+      setRegistrationError('Passwords do not match!');
+    }
   }
 
   // Drawer with Framer Motion
@@ -269,6 +273,12 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
                     Register
                   </Button>
                 </form>
+                {registrationError && (
+                  <Alert rounded="md" status="error">
+                    <AlertIcon />
+                    <Text fontSize="xs">{registrationError}</Text>
+                  </Alert>
+                )}
                 <Text color="#ffffff81" fontSize="xs">
                   Already have an account?{' '}
                   <Text

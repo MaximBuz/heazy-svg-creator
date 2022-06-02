@@ -1,4 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+firebase-service-account-key.json
 
 # dependencies
 /node_modules

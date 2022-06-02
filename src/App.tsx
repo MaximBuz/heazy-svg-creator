@@ -31,6 +31,7 @@ import { initialCornerState } from './components/Designs/Corners/initialState';
 import { ICornerAllProps } from './components/Designs/Corners/Types/cornerProps';
 import { initialMarkerState } from './components/Designs/Marker/initialState';
 import { IMarkerAllProps } from './components/Designs/Marker/Types/markerProps';
+import { useUserQuery } from './graphql/generated';
 
 // import gql from 'graphql-tag';
 // import { useUserQuery } from './graphql/generated';

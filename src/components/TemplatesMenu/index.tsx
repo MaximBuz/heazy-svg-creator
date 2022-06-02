@@ -54,17 +54,17 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
     const password = e.target['registration-pw'].value;
     const confirmPassword = e.target['registration-pw-confirm'].value;
 
-    password === confirmPassword &&
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Handle Sign In Context!
-          const user = userCredential.user;
-          e.target.reset();
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
+    // password === confirmPassword &&
+    //   createUserWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //       // Handle Sign In Context!
+    //       const user = userCredential.user;
+    //       e.target.reset();
+    //     })
+    //     .catch((error) => {
+    //       const errorCode = error.code;
+    //       const errorMessage = error.message;
+    //     });
   }
 
   // Drawer with Framer Motion

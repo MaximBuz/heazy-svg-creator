@@ -42,10 +42,11 @@ export interface ITemplateMenuProps {
 }
 
 const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ activeDesign, setDesign }) => {
+  const { signup, login, currentUser } = useAuth();
+
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
 
   /* Registration */
-  const { signup } = useAuth();
   const [registrationMode, setRegistrationMode] = useState(false);
   const [registrationError, setRegistrationError] = useState('');
   const [registrationLoading, setRegistrationLoading] = useState(false);
@@ -55,7 +56,6 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
     const email = e.target['registration-email'].value;
     const password = e.target['registration-pw'].value;
     const confirmPassword = e.target['registration-pw-confirm'].value;
-    console.log(email, password, confirmPassword);
 
     if (password === confirmPassword) {
       setRegistrationLoading(true);
@@ -69,6 +69,24 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
     } else {
       setRegistrationError('Passwords do not match!');
     }
+  }
+
+  /* Login */
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  function handleLogin(e) {
+    e.preventDefault();
+    const email = e.target['login-email'].value;
+    const password = e.target['login-pw'].value;
+    setLoginLoading(true);
+    login(email, password)
+      .then(() => {
+        setLoginError('');
+        setLoginLoading(false);
+      })
+      .catch((err) => setLoginError(err))
+      .finally(() => setLoginLoading(false));
   }
 
   // Drawer with Framer Motion
@@ -236,7 +254,9 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
             </Stack>
 
             {/* LOGGED IN? */}
-            {registrationMode ? (
+            {currentUser ? (
+              <></>
+            ) : registrationMode ? (
               <Flex
                 direction="column"
                 mt="1em"
@@ -309,9 +329,23 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(({ active
                     You've been missed!
                   </Heading>
                 </Box>
-                <Input mt={5} placeholder="Email" type="email"></Input>
-                <Input placeholder="Password" type="password"></Input>
-                <Button mt={5}>Sign In</Button>
+                <form onSubmit={handleLogin}>
+                  <FormControl isRequired>
+                    <Input name="login-email" mt={5} placeholder="Email" type="email"></Input>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <Input mt="10px" name="login-pw" placeholder="Password" type="password"></Input>
+                  </FormControl>
+                  <Button width="100%" type="submit" mt={5}>
+                    Sign in
+                  </Button>
+                </form>
+                {loginError && (
+                  <Alert rounded="md" status="error">
+                    <AlertIcon />
+                    <Text fontSize="xs">{loginError}</Text>
+                  </Alert>
+                )}
                 <Text color="#ffffff81" fontSize="xs">
                   Don't have an account?{' '}
                   <Text

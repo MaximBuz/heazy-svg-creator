@@ -2,18 +2,102 @@ import gql from 'graphql-tag';
 
 gql`
   query UserByFirebaseId($id: String!) {
-    getUserByFirebaseId(id: $id) {
+  getUserByFirebaseId(id: $id) {
+    id
+    firebaseId
+    email
+    firstName
+    waves {
       id
-      firebaseId
-      email
-      username
-      bubbles {
-        name
-        id
-        seed
-        stroke
-        velocity
-      }
+      name
+      seed
+      stroke
+      solid
+      strokeWidth
+      strokeShrink
+      balance
+      velocity
+      breaks
+      stacks
+      distance
+      smooth
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+    bubbles {
+      id
+      name
+      seed
+      stroke
+      solid
+      strokeWidth
+      velocity
+      size
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+    corners {
+      id
+      name
+      seed
+      stroke
+      solid
+      strokeWidth
+      strokeShrink
+      balance
+      velocity
+      breaks
+      stacks
+      distance
+      smooth
+      topLeftCorner
+      topRightCorner
+      bottomLeftCorner
+      bottomRightCorner
+      mirror
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+    markers {
+      id
+      name
+      seed
+      lineCap
+      lineJoin
+      strokeWidth
+      markerHeight
+      zickZacks
+      pressure
+      padding
+      mirror
+      yPosition
+      ghost
+      ghostSize
+      ghostStartColor
+      ghostEndColor
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
     }
   }
+}
 `;

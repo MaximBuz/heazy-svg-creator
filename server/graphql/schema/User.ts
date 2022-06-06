@@ -3,7 +3,7 @@ export const User = `
     id: Int!
     firebaseId: String!
     email: String!
-    username: String!
+    firstName: String!
     waves: [WaveOptions]
     bubbles: [BubbleOptions]
     corners: [CornerOptions]

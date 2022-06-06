@@ -3,7 +3,7 @@ type Mutation {
   createNewUser(
     firebaseId: String
     email: String!
-    username: String!
+    firstName: String!
   ):  User
 
   createNewBubble(

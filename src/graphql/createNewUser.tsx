@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 
 gql`
-  mutation createNewUser($firebaseId: String!, $email: String!, $username: String!) {
-    createNewUser(firebaseId: $firebaseId, email: $email, username: $username) {
+  mutation createNewUser($firebaseId: String!, $email: String!, $firstName: String!) {
+    createNewUser(firebaseId: $firebaseId, email: $email, firstName: $firstName) {
       id
       firebaseId
       email
-      username
+      firstName
     }
   }
 `;

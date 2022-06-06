@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    username: 'maximbuz',
-    email: 'mbuz.maxim@gmail.com',
+    firstName: 'Maxim',
+    email: 'maxim@gmail.com',
     firebaseId: "ipwbeufpwiefub",
     bubbles: {
       create: [
@@ -45,7 +45,7 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    username: 'peter',
+    firstName: 'Peter',
     email: 'peter@gmail.com',
     firebaseId: "aelikeaoq3q",
     bubbles: {
@@ -86,7 +86,7 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    username: 'hanni',
+    firstName: 'Hanni',
     email: 'hanni@gmail.com',
     firebaseId: "23p7erbh32pi7",
     waves: {

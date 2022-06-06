@@ -1,14 +1,15 @@
-import { useMutation, UseMutationOptions } from 'react-query';
+import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from 'react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 
-function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
+function fetcher<TData, TVariables>(endpoint: string, requestInit: RequestInit, query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
-    const res = await fetch("http://localhost:4000/graphql", {
-    method: "POST",
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      ...requestInit,
       body: JSON.stringify({ query, variables }),
     });
 
@@ -201,7 +202,7 @@ export type MutationCreateNewMarkerArgs = {
 export type MutationCreateNewUserArgs = {
   email: Scalars['String'];
   firebaseId?: InputMaybe<Scalars['String']>;
-  username: Scalars['String'];
+  firstName: Scalars['String'];
 };
 
 
@@ -322,9 +323,9 @@ export type User = {
   corners?: Maybe<Array<Maybe<CornerOptions>>>;
   email: Scalars['String'];
   firebaseId: Scalars['String'];
+  firstName: Scalars['String'];
   id: Scalars['Int'];
   markers?: Maybe<Array<Maybe<MarkerOptions>>>;
-  username: Scalars['String'];
   waves?: Maybe<Array<Maybe<WaveOptions>>>;
 };
 
@@ -354,32 +355,156 @@ export type WaveOptions = {
   velocity: Scalars['Float'];
 };
 
-export type CreateNewUserMutationVariables = Exact<{
-  firebaseId: Scalars['String'];
-  email: Scalars['String'];
-  username: Scalars['String'];
+export type UserByFirebaseIdQueryVariables = Exact<{
+  id: Scalars['String'];
 }>;
 
 
-export type CreateNewUserMutation = { __typename?: 'Mutation', createNewUser?: { __typename?: 'User', id: number, firebaseId: string, email: string, username: string } | null };
+export type UserByFirebaseIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, firstName: string, waves?: Array<{ __typename?: 'WaveOptions', id: number, name: string, seed: number, stroke?: boolean | null, solid: number, strokeWidth: number, strokeShrink?: boolean | null, balance: number, velocity: number, breaks: number, stacks: number, distance: number, smooth: number, startColor: string, endColor: string, bgColor: string, shadowX: number, shadowY: number, shadowSD: number, shadowColor: string } | null> | null, bubbles?: Array<{ __typename?: 'BubbleOptions', id: number, name: string, seed: number, stroke: boolean, solid: number, strokeWidth: number, velocity: number, size: number, startColor: string, endColor: string, bgColor: string, shadowX: number, shadowY: number, shadowSD: number, shadowColor: string } | null> | null, corners?: Array<{ __typename?: 'CornerOptions', id: number, name: string, seed: number, stroke: boolean, solid: number, strokeWidth: number, strokeShrink: boolean, balance: number, velocity: number, breaks: number, stacks: number, distance: number, smooth: number, topLeftCorner?: boolean | null, topRightCorner?: boolean | null, bottomLeftCorner?: boolean | null, bottomRightCorner?: boolean | null, mirror?: boolean | null, startColor: string, endColor: string, bgColor: string, shadowX: number, shadowY: number, shadowSD: number, shadowColor: string } | null> | null, markers?: Array<{ __typename?: 'MarkerOptions', id: number, name: string, seed: number, lineCap: string, lineJoin: string, strokeWidth: number, markerHeight: number, zickZacks: number, pressure: number, padding: number, mirror: boolean, yPosition: number, ghost: boolean, ghostSize: number, ghostStartColor: string, ghostEndColor: string, startColor: string, endColor: string, bgColor: string, shadowX: number, shadowY: number, shadowSD: number, shadowColor: string } | null> | null } | null };
+
+export type CreateNewUserMutationVariables = Exact<{
+  firebaseId: Scalars['String'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+}>;
 
 
-export const CreateNewUserDocument = `
-    mutation createNewUser($firebaseId: String!, $email: String!, $username: String!) {
-  createNewUser(firebaseId: $firebaseId, email: $email, username: $username) {
+export type CreateNewUserMutation = { __typename?: 'Mutation', createNewUser?: { __typename?: 'User', id: number, firebaseId: string, email: string, firstName: string } | null };
+
+
+export const UserByFirebaseIdDocument = `
+    query UserByFirebaseId($id: String!) {
+  user: getUserByFirebaseId(id: $id) {
     id
     firebaseId
     email
-    username
+    firstName
+    waves {
+      id
+      name
+      seed
+      stroke
+      solid
+      strokeWidth
+      strokeShrink
+      balance
+      velocity
+      breaks
+      stacks
+      distance
+      smooth
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+    bubbles {
+      id
+      name
+      seed
+      stroke
+      solid
+      strokeWidth
+      velocity
+      size
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+    corners {
+      id
+      name
+      seed
+      stroke
+      solid
+      strokeWidth
+      strokeShrink
+      balance
+      velocity
+      breaks
+      stacks
+      distance
+      smooth
+      topLeftCorner
+      topRightCorner
+      bottomLeftCorner
+      bottomRightCorner
+      mirror
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+    markers {
+      id
+      name
+      seed
+      lineCap
+      lineJoin
+      strokeWidth
+      markerHeight
+      zickZacks
+      pressure
+      padding
+      mirror
+      yPosition
+      ghost
+      ghostSize
+      ghostStartColor
+      ghostEndColor
+      startColor
+      endColor
+      bgColor
+      shadowX
+      shadowY
+      shadowSD
+      shadowColor
+    }
+  }
+}
+    `;
+export const useUserByFirebaseIdQuery = <
+      TData = UserByFirebaseIdQuery,
+      TError = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      variables: UserByFirebaseIdQueryVariables,
+      options?: UseQueryOptions<UserByFirebaseIdQuery, TError, TData>
+    ) =>
+    useQuery<UserByFirebaseIdQuery, TError, TData>(
+      ['UserByFirebaseId', variables],
+      fetcher<UserByFirebaseIdQuery, UserByFirebaseIdQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UserByFirebaseIdDocument, variables),
+      options
+    );
+export const CreateNewUserDocument = `
+    mutation createNewUser($firebaseId: String!, $email: String!, $firstName: String!) {
+  createNewUser(firebaseId: $firebaseId, email: $email, firstName: $firstName) {
+    id
+    firebaseId
+    email
+    firstName
   }
 }
     `;
 export const useCreateNewUserMutation = <
       TError = unknown,
       TContext = unknown
-    >(options?: UseMutationOptions<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>) =>
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      options?: UseMutationOptions<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>
+    ) =>
     useMutation<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>(
       ['createNewUser'],
-      (variables?: CreateNewUserMutationVariables) => fetcher<CreateNewUserMutation, CreateNewUserMutationVariables>(CreateNewUserDocument, variables)(),
+      (variables?: CreateNewUserMutationVariables) => fetcher<CreateNewUserMutation, CreateNewUserMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateNewUserDocument, variables)(),
       options
     );

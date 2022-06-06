@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 gql`
   query UserByFirebaseId($id: String!) {
-  getUserByFirebaseId(id: $id) {
+  user: getUserByFirebaseId(id: $id) {
     id
     firebaseId
     email

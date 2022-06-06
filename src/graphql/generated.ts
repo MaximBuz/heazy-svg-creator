@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from 'react-query';
+import { useMutation, UseMutationOptions } from 'react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -9,7 +9,6 @@ function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
     const res = await fetch("http://localhost:4000/graphql", {
     method: "POST",
-    ...({"headers":{"My-Header":"SomeValue","Content-Type":"application/json"}}),
       body: JSON.stringify({ query, variables }),
     });
 
@@ -355,40 +354,32 @@ export type WaveOptions = {
   velocity: Scalars['Float'];
 };
 
-export type UserQueryVariables = Exact<{
-  id: Scalars['String'];
+export type CreateNewUserMutationVariables = Exact<{
+  firebaseId: Scalars['String'];
+  email: Scalars['String'];
+  username: Scalars['String'];
 }>;
 
 
-export type UserQuery = { __typename?: 'Query', getUserByFirebaseId?: { __typename?: 'User', id: number, firebaseId: string, email: string, username: string, bubbles?: Array<{ __typename?: 'BubbleOptions', name: string, id: number, seed: number, stroke: boolean, velocity: number } | null> | null } | null };
+export type CreateNewUserMutation = { __typename?: 'Mutation', createNewUser?: { __typename?: 'User', id: number, firebaseId: string, email: string, username: string } | null };
 
 
-export const UserDocument = `
-    query User($id: String!) {
-  getUserByFirebaseId(id: $id) {
+export const CreateNewUserDocument = `
+    mutation createNewUser($firebaseId: String!, $email: String!, $username: String!) {
+  createNewUser(firebaseId: $firebaseId, email: $email, username: $username) {
     id
     firebaseId
     email
     username
-    bubbles {
-      name
-      id
-      seed
-      stroke
-      velocity
-    }
   }
 }
     `;
-export const useUserQuery = <
-      TData = UserQuery,
-      TError = unknown
-    >(
-      variables: UserQueryVariables,
-      options?: UseQueryOptions<UserQuery, TError, TData>
-    ) =>
-    useQuery<UserQuery, TError, TData>(
-      ['User', variables],
-      fetcher<UserQuery, UserQueryVariables>(UserDocument, variables),
+export const useCreateNewUserMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>) =>
+    useMutation<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>(
+      ['createNewUser'],
+      (variables?: CreateNewUserMutationVariables) => fetcher<CreateNewUserMutation, CreateNewUserMutationVariables>(CreateNewUserDocument, variables)(),
       options
     );

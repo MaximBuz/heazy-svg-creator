@@ -35,7 +35,6 @@ import { AuthProvider } from './contexts/Auth';
 import UserMenu from './components/UserMenu';
 
 function App() {
-  /* --------- FETCHING --------- */
 
   /* --------- CANVAS STATE --------- */
   const [seed, setSeed] = useState<number>(1);

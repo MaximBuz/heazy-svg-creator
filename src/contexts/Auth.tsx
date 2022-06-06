@@ -8,11 +8,13 @@ import {
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
-  User,
   UserCredential,
+  User,
 } from 'firebase/auth';
 
-import { useCreateNewUserMutation, User as TUser } from '../graphql/generated';
+import {
+  useCreateNewUserMutation,
+} from '../graphql/generated';
 
 interface IAuth {
   currentUser: User;
@@ -28,7 +30,7 @@ export function useAuth() {
   return useContext<IAuth>(AuthContext);
 }
 
-export function AuthProvider ({ children }) {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<User>();
   const [loading, setLoading] = useState<boolean>(true);
   const createNewUserMutation = useCreateNewUserMutation({
@@ -43,7 +45,7 @@ export function AuthProvider ({ children }) {
       createNewUserMutation.mutate({
         firebaseId: userCred.user.uid,
         email: userCred.user.email,
-        firstName
+        firstName,
       });
       return userCred;
     });
@@ -57,18 +59,16 @@ export function AuthProvider ({ children }) {
     return signOut(auth);
   }
 
-  
   function resetPassword(email): Promise<void> {
     return sendPasswordResetEmail(auth, email);
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth,  (firebaseUser) => {
-      setCurrentUser(firebaseUser);
+    onAuthStateChanged(auth, async (user) => {
+      setCurrentUser(user);
       setLoading(false);
     });
   }, []);
-  
 
   const value: IAuth = {
     currentUser,

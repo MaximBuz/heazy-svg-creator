@@ -12,9 +12,8 @@ import {
   User,
 } from 'firebase/auth';
 
-import {
-  useCreateNewUserMutation,
-} from '../graphql/generated';
+import { useCreateNewUserMutation } from '../graphql/generated';
+import { endpoint, headers } from '../utils/apiConfig';
 
 interface IAuth {
   currentUser: User;
@@ -33,12 +32,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<User>();
   const [loading, setLoading] = useState<boolean>(true);
-  const createNewUserMutation = useCreateNewUserMutation({
-    endpoint: 'http://localhost:4000/graphql',
-    fetchParams: {
-      headers: { 'Content-Type': 'application/json' },
-    },
-  });
+  const createNewUserMutation = useCreateNewUserMutation({ endpoint, fetchParams: { headers } });
 
   function signup(email, password, firstName): Promise<UserCredential> {
     return createUserWithEmailAndPassword(auth, email, password).then((userCred) => {

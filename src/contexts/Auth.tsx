@@ -15,7 +15,7 @@ import {
 import { useCreateNewUserMutation, User as TUser } from '../graphql/generated';
 
 interface IAuth {
-  currentFirebaseUser: User;
+  currentUser: User;
   signup: (email: string, password: string, firstName: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
@@ -29,7 +29,7 @@ export function useAuth() {
 }
 
 export function AuthProvider ({ children }) {
-  const [currentFirebaseUser, setCurrentFirebaseUser] = useState<User>();
+  const [currentUser, setCurrentUser] = useState<User>();
   const [loading, setLoading] = useState<boolean>(true);
   const createNewUserMutation = useCreateNewUserMutation({
     endpoint: 'http://localhost:4000/graphql',
@@ -64,14 +64,14 @@ export function AuthProvider ({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth,  (firebaseUser) => {
-      setCurrentFirebaseUser(firebaseUser);
+      setCurrentUser(firebaseUser);
       setLoading(false);
     });
   }, []);
   
 
   const value: IAuth = {
-    currentFirebaseUser,
+    currentUser,
     signup,
     login,
     logout,

@@ -1,5 +1,5 @@
 // React
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, memo, SetStateAction } from 'react';
 
 // Styles
 import {
@@ -39,7 +39,7 @@ type IShadowOptionProps =
   | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> }
   | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> };
 
-const ShadowOptions: React.FunctionComponent<IShadowOptionProps> = ({ state, setState }) => {
+const ShadowOptions: React.FunctionComponent<IShadowOptionProps> = memo(({ state, setState }) => {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">
@@ -143,6 +143,6 @@ const ShadowOptions: React.FunctionComponent<IShadowOptionProps> = ({ state, set
       </HStack>
     </>
   );
-};
+});
 
 export default ShadowOptions;

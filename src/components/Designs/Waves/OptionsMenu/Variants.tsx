@@ -20,12 +20,12 @@ import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
 import { IWaveAllProps } from '../Types/waveProps';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, memo, SetStateAction } from 'react';
 
 const Variants: React.FunctionComponent<{
   state: IWaveAllProps;
   setState: Dispatch<SetStateAction<IWaveAllProps>>;
-}> = ({ state, setState }) => {
+}> = memo(({ state, setState }) => {
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">
@@ -124,6 +124,6 @@ const Variants: React.FunctionComponent<{
       )}
     </>
   );
-};
+});
 
 export default Variants;

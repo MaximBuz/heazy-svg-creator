@@ -31,6 +31,8 @@ import { initialCornerState } from './components/Designs/Corners/initialState';
 import { ICornerAllProps } from './components/Designs/Corners/Types/cornerProps';
 import { initialMarkerState } from './components/Designs/Marker/initialState';
 import { IMarkerAllProps } from './components/Designs/Marker/Types/markerProps';
+import { AuthProvider } from './contexts/Auth';
+import UserMenu from './components/UserMenu';
 
 function App() {
 
@@ -89,6 +91,9 @@ function App() {
       <InitialAnimation />
       <Flex {...wrapperStyles}>
         <TemplateMenu activeDesign={design} setDesign={setDesign}></TemplateMenu>
+        <AuthProvider>
+          <UserMenu />
+        </AuthProvider>
         <Container {...canvasStyles}>{renderCanvas()}</Container>
         <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
         <OptionsMenu svgRef={svgRef} setWidth={setWidth} setHeight={setHeight} dimensions={canvasDimensions}>

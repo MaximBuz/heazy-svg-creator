@@ -10,7 +10,7 @@ import UserSpace from './UserSpace';
 export interface IUserMenuProps {}
 
 const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
   const [registrationMode, setRegistrationMode] = useState(false);
@@ -89,13 +89,33 @@ const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
                 <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
                   Personal Space
                 </Heading>
-                
+                {currentUser ? (
+                  <Circle
+                    as="button"
+                    onClick={logout}
+                    padding={1}
+                    _hover={{ background: '#2e3643', cursor: 'pointer' }}
+                    position="absolute"
+                    right="5"
+                    rounded="full"
+                    centerContent
+                  >
+                    <Icon viewBox="0 0 24 24" fill="white">
+                      <path
+                        xmlns="http://www.w3.org/2000/svg"
+                        d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"
+                      />
+                    </Icon>
+                  </Circle>
+                ) : (
+                  <></>
+                )}
               </Flex>
               <Divider></Divider>
             </Stack>
 
             {currentUser ? (
-              <UserSpace/>
+              <UserSpace />
             ) : registrationMode ? (
               <Registration setRegistrationMode={setRegistrationMode} />
             ) : (

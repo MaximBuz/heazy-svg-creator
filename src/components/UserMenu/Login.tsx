@@ -34,7 +34,7 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
         setError('');
         setLoading(false);
       })
-      .catch(() => setError('Could not login!'))
+      .catch(() => setError('Incorrect credentials!'))
       .finally(() => setLoading(false));
   }
 

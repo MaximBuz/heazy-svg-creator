@@ -18,22 +18,24 @@ model User {
   avatarUrl  String?
   designs    Design[]
   author     Design[] @relation("author")
+
+  @@index([firebaseId])
 }
 
 model Design {
   id               Int        @id @default(autoincrement())
   User             User       @relation(fields: [userId], references: [id])
   userId           Int
-  timesCopied      Int
+  timesCopied      Int        @default(0)
   public           Boolean    @default(false)
   name             String
-  type             DesignType @relation(fields: [designTypeId], references: [id])
+  type             DesignType @relation(fields: [typeId], references: [id])
   thumbnailUrl     String
   copiedFrom       User?      @relation("author", fields: [copiedFromUserId], references: [id])
   copiedFromUserId Int?
   optionParameters Json
   createdAt        DateTime   @default(now())
-  designTypeId     Int
+  typeId     Int
 }
 
 model DesignType {

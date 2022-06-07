@@ -1,13 +1,10 @@
-import { createNewUser } from './User';
-import { createNewBubble } from './Bubble';
-import { createNewWaves } from './Waves';
-import { createNewCorners } from './Corners';
-import { createNewMarker } from './Marker';
+import { createNewUser, updateUser } from './User';
+import { createNewDesign, updateDesign, incrementTimesCopied } from './Design';
 
 export const Mutation = {
   createNewUser,
-  createNewBubble,
-  createNewWaves,
-  createNewCorners,
-  createNewMarker,
+  updateUser,
+  createNewDesign,
+  updateDesign,
+  incrementTimesCopied,
 };

@@ -4,9 +4,10 @@ const prisma = new PrismaClient();
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    firstName: 'Maxim',
+    userName: 'Maxim',
     email: 'maxim@gmail.com',
     firebaseId: "ipwbeufpwiefub",
+    
     bubbles: {
       create: [
         {

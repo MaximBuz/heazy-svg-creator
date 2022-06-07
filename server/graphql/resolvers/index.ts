@@ -1,17 +1,13 @@
+import GraphQLJSON from 'graphql-type-json';
 import { Query } from './queries';
 import { Mutation } from './mutations';
-import { WaveOptions } from './wave';
-import { BubbleOptions } from './bubble';
-import { CornerOptions } from './corners';
-import { MarkerOptions } from './marker';
 import { User } from './user';
+import { Design } from './design';
 
 export const resolvers = {
+  JSON: GraphQLJSON,
   Query,
   Mutation,
   User,
-  WaveOptions,
-  BubbleOptions,
-  CornerOptions,
-  MarkerOptions,
+  Design,
 };

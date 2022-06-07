@@ -11,133 +11,33 @@ datasource db {
 }
 
 model User {
-  id       Int             @id @default(autoincrement())
-  firebaseId String        @unique
-  email    String          @unique
-  firstName String
-  waves    WaveOptions[]
-  bubbles  BubbleOptions[]
-  corners  CornerOptions[]
-  markers  MarkerOptions[]
+  id         Int      @id @default(autoincrement())
+  firebaseId String   @unique
+  email      String   @unique
+  userName   String
+  avatarUrl  String?
+  designs    Design[]
+  author     Design[] @relation("author")
 }
 
-model BubbleOptions {
-  id          Int     @id @default(autoincrement())
-  name        String
-  user        User    @relation(fields: [userId], references: [id])
-  seed        Int
-
-  stroke      Boolean
-  solid       Int
-  strokeWidth Int
-  velocity    Float
-  size        Float
-
-  startColor String
-  endColor   String
-  bgColor    String
-
-  shadowX     Float
-  shadowY     Float
-  shadowSD    Float
-  shadowColor String
-  userId      Int
+model Design {
+  id               Int        @id @default(autoincrement())
+  User             User       @relation(fields: [userId], references: [id])
+  userId           Int
+  timesCopied      Int
+  public           Boolean    @default(false)
+  name             String
+  type             DesignType @relation(fields: [designTypeId], references: [id])
+  thumbnailUrl     String
+  copiedFrom       User?      @relation("author", fields: [copiedFromUserId], references: [id])
+  copiedFromUserId Int?
+  optionParameters Json
+  createdAt        DateTime   @default(now())
+  designTypeId     Int
 }
 
-model WaveOptions {
-  id   Int    @id @default(autoincrement())
-  name String
-  user User   @relation(fields: [userId], references: [id])
-  seed         Int
-
-  stroke       Boolean
-  solid        Int
-  strokeWidth  Int
-  strokeShrink Boolean
-  balance  Float
-  velocity Float
-  breaks   Int
-  stacks   Int
-  distance Int
-  smooth   Float
-
-  startColor String
-  endColor   String
-  bgColor    String
-  shadowX     Float
-  shadowY     Float
-  shadowSD    Float
-  shadowColor String
-
-  userId Int
-}
-
-model CornerOptions {
-  id   Int    @id @default(autoincrement())
-  name String
-  user User   @relation(fields: [userId], references: [id])
-  seed   Float
-
-  stroke Boolean
-  solid  Int
-  strokeWidth  Int
-  strokeShrink Boolean
-  balance      Float
-  velocity     Int
-  breaks       Int
-  stacks       Int
-  distance     Int
-  smooth       Float
-
-  topLeftCorner     Boolean
-  topRightCorner    Boolean
-  bottomLeftCorner  Boolean
-  bottomRightCorner Boolean
-  mirror            Boolean
-
-  startColor String
-  endColor   String
-  bgColor    String
-
-  shadowX     Float
-  shadowY     Float
-  shadowSD    Float
-  shadowColor String
-
-  designId Float
-  userId   Int
-}
-
-model MarkerOptions {
-  id   Int    @id @default(autoincrement())
-  name String
-  user User   @relation(fields: [userId], references: [id])
-  seed Float
-
-  lineCap      String
-  lineJoin     String
-  strokeWidth  Int
-  markerHeight Int
-  zickZacks    Int
-  pressure     Float
-
-  padding   Float
-  mirror    Boolean
-  yPosition Float
-
-  ghost           Boolean
-  ghostSize       Float
-  ghostStartColor String
-  ghostEndColor   String
-
-  startColor String
-  endColor   String
-  bgColor    String
-
-  shadowX     Float
-  shadowY     Float
-  shadowSD    Float
-  shadowColor String
-
-  userId Int
+model DesignType {
+  id     Int      @id @default(autoincrement())
+  name   String
+  Design Design[]
 }

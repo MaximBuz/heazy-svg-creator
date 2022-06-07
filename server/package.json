@@ -26,8 +26,5 @@
     "firebase-admin": "^10.2.0",
     "graphql-scalars": "^1.17.0",
     "nodemon": "^2.0.16"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
   }
 }

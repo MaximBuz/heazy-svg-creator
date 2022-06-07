@@ -36,14 +36,14 @@ type DesignType {
 type Query {
   getUserByFirebaseId(id: String!): User
   getUserById(id: Int!): User
-  getAllPublicDesigns(sortBy: string): [Design]
+  getAllPublicDesigns(sortBy: String): [Design]
   getAllPublicDesignsByType(typeId: Int!): [Design]
   getDesignById(id: Int!): Design
-  getDesignTypes(): [DesignType]!
+  getDesignTypes: [DesignType]!
 }
 
 type Mutation {
-  createNewUser(firebaseId: String!, email: String!, username: String!, thumbnailUrl: String):  User
+  createNewUser(firebaseId: String!, email: String!, username: String!, thumbnailUrl: String): User
   updateUser(userId: Int!, username: String): User
   createNewDesign(userId: Int!, public: Boolean, name: String!, typeId: Int!, thumbnailUrl: String, copiedFromUserId: Int, optionParameters: JSON!): Design
   updateDesign(id: Int!, public: Boolean, name: String, optionParameters: JSON!): Design

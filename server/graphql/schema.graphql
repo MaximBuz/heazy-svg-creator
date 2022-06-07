@@ -1,251 +1,49 @@
+
+scalar JSON
+
 type User {
   id: Int!
   firebaseId: String!
   email: String!
-  firstName: String!
-  waves: [WaveOptions]
-  bubbles: [BubbleOptions]
-  corners: [CornerOptions]
-  markers: [MarkerOptions]
+  userName: String!
+  avatarUrl: String
+  designs: [Design]
 }
 
-type BubbleOptions {
+type Design {
   id: Int!
-  name: String!
-  user: User
-  seed: Int!
-
-  stroke: Boolean!
-  solid: Int!
-  strokeWidth: Int!
-  velocity: Float!
-  size: Float!
-
-  startColor: String!
-  endColor: String!
-  bgColor: String!
-  shadowX: Float!
-  shadowY: Float!
-  shadowSD: Float!
-  shadowColor: String!
+  user: User!
   userId: Int!
+  timesCopied: Int!
+  public: Boolean!
+  name: String!
+  type: DesignType!
+  typeId: Int!
+  thumbnailUrl: String
+  copiedFrom: User
+  copiedFromUserId: Int
+  optionParameters: JSON!
+  createdAt: String!
 }
 
-type WaveOptions {
+type DesignType {
   id: Int!
   name: String!
-  user: User
-  seed: Int!
-
-  stroke: Boolean
-  solid: Int!
-  strokeWidth: Int!
-  strokeShrink: Boolean
-  balance: Float!
-  velocity: Float!
-  breaks: Int!
-  stacks: Int!
-  distance: Int!
-  smooth: Float!
-
-  startColor: String!
-  endColor: String!
-  bgColor: String!
-  shadowX: Float!
-  shadowY: Float!
-  shadowSD: Float!
-  shadowColor: String!
-  userId: Int!
-}
-
-type CornerOptions {
-  id: Int!
-  name: String!
-  user: User
-  seed: Int!
-
-  stroke: Boolean!
-  solid: Int!
-  strokeWidth: Int!
-  strokeShrink: Boolean!
-  balance: Float!
-  velocity: Float!
-  breaks: Int!
-  stacks: Int!
-  distance: Int!
-  smooth: Float!
-
-  topLeftCorner: Boolean
-  topRightCorner: Boolean
-  bottomLeftCorner: Boolean
-  bottomRightCorner: Boolean
-  mirror: Boolean
-
-  startColor: String!
-  endColor: String!
-  bgColor: String!
-  shadowX: Float!
-  shadowY: Float!
-  shadowSD: Float!
-  shadowColor: String!
-  userId: Int!
-}
-
-type MarkerOptions {
-  id: Int!
-  name: String!
-  user: User
-  seed: Int!
-
-  lineCap: String!
-  lineJoin: String!
-  strokeWidth: Int!
-  markerHeight: Int!
-  zickZacks: Int!
-  pressure: Float!
-  padding: Float!
-  mirror: Boolean!
-  yPosition: Float!
-  ghost: Boolean!
-  ghostSize: Float!
-  ghostStartColor: String!
-  ghostEndColor: String!
-
-  startColor: String!
-  endColor: String!
-  bgColor: String!
-  shadowX: Float!
-  shadowY: Float!
-  shadowSD: Float!
-  shadowColor: String!
-  userId: Int!
 }
 
 type Query {
-  getUserById(id: Int!): User
   getUserByFirebaseId(id: String!): User
-
-  getWavesByUserId(id: Int!): [WaveOptions]
-  getWavesByFirebaseId(id: String!): [WaveOptions]
-  getWaveById(id: Int!): WaveOptions
-
-  getBubblesByUserId(id: Int!): [BubbleOptions]
-  getBubblesByFirebaseId(id: String!): [BubbleOptions]
-  getBubbleById(id: Int!): BubbleOptions
-
-  getCornersByUserId(id: Int!): [CornerOptions]
-  getCornersByFirebaseId(id: String!): [CornerOptions]
-  getCornerById(id: Int!): CornerOptions
-
-  getMarkersByUserId(id: Int!): [MarkerOptions]
-  getMarkersByFirebaseId(id: String!): [MarkerOptions]
-  getMarkerById(id: Int!): MarkerOptions
+  getUserById(id: Int!): User
+  getAllPublicDesigns(sortBy: String): [Design]
+  getAllPublicDesignsByType(typeId: Int!): [Design]
+  getDesignById(id: Int!): Design
+  getDesignTypes: [DesignType]!
 }
 
 type Mutation {
-  createNewUser(firebaseId: String, email: String!, username: String!): User
-
-  createNewBubble(
-    name: String!
-    seed: Int!
-
-    stroke: Boolean!
-    solid: Int!
-    strokeWidth: Int!
-    velocity: Float!
-    size: Float!
-
-    startColor: String!
-    endColor: String!
-    bgColor: String!
-    shadowX: Float!
-    shadowY: Float!
-    shadowSD: Float!
-    shadowColor: String!
-    userId: Int!
-  ): BubbleOptions
-
-  createNewWaves(
-    name: String!
-    seed: Int!
-
-    stroke: Boolean
-    solid: Int!
-    strokeWidth: Int!
-    strokeShrink: Boolean
-    balance: Float!
-    velocity: Float!
-    breaks: Int!
-    stacks: Int!
-    distance: Int!
-    smooth: Float!
-
-    startColor: String!
-    endColor: String!
-    bgColor: String!
-    shadowX: Float!
-    shadowY: Float!
-    shadowSD: Float!
-    shadowColor: String!
-    userId: Int!
-  ): WaveOptions
-
-  createNewCorners(
-    name: String!
-    seed: Int!
-
-    stroke: Boolean!
-    solid: Int!
-    strokeWidth: Int!
-    strokeShrink: Boolean!
-    balance: Float!
-    velocity: Float!
-    breaks: Int!
-    stacks: Int!
-    distance: Int!
-    smooth: Float!
-
-    topLeftCorner: Boolean
-    topRightCorner: Boolean
-    bottomLeftCorner: Boolean
-    bottomRightCorner: Boolean
-    mirror: Boolean
-
-    startColor: String!
-    endColor: String!
-    bgColor: String!
-    shadowX: Float!
-    shadowY: Float!
-    shadowSD: Float!
-    shadowColor: String!
-    userId: Int!
-  ): CornerOptions
-
-  createNewMarker(
-    name: String!
-    seed: Int!
-
-    lineCap: String!
-    lineJoin: String!
-    strokeWidth: Int!
-    markerHeight: Int!
-    zickZacks: Int!
-    pressure: Float!
-    padding: Float!
-    mirror: Boolean!
-    yPosition: Float!
-    ghost: Boolean!
-    ghostSize: Float!
-    ghostStartColor: String!
-    ghostEndColor: String!
-
-    startColor: String!
-    endColor: String!
-    bgColor: String!
-    shadowX: Float!
-    shadowY: Float!
-    shadowSD: Float!
-    shadowColor: String!
-    userId: Int!
-  ): MarkerOptions
+  createNewUser(firebaseId: String!, email: String!, username: String!, thumbnailUrl: String): User
+  updateUser(userId: Int!, username: String): User
+  createNewDesign(userId: Int!, public: Boolean, name: String!, typeId: Int!, thumbnailUrl: String, copiedFromUserId: Int, optionParameters: JSON!): Design
+  updateDesign(id: Int!, public: Boolean, name: String, optionParameters: JSON!): Design
+  incrementTimesCopied(id: Int!): Design
 }

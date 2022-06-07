@@ -1,102 +1,29 @@
 import gql from 'graphql-tag';
 
 gql`
-  query UserByFirebaseId($id: String!) {
+query UserByFirebaseId($id: String!) {
   user: getUserByFirebaseId(id: $id) {
     id
     firebaseId
     email
-    firstName
-    waves {
+    userName
+    avatarUrl
+    designs {
       id
+      timesCopied
+      public
       name
-      seed
-      stroke
-      solid
-      strokeWidth
-      strokeShrink
-      balance
-      velocity
-      breaks
-      stacks
-      distance
-      smooth
-      startColor
-      endColor
-      bgColor
-      shadowX
-      shadowY
-      shadowSD
-      shadowColor
-    }
-    bubbles {
-      id
-      name
-      seed
-      stroke
-      solid
-      strokeWidth
-      velocity
-      size
-      startColor
-      endColor
-      bgColor
-      shadowX
-      shadowY
-      shadowSD
-      shadowColor
-    }
-    corners {
-      id
-      name
-      seed
-      stroke
-      solid
-      strokeWidth
-      strokeShrink
-      balance
-      velocity
-      breaks
-      stacks
-      distance
-      smooth
-      topLeftCorner
-      topRightCorner
-      bottomLeftCorner
-      bottomRightCorner
-      mirror
-      startColor
-      endColor
-      bgColor
-      shadowX
-      shadowY
-      shadowSD
-      shadowColor
-    }
-    markers {
-      id
-      name
-      seed
-      lineCap
-      lineJoin
-      strokeWidth
-      markerHeight
-      zickZacks
-      pressure
-      padding
-      mirror
-      yPosition
-      ghost
-      ghostSize
-      ghostStartColor
-      ghostEndColor
-      startColor
-      endColor
-      bgColor
-      shadowX
-      shadowY
-      shadowSD
-      shadowColor
+      type {
+        id
+        name
+      }
+      thumbnailUrl
+      copiedFrom {
+        userName
+        id
+      }
+      optionParameters
+      createdAt
     }
   }
 }

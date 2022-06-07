@@ -24,22 +24,22 @@ model User {
 
 model Design {
   id               Int        @id @default(autoincrement())
-  User             User       @relation(fields: [userId], references: [id])
+  user             User       @relation(fields: [userId], references: [id])
   userId           Int
   timesCopied      Int        @default(0)
   public           Boolean    @default(false)
   name             String
   type             DesignType @relation(fields: [typeId], references: [id])
+  typeId           Int
   thumbnailUrl     String
   copiedFrom       User?      @relation("author", fields: [copiedFromUserId], references: [id])
   copiedFromUserId Int?
   optionParameters Json
   createdAt        DateTime   @default(now())
-  typeId     Int
 }
 
 model DesignType {
   id     Int      @id @default(autoincrement())
   name   String
-  Design Design[]
+  design Design[]
 }

@@ -157,6 +157,19 @@ export type UserByFirebaseIdQueryVariables = Exact<{
 
 export type UserByFirebaseIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
 
+export type CreateNewDesignMutationVariables = Exact<{
+  userId: Scalars['Int'];
+  public?: InputMaybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  typeId: Scalars['Int'];
+  thumbnailUrl: Scalars['String'];
+  copiedFromUserId?: InputMaybe<Scalars['Int']>;
+  optionParameters: Scalars['JSON'];
+}>;
+
+
+export type CreateNewDesignMutation = { __typename?: 'Mutation', createNewDesign?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+
 export type CreateNewUserMutationVariables = Exact<{
   firebaseId: Scalars['String'];
   email: Scalars['String'];
@@ -207,6 +220,47 @@ export const useUserByFirebaseIdQuery = <
     useQuery<UserByFirebaseIdQuery, TError, TData>(
       ['UserByFirebaseId', variables],
       fetcher<UserByFirebaseIdQuery, UserByFirebaseIdQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UserByFirebaseIdDocument, variables),
+      options
+    );
+export const CreateNewDesignDocument = `
+    mutation createNewDesign($userId: Int!, $public: Boolean, $name: String!, $typeId: Int!, $thumbnailUrl: String!, $copiedFromUserId: Int, $optionParameters: JSON!) {
+  createNewDesign(
+    userId: $userId
+    public: $public
+    name: $name
+    typeId: $typeId
+    thumbnailUrl: $thumbnailUrl
+    copiedFromUserId: $copiedFromUserId
+    optionParameters: $optionParameters
+  ) {
+    id
+    timesCopied
+    public
+    name
+    type {
+      id
+      name
+    }
+    thumbnailUrl
+    copiedFrom {
+      id
+      userName
+    }
+    optionParameters
+    createdAt
+  }
+}
+    `;
+export const useCreateNewDesignMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      options?: UseMutationOptions<CreateNewDesignMutation, TError, CreateNewDesignMutationVariables, TContext>
+    ) =>
+    useMutation<CreateNewDesignMutation, TError, CreateNewDesignMutationVariables, TContext>(
+      ['createNewDesign'],
+      (variables?: CreateNewDesignMutationVariables) => fetcher<CreateNewDesignMutation, CreateNewDesignMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateNewDesignDocument, variables)(),
       options
     );
 export const CreateNewUserDocument = `

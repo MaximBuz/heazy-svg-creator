@@ -27,5 +27,8 @@
     "graphql-scalars": "^1.17.0",
     "graphql-type-json": "^0.3.2",
     "nodemon": "^2.0.16"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

@@ -89,6 +89,7 @@ const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
                 <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
                   Personal Space
                 </Heading>
+                
               </Flex>
               <Divider></Divider>
             </Stack>

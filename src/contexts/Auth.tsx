@@ -34,12 +34,13 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState<boolean>(true);
   const createNewUserMutation = useCreateNewUserMutation({ endpoint, fetchParams: { headers } });
 
-  function signup(email, password, firstName): Promise<UserCredential> {
+  function signup(email, password, userName): Promise<UserCredential> {
     return createUserWithEmailAndPassword(auth, email, password).then((userCred) => {
       createNewUserMutation.mutate({
         firebaseId: userCred.user.uid,
         email: userCred.user.email,
-        firstName,
+        userName,
+        avatarUrl: String(userCred.user.photoURL)
       });
       return userCred;
     });

@@ -28,12 +28,12 @@ const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistra
     e.preventDefault();
     const email = e.target['registration-email'].value;
     const password = e.target['registration-pw'].value;
-    const name = e.target['registration-name'].value;
+    const userName = e.target['registration-userName'].value;
     const confirmPassword = e.target['registration-pw-confirm'].value;
 
     if (password === confirmPassword) {
       setLoading(true);
-      signup(email, password, name)
+      signup(email, password, userName)
         .then(() => {
           setError('');
           setLoading(false);
@@ -57,7 +57,7 @@ const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistra
       </Box>
       <form onSubmit={handleRegistration}>
         <FormControl isRequired>
-          <Input name="registration-name" mt={5} placeholder="First Name" type="text"></Input>
+          <Input name="registration-userName" mt={5} placeholder="Username" type="text"></Input>
         </FormControl>
         <FormControl isRequired>
           <Input mt="10px" name="registration-email" placeholder="Email" type="email"></Input>

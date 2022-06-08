@@ -111,8 +111,8 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
           <Tooltip
             bgColor="#21272e64"
             color="white"
-            label="Publish and let others use this template"
-            aria-label="Publish and let others use this template"
+            label="Make this template available to others"
+            aria-label="Make this template available to others"
           >
             <ViewIcon
               _hover={{ transform: 'scale(1.15)' }}

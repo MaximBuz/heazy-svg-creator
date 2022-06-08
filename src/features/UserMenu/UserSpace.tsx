@@ -4,7 +4,10 @@ import { useGetUserByFirebaseIdQuery } from '../../graphql/generated';
 import { endpoint, headers } from '../../utils/apiConfig';
 
 // Images
-import Placeholder from '../../assets/Thumbnails/placeholderWaves.png';
+import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
+import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
+import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
+import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
 import ErrorImg from '../../assets/Error.svg';
 
 // Components
@@ -130,7 +133,17 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
                       isPublic={design.public}
                       copiedFrom={design.copiedFrom}
                       timesCopied={design.timesCopied}
-                      imageSrc={design.thumbnailUrl === 'null' ? Placeholder : design.thumbnailUrl}
+                      imageSrc={
+                        design.thumbnailUrl !== 'null'
+                          ? design.thumbnailUrl
+                          : design.type.name === 'waves'
+                          ? placeholderWaves
+                          : design.type.name === 'bubble'
+                          ? placeholderBubble
+                          : design.type.name === 'corners'
+                          ? placeholderCorners
+                          : placeholderMarker
+                      }
                       caption={design.name}
                     ></Thumbnail>
                   ))}

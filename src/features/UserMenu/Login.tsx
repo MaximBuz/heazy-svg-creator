@@ -39,7 +39,7 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
   }
 
   return (
-    <Flex direction="column" mt="1em" textAlign="center" gap="10px" height="90%" justifyContent="center">
+    <Flex p="5" direction="column" mt="1em" textAlign="center" gap="10px" height="80%" justifyContent="center">
       <Image src={LoginImg} h="20%"></Image>
       <Box mt="1em">
         <Heading as="h4" size="md" fontWeight={800}>

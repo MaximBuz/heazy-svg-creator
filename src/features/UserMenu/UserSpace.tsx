@@ -71,7 +71,11 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
       <Accordion allowToggle>
         <AccordionItem>
           <h2>
-            <AccordionButton _hover={{ bg: '#3b4453' }} _focus={{ boxShadow: 'none' }}>
+            <AccordionButton
+              _expanded={{ bg: '#3b4453', fontWeight: 'bolder' }}
+              _hover={{ bg: '#272c36' }}
+              _focus={{ boxShadow: 'none' }}
+            >
               <Box flex="1" textAlign="center">
                 Explore
               </Box>
@@ -82,7 +86,11 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
 
         <AccordionItem>
           <h2>
-            <AccordionButton _hover={{ bg: '#3b4453' }} _focus={{ boxShadow: 'none' }}>
+            <AccordionButton
+              _expanded={{ bg: '#3b4453', fontWeight: 'bolder' }}
+              _hover={{ bg: '#272c36' }}
+              _focus={{ boxShadow: 'none' }}
+            >
               <Box pl="5" pr="5" flex="1" textAlign="center">
                 Your templates
               </Box>

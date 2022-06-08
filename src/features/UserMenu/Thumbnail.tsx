@@ -1,12 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 // Design
-import { Flex, Text, Image, Box, HStack } from '@chakra-ui/react';
+import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
-import { motion } from 'framer-motion';
 import { IDesignModes } from '../Canvas/Types/designModes';
-import { ArrowLeftIcon, ArrowRightIcon, CopyIcon, DeleteIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export interface IThumbnailProps {
   imageSrc: string;
@@ -62,6 +61,28 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
       >
         {caption}
       </Text>
+      {active && isPublic && (
+        <Tooltip
+          bgColor="#21272e64"
+          color="white"
+          label="Number of times copied by others"
+          placement="right"
+          aria-label="Use this template"
+        >
+          <HStack
+            opacity={0.5}
+            fontSize="sm"
+            _hover={{ opacity: 1 }}
+            top="1em"
+            left="1em"
+            position="absolute"
+            zIndex={10}
+          >
+            <DownloadIcon></DownloadIcon>
+            <Text>{String(timesCopied)}</Text>
+          </HStack>
+        </Tooltip>
+      )}
       <HStack
         align="center"
         justify="center"
@@ -70,21 +91,39 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
         position="absolute"
         zIndex={10}
       >
-        <CopyIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+        <Tooltip bgColor="#21272e64" color="white" label="Use this template" aria-label="Use this template">
+          <CopyIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+        </Tooltip>
         {isPublic ? (
-          <ViewOffIcon
-            _hover={{ transform: 'scale(1.15)' }}
-            textTransform="capitalize"
-            transition="0.2s"
-          ></ViewOffIcon>
+          <Tooltip
+            bgColor="#21272e64"
+            color="white"
+            label="Make this template private"
+            aria-label="Make this template private"
+          >
+            <ViewOffIcon
+              _hover={{ transform: 'scale(1.15)' }}
+              textTransform="capitalize"
+              transition="0.2s"
+            ></ViewOffIcon>
+          </Tooltip>
         ) : (
-          <ViewIcon
-            _hover={{ transform: 'scale(1.15)' }}
-            textTransform="capitalize"
-            transition="0.2s"
-          ></ViewIcon>
+          <Tooltip
+            bgColor="#21272e64"
+            color="white"
+            label="Publish and let others use this template"
+            aria-label="Publish and let others use this template"
+          >
+            <ViewIcon
+              _hover={{ transform: 'scale(1.15)' }}
+              textTransform="capitalize"
+              transition="0.2s"
+            ></ViewIcon>
+          </Tooltip>
         )}
-        <DeleteIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+        <Tooltip bgColor="#21272e64" color="white" label="Delete template" aria-label="Delete template">
+          <DeleteIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+        </Tooltip>
       </HStack>
     </Flex>
   );

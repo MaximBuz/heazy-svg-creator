@@ -33,8 +33,8 @@ const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
         justifyContent="flex-end"
         alignItems="center"
         bg="#262e3a"
-        fill="none"
         p="2"
+        fill="none"
         gap="10px"
       >
         <Heading as="h4" size="xs">
@@ -54,11 +54,12 @@ const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
             as={motion.div}
             minW="250px"
             maxW="250px"
-            height="100vh"
+            height="100%"
+            overflowY="scroll"
+            sx={{ '&::-webkit-scrollbar': { display: 'none' } }}
             bgColor="#1c1f27"
             direction="column"
             boxShadow="dark-lg"
-            p={5}
             h="100%"
             zIndex={1}
             initial={{ left: 0 }}
@@ -72,7 +73,7 @@ const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
             }}
           >
             {/* HEADING */}
-            <Stack spacing={2.5}>
+            <Stack spacing={2.5} p="5">
               <Flex alignItems="center" justifyContent="center">
                 <Circle
                   as="button"

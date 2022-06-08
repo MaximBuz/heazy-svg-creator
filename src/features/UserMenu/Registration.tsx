@@ -45,7 +45,7 @@ const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistra
     }
   }
   return (
-    <Flex direction="column" mt="1em" textAlign="center" gap="10px" height="90%" justifyContent="center">
+    <Flex direction="column" mt="1em" textAlign="center" gap="10px" height="90%" justifyContent="center" p="5">
       <Image src={Register} h="20%"></Image>
       <Box mt="1em">
         <Heading as="h4" size="md" fontWeight={800}>

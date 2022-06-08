@@ -9,7 +9,7 @@ export async function createNewUser(_parent: any, _args: Prisma.UserCreateInput,
 }
 export async function updateUser(
   _parent: any,
-  _args: { userId: number, userName: string },
+  _args: Pick<Prisma.UserUpdateInput, 'userName'> & { userId: number },
   context: Context
 ) {
   const { userId: id, userName } = _args;

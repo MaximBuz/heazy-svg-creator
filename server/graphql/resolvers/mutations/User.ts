@@ -9,10 +9,13 @@ export async function createNewUser(_parent: any, _args: Prisma.UserCreateInput,
 }
 export async function updateUser(
   _parent: any,
-  _args: Pick<Prisma.UserUpdateInput, 'userName'> & { id: number },
+  _args: { userId: number, userName: string },
   context: Context
 ) {
-  const { id, ...data } = _args;
-  const user = await context.prisma.user.update({ where: { id }, data: { ...data } });
+  const { userId: id, userName } = _args;
+  const user = await context.prisma.user.update({
+    where: { id },
+    data: { userName },
+  });
   return user;
 }

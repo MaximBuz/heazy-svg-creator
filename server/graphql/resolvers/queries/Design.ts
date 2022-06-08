@@ -18,7 +18,7 @@ export async function getAllPublicDesignsByType(_parent: any, _args: { typeId: n
 
 export async function getDesignById(_parent: any, _args: { id: number }, context: Context) {
   const design = await context.prisma.design.findFirst({
-    where: { public: true, id: _args.id },
+    where: { public: true, id: _args.id }, // possibly refactor this to only allow viewing if you own design OR it's public (get ID from auth!!)
   });
   return design;
 }

@@ -87,7 +87,7 @@ const userData: Prisma.UserCreateInput = {
       },
       {
         name: 'Coolest Marker',
-        typeId: 2,
+        typeId: 4,
         thumbnailUrl: 'null',
         optionParameters: {
           lineCap: 'butt',

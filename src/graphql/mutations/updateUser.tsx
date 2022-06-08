@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 gql`
-mutation createNewUser($firebaseId: String!, $email: String!, $userName: String!, $avatarUrl: String) {
-  createNewUser(firebaseId: $firebaseId, email: $email, userName: $userName, avatarUrl: $avatarUrl) {
+mutation updateUser($userId: Int!, $userName: String) {
+  user: updateUser(userId: $userId, userName: $userName) {
     id
     firebaseId
     email

@@ -46,7 +46,7 @@ type Mutation {
   createNewUser(firebaseId: String!, email: String!, userName: String!, avatarUrl: String): User
   updateUser(userId: Int!, userName: String): User
   createNewDesign(userId: Int!, public: Boolean, name: String!, typeId: Int!, thumbnailUrl: String, copiedFromUserId: Int, optionParameters: JSON!): Design
-  updateDesign(id: Int!, public: Boolean, name: String, optionParameters: JSON!): Design
+  updateDesign(id: Int!, public: Boolean, name: String, optionParameters: JSON): Design
   incrementTimesCopied(id: Int!): Design
 }
 `;

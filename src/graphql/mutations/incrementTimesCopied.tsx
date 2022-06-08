@@ -1,10 +1,8 @@
 import gql from 'graphql-tag';
-// possibly refactor this to only allow viewing if you own design OR it's public (get ID from auth!!)
+
 gql`
-query getDesignById($id: Int!) {
-  design: getDesignById(id: $id) {
-    id
-    name
+mutation incrementTimesCopied($id: Int!) {
+  design: incrementTimesCopied(id: $id) {
     id
     timesCopied
     public
@@ -15,8 +13,8 @@ query getDesignById($id: Int!) {
     }
     thumbnailUrl
     copiedFrom {
-      userName
       id
+      userName
     }
     optionParameters
     createdAt

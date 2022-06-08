@@ -6,15 +6,25 @@ import { Flex, Text, Image, Box, HStack } from '@chakra-ui/react';
 // Utils
 import { motion } from 'framer-motion';
 import { IDesignModes } from '../Canvas/Types/designModes';
-import { DeleteIcon, ViewIcon } from '@chakra-ui/icons';
+import { ArrowLeftIcon, ArrowRightIcon, CopyIcon, DeleteIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export interface IThumbnailProps {
   imageSrc: string;
   caption: string;
   setDesign?: Dispatch<SetStateAction<IDesignModes>>;
+  isPublic: boolean;
+  timesCopied: Number;
+  copiedFrom: any;
 }
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ imageSrc, caption, setDesign }) => {
+const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
+  imageSrc,
+  caption,
+  setDesign,
+  isPublic,
+  timesCopied,
+  copiedFrom,
+}) => {
   const [active, setActive] = useState<Boolean>(false);
   return (
     <Flex
@@ -48,7 +58,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ imageSrc, caption
         align="center"
         textTransform="capitalize"
         transition="0.3s"
-        sx={active ? { transform: 'scale(1.15) translate(0, -0.7em)' } : {}}
+        sx={active ? { transform: 'scale(1.15) translate(0, -0.8em)' } : {}}
       >
         {caption}
       </Text>
@@ -56,12 +66,25 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ imageSrc, caption
         align="center"
         justify="center"
         transition="0.3s"
-        sx={active ? {opacity: 1, transform: "translate(0, 0.7em)"} : { opacity: 0 }}
+        sx={active ? { opacity: 1, transform: 'translate(0, 0.8em)' } : { opacity: 0 }}
         position="absolute"
         zIndex={10}
       >
-        <ViewIcon textTransform="capitalize" transition="0.3s" />
-        <DeleteIcon textTransform="capitalize" transition="0.3s" />
+        <CopyIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+        {isPublic ? (
+          <ViewOffIcon
+            _hover={{ transform: 'scale(1.15)' }}
+            textTransform="capitalize"
+            transition="0.2s"
+          ></ViewOffIcon>
+        ) : (
+          <ViewIcon
+            _hover={{ transform: 'scale(1.15)' }}
+            textTransform="capitalize"
+            transition="0.2s"
+          ></ViewIcon>
+        )}
+        <DeleteIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
       </HStack>
     </Flex>
   );

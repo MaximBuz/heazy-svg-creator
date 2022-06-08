@@ -119,6 +119,9 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
                   })
                   .map((design) => (
                     <Thumbnail
+                      isPublic={design.public}
+                      copiedFrom={design.copiedFrom}
+                      timesCopied={design.timesCopied}
                       imageSrc={design.thumbnailUrl === 'null' ? Placeholder : design.thumbnailUrl}
                       caption={design.name}
                     ></Thumbnail>

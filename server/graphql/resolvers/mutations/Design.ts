@@ -20,7 +20,7 @@ export async function createNewDesign(
 
 export async function updateDesign(
   _parent: any,
-  _args: Pick<Prisma.DesignUpdateInput, 'public' | 'optionParameters' | 'name'> & {
+  _args: Partial<Pick<Prisma.DesignUpdateInput, 'public' | 'optionParameters' | 'name'>> & {
     id: number;
   },
   context: Context

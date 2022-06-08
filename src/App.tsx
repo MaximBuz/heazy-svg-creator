@@ -16,23 +16,23 @@ import {
   useCanvasDimensions,
   TemplateMenu,
   OptionsMenu,
-} from './components';
+} from './features';
 
 // Styling
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from './components/Canvas/Types/designModes';
-import { IWaveAllProps } from './components/Designs/Waves/Types/waveProps';
-import { initialWaveState } from './components/Designs/Waves/initialState';
-import { IBubbleAllProps } from './components/Designs/Bubble/Types/bubbleProps';
-import { initialBubbleState } from './components/Designs/Bubble/initialState';
-import { initialCornerState } from './components/Designs/Corners/initialState';
-import { ICornerAllProps } from './components/Designs/Corners/Types/cornerProps';
-import { initialMarkerState } from './components/Designs/Marker/initialState';
-import { IMarkerAllProps } from './components/Designs/Marker/Types/markerProps';
+import { IDesignModes } from './features/Canvas/Types/designModes';
+import { IWaveAllProps } from './features/Designs/Waves/Types/waveProps';
+import { initialWaveState } from './features/Designs/Waves/initialState';
+import { IBubbleAllProps } from './features/Designs/Bubble/Types/bubbleProps';
+import { initialBubbleState } from './features/Designs/Bubble/initialState';
+import { initialCornerState } from './features/Designs/Corners/initialState';
+import { ICornerAllProps } from './features/Designs/Corners/Types/cornerProps';
+import { initialMarkerState } from './features/Designs/Marker/initialState';
+import { IMarkerAllProps } from './features/Designs/Marker/Types/markerProps';
 import { AuthProvider } from './contexts/Auth';
-import UserMenu from './components/UserMenu';
+import UserMenu from './features/UserMenu';
 
 function App() {
   /* --------- CANVAS STATE --------- */

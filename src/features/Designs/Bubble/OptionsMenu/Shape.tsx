@@ -1,11 +1,12 @@
-import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Box } from '@chakra-ui/react';
+import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import SizeLeft from './Icons/SizeLeft';
 import SizeRight from './Icons/SizeRight';
-import { IBubbleAllProps } from '../Types/bubbleProps';
+import { useDesign } from '../../../../contexts/Design';
+
 
 export interface IShapeProps {
   velocity: number;
@@ -14,10 +15,8 @@ export interface IShapeProps {
   setSize: Dispatch<SetStateAction<number>>;
 }
 
-const Shape: React.FunctionComponent<{
-  state: IBubbleAllProps;
-  setState: Dispatch<SetStateAction<IBubbleAllProps>>;
-}> = ({ state, setState }) => {
+const Shape: React.FunctionComponent = () => {
+  const { bubbleState: state, setBubbleState: setState } = useDesign();
   return (
     <>
       {/* ----- HEADLINE ------ */}

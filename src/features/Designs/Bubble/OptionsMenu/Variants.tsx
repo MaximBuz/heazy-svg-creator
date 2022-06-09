@@ -21,12 +21,10 @@ import LineWidthLeft from '../../Waves/OptionsMenu/Icons/LineWidthLeft';
 import LineWidthRight from '../../Waves/OptionsMenu/Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import { IBubbleAllProps } from '../Types/bubbleProps';
+import { useDesign } from '../../../../contexts/Design';
 
-const Variants: React.FunctionComponent<{
-  state: IBubbleAllProps;
-  setState: Dispatch<SetStateAction<IBubbleAllProps>>;
-}> = ({ state, setState }) => {
+const Variants: React.FunctionComponent = () => {
+  const { bubbleState: state, setBubbleState: setState } = useDesign();
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">

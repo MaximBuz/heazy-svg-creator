@@ -1,5 +1,5 @@
 // React
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';
@@ -8,24 +8,22 @@ import { Divider } from '@chakra-ui/react';
 import Variants from './Variants';
 
 // Types
-import { IBubbleAllProps } from '../Types/bubbleProps';
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
+import { useDesign } from '../../../../contexts/Design';
 
-const BubbleOptions: React.FunctionComponent<{
-  state: IBubbleAllProps;
-  setState: Dispatch<SetStateAction<IBubbleAllProps>>;
-}> = (props) => {
+const BubbleOptions: React.FunctionComponent = () => {
+  const { bubbleState, setBubbleState } = useDesign();
   return (
     <>
-      <Variants {...props}></Variants>
+      <Variants />
       <Divider />
-      <Shape {...props}></Shape>
+      <Shape />
       <Divider />
-      <ColorOptions {...props}></ColorOptions>
-      <Divider></Divider>
-      <ShadowOptions {...props}></ShadowOptions>
+      <ColorOptions state={bubbleState} setState={setBubbleState} />
+      <Divider />
+      <ShadowOptions state={bubbleState} setState={setBubbleState} />
     </>
   );
 };

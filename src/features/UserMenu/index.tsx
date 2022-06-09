@@ -9,7 +9,7 @@ import UserSpace from './UserSpace';
 
 export interface IUserMenuProps {}
 
-const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
+const UserMenu: React.FunctionComponent<IUserMenuProps> = () => {
   const { currentUser, logout } = useAuth();
 
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();

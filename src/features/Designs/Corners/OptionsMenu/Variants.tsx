@@ -22,12 +22,10 @@ import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import { ICornerAllProps } from '../Types/cornerProps';
+import { useDesign } from '../../../../contexts/Design';
 
-const Variants: React.FunctionComponent<{
-  state: ICornerAllProps;
-  setState: Dispatch<SetStateAction<ICornerAllProps>>;
-}> = ({ state, setState }) => {
+const Variants: React.FunctionComponent = () => {
+  const { cornerState: state, setCornerState: setState } = useDesign();
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">

@@ -1,37 +1,40 @@
 import React, { useId } from 'react';
-import { ICornerAllProps, ICornerProps } from './Types/cornerProps';
+import { ICornerProps } from './Types/cornerProps';
 import { smoothCornerPath } from '../../../utils/path-algorithms/Corners/smoothCornerPath';
 import CornerSvgGroup from './CornerSvgGroup';
 import SvgCanvas from '../../Canvas/SvgCanvas';
+import { useDesign } from '../../../contexts/Design';
 
-const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props) => {
+const Corners: React.FunctionComponent<ICornerProps> = (props) => {
+  const { cornerState } = useDesign();
+
   // set up params that are needed to generate a path
   const pathParams = [
     props.width,
     props.height,
-    props.balance,
-    props.velocity,
-    props.breaks,
-    props.stacks,
-    props.distance,
-    props.solid,
-    props.smooth,
+    cornerState.balance,
+    cornerState.velocity,
+    cornerState.breaks,
+    cornerState.stacks,
+    cornerState.distance,
+    cornerState.solid,
+    cornerState.smooth,
   ] as const;
 
   // set up params that are needed to generate the svg group for the wave
   const svgGroupProps = {
     width: props.width,
     height: props.height,
-    solid: props.solid,
-    strokeWidth: props.strokeWidth,
-    strokeShrink: props.strokeShrink,
+    solid: cornerState.solid,
+    strokeWidth: cornerState.strokeWidth,
+    strokeShrink: cornerState.strokeShrink,
     classId: useId(),
-    startColor: props.startColor,
-    endColor: props.endColor,
-    shadowX: props.shadowX,
-    shadowY: props.shadowY,
-    shadowSD: props.shadowSD,
-    shadowColor: props.shadowColor,
+    startColor: cornerState.startColor,
+    endColor: cornerState.endColor,
+    shadowX: cornerState.shadowX,
+    shadowY: cornerState.shadowY,
+    shadowSD: cornerState.shadowSD,
+    shadowColor: cornerState.shadowColor,
   };
 
   // set up params that are needed to generate the full svg element
@@ -43,51 +46,53 @@ const Corners: React.FunctionComponent<ICornerProps & ICornerAllProps> = (props)
 
   /*  -----GENERATE PATHS----- */
   let topLeft, topRight, bottomLeft, bottomRight, mirrored;
-  if (props.mirror) {
+  if (cornerState.mirror) {
     // If mirrored, generate only on path and mirror it
     mirrored = smoothCornerPath(props.seed, ...pathParams);
   } else {
     // else generate unique ones for each corner
-    props.topLeftCorner && (topLeft = smoothCornerPath(props.seed, ...pathParams));
-    props.topRightCorner && (topRight = smoothCornerPath(props.seed + 1, ...pathParams));
-    props.bottomLeftCorner && (bottomLeft = smoothCornerPath(props.seed + 2, ...pathParams));
-    props.bottomRightCorner && (bottomRight = smoothCornerPath(props.seed + 3, ...pathParams));
+    cornerState.topLeftCorner && (topLeft = smoothCornerPath(props.seed, ...pathParams));
+    cornerState.topRightCorner && (topRight = smoothCornerPath(props.seed + 1, ...pathParams));
+    cornerState.bottomLeftCorner && (bottomLeft = smoothCornerPath(props.seed + 2, ...pathParams));
+    cornerState.bottomRightCorner && (bottomRight = smoothCornerPath(props.seed + 3, ...pathParams));
   }
 
   /* ------IF MIRROR------ */
-  if (props.mirror)
+  if (cornerState.mirror)
     return (
       <SvgCanvas {...svgElementProps}>
-        <rect x="0" y="0" width={props.width} height={props.height} fill={props.bgColor}></rect>
+        <rect x="0" y="0" width={props.width} height={props.height} fill={cornerState.bgColor}></rect>
         {/* TOP LEFT CORNER */}
-        {props.topLeftCorner && <CornerSvgGroup path={mirrored} direction={0} {...svgGroupProps} />}
+        {cornerState.topLeftCorner && <CornerSvgGroup path={mirrored} direction={0} {...svgGroupProps} />}
 
         {/* TOP RIGHT CORNER */}
-        {props.topRightCorner && <CornerSvgGroup path={mirrored} direction={1} {...svgGroupProps} />}
+        {cornerState.topRightCorner && <CornerSvgGroup path={mirrored} direction={1} {...svgGroupProps} />}
 
         {/* BOTTOM LEFT CORNER */}
-        {props.bottomLeftCorner && <CornerSvgGroup path={mirrored} direction={2} {...svgGroupProps} />}
+        {cornerState.bottomLeftCorner && <CornerSvgGroup path={mirrored} direction={2} {...svgGroupProps} />}
 
         {/* BOTTOM RIGHT CORNER */}
-        {props.bottomRightCorner && <CornerSvgGroup path={mirrored} direction={3} {...svgGroupProps} />}
+        {cornerState.bottomRightCorner && <CornerSvgGroup path={mirrored} direction={3} {...svgGroupProps} />}
       </SvgCanvas>
     );
 
   /* -----IF NO MIRROR----- */
   return (
     <SvgCanvas {...svgElementProps}>
-      <rect x="0" y="0" width={props.width} height={props.height} fill={props.bgColor}></rect>
+      <rect x="0" y="0" width={props.width} height={props.height} fill={cornerState.bgColor}></rect>
       {/* TOP LEFT CORNER */}
-      {props.topLeftCorner && <CornerSvgGroup path={topLeft} direction={0} {...svgGroupProps} />}
+      {cornerState.topLeftCorner && <CornerSvgGroup path={topLeft} direction={0} {...svgGroupProps} />}
 
       {/* TOP RIGHT CORNER */}
-      {props.topRightCorner && <CornerSvgGroup path={topRight} direction={1} {...svgGroupProps} />}
+      {cornerState.topRightCorner && <CornerSvgGroup path={topRight} direction={1} {...svgGroupProps} />}
 
       {/* BOTTOM LEFT CORNER */}
-      {props.bottomLeftCorner && <CornerSvgGroup path={bottomLeft} direction={2} {...svgGroupProps} />}
+      {cornerState.bottomLeftCorner && <CornerSvgGroup path={bottomLeft} direction={2} {...svgGroupProps} />}
 
       {/* BOTTOM RIGHT CORNER */}
-      {props.bottomRightCorner && <CornerSvgGroup path={bottomRight} direction={3} {...svgGroupProps} />}
+      {cornerState.bottomRightCorner && (
+        <CornerSvgGroup path={bottomRight} direction={3} {...svgGroupProps} />
+      )}
     </SvgCanvas>
   );
 };

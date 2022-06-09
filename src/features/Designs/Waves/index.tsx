@@ -1,28 +1,30 @@
 import React, { useId } from 'react';
 import { smoothWavePath } from '../../../utils/path-algorithms/Waves/smoothWavePath';
-import { IWaveAllProps, IWaveProps } from './Types/waveProps';
+import { IWaveProps } from './Types/waveProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
+import { useDesign } from '../../../contexts/Design';
 
-const Waves: React.FunctionComponent<IWaveAllProps & IWaveProps> = (props) => {
+const Waves: React.FunctionComponent<IWaveProps> = (props) => {
+  const { waveState } = useDesign();
+  const { seed, width, height, svgRef } = props;
+  const { solid, strokeShrink, strokeWidth } = waveState;
+  const { shadowColor, shadowSD, shadowX, shadowY } = waveState;
+  const { bgColor, startColor, endColor } = waveState;
+  
   // set up params that are needed to generate a path
   const pathParams = [
-    props.seed,
-    props.width,
-    props.height,
-    props.balance,
-    props.velocity,
-    props.breaks,
-    props.stacks,
-    props.distance,
-    props.solid,
-    props.smooth,
+    seed,
+    width,
+    height,
+    waveState.balance,
+    waveState.velocity,
+    waveState.breaks,
+    waveState.stacks,
+    waveState.distance,
+    waveState.solid,
+    waveState.smooth,
   ] as const;
 
-  // destructure some params
-  const { width, height, svgRef } = props;
-  const { solid, strokeShrink, strokeWidth } = props;
-  const { shadowColor, shadowSD, shadowX, shadowY } = props;
-  const { bgColor, startColor, endColor } = props;
 
   // generate paths
   let wavesData = smoothWavePath(...pathParams);

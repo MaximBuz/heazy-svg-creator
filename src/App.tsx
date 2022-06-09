@@ -1,5 +1,5 @@
 // React
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 // Components
 import {
@@ -34,40 +34,22 @@ function App() {
   const svgRef = useRef<SVGAElement | null>(null);
 
   /* --------- OPTIONS MENU STATE --------- */
-  const {
-    design,
-    setDesign,
-
-    waveState,
-    setWaveState,
-
-    bubbleState,
-    setBubbleState,
-
-    cornerState,
-    setCornerState,
-
-    markerState,
-    setMarkerState,
-  } = useDesign();
+  const { design, setDesign } = useDesign();
 
   /* --------- RENDERING --------- */
-  const renderCanvas = useCallback(() => {
-    if (design === 'waves') return <Waves {...canvasDimensions} {...waveState} svgRef={svgRef} seed={seed} />;
-    if (design === 'bubble')
-      return <Bubble {...canvasDimensions} {...bubbleState} svgRef={svgRef} seed={seed} />;
-    if (design === 'corners')
-      return <Corners {...canvasDimensions} {...cornerState} svgRef={svgRef} seed={seed} />;
-    if (design === 'marker')
-      return <Marker {...canvasDimensions} {...markerState} svgRef={svgRef} seed={seed} />;
-  }, [design, seed, canvasDimensions, waveState, bubbleState, cornerState, markerState]);
+  const renderCanvas = () => {
+    if (design === 'waves') return <Waves {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design === 'bubble') return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design === 'corners') return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design === 'marker') return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+  };
 
-  const renderOptionsMenu = useCallback(() => {
-    if (design === 'waves') return <WaveOptions state={waveState} setState={setWaveState} />;
-    if (design === 'bubble') return <BubbleOptions state={bubbleState} setState={setBubbleState} />;
-    if (design === 'corners') return <CornerOptions state={cornerState} setState={setCornerState} />;
-    if (design === 'marker') return <MarkerOptions state={markerState} setState={setMarkerState} />;
-  }, [design, waveState, bubbleState, cornerState, markerState]);
+  const renderOptionsMenu = () => {
+    if (design === 'waves') return <WaveOptions />;
+    if (design === 'bubble') return <BubbleOptions />;
+    if (design === 'corners') return <CornerOptions />;
+    if (design === 'marker') return <MarkerOptions />;
+  };
 
   /* --------- STYLES --------- */
   const wrapperStyles: FlexProps = {

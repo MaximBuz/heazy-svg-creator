@@ -1,17 +1,18 @@
 import React, { useId } from 'react';
 import { bubblePath } from '../../../utils/path-algorithms/Bubble/bubblePath';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
-import { IBubbleAllProps, IBubbleProps } from './Types/bubbleProps';
+import { IBubbleProps } from './Types/bubbleProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
+import { useDesign } from '../../../contexts/Design';
 
-const Bubble: React.FunctionComponent<IBubbleProps & IBubbleAllProps> = (props) => {
-
+const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
+  const { bubbleState } = useDesign();
   // destructure some params
   const { width, height, svgRef, seed } = props;
-  const { solid, strokeWidth } = props;
-  const { velocity, size } = props;
-  const { shadowColor, shadowSD, shadowX, shadowY } = props;
-  const { bgColor, startColor, endColor } = props;
+  const { solid, strokeWidth } = bubbleState;
+  const { velocity, size } = bubbleState;
+  const { shadowColor, shadowSD, shadowX, shadowY } = bubbleState;
+  const { bgColor, startColor, endColor } = bubbleState;
 
   // generate path
   const pathData = bubblePath(seed, width, height, velocity, size);

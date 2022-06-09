@@ -1,18 +1,20 @@
 import React, { useId } from 'react';
 import { markerPath } from '../../../utils/path-algorithms/Marker/markerPath';
-import { IMarkerAllProps, IMarkerProps } from './Types/markerProps';
+import { IMarkerProps } from './Types/markerProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
+import { useDesign } from '../../../contexts/Design';
 
-const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = (props) => {
-
+const Marker: React.FunctionComponent<IMarkerProps> = (props) => {
+  const { markerState } = useDesign();
+  
   // destructure some params
   const { width, height, svgRef, seed } = props;
-  const { lineCap, lineJoin, strokeWidth } = props;
-  const { markerHeight, zickZacks, padding, pressure } = props;
-  const { mirror, yPosition } = props;
-  const { ghost, ghostStartColor, ghostEndColor } = props;
-  const { shadowColor, shadowSD, shadowX, shadowY } = props;
-  const { bgColor, startColor, endColor } = props;
+  const { lineCap, lineJoin, strokeWidth } = markerState;
+  const { markerHeight, zickZacks, padding, pressure } = markerState;
+  const { mirror, yPosition } = markerState;
+  const { ghost, ghostStartColor, ghostEndColor } = markerState;
+  const { shadowColor, shadowSD, shadowX, shadowY } = markerState;
+  const { bgColor, startColor, endColor } = markerState;
 
   // Generate path
   const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);

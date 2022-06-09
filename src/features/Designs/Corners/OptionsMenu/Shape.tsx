@@ -11,7 +11,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import BalanceLeft from './Icons/BalanceLeft';
 import BalanceRight from './Icons/BalanceRight';
@@ -21,14 +21,13 @@ import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
-import { ICornerAllProps, ICornerShapeProps } from '../Types/cornerProps';
+
 import Smooth from './Icons/Smooth';
 import Edgy from './Icons/Edgy';
+import { useDesign } from '../../../../contexts/Design';
 
-const Shape: React.FunctionComponent<{
-  state: ICornerAllProps;
-  setState: Dispatch<SetStateAction<ICornerAllProps>>;
-}> = ({ state, setState }) => {
+const Shape: React.FunctionComponent = () => {
+  const { cornerState: state, setCornerState: setState } = useDesign();
   return (
     <>
       {/* ----- HEADLINE ------ */}

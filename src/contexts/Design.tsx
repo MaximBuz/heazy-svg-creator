@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, Dispatch } from 'react';
+import React, { useContext, useState, Dispatch, SetStateAction } from 'react';
 import { IDesignModes } from '../features/Canvas/Types/designModes';
 import { initialBubbleState } from '../features/Designs/Bubble/initialState';
 import { IBubbleAllProps } from '../features/Designs/Bubble/Types/bubbleProps';
@@ -12,19 +12,19 @@ import { Design } from '../graphql/generated';
 
 interface IDesignProvider {
   design: string;
-  setDesign: Dispatch<IDesignModes>;
+  setDesign: Dispatch<SetStateAction<IDesignModes>>;
 
   waveState: IWaveAllProps;
-  setWaveState: Dispatch<IWaveAllProps>;
+  setWaveState: Dispatch<SetStateAction<IWaveAllProps>>;
 
   bubbleState: IBubbleAllProps;
-  setBubbleState: Dispatch<IBubbleAllProps>;
+  setBubbleState: Dispatch<SetStateAction<IBubbleAllProps>>;
 
   cornerState: ICornerAllProps;
-  setCornerState: Dispatch<ICornerAllProps>;
+  setCornerState: Dispatch<SetStateAction<ICornerAllProps>>;
 
   markerState: IMarkerAllProps;
-  setMarkerState: Dispatch<IMarkerAllProps>;
+  setMarkerState: Dispatch<SetStateAction<IMarkerAllProps>>;
 
   copyTemplateParams: (designParams: Design) => void;
 }

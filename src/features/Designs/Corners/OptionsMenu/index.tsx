@@ -11,24 +11,22 @@ import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 
 // Types
-import { ICornerAllProps } from '../Types/cornerProps';
 import Position from './Position';
+import { useDesign } from '../../../../contexts/Design';
 
-const CornerOptions: React.FunctionComponent<{
-  state: ICornerAllProps;
-  setState: Dispatch<SetStateAction<ICornerAllProps>>;
-}> = (props) => {
+const CornerOptions: React.FunctionComponent = () => {
+  const { cornerState, setCornerState } = useDesign();
   return (
     <>
-      <Variants {...props}></Variants>
+      <Variants />
       <Divider />
-      <Position {...props}></Position>
+      <Position />
       <Divider />
-      <Shape {...props}></Shape>
+      <Shape />
       <Divider />
-      <ColorOptions {...props}></ColorOptions>
-      <Divider></Divider>
-      <ShadowOptions {...props}></ShadowOptions>
+      <ColorOptions state={cornerState} setState={setCornerState} />
+      <Divider />
+      <ShadowOptions state={cornerState} setState={setCornerState} />
     </>
   );
 };

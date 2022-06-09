@@ -10,10 +10,9 @@ import {
   Tab,
   Icon,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 
-import { IMarkerAllProps } from '../Types/markerProps';
 import ThickLeft from './Icons/ThickLeft';
 import ThickRight from './Icons/ThickRight';
 import HeightLeft from './Icons/HeightLeft';
@@ -28,11 +27,10 @@ import CapsRight from './Icons/CapsRight';
 import JoinsLeft from './Icons/JoinsLeft';
 import JoinsCenter from './Icons/JoinsCenter';
 import JoinsRight from './Icons/JoinsRight';
+import { useDesign } from '../../../../contexts/Design';
 
-const Shape: React.FunctionComponent<{
-  state: IMarkerAllProps;
-  setState: Dispatch<SetStateAction<IMarkerAllProps>>;
-}> = ({ state, setState }) => {
+const Shape: React.FunctionComponent = () => {
+  const { markerState: state, setMarkerState: setState } = useDesign();
   return (
     <>
       {/* ----- HEADLINE ------ */}

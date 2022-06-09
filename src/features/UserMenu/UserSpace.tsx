@@ -21,7 +21,7 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from
 
 export interface IUserSpaceProps {}
 
-const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
+const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo(() => {
   // Auth
   const { currentUser } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery(

@@ -1,19 +1,14 @@
-import React, { useContext, useState, Dispatch, SetStateAction, Ref } from 'react';
-import { IDesignModes } from '../features/Canvas/Types/designModes';
+import React, { useContext, useState, Ref } from 'react';
+import { IDesignModes } from '../types/designModes';
 import { initialBubbleState } from '../features/Designs/Bubble/initialState';
-import { IBubbleAllProps } from '../features/Designs/Bubble/Types/bubbleProps';
+import { IBubbleAllProps } from '../types/bubbleProps';
 import { initialCornerState } from '../features/Designs/Corners/initialState';
-import { ICornerAllProps } from '../features/Designs/Corners/Types/cornerProps';
+import { ICornerAllProps } from '../types/cornerProps';
 import { initialMarkerState } from '../features/Designs/Marker/initialState';
-import { IMarkerAllProps } from '../features/Designs/Marker/Types/markerProps';
+import { IMarkerAllProps } from '../types/markerProps';
 import { initialWaveState } from '../features/Designs/Waves/initialState';
-import { IWaveAllProps } from '../features/Designs/Waves/Types/waveProps';
-import {
-  Design,
-  GetDesignTypesQuery,
-  useCreateNewDesignMutation,
-  useGetDesignTypesQuery,
-} from '../graphql/generated';
+import { IWaveAllProps } from '../types/waveProps';
+import { Design, useCreateNewDesignMutation, useGetDesignTypesQuery } from '../graphql/generated';
 import { endpoint, headers } from '../utils/apiConfig';
 import { useQueryClient } from 'react-query';
 
@@ -22,44 +17,16 @@ import { storage } from '../firebase';
 import { ref, uploadBytes } from 'firebase/storage';
 import { svgToBlob } from '../utils/helpers/downloadBlob';
 import { useCanvasDimensions } from '../features';
-import { ICanvasDimensions } from '../features/Canvas/Types/canvasDimensions';
-
-interface IDesignProvider {
-  setWidth: Dispatch<SetStateAction<number>>;
-  setHeight: Dispatch<SetStateAction<number>>;
-  canvasDimensions: ICanvasDimensions;
-  design: IDesignModes;
-  setDesign: Dispatch<SetStateAction<IDesignModes>>;
-  designTypes: GetDesignTypesQuery | null;
-
-  waveState: IWaveAllProps;
-  setWaveState: Dispatch<SetStateAction<IWaveAllProps>>;
-
-  bubbleState: IBubbleAllProps;
-  setBubbleState: Dispatch<SetStateAction<IBubbleAllProps>>;
-
-  cornerState: ICornerAllProps;
-  setCornerState: Dispatch<SetStateAction<ICornerAllProps>>;
-
-  markerState: IMarkerAllProps;
-  setMarkerState: Dispatch<SetStateAction<IMarkerAllProps>>;
-
-  copyTemplateParams: (designParams: Design) => void;
-  saveTemplate: (
-    designParams: Pick<Design, 'optionParameters'>,
-    name: string,
-    firebaseId: string,
-    typeId: number,
-    svgRef: Ref<SVGAElement | null>
-  ) => void;
-}
+import { IDesignProvider } from '../types/designContext';
 
 const DesignContext = React.createContext(null);
 
+/* ----- HOOK ----- */
 export function useDesign() {
   return useContext<IDesignProvider>(DesignContext);
 }
 
+/* ----- PROVIDER ----- */
 export function DesignProvider({ children }) {
   // Design State
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);

@@ -1,16 +1,10 @@
 import { Flex, Circle, Icon } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import React, { Dispatch, Ref, SetStateAction } from 'react';
+import React from 'react';
+import { ICanvasControlsProps } from '../../types/canvasControlsProps';
 
 import DiceIcon from './DiceIcon';
 import SaveButton from './SaveButton';
-
-export interface ICanvasControlsProps {
-  seed: number;
-  setSeed: Dispatch<SetStateAction<number>>;
-  setZoom: Dispatch<SetStateAction<number>>;
-  svgRef: Ref<SVGAElement | null>;
-}
 
 const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
   seed,

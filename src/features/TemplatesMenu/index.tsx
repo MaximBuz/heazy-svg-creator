@@ -11,7 +11,7 @@ import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
-import { IDesignModes } from '../Canvas/Types/designModes';
+import { IDesignModes } from '../../types/designModes';
 import { GetDesignTypesQuery } from '../../graphql/generated';
 
 export interface ITemplateMenuProps {

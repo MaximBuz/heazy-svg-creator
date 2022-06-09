@@ -1,7 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import Image from 'next/image';
-import { relative } from 'path';
 
 export interface IFeatureCardProps {
   text: string;

@@ -14,21 +14,16 @@ import {
 
 import { useCreateNewUserMutation } from '../graphql/generated';
 import { endpoint, headers } from '../utils/apiConfig';
-
-interface IAuth {
-  currentUser: User;
-  signup: (email: string, password: string, firstName: string) => Promise<UserCredential>;
-  login: (email: string, password: string) => Promise<UserCredential>;
-  logout: () => Promise<void>;
-  resetPassword: (email: string) => Promise<void>;
-}
+import { IAuth } from '../types/authContext';
 
 const AuthContext = React.createContext(null);
 
+/* ----- HOOK ----- */
 export function useAuth() {
   return useContext<IAuth>(AuthContext);
 }
 
+/* ----- PROVIDER ----- */
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<User>();
   const [loading, setLoading] = useState<boolean>(true);
@@ -40,7 +35,7 @@ export function AuthProvider({ children }) {
         firebaseId: userCred.user.uid,
         email: userCred.user.email,
         userName,
-        avatarUrl: String(userCred.user.photoURL)
+        avatarUrl: String(userCred.user.photoURL),
       });
       return userCred;
     });

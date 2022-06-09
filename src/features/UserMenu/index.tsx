@@ -8,9 +8,7 @@ import Login from './Login';
 import Registration from './Registration';
 import UserSpace from './UserSpace';
 
-export interface IUserMenuProps {}
-
-const UserMenu: React.FunctionComponent<IUserMenuProps> = () => {
+const UserMenu: React.FunctionComponent = () => {
 
   // Auth
   const { currentUser, logout } = useAuth();

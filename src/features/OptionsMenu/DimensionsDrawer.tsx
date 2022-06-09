@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import {
   Drawer,
@@ -17,17 +18,7 @@ import {
   Spacer,
   Button,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
-
-export interface IDimensionsDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-  drawerButtonRef: any;
-  setHeight: Dispatch<SetStateAction<number>>;
-  setWidth: Dispatch<SetStateAction<number>>;
-  height: number;
-  width: number;
-}
+import { IDimensionsDrawerProps } from '../../types/dimensionsDrawerProps';
 
 const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
   isOpen,
@@ -74,7 +65,10 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                   fontSize="sm"
                   children="w"
                 />
-                <Input value={width} onChange={(e) => e.target.value[0] !== "0" && setWidth(Number(e.target.value))} />
+                <Input
+                  value={width}
+                  onChange={(e) => e.target.value[0] !== '0' && setWidth(Number(e.target.value))}
+                />
                 <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
               </InputGroup>
               <InputGroup>
@@ -85,7 +79,10 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                   pointerEvents="none"
                   children="h"
                 />
-                <Input value={height} onChange={(e) => e.target.value[0] !== "0" && setHeight(Number(e.target.value))} />
+                <Input
+                  value={height}
+                  onChange={(e) => e.target.value[0] !== '0' && setHeight(Number(e.target.value))}
+                />
                 <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
               </InputGroup>
             </HStack>

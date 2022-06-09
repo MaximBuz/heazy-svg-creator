@@ -5,33 +5,12 @@ import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
 import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { UseMutationResult, useQuery } from 'react-query';
-import { Exact, UpdateDesignMutation } from '../../graphql/generated';
+import { useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../../firebase';
+import { IThumbnailProps } from '../../types/userMenuThumbnailProps';
 
-export interface IThumbnailProps {
-  mutation: UseMutationResult<
-    UpdateDesignMutation,
-    unknown,
-    Exact<{
-      id: number;
-      public?: boolean;
-      name?: string;
-      optionParameters?: any;
-      delete?: boolean;
-    }>,
-    unknown
-  >;
-  id: number;
-  imageSrc: string;
-  caption: string;
-  set: () => void;
-  isPublic: boolean;
-  timesCopied: Number;
-  copiedFrom: any;
-}
 
 const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   id,

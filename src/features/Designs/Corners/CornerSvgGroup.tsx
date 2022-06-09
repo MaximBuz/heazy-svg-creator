@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICornerSvgGroup } from './Types/cornerSvgGroup';
+import { ICornerSvgGroup } from '../../../types/cornerSvgGroup';
 function getTransformation(direction: number): string {
   switch (direction) {
     case 0: {

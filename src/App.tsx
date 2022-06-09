@@ -16,13 +16,13 @@ import {
   TemplateMenu,
   OptionsMenu,
 } from './features';
+import UserMenu from './features/UserMenu';
 
 // Styling
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
-// Utils
+// Context
 import { AuthProvider } from './contexts/Auth';
-import UserMenu from './features/UserMenu';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 

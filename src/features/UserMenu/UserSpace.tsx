@@ -21,9 +21,8 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from
 import { useDesign } from '../../contexts/Design';
 import { useUserSpace } from '../../contexts/UserSpace';
 
-export interface IUserSpaceProps {}
 
-const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo(() => {
+const UserSpace: React.FunctionComponent = memo(() => {
 
   // Closing UserSpace
   const { onClose } = useUserSpace();

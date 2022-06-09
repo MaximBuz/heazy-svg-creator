@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
-import { useGetUserByFirebaseIdQuery } from '../../graphql/generated';
+import { useGetUserByFirebaseIdQuery, useUpdateDesignMutation } from '../../graphql/generated';
 import { endpoint, headers } from '../../utils/apiConfig';
 
 // Images
@@ -21,15 +21,20 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from
 export interface IUserSpaceProps {}
 
 const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
+  // Auth
   const { currentUser } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery(
     { endpoint, fetchParams: { headers } },
     { id: currentUser.uid }
   );
 
-  // Filter template
+  // Mutations
+  const designMutation = useUpdateDesignMutation({ endpoint, fetchParams: { headers } });
+
+  // Filter
   const [search, setSearch] = useState<string>('');
 
+  // Render
   if (userQuery.isLoading) {
     return (
       <Flex width="100%" height="100%" justifyContent="center" alignItems="center">

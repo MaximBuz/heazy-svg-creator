@@ -26,6 +26,7 @@ type Design {
   copiedFromUserId: Int
   optionParameters: JSON!
   createdAt: String!
+  deleted: Boolean!
 }
 
 type DesignType {

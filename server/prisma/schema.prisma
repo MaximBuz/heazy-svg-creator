@@ -36,6 +36,7 @@ model Design {
   copiedFromUserId Int?
   optionParameters Json
   createdAt        DateTime   @default(now())
+  deleted          Boolean    @default(false)
 }
 
 model DesignType {

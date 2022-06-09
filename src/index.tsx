@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import theme from './utils/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { DesignProvider } from './contexts/Design';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient();
@@ -27,8 +28,9 @@ root.render(
           async
           src="//gc.zgo.at/count.js"
         ></script>
-
-        <App />
+        <DesignProvider>
+          <App />
+        </DesignProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} position="top-right" />
     </QueryClientProvider>

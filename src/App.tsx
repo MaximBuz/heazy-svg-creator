@@ -22,31 +22,34 @@ import {
 import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from './features/Canvas/Types/designModes';
-import { IWaveAllProps } from './features/Designs/Waves/Types/waveProps';
-import { initialWaveState } from './features/Designs/Waves/initialState';
-import { IBubbleAllProps } from './features/Designs/Bubble/Types/bubbleProps';
-import { initialBubbleState } from './features/Designs/Bubble/initialState';
-import { initialCornerState } from './features/Designs/Corners/initialState';
-import { ICornerAllProps } from './features/Designs/Corners/Types/cornerProps';
-import { initialMarkerState } from './features/Designs/Marker/initialState';
-import { IMarkerAllProps } from './features/Designs/Marker/Types/markerProps';
 import { AuthProvider } from './contexts/Auth';
 import UserMenu from './features/UserMenu';
+import { useDesign } from './contexts/Design';
 
 function App() {
   /* --------- CANVAS STATE --------- */
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
-  const [design, setDesign] = useState<IDesignModes>('waves');
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
   const svgRef = useRef<SVGAElement | null>(null);
 
   /* --------- OPTIONS MENU STATE --------- */
-  const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
-  const [bubbleState, setBubbleState] = useState<IBubbleAllProps>(initialBubbleState);
-  const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
-  const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
+  const {
+    design,
+    setDesign,
+
+    waveState,
+    setWaveState,
+
+    bubbleState,
+    setBubbleState,
+
+    cornerState,
+    setCornerState,
+
+    markerState,
+    setMarkerState,
+  } = useDesign();
 
   /* --------- RENDERING --------- */
   const renderCanvas = useCallback(() => {

@@ -54,7 +54,6 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
         alignItems="center"
         position="relative"
         as={motion.div}
-        // transition="0.5s"
         _hover={{ cursor: 'pointer' }}
         onMouseEnter={() => setActive(true)}
         onMouseLeave={() => setActive(false)}
@@ -74,8 +73,8 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
             transition="0.3s"
             sx={
               active
-                ? { filter: 'blur(1px) brightness(80%)', transform: 'scale(1.1)' }
-                : { filter: 'blur(0px) brightness(100%)', transform: 'scale(1)' }
+                ? { filter: 'blur(1px) brightness(50%)', transform: 'scale(1.1)' }
+                : { filter: 'blur(0px) brightness(80%)', transform: 'scale(1)' }
             }
             src={isSuccess ? thumbnailUrl : imageSrc}
             rounded="xl"

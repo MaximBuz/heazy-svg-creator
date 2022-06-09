@@ -2,13 +2,6 @@ import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const designTypeData: Prisma.DesignTypeCreateInput[] = [
-  { name: 'waves' },
-  { name: 'bubble' },
-  { name: 'corners' },
-  { name: 'marker' },
-];
-
 const userData: Prisma.UserCreateInput = {
   firebaseId: 'L3sVgPJtaQYSTjxjUdqeBZC2ylX2',
   email: 'mbuz.maxim@gmail.com',
@@ -16,8 +9,8 @@ const userData: Prisma.UserCreateInput = {
 };
 
 async function main() {
-  designTypeData.forEach(async (type) => {
-    await prisma.designType.create({ data: type });
+  await prisma.designType.createMany({
+    data: [{ name: 'waves' }, { name: 'bubble' }, { name: 'corners' }, { name: 'marker' }],
   });
   await prisma.user.create({ data: userData });
 }

@@ -35,21 +35,21 @@ function App() {
   const svgRef = useRef<SVGAElement | null>(null);
 
   /* --------- OPTIONS MENU STATE --------- */
-  const { design, setDesign } = useDesign();
+  const { design, setDesign, designTypes } = useDesign();
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
-    if (design === 'waves') return <Waves {...canvasDimensions} svgRef={svgRef} seed={seed} />;
-    if (design === 'bubble') return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} />;
-    if (design === 'corners') return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} />;
-    if (design === 'marker') return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design.name === 'waves') return <Waves {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design.name === 'bubble') return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design.name === 'corners') return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design.name === 'marker') return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} />;
   };
 
   const renderOptionsMenu = () => {
-    if (design === 'waves') return <WaveOptions />;
-    if (design === 'bubble') return <BubbleOptions />;
-    if (design === 'corners') return <CornerOptions />;
-    if (design === 'marker') return <MarkerOptions />;
+    if (design.name === 'waves') return <WaveOptions />;
+    if (design.name === 'bubble') return <BubbleOptions />;
+    if (design.name === 'corners') return <CornerOptions />;
+    if (design.name === 'marker') return <MarkerOptions />;
   };
 
   /* --------- STYLES --------- */
@@ -75,7 +75,7 @@ function App() {
     <>
       <InitialAnimation />
       <Flex {...wrapperStyles}>
-        <TemplateMenu activeDesign={design} setDesign={setDesign}></TemplateMenu>
+        <TemplateMenu designTypes={designTypes} activeDesign={design.id} setDesign={setDesign}></TemplateMenu>
         <UserSpaceProvider>
           <AuthProvider>
             <UserMenu />

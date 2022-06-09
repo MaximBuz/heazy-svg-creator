@@ -8,7 +8,12 @@ import { initialMarkerState } from '../features/Designs/Marker/initialState';
 import { IMarkerAllProps } from '../features/Designs/Marker/Types/markerProps';
 import { initialWaveState } from '../features/Designs/Waves/initialState';
 import { IWaveAllProps } from '../features/Designs/Waves/Types/waveProps';
-import { Design, useCreateNewDesignMutation } from '../graphql/generated';
+import {
+  Design,
+  GetDesignTypesQuery,
+  useCreateNewDesignMutation,
+  useGetDesignTypesQuery,
+} from '../graphql/generated';
 import { endpoint, headers } from '../utils/apiConfig';
 import { useQueryClient } from 'react-query';
 
@@ -16,11 +21,11 @@ import { useQueryClient } from 'react-query';
 import { storage } from '../firebase';
 import { ref, uploadBytes } from 'firebase/storage';
 import { svgToBlob } from '../utils/helpers/downloadBlob';
-import { useToast } from '@chakra-ui/react';
 
 interface IDesignProvider {
-  design: string;
+  design: IDesignModes;
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
+  designTypes: GetDesignTypesQuery | null;
 
   waveState: IWaveAllProps;
   setWaveState: Dispatch<SetStateAction<IWaveAllProps>>;
@@ -52,29 +57,28 @@ export function useDesign() {
 
 export function DesignProvider({ children }) {
   // Design State
-  const [design, setDesign] = useState<IDesignModes>('waves');
+  const [design, setDesign] = useState<IDesignModes>({ name: 'waves', id: 1 });
   const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
   const [bubbleState, setBubbleState] = useState<IBubbleAllProps>(initialBubbleState);
   const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
   const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
 
+  // getting DesignTypes
+  const { data: designTypes, isSuccess } = useGetDesignTypesQuery({ endpoint, fetchParams: { headers } });
+
   // Setting state to parameters saved from templates
   function copyTemplateParams(designParams: Design) {
-    const { name: type } = designParams.type;
-
-    if (type === 'waves') setWaveState({ ...waveState, ...designParams.optionParameters });
-    if (type === 'bubble') setBubbleState({ ...bubbleState, ...designParams.optionParameters });
-    if (type === 'corners') setCornerState({ ...cornerState, ...designParams.optionParameters });
-    if (type === 'marker') setMarkerState({ ...markerState, ...designParams.optionParameters });
-    setDesign(type as IDesignModes);
+    const type = designParams.type;
+    if (type.name === 'waves') setWaveState({ ...waveState, ...designParams.optionParameters });
+    if (type.name === 'bubble') setBubbleState({ ...bubbleState, ...designParams.optionParameters });
+    if (type.name === 'corners') setCornerState({ ...cornerState, ...designParams.optionParameters });
+    if (type.name === 'marker') setMarkerState({ ...markerState, ...designParams.optionParameters });
+    setDesign(type);
   }
 
   // Save template to database
   const queryClient = useQueryClient();
-  const mutation = useCreateNewDesignMutation(
-    { endpoint, fetchParams: { headers } }
-    // { onSuccess: () => toast({ title: 'Copied to clipboard!', status: 'success', isClosable: true }) }
-  );
+  const mutation = useCreateNewDesignMutation({ endpoint, fetchParams: { headers } });
   async function saveTemplate(
     designParams: Pick<Design, 'optionParameters'>,
     name: string,
@@ -83,7 +87,7 @@ export function DesignProvider({ children }) {
     svgRef: Ref<SVGAElement | null>
   ) {
     const reference = ref(storage, `thumbnails/${firebaseId}/${name}.png`);
-    uploadBytes(reference, await svgToBlob(svgRef), { contentType: 'image/png' })
+    return uploadBytes(reference, await svgToBlob(svgRef), { contentType: 'image/png' })
       .then((snapshot) => {
         mutation.mutate(
           {
@@ -97,12 +101,21 @@ export function DesignProvider({ children }) {
         );
       })
       .catch(() => console.log('Failed to upload thumbnail'));
-    return;
   }
 
   const value: IDesignProvider = {
     design,
     setDesign,
+    designTypes: isSuccess
+      ? designTypes
+      : {
+          designTypes: [
+            { name: 'waves', id: 1 },
+            { name: 'bubble', id: 2 },
+            { name: 'corners', id: 3 },
+            { name: 'marker', id: 4 },
+          ],
+        },
 
     waveState,
     setWaveState,

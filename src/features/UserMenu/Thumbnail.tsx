@@ -6,8 +6,23 @@ import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 // Utils
 import { IDesignModes } from '../Canvas/Types/designModes';
 import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { UseMutationResult } from 'react-query';
+import { Exact, UpdateDesignMutation } from '../../graphql/generated';
 
 export interface IThumbnailProps {
+  mutation: UseMutationResult<
+    UpdateDesignMutation,
+    unknown,
+    Exact<{
+      id: number;
+      public?: boolean;
+      name?: string;
+      optionParameters?: any;
+      delete?: boolean;
+    }>,
+    unknown
+  >;
+  id: number;
   imageSrc: string;
   caption: string;
   setDesign?: Dispatch<SetStateAction<IDesignModes>>;
@@ -17,6 +32,8 @@ export interface IThumbnailProps {
 }
 
 const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
+  id,
+  mutation,
   imageSrc,
   caption,
   setDesign,
@@ -105,6 +122,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
               _hover={{ transform: 'scale(1.15)' }}
               textTransform="capitalize"
               transition="0.2s"
+              onClick={() => mutation.mutate({ id, public: false })}
             ></ViewOffIcon>
           </Tooltip>
         ) : (
@@ -118,11 +136,17 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
               _hover={{ transform: 'scale(1.15)' }}
               textTransform="capitalize"
               transition="0.2s"
+              onClick={() => mutation.mutate({ id, public: true })}
             ></ViewIcon>
           </Tooltip>
         )}
         <Tooltip bgColor="#21272e64" color="white" label="Delete template" aria-label="Delete template">
-          <DeleteIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+          <DeleteIcon
+            _hover={{ transform: 'scale(1.15)' }}
+            textTransform="capitalize"
+            transition="0.2s"
+            onClick={() => mutation.mutate({ id, delete: true })}
+          />
         </Tooltip>
       </HStack>
     </Flex>

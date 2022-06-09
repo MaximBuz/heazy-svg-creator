@@ -135,6 +135,9 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
                   })
                   .map((design) => (
                     <Thumbnail
+                      key={design.id}
+                      id={design.id}
+                      mutation={designMutation}
                       isPublic={design.public}
                       copiedFrom={design.copiedFrom}
                       timesCopied={design.timesCopied}

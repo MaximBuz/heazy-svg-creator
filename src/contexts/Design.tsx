@@ -36,7 +36,7 @@ export function DesignProvider({ children }) {
   const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
   const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
 
-  // getting DesignTypes
+  // getting DesignTypes from database
   const { data: designTypes, isSuccess } = useGetDesignTypesQuery({ endpoint, fetchParams: { headers } });
 
   // Setting state to parameters saved from templates

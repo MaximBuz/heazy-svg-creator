@@ -12,6 +12,20 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
   setZoom,
   svgRef,
 }) => {
+  const CircleStyles = {
+    maxW: '80px',
+    maxH: '80px',
+    as: motion.button,
+    justifyContent: 'center',
+    alignItems: 'center',
+    bgColor: '#313640',
+    p: '2',
+    centerContent: true,
+    borderColor: '#141820',
+    borderWidth: '5px',
+    whileHover: { scale: 1.1, rotate: -10 },
+    whileTap: { scale: 0.9, rotate: 10 },
+  };
   return (
     <Flex
       position="absolute"
@@ -22,25 +36,10 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       justifyContent="center"
       alignItems="flex-end"
     >
-      <SaveButton svgRef={svgRef} />
+      <SaveButton CircleStyles={CircleStyles} svgRef={svgRef} />
 
       {/* ZOOM IN  */}
-      <Circle
-        maxW="80px"
-        maxH="80px"
-        as={motion.button}
-        justifyContent="center"
-        alignItems="center"
-        bgColor="#313640"
-        p="2"
-        centerContent
-        onClick={() => setZoom((zoom) => zoom + 0.1)}
-        borderColor="#141820"
-        borderWidth="5px"
-        // @ts-ignore
-        whileHover={{ scale: 1.1, rotate: -10 }}
-        whileTap={{ scale: 0.9, rotate: 10 }}
-      >
+      <Circle {...CircleStyles} onClick={() => setZoom((zoom) => zoom + 0.1)}>
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             fill="white"
@@ -50,22 +49,7 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       </Circle>
 
       {/* ZOOM OUT  */}
-      <Circle
-        maxW="80px"
-        maxH="80px"
-        as={motion.button}
-        justifyContent="center"
-        alignItems="center"
-        bgColor="#313640"
-        p="2"
-        borderWidth="5px"
-        centerContent
-        onClick={() => setZoom((zoom) => zoom - 0.1)}
-        borderColor="#141820"
-        // @ts-ignore
-        whileHover={{ scale: 1.1, rotate: -10 }}
-        whileTap={{ scale: 0.9, rotate: 10 }}
-      >
+      <Circle {...CircleStyles} onClick={() => setZoom((zoom) => zoom - 0.1)}>
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             xmlns="http://www.w3.org/2000/svg"
@@ -76,19 +60,10 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       </Circle>
       {/* randomize dice */}
       <Circle
-        maxW="80px"
-        maxH="80px"
-        as={motion.button}
-        justifyContent="center"
-        alignItems="center"
-        bgColor="#313640"
+        {...CircleStyles}
         p="2.5"
-        centerContent
         onClick={() => setSeed(seed + 1)}
         borderWidth="5px"
-        borderColor="#141820"
-        // @ts-ignore
-        whileHover={{ scale: 1.1, rotate: -10 }}
         whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
       >
         <DiceIcon />

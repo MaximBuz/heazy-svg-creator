@@ -10,11 +10,13 @@ import { initialWaveState } from '../features/Designs/Waves/initialState';
 import { IWaveAllProps } from '../features/Designs/Waves/Types/waveProps';
 import { Design, useCreateNewDesignMutation } from '../graphql/generated';
 import { endpoint, headers } from '../utils/apiConfig';
+import { useQueryClient } from 'react-query';
 
 // firebase
 import { storage } from '../firebase';
 import { ref, uploadBytes } from 'firebase/storage';
 import { svgToBlob } from '../utils/helpers/downloadBlob';
+import { useToast } from '@chakra-ui/react';
 
 interface IDesignProvider {
   design: string;
@@ -68,7 +70,11 @@ export function DesignProvider({ children }) {
   }
 
   // Save template to database
-  const mutation = useCreateNewDesignMutation({ endpoint, fetchParams: { headers } });
+  const queryClient = useQueryClient();
+  const mutation = useCreateNewDesignMutation(
+    { endpoint, fetchParams: { headers } }
+    // { onSuccess: () => toast({ title: 'Copied to clipboard!', status: 'success', isClosable: true }) }
+  );
   async function saveTemplate(
     designParams: Pick<Design, 'optionParameters'>,
     name: string,
@@ -79,13 +85,16 @@ export function DesignProvider({ children }) {
     const reference = ref(storage, `thumbnails/${firebaseId}/${name}.png`);
     uploadBytes(reference, await svgToBlob(svgRef), { contentType: 'image/png' })
       .then((snapshot) => {
-        mutation.mutate({
-          firebaseId,
-          name,
-          typeId,
-          thumbnailUrl: snapshot.ref.toString(),
-          optionParameters: designParams,
-        });
+        mutation.mutate(
+          {
+            firebaseId,
+            name,
+            typeId,
+            thumbnailUrl: snapshot.ref.toString(),
+            optionParameters: designParams,
+          },
+          { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId', { id: firebaseId }]) }
+        );
       })
       .catch(() => console.log('Failed to upload thumbnail'));
     return;

@@ -57,29 +57,32 @@ function convertToDataURL(svgRef) {
   // get image data
   const base64 = convertToBase64(svgRef);
   const [w, h] = getDimensions(svgRef);
-
-  // initialize canvas
-  const canvas = document.createElement('canvas');
-  canvas.setAttribute('width', w);
-  canvas.setAttribute('height', h);
-
-  // initialize img element
   const img = document.createElement('img');
+  const canvas = document.createElement('canvas');
   img.setAttribute('src', 'data:image/svg+xml;base64,' + base64);
 
-  // paint on canvas
-  const context = canvas.getContext('2d');
-  context.drawImage(img, 0, 0, w, h);
-  return canvas.toDataURL('image/png');
+  return new Promise((resolve) => {
+    img.onload = () => {
+      canvas.setAttribute('width', w);
+      canvas.setAttribute('height', h);
+      const context = canvas.getContext('2d');
+      context.drawImage(img, 0, 0, w, h);
+      const dataURL = canvas.toDataURL('image/jpeg', 0.5);
+      resolve(dataURL);
+    };
+    img.onerror = () => {
+      resolve(null);
+    };
+  });
 }
 
-async function dataURLToBlob (dataURL) {
-  return await (await fetch(dataURL)).blob(); 
+async function dataURLToBlob(dataURL) {
+  return await (await fetch(dataURL)).blob();
 }
 
 // Caution! This returns a promise!
-export function svgToBlob (svgRef) {
-  return dataURLToBlob(convertToDataURL(svgRef));
+export async function svgToBlob(svgRef) {
+  return dataURLToBlob(await convertToDataURL(svgRef));
 }
 
 export function downloadSvgAsPng(svgRef) {

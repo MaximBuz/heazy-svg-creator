@@ -5,9 +5,11 @@ import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
 import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { UseMutationResult } from 'react-query';
+import { UseMutationResult, useQuery } from 'react-query';
 import { Exact, UpdateDesignMutation } from '../../graphql/generated';
 import { AnimatePresence, motion } from 'framer-motion';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 export interface IThumbnailProps {
   mutation: UseMutationResult<
@@ -42,6 +44,9 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   copiedFrom,
 }) => {
   const [active, setActive] = useState<Boolean>(false);
+  const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', id], () =>
+    getDownloadURL(ref(storage, imageSrc))
+  );
   return (
     <AnimatePresence>
       <Flex
@@ -72,7 +77,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
                 ? { filter: 'blur(1px) brightness(80%)', transform: 'scale(1.1)' }
                 : { filter: 'blur(0px) brightness(100%)', transform: 'scale(1)' }
             }
-            src={imageSrc}
+            src={isSuccess ? thumbnailUrl : imageSrc}
             rounded="xl"
           />
         </Box>

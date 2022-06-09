@@ -1,14 +1,16 @@
-import React, { useId } from 'react';
+import React, { Ref, useId } from 'react';
 import { markerPath } from '../../../utils/path-algorithms/Marker/markerPath';
-import { IMarkerProps } from './Types/markerProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Marker: React.FunctionComponent<IMarkerProps> = (props) => {
-  const { markerState } = useDesign();
+const Marker: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
+  seed,
+  svgRef,
+}) => {
+  const { markerState, canvasDimensions } = useDesign();
 
   // destructure some params
-  const { width, height, svgRef, seed } = props;
+  const { width, height } = canvasDimensions;
   const { lineCap, lineJoin, strokeWidth } = markerState;
   const { markerHeight, zickZacks, padding, pressure } = markerState;
   const { mirror, yPosition } = markerState;

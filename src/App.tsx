@@ -13,7 +13,6 @@ import {
   Marker,
   MarkerOptions,
   CanvasControls,
-  useCanvasDimensions,
   TemplateMenu,
   OptionsMenu,
 } from './features';
@@ -28,21 +27,18 @@ import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 
 function App() {
-  /* --------- CANVAS STATE --------- */
+  /* --------- STATE --------- */
+  const { design, setDesign, designTypes } = useDesign();
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
-  const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
   const svgRef = useRef<SVGAElement | null>(null);
-
-  /* --------- OPTIONS MENU STATE --------- */
-  const { design, setDesign, designTypes } = useDesign();
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
-    if (design.name === 'waves') return <Waves {...canvasDimensions} svgRef={svgRef} seed={seed} />;
-    if (design.name === 'bubble') return <Bubble {...canvasDimensions} svgRef={svgRef} seed={seed} />;
-    if (design.name === 'corners') return <Corners {...canvasDimensions} svgRef={svgRef} seed={seed} />;
-    if (design.name === 'marker') return <Marker {...canvasDimensions} svgRef={svgRef} seed={seed} />;
+    if (design.name === 'waves') return <Waves svgRef={svgRef} seed={seed} />;
+    if (design.name === 'bubble') return <Bubble svgRef={svgRef} seed={seed} />;
+    if (design.name === 'corners') return <Corners svgRef={svgRef} seed={seed} />;
+    if (design.name === 'marker') return <Marker svgRef={svgRef} seed={seed} />;
   };
 
   const renderOptionsMenu = () => {
@@ -82,14 +78,7 @@ function App() {
             <Container {...canvasStyles}>{renderCanvas()}</Container>
             <CanvasControls svgRef={svgRef} seed={seed} setSeed={setSeed} setZoom={setZoom} />
           </AuthProvider>
-          <OptionsMenu
-            svgRef={svgRef}
-            setWidth={setWidth}
-            setHeight={setHeight}
-            dimensions={canvasDimensions}
-          >
-            {renderOptionsMenu()}
-          </OptionsMenu>
+          <OptionsMenu svgRef={svgRef}>{renderOptionsMenu()}</OptionsMenu>
         </UserSpaceProvider>
       </Flex>
     </>

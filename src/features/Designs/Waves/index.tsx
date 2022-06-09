@@ -1,12 +1,14 @@
-import React, { useId } from 'react';
+import React, { Ref, useId } from 'react';
 import { smoothWavePath } from '../../../utils/path-algorithms/Waves/smoothWavePath';
-import { IWaveProps } from './Types/waveProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Waves: React.FunctionComponent<IWaveProps> = (props) => {
-  const { waveState } = useDesign();
-  const { seed, width, height, svgRef } = props;
+const Waves: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
+  seed,
+  svgRef,
+}) => {
+  const { waveState, canvasDimensions } = useDesign();
+  const { width, height } = canvasDimensions;
   const { solid, strokeShrink, strokeWidth } = waveState;
   const { shadowColor, shadowSD, shadowX, shadowY } = waveState;
   const { bgColor, startColor, endColor } = waveState;

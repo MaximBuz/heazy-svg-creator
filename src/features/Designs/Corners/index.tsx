@@ -1,17 +1,19 @@
-import React, { useId } from 'react';
-import { ICornerProps } from './Types/cornerProps';
+import React, { Ref, useId } from 'react';
 import { smoothCornerPath } from '../../../utils/path-algorithms/Corners/smoothCornerPath';
 import CornerSvgGroup from './CornerSvgGroup';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Corners: React.FunctionComponent<ICornerProps> = (props) => {
-  const { cornerState } = useDesign();
+const Corners: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
+  seed,
+  svgRef,
+}) => {
+  const { cornerState, canvasDimensions } = useDesign();
 
   // set up params that are needed to generate a path
   const pathParams = [
-    props.width,
-    props.height,
+    canvasDimensions.width,
+    canvasDimensions.height,
     cornerState.balance,
     cornerState.velocity,
     cornerState.breaks,
@@ -23,8 +25,8 @@ const Corners: React.FunctionComponent<ICornerProps> = (props) => {
 
   // set up params that are needed to generate the svg group for the wave
   const svgGroupProps = {
-    width: props.width,
-    height: props.height,
+    width: canvasDimensions.width,
+    height: canvasDimensions.height,
     solid: cornerState.solid,
     strokeWidth: cornerState.strokeWidth,
     strokeShrink: cornerState.strokeShrink,
@@ -39,29 +41,29 @@ const Corners: React.FunctionComponent<ICornerProps> = (props) => {
 
   // set up params that are needed to generate the full svg element
   const svgElementProps = {
-    width: props.width,
-    height: props.height,
-    svgRef: props.svgRef,
+    width: canvasDimensions.width,
+    height: canvasDimensions.height,
+    svgRef
   };
 
   /*  -----GENERATE PATHS----- */
   let topLeft, topRight, bottomLeft, bottomRight, mirrored;
   if (cornerState.mirror) {
     // If mirrored, generate only on path and mirror it
-    mirrored = smoothCornerPath(props.seed, ...pathParams);
+    mirrored = smoothCornerPath(seed, ...pathParams);
   } else {
     // else generate unique ones for each corner
-    cornerState.topLeftCorner && (topLeft = smoothCornerPath(props.seed, ...pathParams));
-    cornerState.topRightCorner && (topRight = smoothCornerPath(props.seed + 1, ...pathParams));
-    cornerState.bottomLeftCorner && (bottomLeft = smoothCornerPath(props.seed + 2, ...pathParams));
-    cornerState.bottomRightCorner && (bottomRight = smoothCornerPath(props.seed + 3, ...pathParams));
+    cornerState.topLeftCorner && (topLeft = smoothCornerPath(seed, ...pathParams));
+    cornerState.topRightCorner && (topRight = smoothCornerPath(seed + 1, ...pathParams));
+    cornerState.bottomLeftCorner && (bottomLeft = smoothCornerPath(seed + 2, ...pathParams));
+    cornerState.bottomRightCorner && (bottomRight = smoothCornerPath(seed + 3, ...pathParams));
   }
 
   /* ------IF MIRROR------ */
   if (cornerState.mirror)
     return (
       <SvgCanvas {...svgElementProps}>
-        <rect x="0" y="0" width={props.width} height={props.height} fill={cornerState.bgColor}></rect>
+        <rect x="0" y="0" width={canvasDimensions.width} height={canvasDimensions.height} fill={cornerState.bgColor}></rect>
         {/* TOP LEFT CORNER */}
         {cornerState.topLeftCorner && <CornerSvgGroup path={mirrored} direction={0} {...svgGroupProps} />}
 
@@ -79,7 +81,7 @@ const Corners: React.FunctionComponent<ICornerProps> = (props) => {
   /* -----IF NO MIRROR----- */
   return (
     <SvgCanvas {...svgElementProps}>
-      <rect x="0" y="0" width={props.width} height={props.height} fill={cornerState.bgColor}></rect>
+      <rect x="0" y="0" width={canvasDimensions.width} height={canvasDimensions.height} fill={cornerState.bgColor}></rect>
       {/* TOP LEFT CORNER */}
       {cornerState.topLeftCorner && <CornerSvgGroup path={topLeft} direction={0} {...svgGroupProps} />}
 

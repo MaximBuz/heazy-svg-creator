@@ -1,14 +1,16 @@
-import React, { useId } from 'react';
+import React, { Ref, useId } from 'react';
 import { bubblePath } from '../../../utils/path-algorithms/Bubble/bubblePath';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
-import { IBubbleProps } from './Types/bubbleProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
-  const { bubbleState } = useDesign();
+const Bubble: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
+  seed,
+  svgRef,
+}) => {
+  const { bubbleState, canvasDimensions } = useDesign();
   // destructure some params
-  const { width, height, svgRef, seed } = props;
+  const { width, height } = canvasDimensions;
   const { solid, strokeWidth } = bubbleState;
   const { velocity, size } = bubbleState;
   const { shadowColor, shadowSD, shadowX, shadowY } = bubbleState;

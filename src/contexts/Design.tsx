@@ -21,8 +21,13 @@ import { useQueryClient } from 'react-query';
 import { storage } from '../firebase';
 import { ref, uploadBytes } from 'firebase/storage';
 import { svgToBlob } from '../utils/helpers/downloadBlob';
+import { useCanvasDimensions } from '../features';
+import { ICanvasDimensions } from '../features/Canvas/Types/canvasDimensions';
 
 interface IDesignProvider {
+  setWidth: Dispatch<SetStateAction<number>>;
+  setHeight: Dispatch<SetStateAction<number>>;
+  canvasDimensions: ICanvasDimensions;
   design: IDesignModes;
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
   designTypes: GetDesignTypesQuery | null;
@@ -57,6 +62,7 @@ export function useDesign() {
 
 export function DesignProvider({ children }) {
   // Design State
+  const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
   const [design, setDesign] = useState<IDesignModes>({ name: 'waves', id: 1 });
   const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
   const [bubbleState, setBubbleState] = useState<IBubbleAllProps>(initialBubbleState);
@@ -104,6 +110,9 @@ export function DesignProvider({ children }) {
   }
 
   const value: IDesignProvider = {
+    setWidth,
+    setHeight,
+    canvasDimensions,
     design,
     setDesign,
     designTypes: isSuccess

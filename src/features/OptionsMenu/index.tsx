@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, Ref, SetStateAction, useRef } from 'react';
+import React, { ReactNode, Ref, useRef } from 'react';
 
 // Design
 import { Flex, Stack, Heading, Divider, useDisclosure, useToast } from '@chakra-ui/react';
@@ -9,21 +9,18 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { contentWrapperStyles, dimensionsButtonStyles, wrapperStyles } from './Styles';
 import DimensionsDrawer from './DimensionsDrawer';
 import DownloadSection from './DownloadSection';
-import { ICanvasDimensions } from '../Canvas/Types/canvasDimensions';
+import { useDesign } from '../../contexts/Design';
 
 export interface IOptionsMenuProps {
   svgRef: Ref<SVGAElement | null>;
-  dimensions: ICanvasDimensions;
-  setWidth: Dispatch<SetStateAction<number>>;
-  setHeight: Dispatch<SetStateAction<number>>;
   children: ReactNode;
 }
 
-const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = (props) => {
+const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({ svgRef, children }) => {
+  const { setWidth, setHeight, canvasDimensions } = useDesign();
+
   /* ---------- PROPS ---------- */
-  const { svgRef, children, dimensions } = props;
-  const { width, widthRatio, height, heightRatio } = dimensions;
-  const { setWidth, setHeight } = props;
+  const { width, widthRatio, height, heightRatio } = canvasDimensions;
 
   /* ---------- NOTIFICATIONS ---------- */
   const toast = useToast();

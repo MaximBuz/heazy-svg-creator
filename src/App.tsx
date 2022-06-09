@@ -79,9 +79,9 @@ function App() {
         <UserSpaceProvider>
           <AuthProvider>
             <UserMenu />
+            <Container {...canvasStyles}>{renderCanvas()}</Container>
+            <CanvasControls svgRef={svgRef} seed={seed} setSeed={setSeed} setZoom={setZoom} />
           </AuthProvider>
-          <Container {...canvasStyles}>{renderCanvas()}</Container>
-          <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
           <OptionsMenu
             svgRef={svgRef}
             setWidth={setWidth}

@@ -41,54 +41,56 @@ export function downloadSvgAsReactTS(svgRef) {
   navigator.clipboard.writeText(snippet);
 }
 
-// export function downloadSvgAsPng(svgRef) {
-//   const canvas = document.createElement('canvas');
+function convertToBase64(svgRef) {
+  const svgString = new XMLSerializer().serializeToString(svgRef.current);
+  const decoded = unescape(encodeURIComponent(svgString));
+  return btoa(decoded);
+}
 
-//   const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
-//   const w = parseInt(svgRef.current.getAttribute('width'));
-//   const h = parseInt(svgRef.current.getAttribute('height'));
-//   const img_to_download = document.createElement('img');
-//   img_to_download.src = 'data:image/svg+xml;base64,' + base64doc;
-//   console.log(img_to_download);
+function getDimensions(svgRef) {
+  const width = svgRef.current.getAttribute('width');
+  const height = svgRef.current.getAttribute('height');
+  return [width, height];
+}
 
-//   img_to_download.onload = function () {
-//     //@ts-expect-error
-//     canvas.setAttribute('width', w);
-//     //@ts-expect-error
-//     canvas.setAttribute('height', h);
-//     const context = canvas.getContext('2d');
-//     context.drawImage(img_to_download, 0, 0, w, h);
-//     const dataURL = canvas.toDataURL('image/png');
-//     const a = document.createElement('a');
-//     const my_evt = new MouseEvent('click');
-//     a.download = 'download.png';
-//     a.href = dataURL;
-//     a.dispatchEvent(my_evt);
+function convertToDataURL(svgRef) {
+  // get image data
+  const base64 = convertToBase64(svgRef);
+  const [w, h] = getDimensions(svgRef);
 
-//     canvas.parentNode.removeChild(canvas);
-//   };
-// }
+  // initialize canvas
+  const canvas = document.createElement('canvas');
+  canvas.setAttribute('width', w);
+  canvas.setAttribute('height', h);
+
+  // initialize img element
+  const img = document.createElement('img');
+  img.setAttribute('src', 'data:image/svg+xml;base64,' + base64);
+
+  // paint on canvas
+  const context = canvas.getContext('2d');
+  context.drawImage(img, 0, 0, w, h);
+  return canvas.toDataURL('image/png');
+}
+
+async function dataURLToBlob (dataURL) {
+  return await (await fetch(dataURL)).blob(); 
+}
+
+// Caution! This returns a promise!
+export function svgToBlob (svgRef) {
+  return dataURLToBlob(convertToDataURL(svgRef));
+}
 
 export function downloadSvgAsPng(svgRef) {
   const canvas = document.createElement('canvas');
-
-  const svgString = new XMLSerializer().serializeToString(svgRef.current);
-
-  // Remove any characters outside the Latin1 range
-  const decoded = unescape(encodeURIComponent(svgString));
-
-  var base64 = btoa(decoded);
-  const w = parseInt(svgRef.current.getAttribute('width'));
-  const h = parseInt(svgRef.current.getAttribute('height'));
+  const base64 = convertToBase64(svgRef);
+  const [w, h] = getDimensions(svgRef);
   const img = document.createElement('img');
   img.setAttribute('src', 'data:image/svg+xml;base64,' + base64);
-  console.log(svgString);
-  
 
   img.onload = function () {
-    //@ts-expect-error
     canvas.setAttribute('width', w);
-    //@ts-expect-error
     canvas.setAttribute('height', h);
     const context = canvas.getContext('2d');
     context.drawImage(img, 0, 0, w, h);

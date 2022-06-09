@@ -1,10 +1,9 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 
 // Design
 import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
-import { IDesignModes } from '../Canvas/Types/designModes';
 import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { UseMutationResult } from 'react-query';
 import { Exact, UpdateDesignMutation } from '../../graphql/generated';
@@ -26,7 +25,7 @@ export interface IThumbnailProps {
   id: number;
   imageSrc: string;
   caption: string;
-  setDesign?: Dispatch<SetStateAction<IDesignModes>>;
+  set: () => void;
   isPublic: boolean;
   timesCopied: Number;
   copiedFrom: any;
@@ -37,7 +36,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   mutation,
   imageSrc,
   caption,
-  setDesign,
+  set,
   isPublic,
   timesCopied,
   copiedFrom,
@@ -54,7 +53,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
         _hover={{ cursor: 'pointer' }}
         onMouseEnter={() => setActive(true)}
         onMouseLeave={() => setActive(false)}
-        initial={{ bottom: "-50px", opacity: 0.5 }}
+        initial={{ bottom: '-50px', opacity: 0.5 }}
         animate={{ bottom: 0, opacity: 1 }}
         exit={{ opacity: 0 }}
         //@ts-expect-error
@@ -121,7 +120,12 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
           zIndex={10}
         >
           <Tooltip bgColor="#21272e64" color="white" label="Use this template" aria-label="Use this template">
-            <CopyIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+            <CopyIcon
+              _hover={{ transform: 'scale(1.15)' }}
+              textTransform="capitalize"
+              transition="0.2s"
+              onClick={() => set()}
+            />
           </Tooltip>
           {isPublic ? (
             <Tooltip

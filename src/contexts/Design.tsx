@@ -8,7 +8,7 @@ import { initialMarkerState } from '../features/Designs/Marker/initialState';
 import { IMarkerAllProps } from '../features/Designs/Marker/Types/markerProps';
 import { initialWaveState } from '../features/Designs/Waves/initialState';
 import { IWaveAllProps } from '../features/Designs/Waves/Types/waveProps';
-import { Design } from '../graphql/generated';
+import { Design, DesignType } from '../graphql/generated';
 
 interface IDesignProvider {
   design: string;
@@ -45,10 +45,12 @@ export function DesignProvider({ children }) {
 
   function copyTemplateParams(designParams: Design) {
     const { name: type } = designParams.type;
-    if (type === 'waves') setWaveState({ waveState, ...designParams.optionParameters });
-    if (type === 'bubble') setBubbleState({ bubbleState, ...designParams.optionParameters });
-    if (type === 'corners') setCornerState({ cornerState, ...designParams.optionParameters });
-    if (type === 'marker') setMarkerState({ markerState, ...designParams.optionParameters });
+    
+    if (type === 'waves') setWaveState({ ...waveState, ...designParams.optionParameters });
+    if (type === 'bubble') setBubbleState({ ...bubbleState, ...designParams.optionParameters });
+    if (type === 'corners') setCornerState({ ...cornerState, ...designParams.optionParameters });
+    if (type === 'marker') setMarkerState({ ...markerState, ...designParams.optionParameters });
+    setDesign(type as IDesignModes);
   }
 
   const value: IDesignProvider = {

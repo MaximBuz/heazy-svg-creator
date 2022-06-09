@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
 import { useGetUserByFirebaseIdQuery, useUpdateDesignMutation } from '../../graphql/generated';
 import { endpoint, headers } from '../../utils/apiConfig';
+import { useQueryClient } from 'react-query';
 
 // Images
 import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
@@ -29,7 +30,11 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
   );
 
   // Mutations
-  const designMutation = useUpdateDesignMutation({ endpoint, fetchParams: { headers } });
+  const queryClient = useQueryClient();
+  const designMutation = useUpdateDesignMutation(
+    { endpoint, fetchParams: { headers } },
+    { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId', { id: currentUser.uid }]) }
+  );
 
   // Filter
   const [search, setSearch] = useState<string>('');
@@ -133,7 +138,6 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
                     if (search && !design.name.toLowerCase().includes(search.toLowerCase())) return false;
                     else return true;
                   })
-                  .sort((a, b) => parseInt(b.createdAt) - parseInt(a.createdAt))
                   .map((design) => (
                     <Thumbnail
                       key={design.id}

@@ -133,6 +133,7 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
                     if (search && !design.name.toLowerCase().includes(search.toLowerCase())) return false;
                     else return true;
                   })
+                  .sort((a, b) => parseInt(b.createdAt) - parseInt(a.createdAt))
                   .map((design) => (
                     <Thumbnail
                       key={design.id}

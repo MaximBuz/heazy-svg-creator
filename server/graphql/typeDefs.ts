@@ -2,6 +2,7 @@ import fs from 'fs';
 
 export const typeDefs = `
 scalar JSON
+scalar DateTime
 
 type User {
   id: Int!
@@ -25,7 +26,7 @@ type Design {
   copiedFrom: User
   copiedFromUserId: Int
   optionParameters: JSON!
-  createdAt: String!
+  createdAt: DateTime!
   deleted: Boolean!
 }
 

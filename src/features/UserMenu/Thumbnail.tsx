@@ -8,6 +8,7 @@ import { IDesignModes } from '../Canvas/Types/designModes';
 import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { UseMutationResult } from 'react-query';
 import { Exact, UpdateDesignMutation } from '../../graphql/generated';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export interface IThumbnailProps {
   mutation: UseMutationResult<
@@ -43,113 +44,125 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
 }) => {
   const [active, setActive] = useState<Boolean>(false);
   return (
-    <Flex
-      justifyContent="center"
-      alignItems="center"
-      position="relative"
-      transition="0.5s"
-      _hover={{ cursor: 'pointer' }}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-    >
-      <Box rounded="xl" w="100%" h="100%" overflow="hidden" background="transparent">
-        <Image
-          w="100%"
+    <AnimatePresence>
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        position="relative"
+        as={motion.div}
+        // transition="0.5s"
+        _hover={{ cursor: 'pointer' }}
+        onMouseEnter={() => setActive(true)}
+        onMouseLeave={() => setActive(false)}
+        initial={{ bottom: "-50px", opacity: 0.5 }}
+        animate={{ bottom: 0, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        //@ts-expect-error
+        transition={{
+          duration: 0.4,
+          type: 'spring',
+          bounce: 0,
+        }}
+      >
+        <Box rounded="xl" w="100%" h="100%" overflow="hidden" background="transparent">
+          <Image
+            w="100%"
+            transition="0.3s"
+            sx={
+              active
+                ? { filter: 'blur(1px) brightness(80%)', transform: 'scale(1.1)' }
+                : { filter: 'blur(0px) brightness(100%)', transform: 'scale(1)' }
+            }
+            src={imageSrc}
+            rounded="xl"
+          />
+        </Box>
+        <Text
+          pointerEvents="none"
+          position="absolute"
+          zIndex={10}
+          fontSize="sm"
+          fontWeight="bold"
+          align="center"
+          textTransform="capitalize"
           transition="0.3s"
-          sx={
-            active
-              ? { filter: 'blur(1px) brightness(80%)', transform: 'scale(1.1)' }
-              : { filter: 'blur(0px) brightness(100%)', transform: 'scale(1)' }
-          }
-          src={imageSrc}
-          rounded="xl"
-        />
-      </Box>
-      <Text
-        pointerEvents="none"
-        position="absolute"
-        zIndex={10}
-        fontSize="sm"
-        fontWeight="bold"
-        align="center"
-        textTransform="capitalize"
-        transition="0.3s"
-        sx={active ? { transform: 'scale(1.15) translate(0, -0.8em)' } : {}}
-      >
-        {caption}
-      </Text>
-      {active && isPublic && (
-        <Tooltip
-          bgColor="#21272e64"
-          color="white"
-          label="Number of times copied by others"
-          placement="right"
-          aria-label="Use this template"
+          sx={active ? { transform: 'scale(1.15) translate(0, -0.8em)' } : {}}
         >
-          <HStack
-            opacity={0.5}
-            fontSize="sm"
-            _hover={{ opacity: 1 }}
-            top="1em"
-            left="1em"
-            position="absolute"
-            zIndex={10}
-          >
-            <DownloadIcon></DownloadIcon>
-            <Text>{String(timesCopied)}</Text>
-          </HStack>
-        </Tooltip>
-      )}
-      <HStack
-        align="center"
-        justify="center"
-        transition="0.3s"
-        sx={active ? { opacity: 1, transform: 'translate(0, 0.8em)' } : { opacity: 0 }}
-        position="absolute"
-        zIndex={10}
-      >
-        <Tooltip bgColor="#21272e64" color="white" label="Use this template" aria-label="Use this template">
-          <CopyIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
-        </Tooltip>
-        {isPublic ? (
+          {caption}
+        </Text>
+        {active && isPublic && (
           <Tooltip
             bgColor="#21272e64"
             color="white"
-            label="Make this template private"
-            aria-label="Make this template private"
+            label="Number of times copied by others"
+            placement="right"
+            aria-label="Use this template"
           >
-            <ViewOffIcon
-              _hover={{ transform: 'scale(1.15)' }}
-              textTransform="capitalize"
-              transition="0.2s"
-              onClick={() => mutation.mutate({ id, public: false })}
-            ></ViewOffIcon>
-          </Tooltip>
-        ) : (
-          <Tooltip
-            bgColor="#21272e64"
-            color="white"
-            label="Make this template available to others"
-            aria-label="Make this template available to others"
-          >
-            <ViewIcon
-              _hover={{ transform: 'scale(1.15)' }}
-              textTransform="capitalize"
-              transition="0.2s"
-              onClick={() => mutation.mutate({ id, public: true })}
-            ></ViewIcon>
+            <HStack
+              opacity={0.5}
+              fontSize="sm"
+              _hover={{ opacity: 1 }}
+              top="1em"
+              left="1em"
+              position="absolute"
+              zIndex={10}
+            >
+              <DownloadIcon></DownloadIcon>
+              <Text>{String(timesCopied)}</Text>
+            </HStack>
           </Tooltip>
         )}
-        <Tooltip bgColor="#21272e64" color="white" label="Delete template" aria-label="Delete template">
-          <DeleteIcon
-            _hover={{ transform: 'scale(1.15)' }}
-            textTransform="capitalize"
-            transition="0.2s"
-            onClick={() => mutation.mutate({ id, delete: true })}
-          />
-        </Tooltip>
-      </HStack>
-    </Flex>
+        <HStack
+          align="center"
+          justify="center"
+          transition="0.3s"
+          sx={active ? { opacity: 1, transform: 'translate(0, 0.8em)' } : { opacity: 0 }}
+          position="absolute"
+          zIndex={10}
+        >
+          <Tooltip bgColor="#21272e64" color="white" label="Use this template" aria-label="Use this template">
+            <CopyIcon _hover={{ transform: 'scale(1.15)' }} textTransform="capitalize" transition="0.2s" />
+          </Tooltip>
+          {isPublic ? (
+            <Tooltip
+              bgColor="#21272e64"
+              color="white"
+              label="Make this template private"
+              aria-label="Make this template private"
+            >
+              <ViewOffIcon
+                _hover={{ transform: 'scale(1.15)' }}
+                textTransform="capitalize"
+                transition="0.2s"
+                onClick={() => mutation.mutate({ id, public: false })}
+              ></ViewOffIcon>
+            </Tooltip>
+          ) : (
+            <Tooltip
+              bgColor="#21272e64"
+              color="white"
+              label="Make this template available to others"
+              aria-label="Make this template available to others"
+            >
+              <ViewIcon
+                _hover={{ transform: 'scale(1.15)' }}
+                textTransform="capitalize"
+                transition="0.2s"
+                onClick={() => mutation.mutate({ id, public: true })}
+              ></ViewIcon>
+            </Tooltip>
+          )}
+          <Tooltip bgColor="#21272e64" color="white" label="Delete template" aria-label="Delete template">
+            <DeleteIcon
+              _hover={{ transform: 'scale(1.15)' }}
+              textTransform="capitalize"
+              transition="0.2s"
+              onClick={() => mutation.mutate({ id, delete: true })}
+            />
+          </Tooltip>
+        </HStack>
+      </Flex>
+    </AnimatePresence>
   );
 };
 

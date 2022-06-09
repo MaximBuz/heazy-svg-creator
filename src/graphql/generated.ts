@@ -40,6 +40,7 @@ export type Design = {
   copiedFrom?: Maybe<User>;
   copiedFromUserId?: Maybe<Scalars['Int']>;
   createdAt: Scalars['String'];
+  deleted: Scalars['Boolean'];
   id: Scalars['Int'];
   name: Scalars['String'];
   optionParameters: Scalars['JSON'];
@@ -93,6 +94,7 @@ export type MutationIncrementTimesCopiedArgs = {
 
 
 export type MutationUpdateDesignArgs = {
+  delete?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['Int'];
   name?: InputMaybe<Scalars['String']>;
   optionParameters?: InputMaybe<Scalars['JSON']>;
@@ -185,6 +187,7 @@ export type UpdateDesignMutationVariables = Exact<{
   public?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
   optionParameters?: InputMaybe<Scalars['JSON']>;
+  delete?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
@@ -342,12 +345,13 @@ export const useIncrementTimesCopiedMutation = <
       options
     );
 export const UpdateDesignDocument = `
-    mutation updateDesign($id: Int!, $public: Boolean, $name: String, $optionParameters: JSON) {
+    mutation updateDesign($id: Int!, $public: Boolean, $name: String, $optionParameters: JSON, $delete: Boolean) {
   design: updateDesign(
     id: $id
     public: $public
     name: $name
     optionParameters: $optionParameters
+    delete: $delete
   ) {
     id
     timesCopied

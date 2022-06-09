@@ -22,13 +22,14 @@ export async function updateDesign(
   _parent: any,
   _args: Partial<Pick<Prisma.DesignUpdateInput, 'public' | 'optionParameters' | 'name'>> & {
     id: number;
+    delete: boolean;
   },
   context: Context
 ) {
-  const { id, ...data } = _args;
+  const { id, delete: shouldDelete, ...data } = _args;
   const design = await context.prisma.design.update({
     where: { id },
-    data: { ...data },
+    data: { ...data, deleted: shouldDelete ? true : false },
   });
   return design;
 }

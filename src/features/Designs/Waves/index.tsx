@@ -10,7 +10,7 @@ const Waves: React.FunctionComponent<IWaveProps> = (props) => {
   const { solid, strokeShrink, strokeWidth } = waveState;
   const { shadowColor, shadowSD, shadowX, shadowY } = waveState;
   const { bgColor, startColor, endColor } = waveState;
-  
+
   // set up params that are needed to generate a path
   const pathParams = [
     seed,
@@ -25,11 +25,10 @@ const Waves: React.FunctionComponent<IWaveProps> = (props) => {
     waveState.smooth,
   ] as const;
 
-
   // generate paths
   let wavesData = smoothWavePath(...pathParams);
 
-  const randomClassId = useId();
+  const randomClassId = useId().replaceAll(':', '');
 
   return (
     <SvgCanvas width={width} height={height} svgRef={svgRef}>

@@ -41,29 +41,62 @@ export function downloadSvgAsReactTS(svgRef) {
   navigator.clipboard.writeText(snippet);
 }
 
+// export function downloadSvgAsPng(svgRef) {
+//   const canvas = document.createElement('canvas');
+
+//   const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
+//   const w = parseInt(svgRef.current.getAttribute('width'));
+//   const h = parseInt(svgRef.current.getAttribute('height'));
+//   const img_to_download = document.createElement('img');
+//   img_to_download.src = 'data:image/svg+xml;base64,' + base64doc;
+//   console.log(img_to_download);
+
+//   img_to_download.onload = function () {
+//     //@ts-expect-error
+//     canvas.setAttribute('width', w);
+//     //@ts-expect-error
+//     canvas.setAttribute('height', h);
+//     const context = canvas.getContext('2d');
+//     context.drawImage(img_to_download, 0, 0, w, h);
+//     const dataURL = canvas.toDataURL('image/png');
+//     const a = document.createElement('a');
+//     const my_evt = new MouseEvent('click');
+//     a.download = 'download.png';
+//     a.href = dataURL;
+//     a.dispatchEvent(my_evt);
+
+//     canvas.parentNode.removeChild(canvas);
+//   };
+// }
+
 export function downloadSvgAsPng(svgRef) {
   const canvas = document.createElement('canvas');
 
-  const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
+  const svgString = new XMLSerializer().serializeToString(svgRef.current);
+
+  // Remove any characters outside the Latin1 range
+  const decoded = unescape(encodeURIComponent(svgString));
+
+  var base64 = btoa(decoded);
   const w = parseInt(svgRef.current.getAttribute('width'));
   const h = parseInt(svgRef.current.getAttribute('height'));
-  const img_to_download = document.createElement('img');
-  img_to_download.src = 'data:image/svg+xml;base64,' + base64doc;
+  const img = document.createElement('img');
+  img.setAttribute('src', 'data:image/svg+xml;base64,' + base64);
+  console.log(svgString);
+  
 
-  img_to_download.onload = function () {
+  img.onload = function () {
     //@ts-expect-error
     canvas.setAttribute('width', w);
     //@ts-expect-error
     canvas.setAttribute('height', h);
     const context = canvas.getContext('2d');
-    context.drawImage(img_to_download, 0, 0, w, h);
+    context.drawImage(img, 0, 0, w, h);
     const dataURL = canvas.toDataURL('image/png');
     const a = document.createElement('a');
     const my_evt = new MouseEvent('click');
     a.download = 'download.png';
     a.href = dataURL;
     a.dispatchEvent(my_evt);
-
-    canvas.parentNode.removeChild(canvas);
   };
 }

@@ -17,7 +17,7 @@ const Bubble: React.FunctionComponent<IBubbleProps> = (props) => {
   // generate path
   const pathData = bubblePath(seed, width, height, velocity, size);
 
-  const randomClassId = useId()
+  const randomClassId = useId().replaceAll(':', '');
   return (
     <SvgCanvas width={width} height={height} svgRef={svgRef}>
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>

@@ -25,6 +25,7 @@ import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 import { AuthProvider } from './contexts/Auth';
 import UserMenu from './features/UserMenu';
 import { useDesign } from './contexts/Design';
+import { UserSpaceProvider } from './contexts/UserSpace';
 
 function App() {
   /* --------- CANVAS STATE --------- */
@@ -75,14 +76,21 @@ function App() {
       <InitialAnimation />
       <Flex {...wrapperStyles}>
         <TemplateMenu activeDesign={design} setDesign={setDesign}></TemplateMenu>
-        <AuthProvider>
-          <UserMenu />
-        </AuthProvider>
-        <Container {...canvasStyles}>{renderCanvas()}</Container>
-        <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
-        <OptionsMenu svgRef={svgRef} setWidth={setWidth} setHeight={setHeight} dimensions={canvasDimensions}>
-          {renderOptionsMenu()}
-        </OptionsMenu>
+        <UserSpaceProvider>
+          <AuthProvider>
+            <UserMenu />
+          </AuthProvider>
+          <Container {...canvasStyles}>{renderCanvas()}</Container>
+          <CanvasControls seed={seed} setSeed={setSeed} setZoom={setZoom} />
+          <OptionsMenu
+            svgRef={svgRef}
+            setWidth={setWidth}
+            setHeight={setHeight}
+            dimensions={canvasDimensions}
+          >
+            {renderOptionsMenu()}
+          </OptionsMenu>
+        </UserSpaceProvider>
       </Flex>
     </>
   );

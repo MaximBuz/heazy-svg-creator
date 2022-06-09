@@ -28,7 +28,7 @@ const Corners: React.FunctionComponent<ICornerProps> = (props) => {
     solid: cornerState.solid,
     strokeWidth: cornerState.strokeWidth,
     strokeShrink: cornerState.strokeShrink,
-    classId: useId(),
+    classId: useId().replaceAll(':', ''),
     startColor: cornerState.startColor,
     endColor: cornerState.endColor,
     shadowX: cornerState.shadowX,

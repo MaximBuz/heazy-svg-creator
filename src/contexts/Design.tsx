@@ -8,7 +8,7 @@ import { initialMarkerState } from '../features/Designs/Marker/initialState';
 import { IMarkerAllProps } from '../features/Designs/Marker/Types/markerProps';
 import { initialWaveState } from '../features/Designs/Waves/initialState';
 import { IWaveAllProps } from '../features/Designs/Waves/Types/waveProps';
-import { Design, DesignType } from '../graphql/generated';
+import { Design } from '../graphql/generated';
 
 interface IDesignProvider {
   design: string;

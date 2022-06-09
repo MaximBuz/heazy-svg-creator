@@ -19,10 +19,15 @@ import { Jelly } from '@uiball/loaders';
 import { Box, Flex, Heading, HStack, Icon, Image, Stack } from '@chakra-ui/react';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from '@chakra-ui/react';
 import { useDesign } from '../../contexts/Design';
+import { useUserSpace } from '../../contexts/UserSpace';
 
 export interface IUserSpaceProps {}
 
 const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo(() => {
+
+  // Closing UserSpace
+  const { onClose } = useUserSpace();
+
   // Auth
   const { currentUser } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery(
@@ -146,7 +151,7 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo(() => {
                     <Thumbnail
                       key={design.id}
                       id={design.id}
-                      set={() => copyTemplateParams(design as Design)}
+                      set={() => { copyTemplateParams(design as Design); onClose() }}
                       mutation={designMutation}
                       isPublic={design.public}
                       copiedFrom={design.copiedFrom}

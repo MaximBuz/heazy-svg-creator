@@ -109,27 +109,24 @@ export type MutationUpdateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  getAllPublicDesigns?: Maybe<Array<Maybe<Design>>>;
-  getAllPublicDesignsByType?: Maybe<Array<Maybe<Design>>>;
   getDesignById?: Maybe<Design>;
   getDesignTypes: Array<Maybe<DesignType>>;
+  getPublicDesigns?: Maybe<Array<Maybe<Design>>>;
   getUserByFirebaseId?: Maybe<User>;
   getUserById?: Maybe<User>;
 };
 
 
-export type QueryGetAllPublicDesignsArgs = {
-  sortBy?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryGetAllPublicDesignsByTypeArgs = {
-  typeId: Scalars['Int'];
-};
-
-
 export type QueryGetDesignByIdArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QueryGetPublicDesignsArgs = {
+  cursor?: InputMaybe<Scalars['Int']>;
+  sortBy?: InputMaybe<Scalars['String']>;
+  take?: InputMaybe<Scalars['Int']>;
+  type?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
 };
 
 
@@ -194,20 +191,6 @@ export type UpdateUserMutationVariables = Exact<{
 
 export type UpdateUserMutation = { __typename?: 'Mutation', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null } | null };
 
-export type GetAllPublicDesignsQueryVariables = Exact<{
-  sortBy?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type GetAllPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
-
-export type GetAllPublicDesignsByTypeQueryVariables = Exact<{
-  typeId: Scalars['Int'];
-}>;
-
-
-export type GetAllPublicDesignsByTypeQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
-
 export type GetDesignByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
@@ -219,6 +202,16 @@ export type GetDesignTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetDesignTypesQuery = { __typename?: 'Query', designTypes: Array<{ __typename?: 'DesignType', id: number, name: string } | null> };
+
+export type GetPublicDesignsQueryVariables = Exact<{
+  sortBy?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
+  take?: InputMaybe<Scalars['Int']>;
+  cursor?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
 
 export type GetUserByFirebaseIdQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -396,78 +389,6 @@ export const useUpdateUserMutation = <
       (variables?: UpdateUserMutationVariables) => fetcher<UpdateUserMutation, UpdateUserMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UpdateUserDocument, variables)(),
       options
     );
-export const GetAllPublicDesignsDocument = `
-    query getAllPublicDesigns($sortBy: String) {
-  designs: getAllPublicDesigns(sortBy: $sortBy) {
-    id
-    name
-    id
-    timesCopied
-    public
-    name
-    type {
-      id
-      name
-    }
-    thumbnailUrl
-    copiedFrom {
-      userName
-      id
-    }
-    optionParameters
-    createdAt
-  }
-}
-    `;
-export const useGetAllPublicDesignsQuery = <
-      TData = GetAllPublicDesignsQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: GetAllPublicDesignsQueryVariables,
-      options?: UseQueryOptions<GetAllPublicDesignsQuery, TError, TData>
-    ) =>
-    useQuery<GetAllPublicDesignsQuery, TError, TData>(
-      variables === undefined ? ['getAllPublicDesigns'] : ['getAllPublicDesigns', variables],
-      fetcher<GetAllPublicDesignsQuery, GetAllPublicDesignsQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetAllPublicDesignsDocument, variables),
-      options
-    );
-export const GetAllPublicDesignsByTypeDocument = `
-    query getAllPublicDesignsByType($typeId: Int!) {
-  designs: getAllPublicDesignsByType(typeId: $typeId) {
-    id
-    name
-    id
-    timesCopied
-    public
-    name
-    type {
-      id
-      name
-    }
-    thumbnailUrl
-    copiedFrom {
-      userName
-      id
-    }
-    optionParameters
-    createdAt
-  }
-}
-    `;
-export const useGetAllPublicDesignsByTypeQuery = <
-      TData = GetAllPublicDesignsByTypeQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables: GetAllPublicDesignsByTypeQueryVariables,
-      options?: UseQueryOptions<GetAllPublicDesignsByTypeQuery, TError, TData>
-    ) =>
-    useQuery<GetAllPublicDesignsByTypeQuery, TError, TData>(
-      ['getAllPublicDesignsByType', variables],
-      fetcher<GetAllPublicDesignsByTypeQuery, GetAllPublicDesignsByTypeQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetAllPublicDesignsByTypeDocument, variables),
-      options
-    );
 export const GetDesignByIdDocument = `
     query getDesignById($id: Int!) {
   design: getDesignById(id: $id) {
@@ -523,6 +444,47 @@ export const useGetDesignTypesQuery = <
     useQuery<GetDesignTypesQuery, TError, TData>(
       variables === undefined ? ['getDesignTypes'] : ['getDesignTypes', variables],
       fetcher<GetDesignTypesQuery, GetDesignTypesQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetDesignTypesDocument, variables),
+      options
+    );
+export const GetPublicDesignsDocument = `
+    query getPublicDesigns($sortBy: String, $type: [Int], $take: Int, $cursor: Int) {
+  designs: getPublicDesigns(
+    sortBy: $sortBy
+    type: $type
+    take: $take
+    cursor: $cursor
+  ) {
+    id
+    name
+    id
+    timesCopied
+    public
+    name
+    type {
+      id
+      name
+    }
+    thumbnailUrl
+    copiedFrom {
+      userName
+      id
+    }
+    optionParameters
+    createdAt
+  }
+}
+    `;
+export const useGetPublicDesignsQuery = <
+      TData = GetPublicDesignsQuery,
+      TError = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      variables?: GetPublicDesignsQueryVariables,
+      options?: UseQueryOptions<GetPublicDesignsQuery, TError, TData>
+    ) =>
+    useQuery<GetPublicDesignsQuery, TError, TData>(
+      variables === undefined ? ['getPublicDesigns'] : ['getPublicDesigns', variables],
+      fetcher<GetPublicDesignsQuery, GetPublicDesignsQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetPublicDesignsDocument, variables),
       options
     );
 export const GetUserByFirebaseIdDocument = `

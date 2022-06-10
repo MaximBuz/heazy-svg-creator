@@ -1,77 +1,29 @@
 import React, { memo, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
-import { Design, useGetUserByFirebaseIdQuery, useUpdateDesignMutation } from '../../graphql/generated';
+import { Design, useGetUserByFirebaseIdQuery } from '../../graphql/generated';
 import { endpoint, headers } from '../../utils/apiConfig';
-import { useQueryClient } from 'react-query';
-
-// Images
-import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
-import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
-import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
-import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
-import ErrorImg from '../../assets/Error.svg';
-
-// Components
-import Thumbnail from './Thumbnail';
 
 // Design
-import { Jelly } from '@uiball/loaders';
-import { Box, Flex, Heading, HStack, Icon, Image, Stack } from '@chakra-ui/react';
+import { Box, Flex, Heading, HStack, Icon } from '@chakra-ui/react';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from '@chakra-ui/react';
-import { useDesign } from '../../contexts/Design';
-import { useUserSpace } from '../../contexts/UserSpace';
+import Templates from './Templates';
+import Explore from './Explore';
+import QueryError from '../../components/queryError';
+import QueryLoading from '../../components/queryLoading';
 
 const UserSpace: React.FunctionComponent = memo(() => {
-  // Closing UserSpace
-  const { onClose } = useUserSpace();
-
   // Auth
   const { idToken } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery({ endpoint, fetchParams: { headers: headers(idToken) } });
 
-  // Mutations
-  const queryClient = useQueryClient();
-  const designMutation = useUpdateDesignMutation(
-    { endpoint, fetchParams: { headers: headers(idToken) } },
-    { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
-  );
-
-  // Setting template
-  const { copyTemplateParams } = useDesign();
-
   // Filter
   const [search, setSearch] = useState<string>('');
 
-  // Render
   if (userQuery.isLoading) {
-    return (
-      <Flex width="100%" height="100%" justifyContent="center" alignItems="center">
-        <Jelly size={80} speed={1} color="#363E4A" />
-      </Flex>
-    );
+    return <QueryLoading size={80} speed={1} color="#363E4A" />;
   }
   if (userQuery.isError) {
-    return (
-      <Flex
-        direction="column"
-        mt="1em"
-        textAlign="center"
-        gap="10px"
-        height="90%"
-        justifyContent="center"
-        p="5"
-      >
-        <Image pos="relative" right="15px" src={ErrorImg} h="20%"></Image>
-        <Box mt="1em">
-          <Heading as="h4" size="md" fontWeight={800}>
-            oooops...{' '}
-          </Heading>
-          <Heading as="h5" size="md" fontWeight={300}>
-            Something went wrong!
-          </Heading>
-        </Box>
-      </Flex>
-    );
+    return <QueryError withImage />;
   }
   return (
     <Flex direction="column" textAlign="center" gap="10px">
@@ -97,7 +49,11 @@ const UserSpace: React.FunctionComponent = memo(() => {
               </Box>
             </AccordionButton>
           </h2>
-          <AccordionPanel p="0.5em">Test</AccordionPanel>
+          <AccordionPanel pl="1em" pr="1em">
+            <HStack mb="1em" dir="row" align="center" justify="center">
+            </HStack>
+            <Explore />
+          </AccordionPanel>
         </AccordionItem>
 
         <AccordionItem>
@@ -133,41 +89,9 @@ const UserSpace: React.FunctionComponent = memo(() => {
                 />
               </Icon>
             </HStack>
-
-            <Stack spacing="5">
-              {userQuery.isSuccess &&
-                userQuery.data.user.designs
-                  .filter((design) => {
-                    if (search && !design.name.toLowerCase().includes(search.toLowerCase())) return false;
-                    else return true;
-                  })
-                  .map((design) => (
-                    <Thumbnail
-                      key={design.id}
-                      id={design.id}
-                      set={() => {
-                        copyTemplateParams(design as Design);
-                        onClose();
-                      }}
-                      mutation={designMutation}
-                      isPublic={design.public}
-                      copiedFrom={design.copiedFrom}
-                      timesCopied={design.timesCopied}
-                      imageSrc={
-                        design.thumbnailUrl !== 'null'
-                          ? design.thumbnailUrl
-                          : design.type.name === 'waves'
-                          ? placeholderWaves
-                          : design.type.name === 'bubble'
-                          ? placeholderBubble
-                          : design.type.name === 'corners'
-                          ? placeholderCorners
-                          : placeholderMarker
-                      }
-                      caption={design.name}
-                    ></Thumbnail>
-                  ))}
-            </Stack>
+            {userQuery.isSuccess && userQuery.data && (
+              <Templates search={search} designs={userQuery.data.user.designs as Design[]} />
+            )}
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

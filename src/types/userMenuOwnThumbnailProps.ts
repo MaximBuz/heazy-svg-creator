@@ -1,7 +1,7 @@
 import { UseMutationResult } from 'react-query';
 import { Exact, UpdateDesignMutation } from '../graphql/generated';
 
-export interface IThumbnailProps {
+export interface IOwnThumbnailProps {
   mutation: UseMutationResult<
     UpdateDesignMutation,
     unknown,

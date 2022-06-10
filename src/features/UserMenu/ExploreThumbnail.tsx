@@ -4,28 +4,35 @@ import React, { useState } from 'react';
 import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
-import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { useMutation, useQuery } from 'react-query';
+import { CopyIcon, DownloadIcon } from '@chakra-ui/icons';
+import { useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
-import { deleteObject, getDownloadURL, ref } from 'firebase/storage';
+import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../../firebase';
-import { IThumbnailProps } from '../../types/userMenuThumbnailProps';
+import { IExploreThumbnailProps } from '../../types/userMenuExploreThumbnailProps';
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
-  id,
-  mutation,
-  imageSrc,
-  caption,
-  set,
-  isPublic,
-  timesCopied,
-  copiedFrom,
-}) => {
+// Images
+import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
+import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
+import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
+import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
+
+const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({ mutation, design }) => {
   const [active, setActive] = useState<Boolean>(false);
-  const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', id], () =>
-    getDownloadURL(ref(storage, imageSrc))
+  const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', design.id], () =>
+    getDownloadURL(ref(storage, design.thumbnailUrl))
   );
-  const deletion = useMutation(['thumbnail', id], () => deleteObject(ref(storage, imageSrc)));
+
+  const imageSrc =
+    design.thumbnailUrl !== 'null'
+      ? design.thumbnailUrl
+      : design.type.name === 'waves'
+      ? placeholderWaves
+      : design.type.name === 'bubble'
+      ? placeholderBubble
+      : design.type.name === 'corners'
+      ? placeholderCorners
+      : placeholderMarker;
 
   return (
     <AnimatePresence>
@@ -71,9 +78,9 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
           transition="0.3s"
           sx={active ? { transform: 'scale(1.15) translate(0, -0.8em)' } : {}}
         >
-          {caption}
+          {design.name}
         </Text>
-        {active && isPublic && (
+        {active && design.public && (
           <Tooltip
             bgColor="#21272e64"
             color="white"
@@ -91,7 +98,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
               zIndex={10}
             >
               <DownloadIcon></DownloadIcon>
-              <Text>{String(timesCopied)}</Text>
+              <Text>{String(design.timesCopied)}</Text>
             </HStack>
           </Tooltip>
         )}
@@ -108,47 +115,16 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
               _hover={{ transform: 'scale(1.15)' }}
               textTransform="capitalize"
               transition="0.2s"
-              onClick={() => set()}
-            />
-          </Tooltip>
-          {isPublic ? (
-            <Tooltip
-              bgColor="#21272e64"
-              color="white"
-              label="Make this template private"
-              aria-label="Make this template private"
-            >
-              <ViewOffIcon
-                _hover={{ transform: 'scale(1.15)' }}
-                textTransform="capitalize"
-                transition="0.2s"
-                onClick={() => mutation.mutate({ id, public: false })}
-              ></ViewOffIcon>
-            </Tooltip>
-          ) : (
-            <Tooltip
-              bgColor="#21272e64"
-              color="white"
-              label="Make this template available to others"
-              aria-label="Make this template available to others"
-            >
-              <ViewIcon
-                _hover={{ transform: 'scale(1.15)' }}
-                textTransform="capitalize"
-                transition="0.2s"
-                onClick={() => mutation.mutate({ id, public: true })}
-              ></ViewIcon>
-            </Tooltip>
-          )}
-          <Tooltip bgColor="#21272e64" color="white" label="Delete template" aria-label="Delete template">
-            <DeleteIcon
-              _hover={{ transform: 'scale(1.15)' }}
-              textTransform="capitalize"
-              transition="0.2s"
-              onClick={() => {
-                mutation.mutate({ id, delete: true });
-                deletion.mutate();
-              }}
+              onClick={() =>
+                mutation.mutate({
+                  optionParameters: design.optionParameters,
+                  copiedFromUserId: design.user.id,
+                  name: design.name,
+                  public: true,
+                  thumbnailUrl: design.thumbnailUrl,
+                  typeId: design.typeId,
+                })
+              }
             />
           </Tooltip>
         </HStack>
@@ -157,4 +133,4 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   );
 };
 
-export default Thumbnail;
+export default ExploreThumbnail;

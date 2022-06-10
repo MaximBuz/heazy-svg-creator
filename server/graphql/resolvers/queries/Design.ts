@@ -14,17 +14,19 @@ export async function getPublicDesigns(
 
   const searchParams: Prisma.DesignFindManyArgs = {
     take,
-    skip: 1,
     where: { public: true, deleted: false, type: { id: { in: type } } },
     orderBy: { [sortBy]: 'desc' },
   };
 
-  if (cursor)
+  if (cursor) {
     searchParams.cursor = {
       id: cursor,
     };
+    searchParams.skip = 1;
+  }
 
   const designs = await context.prisma.design.findMany(searchParams);
+
   return designs;
 }
 

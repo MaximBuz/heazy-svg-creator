@@ -1,11 +1,20 @@
 import { Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import Lottie from 'lottie-react';
+import Lottie from 'react-lottie-light';
 import animationData from './InitialAnimation.json';
 
 function InitialAnimation() {
   const [isRunning, setIsRunning] = useState<boolean>(true);
   const [opacity, setOpacity] = useState<number>(1);
+
+  const options = {
+    loop: false,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   useEffect(() => {
     (async () => {
@@ -42,12 +51,11 @@ function InitialAnimation() {
         }}
       >
         <Lottie
+          options={options}
+          width={100}
+          height={100}
+          isStopped={!isRunning}
           animationData={animationData}
-          loop={false}
-          style={{
-            width: 200,
-            height: 200,
-          }}
         />
       </Flex>
     );

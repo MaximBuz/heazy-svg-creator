@@ -1,5 +1,5 @@
 import { AccordionPanel, Button, HStack, Icon, Select, Stack } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import {
   Design,
@@ -22,17 +22,22 @@ const Explore: React.FunctionComponent = () => {
   // Auth
   const { idToken } = useAuth();
 
-  // Designs
+  // Fetching Designs
   const { designTypes } = useDesign();
   const [cursor, setCursor] = useState<number>();
+  const [sort, setSort] = useState<string>('timesCopied');
+  const [filterType, setFilterType] = useState<number>();
   const { data, isSuccess, isError, isLoading, refetch } = useGetPublicDesignsQuery(
     {
       endpoint,
       fetchParams: { headers: headers(idToken) },
     },
-    { cursor },
+    { cursor, sortBy: sort, type: filterType },
     { onSuccess: () => setCursor(data?.designs[data?.designs.length - 1]?.id) }
   );
+  useEffect(() => {
+    refetch();
+  }, [sort, filterType]);
 
   // Mutations
   const queryClient = useQueryClient();
@@ -64,11 +69,17 @@ const Explore: React.FunctionComponent = () => {
   return (
     <AccordionPanel pl="1em" pr="1em">
       <HStack mb="1em" mt="0.5em" dir="row" align="center" justify="center">
-        <Select cursor="pointer" icon={<UpDownIcon opacity={0.5} />} placeholder="Sort">
+        <Select
+          onChange={(e) => setSort(e.target.value)}
+          cursor="pointer"
+          icon={<UpDownIcon opacity={0.5} />}
+          placeholder="Sort"
+        >
           <option value="timesCopied">Most Popular</option>
           <option value="createdAt">Most recent</option>
         </Select>
         <Select
+          onChange={(e) => setFilterType(parseInt(e.target.value))}
           cursor="pointer"
           icon={
             <Icon

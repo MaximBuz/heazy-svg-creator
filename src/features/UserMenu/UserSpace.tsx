@@ -26,14 +26,14 @@ const UserSpace: React.FunctionComponent = memo(() => {
   const { onClose } = useUserSpace();
 
   // Auth
-  const { currentUser, idToken } = useAuth();
+  const { idToken } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery({ endpoint, fetchParams: { headers: headers(idToken) } });
 
   // Mutations
   const queryClient = useQueryClient();
   const designMutation = useUpdateDesignMutation(
     { endpoint, fetchParams: { headers: headers(idToken) } },
-    { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId', { id: currentUser.uid }]) }
+    { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
   );
 
   // Setting template

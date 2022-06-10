@@ -68,13 +68,12 @@ export function DesignProvider ({ children }) {
       .then((snapshot) => {
         mutation.mutate(
           {
-            firebaseId,
             name,
             typeId,
             thumbnailUrl: snapshot.ref.toString(),
             optionParameters: designParams,
           },
-          { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId', { id: firebaseId }]) }
+          { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
         );
       })
       .catch(() => console.log('Failed to upload thumbnail'));

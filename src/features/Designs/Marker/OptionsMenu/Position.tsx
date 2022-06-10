@@ -9,18 +9,16 @@ import {
   TabList,
   Tab,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
+import { useDesign } from '../../../../contexts/Design';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
-import { IMarkerAllProps } from '../Types/markerProps';
 import PaddingLeft from './Icons/PaddingLeft';
 import PaddingRight from './Icons/PaddingRight';
 import YPosLeft from './Icons/YPosLeft';
 import YPosRight from './Icons/YPosRight';
 
-const Position: React.FunctionComponent<{
-  state: IMarkerAllProps;
-  setState: Dispatch<SetStateAction<IMarkerAllProps>>;
-}> = ({ state, setState }) => {
+const Position: React.FunctionComponent = () => {
+  const { markerState: state, setMarkerState: setState } = useDesign();
   return (
     <>
       {/* ----- HEADLINE ------ */}

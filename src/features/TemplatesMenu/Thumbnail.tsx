@@ -5,16 +5,16 @@ import { Flex, Text, Image, Box } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
-import { IDesignModes } from '../Canvas/Types/designModes';
+import { IDesignModes } from '../../types/designModes';
 
 export interface IThumbnailProps {
   isActive: boolean;
   image: string;
-  caption: IDesignModes;
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
+  type: IDesignModes
 }
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, caption, setDesign }) => {
+const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, setDesign, type }) => {
   return (
     <Flex
       justifyContent="center"
@@ -24,7 +24,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, 
       transition="0.5s"
       _hover={{ background: '#3b4453', cursor: 'pointer' }}
       onClick={() => {
-        setDesign(caption);
+        setDesign(type);
       }}
     >
       <Box
@@ -55,7 +55,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, 
         align="center"
         textTransform="capitalize"
       >
-        {caption}
+        {type.name}
       </Text>
     </Flex>
   );

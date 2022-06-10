@@ -31,6 +31,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  DateTime: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
 };
@@ -39,7 +41,7 @@ export type Design = {
   __typename?: 'Design';
   copiedFrom?: Maybe<User>;
   copiedFromUserId?: Maybe<Scalars['Int']>;
-  createdAt: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   deleted: Scalars['Boolean'];
   id: Scalars['Int'];
   name: Scalars['String'];
@@ -71,12 +73,12 @@ export type Mutation = {
 
 export type MutationCreateNewDesignArgs = {
   copiedFromUserId?: InputMaybe<Scalars['Int']>;
+  firebaseId: Scalars['String'];
   name: Scalars['String'];
   optionParameters: Scalars['JSON'];
   public?: InputMaybe<Scalars['Boolean']>;
   thumbnailUrl?: InputMaybe<Scalars['String']>;
   typeId: Scalars['Int'];
-  userId: Scalars['Int'];
 };
 
 
@@ -153,7 +155,7 @@ export type User = {
 };
 
 export type CreateNewDesignMutationVariables = Exact<{
-  userId: Scalars['Int'];
+  firebaseId: Scalars['String'];
   public?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
   typeId: Scalars['Int'];
@@ -163,7 +165,7 @@ export type CreateNewDesignMutationVariables = Exact<{
 }>;
 
 
-export type CreateNewDesignMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+export type CreateNewDesignMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
 
 export type CreateNewUserMutationVariables = Exact<{
   firebaseId: Scalars['String'];
@@ -180,7 +182,7 @@ export type IncrementTimesCopiedMutationVariables = Exact<{
 }>;
 
 
-export type IncrementTimesCopiedMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+export type IncrementTimesCopiedMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
 
 export type UpdateDesignMutationVariables = Exact<{
   id: Scalars['Int'];
@@ -191,7 +193,7 @@ export type UpdateDesignMutationVariables = Exact<{
 }>;
 
 
-export type UpdateDesignMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+export type UpdateDesignMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
 
 export type UpdateUserMutationVariables = Exact<{
   userId: Scalars['Int'];
@@ -206,21 +208,21 @@ export type GetAllPublicDesignsQueryVariables = Exact<{
 }>;
 
 
-export type GetAllPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
+export type GetAllPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
 
 export type GetAllPublicDesignsByTypeQueryVariables = Exact<{
   typeId: Scalars['Int'];
 }>;
 
 
-export type GetAllPublicDesignsByTypeQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
+export type GetAllPublicDesignsByTypeQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null };
 
 export type GetDesignByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetDesignByIdQuery = { __typename?: 'Query', design?: { __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null };
+export type GetDesignByIdQuery = { __typename?: 'Query', design?: { __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null };
 
 export type GetDesignTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -232,20 +234,20 @@ export type GetUserByFirebaseIdQueryVariables = Exact<{
 }>;
 
 
-export type GetUserByFirebaseIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
+export type GetUserByFirebaseIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
 
 export type GetUserByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetUserByIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: string, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
+export type GetUserByIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
 
 
 export const CreateNewDesignDocument = `
-    mutation createNewDesign($userId: Int!, $public: Boolean, $name: String!, $typeId: Int!, $thumbnailUrl: String!, $copiedFromUserId: Int, $optionParameters: JSON!) {
+    mutation createNewDesign($firebaseId: String!, $public: Boolean, $name: String!, $typeId: Int!, $thumbnailUrl: String!, $copiedFromUserId: Int, $optionParameters: JSON!) {
   design: createNewDesign(
-    userId: $userId
+    firebaseId: $firebaseId
     public: $public
     name: $name
     typeId: $typeId

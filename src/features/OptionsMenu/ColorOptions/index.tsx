@@ -22,10 +22,10 @@ import rgbHex from 'rgb-hex';
 import HideColorButton from '../HideColorButton';
 
 // Types
-import { IWaveAllProps } from '../../Designs/Waves/Types/waveProps';
-import { IBubbleAllProps } from '../../Designs/Bubble/Types/bubbleProps';
-import { IMarkerAllProps } from '../../Designs/Marker/Types/markerProps';
-import { ICornerAllProps } from '../../Designs/Corners/Types/cornerProps';
+import { IWaveAllProps } from '../../../types/waveProps';
+import { IBubbleAllProps } from '../../../types/bubbleProps';
+import { IMarkerAllProps } from '../../../types/markerProps';
+import { ICornerAllProps } from '../../../types/cornerProps';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 

@@ -1,20 +1,23 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { chakra, Circle, Divider, Flex, Heading, Icon, Stack, useDisclosure } from '@chakra-ui/react';
+import { chakra, Circle, Divider, Flex, Heading, Icon, Stack } from '@chakra-ui/react';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
+import { useUserSpace } from '../../contexts/UserSpace';
 import Login from './Login';
 import Registration from './Registration';
 import UserSpace from './UserSpace';
 
-export interface IUserMenuProps {}
+const UserMenu: React.FunctionComponent = () => {
 
-const UserMenu: React.FunctionComponent<IUserMenuProps> = (props) => {
+  // Auth
   const { currentUser, logout } = useAuth();
-
-  const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useDisclosure();
   const [registrationMode, setRegistrationMode] = useState(false);
-  // Drawer with Framer Motion
+
+  // Drawer Opening
+  const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useUserSpace();
+  
+  // Make animatable with Framer Motion
   const UserSection = chakra(motion.div, {
     shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
   });

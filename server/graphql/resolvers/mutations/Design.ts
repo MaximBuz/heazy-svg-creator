@@ -3,7 +3,7 @@ import { Context } from '../../../context';
 
 export async function createNewDesign(
   _parent: any,
-  _args: { userId: number; name: string; typeId: number; optionParameters: any; thumbnailUrl: string },
+  _args: { firebaseId: string; name: string; typeId: number; optionParameters: any; thumbnailUrl: string },
   context: Context
 ) {
   const design = await context.prisma.design.create({
@@ -11,7 +11,7 @@ export async function createNewDesign(
       name: _args.name,
       type: { connect: { id: _args.typeId } },
       optionParameters: _args.optionParameters,
-      user: { connect: { id: _args.userId } },
+      user: { connect: { firebaseId: _args.firebaseId } },
       thumbnailUrl: _args.thumbnailUrl,
     },
   });

@@ -12,7 +12,7 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react';
 
-import React, { Dispatch, memo, SetStateAction } from 'react';
+import React, { memo } from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import BalanceLeft from './Icons/BalanceLeft';
 import BalanceRight from './Icons/BalanceRight';
@@ -24,12 +24,10 @@ import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
 import Edgy from './Icons/Edgy';
 import Smooth from './Icons/Smooth';
-import { IWaveAllProps } from '../Types/waveProps';
+import { useDesign } from '../../../../contexts/Design';
 
-const Shape: React.FunctionComponent<{
-  state: IWaveAllProps;
-  setState: Dispatch<SetStateAction<IWaveAllProps>>;
-}> = memo(({ state, setState }) => {
+const Shape: React.FunctionComponent = memo(() => {
+  const { waveState: state, setWaveState: setState } = useDesign();
   return (
     <>
       {/* ----- HEADLINE ------ */}

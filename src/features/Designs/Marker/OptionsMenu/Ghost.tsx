@@ -15,20 +15,18 @@ import {
   Tab,
   Icon,
 } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
-import { IMarkerAllProps } from '../Types/markerProps';
 import HideColorButton from '../../../OptionsMenu/HideColorButton';
 import GhostLeft from './Icons/GhostLeft';
 import GhostRight from './Icons/GhostRight';
+import { useDesign } from '../../../../contexts/Design';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
-const Ghost: React.FunctionComponent<{
-  state: IMarkerAllProps;
-  setState: Dispatch<SetStateAction<IMarkerAllProps>>;
-}> = ({ state, setState }) => {
+const Ghost: React.FunctionComponent = () => {
+  const { markerState: state, setMarkerState: setState } = useDesign();
   return (
     <>
       {/* -------------- GHOST -------------- */}

@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
-import { useGetUserByFirebaseIdQuery, useUpdateDesignMutation } from '../../graphql/generated';
+import { Design, useGetUserByFirebaseIdQuery, useUpdateDesignMutation } from '../../graphql/generated';
 import { endpoint, headers } from '../../utils/apiConfig';
 import { useQueryClient } from 'react-query';
 
@@ -18,10 +18,15 @@ import Thumbnail from './Thumbnail';
 import { Jelly } from '@uiball/loaders';
 import { Box, Flex, Heading, HStack, Icon, Image, Stack } from '@chakra-ui/react';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from '@chakra-ui/react';
+import { useDesign } from '../../contexts/Design';
+import { useUserSpace } from '../../contexts/UserSpace';
 
-export interface IUserSpaceProps {}
 
-const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
+const UserSpace: React.FunctionComponent = memo(() => {
+
+  // Closing UserSpace
+  const { onClose } = useUserSpace();
+
   // Auth
   const { currentUser } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery(
@@ -35,6 +40,9 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
     { endpoint, fetchParams: { headers } },
     { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId', { id: currentUser.uid }]) }
   );
+
+  // Setting template
+  const { copyTemplateParams } = useDesign();
 
   // Filter
   const [search, setSearch] = useState<string>('');
@@ -142,6 +150,7 @@ const UserSpace: React.FunctionComponent<IUserSpaceProps> = memo((props) => {
                     <Thumbnail
                       key={design.id}
                       id={design.id}
+                      set={() => { copyTemplateParams(design as Design); onClose() }}
                       mutation={designMutation}
                       isPublic={design.public}
                       copiedFrom={design.copiedFrom}

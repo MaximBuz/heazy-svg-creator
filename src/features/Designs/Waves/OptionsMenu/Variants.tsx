@@ -19,13 +19,11 @@ import LineWidthLeft from './Icons/LineWidthLeft';
 import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import { IWaveAllProps } from '../Types/waveProps';
-import { Dispatch, memo, SetStateAction } from 'react';
+import { memo } from 'react';
+import { useDesign } from '../../../../contexts/Design';
 
-const Variants: React.FunctionComponent<{
-  state: IWaveAllProps;
-  setState: Dispatch<SetStateAction<IWaveAllProps>>;
-}> = memo(({ state, setState }) => {
+const Variants: React.FunctionComponent = memo(() => {
+  const { waveState: state, setWaveState: setState } = useDesign();
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">

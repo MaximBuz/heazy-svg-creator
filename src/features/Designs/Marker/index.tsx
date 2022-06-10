@@ -1,24 +1,28 @@
-import React, { useId } from 'react';
+import React, { Ref, useId } from 'react';
 import { markerPath } from '../../../utils/path-algorithms/Marker/markerPath';
-import { IMarkerAllProps, IMarkerProps } from './Types/markerProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
+import { useDesign } from '../../../contexts/Design';
 
-const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = (props) => {
+const Marker: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
+  seed,
+  svgRef,
+}) => {
+  const { markerState, canvasDimensions } = useDesign();
 
   // destructure some params
-  const { width, height, svgRef, seed } = props;
-  const { lineCap, lineJoin, strokeWidth } = props;
-  const { markerHeight, zickZacks, padding, pressure } = props;
-  const { mirror, yPosition } = props;
-  const { ghost, ghostStartColor, ghostEndColor } = props;
-  const { shadowColor, shadowSD, shadowX, shadowY } = props;
-  const { bgColor, startColor, endColor } = props;
+  const { width, height } = canvasDimensions;
+  const { lineCap, lineJoin, strokeWidth } = markerState;
+  const { markerHeight, zickZacks, padding, pressure } = markerState;
+  const { mirror, yPosition } = markerState;
+  const { ghost, ghostStartColor, ghostEndColor } = markerState;
+  const { shadowColor, shadowSD, shadowX, shadowY } = markerState;
+  const { bgColor, startColor, endColor } = markerState;
 
   // Generate path
   const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);
-  const randomClassId = useId();
+  const randomClassId = useId().replaceAll(':', '');
   return (
-    <SvgCanvas width={width} height={ height} svgRef={svgRef} >
+    <SvgCanvas width={width} height={height} svgRef={svgRef}>
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
         <linearGradient id={`linear-gradient-${randomClassId}`}>
@@ -27,7 +31,7 @@ const Marker: React.FunctionComponent<IMarkerProps & IMarkerAllProps> = (props) 
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        <filter id={`shadow-${randomClassId}`}  y="-20%" height="150%" x="-20%" width="150%">
+        <filter id={`shadow-${randomClassId}`} y="-20%" height="150%" x="-20%" width="150%">
           <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
         </filter>
         {ghost && (

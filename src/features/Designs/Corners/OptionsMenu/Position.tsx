@@ -1,14 +1,10 @@
 // Layout
 import { Checkbox, CheckboxGroup, Flex, Heading, HStack, Switch } from '@chakra-ui/react';
-import { Dispatch, SetStateAction } from 'react';
+import { useDesign } from '../../../../contexts/Design';
 
-// Icons
-import { ICornerAllProps } from '../Types/cornerProps';
 
-const Position: React.FunctionComponent<{
-  state: ICornerAllProps;
-  setState: Dispatch<SetStateAction<ICornerAllProps>>;
-}> = ({ state, setState }) => {
+const Position: React.FunctionComponent = () => {
+  const { cornerState: state, setCornerState: setState } = useDesign();
   return (
     <>
       <Heading as="h3" size="xs" textTransform="uppercase">

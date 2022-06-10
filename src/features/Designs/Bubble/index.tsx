@@ -1,22 +1,25 @@
-import React, { useId } from 'react';
+import React, { Ref, useId } from 'react';
 import { bubblePath } from '../../../utils/path-algorithms/Bubble/bubblePath';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
-import { IBubbleAllProps, IBubbleProps } from './Types/bubbleProps';
 import SvgCanvas from '../../Canvas/SvgCanvas';
+import { useDesign } from '../../../contexts/Design';
 
-const Bubble: React.FunctionComponent<IBubbleProps & IBubbleAllProps> = (props) => {
-
+const Bubble: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
+  seed,
+  svgRef,
+}) => {
+  const { bubbleState, canvasDimensions } = useDesign();
   // destructure some params
-  const { width, height, svgRef, seed } = props;
-  const { solid, strokeWidth } = props;
-  const { velocity, size } = props;
-  const { shadowColor, shadowSD, shadowX, shadowY } = props;
-  const { bgColor, startColor, endColor } = props;
+  const { width, height } = canvasDimensions;
+  const { solid, strokeWidth } = bubbleState;
+  const { velocity, size } = bubbleState;
+  const { shadowColor, shadowSD, shadowX, shadowY } = bubbleState;
+  const { bgColor, startColor, endColor } = bubbleState;
 
   // generate path
   const pathData = bubblePath(seed, width, height, velocity, size);
 
-  const randomClassId = useId()
+  const randomClassId = useId().replaceAll(':', '');
   return (
     <SvgCanvas width={width} height={height} svgRef={svgRef}>
       <g transform-origin="center" transform={'scale(1, 1) rotate(0)'}>

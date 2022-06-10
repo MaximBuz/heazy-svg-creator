@@ -26,7 +26,7 @@ export function useAuth() {
 /* ----- PROVIDER ----- */
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<User>();
-  const [idToken, setIdToken] = useState<string>("");
+  const [idToken, setIdToken] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const createNewUserMutation = useCreateNewUserMutation({
     endpoint,
@@ -59,14 +59,19 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      user
-        .getIdToken(true)
-        .then((idToken) => {
-          setCurrentUser(user);
-          setIdToken(idToken);
-          setLoading(false);
-        })
-        .catch((err) => console.log(err));
+      if (user) {
+        user
+          .getIdToken(true)
+          .then((idToken) => {
+            setCurrentUser(user);
+            setIdToken(idToken);
+            setLoading(false);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        setCurrentUser(user);
+        setLoading(false);
+      }
     });
   }, []);
 

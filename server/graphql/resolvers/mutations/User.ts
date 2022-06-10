@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client';
+import { GraphQLError } from 'graphql';
 import { Context } from '../../../context';
 
 export async function createNewUser(_parent: any, _args: Prisma.UserCreateInput, context: Context) {
@@ -9,12 +10,13 @@ export async function createNewUser(_parent: any, _args: Prisma.UserCreateInput,
 }
 export async function updateUser(
   _parent: any,
-  _args: Pick<Prisma.UserUpdateInput, 'userName'> & { userId: number },
+  _args: Pick<Prisma.UserUpdateInput, 'userName'>,
   context: Context
 ) {
-  const { userId: id, userName } = _args;
+  if(!context.uid) throw new GraphQLError(`Not Authorized`)
+  const { userName } = _args;
   const user = await context.prisma.user.update({
-    where: { id },
+    where: { firebaseId: context.uid },
     data: { userName },
   });
   return user;

@@ -21,8 +21,6 @@ app.use((req, res, next) => {
       .verifyIdToken(idToken)
       .then((decodedToken: any) => {
         const uid = decodedToken.uid;
-        console.log(uid);
-
         context.uid = uid; // pass uid of user to graphql resolvers
         next();
       })

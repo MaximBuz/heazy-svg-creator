@@ -27,10 +27,7 @@ const UserSpace: React.FunctionComponent = memo(() => {
 
   // Auth
   const { currentUser, idToken } = useAuth();
-  const userQuery = useGetUserByFirebaseIdQuery(
-    { endpoint, fetchParams: { headers: headers(idToken) } },
-    { id: currentUser.uid }
-  );
+  const userQuery = useGetUserByFirebaseIdQuery({ endpoint, fetchParams: { headers: headers(idToken) } });
 
   // Mutations
   const queryClient = useQueryClient();

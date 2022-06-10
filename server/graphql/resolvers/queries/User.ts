@@ -1,8 +1,10 @@
+import { GraphQLError } from 'graphql';
 import { Context } from '../../../context';
 
-export async function getUserByFirebaseId (_parent: any, _args: { id: string; }, context: Context) {
+export async function getUserByFirebaseId (_parent: any, _args: any, context: Context) {
+  if(!context.uid) throw new GraphQLError(`Not Authorized`)
   const user = await context.prisma.user.findFirst({
-    where: { firebaseId: _args.id },
+    where: { firebaseId: context.uid },
   });
   return user;
 }

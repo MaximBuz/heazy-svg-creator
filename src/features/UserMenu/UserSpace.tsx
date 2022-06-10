@@ -87,7 +87,7 @@ const UserSpace: React.FunctionComponent = memo(() => {
               _focus={{ boxShadow: 'none' }}
             >
               <Box flex="1" textAlign="center">
-                Explore
+                Explore Templates
               </Box>
             </AccordionButton>
           </h2>

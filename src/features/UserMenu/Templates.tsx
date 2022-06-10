@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react';
+import { Box, Flex, Heading, Stack } from '@chakra-ui/react';
 import React from 'react';
 import { useQueryClient } from 'react-query';
 import { useDesign } from '../../contexts/Design';
@@ -42,6 +42,17 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }
       },
     }
   );
+  if (designs.length === 0)
+    return (
+      <Flex direction="column" h="100px" mt="1em" justifyContent="center">
+        <Heading as="h4" size="sm" fontWeight={800}>
+          This looks empty{' '}
+        </Heading>
+        <Heading as="h5" size="sm" fontWeight={300}>
+          Try to save a template first!
+        </Heading>
+      </Flex>
+    );
 
   return (
     <Stack spacing="5">

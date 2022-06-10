@@ -6,6 +6,7 @@ import ErrorImg from '../assets/Error.svg';
 
 export interface IQueryErrorProps {
   withImage?: boolean;
+  heading?: string;
 }
 
 const QueryError: React.FunctionComponent<IQueryErrorProps> = ({ withImage }) => {

@@ -1,9 +1,8 @@
 // React
-import React, { Ref, useRef, useState } from 'react';
+import React, { Ref, useState } from 'react';
 
 // Styles
 import {
-  Box,
   Button,
   Circle,
   FormControl,
@@ -14,7 +13,6 @@ import {
   PopoverArrow,
   PopoverContent,
   PopoverTrigger as OrigPopoverTrigger,
-  Tooltip,
   useDisclosure,
 } from '@chakra-ui/react';
 

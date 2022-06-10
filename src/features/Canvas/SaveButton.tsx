@@ -37,7 +37,6 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
 
   // Handle saving Template
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const nameRef = useRef(null);
   const [name, setName] = useState<string>('');
   async function handleSave() {
     onClose();
@@ -47,15 +46,24 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
       if (design.name === 'bubble') optionParameters = bubbleState;
       if (design.name === 'corners') optionParameters = cornerState;
       if (design.name === 'marker') optionParameters = markerState;
-      await saveTemplate(optionParameters, nameRef.current.value, currentUser.uid, design.id, svgRef);
+      try {
+        await saveTemplate(optionParameters, name, currentUser.uid, design.id, svgRef);
+      } catch (err) {
+        console.log(err);
+      }
     }
-    nameRef.current.value.reset();
+    setName('');
     openUserSpace();
   }
   return (
     <Popover isOpen={isOpen} placement="left">
       <PopoverTrigger>
-        <Circle as="button" onClick={onToggle} {...CircleStyles}>
+        <Circle
+          title="Save as a template"
+          as="button"
+          onClick={() => (currentUser ? onToggle() : openUserSpace())}
+          {...CircleStyles}
+        >
           <Icon boxSize="5" viewBox="0 0 24 24" fill="white">
             <path
               xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +83,7 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
             _hover={{ opacity: 1 }}
           ></CloseIcon>
           <FormControl>
-            <Input  placeholder="Template name" onChange={(e) => setName(e.target.value)} id="templateName" />
+            <Input placeholder="Template name" onChange={(e) => setName(e.target.value)} id="templateName" />
           </FormControl>
           <Button
             colorScheme="blue"

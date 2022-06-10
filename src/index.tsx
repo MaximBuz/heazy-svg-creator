@@ -10,7 +10,15 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { DesignProvider } from './contexts/Design';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 30,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false
+    },
+  },
+});
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>

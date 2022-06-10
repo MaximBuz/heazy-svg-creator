@@ -18,6 +18,7 @@ import { ref, uploadBytes } from 'firebase/storage';
 import { svgToBlob } from '../utils/helpers/downloadBlob';
 import { useCanvasDimensions } from '../features';
 import { IDesignProvider } from '../types/designContext';
+import { useAuth } from './Auth';
 
 const DesignContext = React.createContext(null);
 
@@ -27,7 +28,10 @@ export function useDesign() {
 }
 
 /* ----- PROVIDER ----- */
-export function DesignProvider({ children }) {
+export function DesignProvider ({ children }) {
+  // get auth
+  const auth = useAuth();
+
   // Design State
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
   const [design, setDesign] = useState<IDesignModes>({ name: 'waves', id: 1 });
@@ -37,7 +41,7 @@ export function DesignProvider({ children }) {
   const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
 
   // getting DesignTypes from database
-  const { data: designTypes, isSuccess } = useGetDesignTypesQuery({ endpoint, fetchParams: { headers } });
+  const { data: designTypes, isSuccess } = useGetDesignTypesQuery({ endpoint, fetchParams: { headers: headers(auth?.idToken) } });
 
   // Setting state to parameters saved from templates
   function copyTemplateParams(designParams: Design) {
@@ -51,7 +55,7 @@ export function DesignProvider({ children }) {
 
   // Save template to database
   const queryClient = useQueryClient();
-  const mutation = useCreateNewDesignMutation({ endpoint, fetchParams: { headers } });
+  const mutation = useCreateNewDesignMutation({ endpoint, fetchParams: { headers: headers(auth?.idToken) } });
   async function saveTemplate(
     designParams: Pick<Design, 'optionParameters'>,
     name: string,

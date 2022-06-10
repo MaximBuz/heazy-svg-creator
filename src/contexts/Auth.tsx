@@ -26,8 +26,12 @@ export function useAuth() {
 /* ----- PROVIDER ----- */
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<User>();
+  const [idToken, setIdToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const createNewUserMutation = useCreateNewUserMutation({ endpoint, fetchParams: { headers } });
+  const createNewUserMutation = useCreateNewUserMutation({
+    endpoint,
+    fetchParams: { headers: headers(idToken) },
+  });
 
   function signup(email, password, userName): Promise<UserCredential> {
     return createUserWithEmailAndPassword(auth, email, password).then((userCred) => {
@@ -55,12 +59,19 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      setCurrentUser(user);
-      setLoading(false);
+      user
+        .getIdToken(true)
+        .then((idToken) => {
+          setCurrentUser(user);
+          setIdToken(idToken);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
     });
   }, []);
 
   const value: IAuth = {
+    idToken,
     currentUser,
     signup,
     login,

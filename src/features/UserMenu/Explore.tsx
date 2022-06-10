@@ -1,7 +1,13 @@
-import { Stack } from '@chakra-ui/react';
+import { Button, Stack } from '@chakra-ui/react';
 import React from 'react';
 import { useQueryClient } from 'react-query';
-import { Design, useCreateNewDesignMutation, useGetPublicDesignsQuery } from '../../graphql/generated';
+import {
+  Design,
+  useCreateNewDesignMutation,
+  useGetPublicDesignsQuery,
+  useIncrementTimesCopiedMutation,
+  useUpdateUserMutation,
+} from '../../graphql/generated';
 import { headers, endpoint } from '../../utils/apiConfig';
 
 // Components
@@ -23,10 +29,14 @@ const Explore: React.FunctionComponent = () => {
 
   // Mutations
   const queryClient = useQueryClient();
-  const mutation = useCreateNewDesignMutation(
+  const copyTemplateMutation = useCreateNewDesignMutation(
     { endpoint, fetchParams: { headers: headers(idToken) } },
     { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
   );
+  const incrementMutation = useIncrementTimesCopiedMutation({
+    endpoint,
+    fetchParams: { headers: headers(idToken) },
+  });
 
   if (isLoading) {
     return <QueryLoading size={80} speed={1} color="#363E4A" />;
@@ -41,8 +51,14 @@ const Explore: React.FunctionComponent = () => {
       {isSuccess &&
         data &&
         data.designs.map((design) => (
-          <ExploreThumbnail mutation={mutation} key={design.id} design={design as Design}></ExploreThumbnail>
+          <ExploreThumbnail
+            copyTemplate={copyTemplateMutation}
+            increment={incrementMutation}
+            key={design.id}
+            design={design as Design}
+          ></ExploreThumbnail>
         ))}
+      <Button>Load More</Button>
     </Stack>
   );
 };

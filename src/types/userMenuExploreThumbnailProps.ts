@@ -1,9 +1,9 @@
-import { CreateNewDesignMutation, Design } from '../graphql/generated';
+import { CreateNewDesignMutation, Design, IncrementTimesCopiedMutation } from '../graphql/generated';
 import { UseMutationResult } from 'react-query';
 import { Exact } from '../graphql/generated';
 
 export interface IExploreThumbnailProps {
-  mutation: UseMutationResult<
+  copyTemplate: UseMutationResult<
     CreateNewDesignMutation,
     unknown,
     Exact<{
@@ -16,5 +16,13 @@ export interface IExploreThumbnailProps {
     }>,
     unknown
   >;
-  design: Design
+  increment: UseMutationResult<
+    IncrementTimesCopiedMutation,
+    unknown,
+    Exact<{
+      id: number;
+    }>,
+    unknown
+  >;
+  design: Design;
 }

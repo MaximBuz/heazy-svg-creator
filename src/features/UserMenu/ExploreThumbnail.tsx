@@ -17,7 +17,11 @@ import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
 import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
 import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
 
-const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({ mutation, design }) => {
+const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
+  copyTemplate,
+  design,
+  increment,
+}) => {
   const [active, setActive] = useState<Boolean>(false);
   const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', design.id], () =>
     getDownloadURL(ref(storage, design.thumbnailUrl))
@@ -116,14 +120,17 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({ mut
               textTransform="capitalize"
               transition="0.2s"
               onClick={() =>
-                mutation.mutate({
-                  optionParameters: design.optionParameters,
-                  copiedFromUserId: design.user.id,
-                  name: design.name,
-                  public: true,
-                  thumbnailUrl: design.thumbnailUrl,
-                  typeId: design.typeId,
-                })
+                copyTemplate.mutate(
+                  {
+                    optionParameters: design.optionParameters,
+                    copiedFromUserId: design.user.id,
+                    name: design.name,
+                    public: true,
+                    thumbnailUrl: design.thumbnailUrl,
+                    typeId: design.typeId,
+                  },
+                  { onSuccess: () => increment.mutate({ id: design.id }) }
+                )
               }
             />
           </Tooltip>

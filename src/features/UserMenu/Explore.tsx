@@ -36,7 +36,7 @@ const Explore: React.FunctionComponent = () => {
     { onSuccess: () => setCursor(data?.designs[data?.designs.length - 1]?.id) }
   );
   useEffect(() => {
-    refetch();
+    refetch().then(() => setCursor(undefined));
   }, [sort, filterType]);
 
   // Mutations

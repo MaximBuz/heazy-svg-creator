@@ -44,7 +44,7 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRe
           PNG
         </Button>
 
-        <Popover gutter={15}>
+        <Popover isLazy gutter={15}>
           {/* @ts-ignore */}
           <PopoverTrigger>
             <IconButton

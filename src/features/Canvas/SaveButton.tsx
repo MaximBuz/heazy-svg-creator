@@ -54,7 +54,7 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
     openUserSpace();
   }
   return (
-    <Popover isOpen={isOpen} placement="left">
+    <Popover isLazy isOpen={isOpen} placement="left">
       <PopoverTrigger>
         <Circle
           title="Save as a template"
@@ -70,8 +70,8 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
           </Icon>
         </Circle>
       </PopoverTrigger>
-      <PopoverContent p={5} bgColor="rgb(29, 31, 39)" border="none" _focus={{ boxShadow: 'none' }}>
-        <PopoverArrow bgColor="rgb(29, 31, 39)" />
+      <PopoverContent p={5} bgColor="#2D3748" border="none" _focus={{ boxShadow: 'none' }}>
+        <PopoverArrow bgColor="#2D3748" />
         <HStack spacing={4}>
           <CloseIcon
             as="button"

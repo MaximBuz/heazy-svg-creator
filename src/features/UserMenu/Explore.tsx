@@ -64,12 +64,12 @@ const Explore: React.FunctionComponent = () => {
   return (
     <AccordionPanel pl="1em" pr="1em">
       <HStack mb="1em" mt="0.5em" dir="row" align="center" justify="center">
-        <Select icon={<UpDownIcon opacity={0.5} />} placeholder="Sort">
+        <Select cursor="pointer" icon={<UpDownIcon opacity={0.5} />} placeholder="Sort">
           <option value="timesCopied">Most Popular</option>
           <option value="createdAt">Most recent</option>
         </Select>
         <Select
-          itemType="checkbox"
+          cursor="pointer"
           icon={
             <Icon
               cursor="pointer"

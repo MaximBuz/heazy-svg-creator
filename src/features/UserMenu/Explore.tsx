@@ -1,12 +1,11 @@
 import { Button, Stack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQueryClient } from 'react-query';
 import {
   Design,
   useCreateNewDesignMutation,
   useGetPublicDesignsQuery,
   useIncrementTimesCopiedMutation,
-  useUpdateUserMutation,
 } from '../../graphql/generated';
 import { headers, endpoint } from '../../utils/apiConfig';
 
@@ -22,10 +21,15 @@ const Explore: React.FunctionComponent = () => {
   const { idToken } = useAuth();
 
   // Designs
-  const { data, isSuccess, isError, isLoading } = useGetPublicDesignsQuery({
-    endpoint,
-    fetchParams: { headers: headers(idToken) },
-  });
+  const [cursor, setCursor] = useState<number>();
+  const { data, isSuccess, isError, isLoading, refetch } = useGetPublicDesignsQuery(
+    {
+      endpoint,
+      fetchParams: { headers: headers(idToken) },
+    },
+    { cursor },
+    { onSuccess: () => setCursor(data?.designs[data?.designs.length - 1]?.id) }
+  );
 
   // Mutations
   const queryClient = useQueryClient();
@@ -33,15 +37,18 @@ const Explore: React.FunctionComponent = () => {
     { endpoint, fetchParams: { headers: headers(idToken) } },
     { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
   );
-  const incrementMutation = useIncrementTimesCopiedMutation({
-    endpoint,
-    fetchParams: { headers: headers(idToken) },
-  },{
-    onSuccess: () => {
-      queryClient.invalidateQueries(['getUserByFirebaseId']);
-      queryClient.invalidateQueries(['getPublicDesigns']);
+  const incrementMutation = useIncrementTimesCopiedMutation(
+    {
+      endpoint,
+      fetchParams: { headers: headers(idToken) },
     },
-  });
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['getUserByFirebaseId']);
+        queryClient.invalidateQueries(['getPublicDesigns']);
+      },
+    }
+  );
 
   if (isLoading) {
     return <QueryLoading size={80} speed={1} color="#363E4A" />;
@@ -63,7 +70,7 @@ const Explore: React.FunctionComponent = () => {
             design={design as Design}
           ></ExploreThumbnail>
         ))}
-      <Button>Load More</Button>
+      <Button onClick={() => refetch()}>Show More</Button>
     </Stack>
   );
 };

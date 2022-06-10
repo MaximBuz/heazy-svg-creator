@@ -1,8 +1,9 @@
 // React
-import React, { Ref, useRef } from 'react';
+import React, { Ref, useRef, useState } from 'react';
 
 // Styles
 import {
+  Box,
   Button,
   Circle,
   FormControl,
@@ -13,12 +14,15 @@ import {
   PopoverArrow,
   PopoverContent,
   PopoverTrigger as OrigPopoverTrigger,
+  Tooltip,
+  useDisclosure,
 } from '@chakra-ui/react';
 
 // Contexts
 import { useAuth } from '../../contexts/Auth';
 import { useDesign } from '../../contexts/Design';
 import { useUserSpace } from '../../contexts/UserSpace';
+import { CloseIcon } from '@chakra-ui/icons';
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
 export interface ISaveButtonProps {
@@ -28,12 +32,15 @@ export interface ISaveButtonProps {
 
 const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleStyles }) => {
   const { currentUser } = useAuth();
-  const { onOpen } = useUserSpace();
+  const { onOpen: openUserSpace } = useUserSpace();
   const { saveTemplate, design, waveState, bubbleState, cornerState, markerState } = useDesign();
 
   // Handle saving Template
+  const { isOpen, onToggle, onClose } = useDisclosure();
   const nameRef = useRef(null);
+  const [name, setName] = useState<string>('');
   async function handleSave() {
+    onClose();
     if (currentUser) {
       let optionParameters;
       if (design.name === 'waves') optionParameters = waveState;
@@ -42,12 +49,13 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
       if (design.name === 'marker') optionParameters = markerState;
       await saveTemplate(optionParameters, nameRef.current.value, currentUser.uid, design.id, svgRef);
     }
-    onOpen();
+    nameRef.current.value.reset();
+    openUserSpace();
   }
   return (
-    <Popover placement="left">
+    <Popover isOpen={isOpen} placement="left">
       <PopoverTrigger>
-        <Circle {...CircleStyles}>
+        <Circle as="button" onClick={onToggle} {...CircleStyles}>
           <Icon boxSize="5" viewBox="0 0 24 24" fill="white">
             <path
               xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +67,23 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
       <PopoverContent p={5} bgColor="rgb(29, 31, 39)" border="none" _focus={{ boxShadow: 'none' }}>
         <PopoverArrow bgColor="rgb(29, 31, 39)" />
         <HStack spacing={4}>
+          <CloseIcon
+            as="button"
+            onClick={onClose}
+            cursor="pointer"
+            opacity={0.5}
+            _hover={{ opacity: 1 }}
+          ></CloseIcon>
           <FormControl>
-            <Input placeholder="Template name" ref={nameRef} id="templateName" />
+            <Input  placeholder="Template name" onChange={(e) => setName(e.target.value)} id="templateName" />
           </FormControl>
-          <Button colorScheme="blue" onClick={currentUser ? handleSave : onOpen}>
+          <Button
+            colorScheme="blue"
+            isDisabled={name.length < 3}
+            onClick={() => {
+              currentUser ? handleSave() : openUserSpace();
+            }}
+          >
             Save
           </Button>
         </HStack>

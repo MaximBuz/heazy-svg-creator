@@ -8,7 +8,7 @@ export async function getPublicDesigns(
 ) {
   // Grabbing arguments
   const sortBy = _args.sortBy || 'timesCopied';
-  const take = _args.take || 5;
+  const take = _args.take || 3;
   const type = _args.type || [1, 2, 3, 4];
   const cursor = _args.cursor || null;
 

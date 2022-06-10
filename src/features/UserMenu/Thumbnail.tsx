@@ -5,12 +5,11 @@ import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
 import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
-import { getDownloadURL, ref } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../../firebase';
 import { IThumbnailProps } from '../../types/userMenuThumbnailProps';
-
 
 const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   id,
@@ -26,6 +25,8 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', id], () =>
     getDownloadURL(ref(storage, imageSrc))
   );
+  const deletion = useMutation(['thumbnail', id], () => deleteObject(ref(storage, imageSrc)));
+
   return (
     <AnimatePresence>
       <Flex
@@ -144,7 +145,10 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
               _hover={{ transform: 'scale(1.15)' }}
               textTransform="capitalize"
               transition="0.2s"
-              onClick={() => mutation.mutate({ id, delete: true })}
+              onClick={() => {
+                mutation.mutate({ id, delete: true });
+                deletion.mutate();
+              }}
             />
           </Tooltip>
         </HStack>

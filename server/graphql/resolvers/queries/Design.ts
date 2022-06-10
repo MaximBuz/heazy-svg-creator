@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { Context } from '../../../context';
 
-export async function getAllPublicDesigns(
+export async function getPublicDesigns(
   _parent: any,
   _args: { sortBy: string; take: number; type: number[]; cursor: number },
   context: Context

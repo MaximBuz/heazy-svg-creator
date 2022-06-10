@@ -1,12 +1,11 @@
 import { getUserById, getUserByFirebaseId } from './User';
-import { getAllPublicDesigns, getDesignById, getAllPublicDesignsByType } from './Design';
+import { getPublicDesigns, getDesignById } from './Design';
 import { getDesignTypes } from './DesignType';
 
 export const Query = {
   getUserByFirebaseId,
   getUserById,
-  getAllPublicDesigns,
-  getAllPublicDesignsByType,
+  getPublicDesigns,
   getDesignById,
   getDesignTypes
 };

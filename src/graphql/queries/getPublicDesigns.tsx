@@ -18,6 +18,9 @@ gql`
         userName
         id
       }
+      user {
+        firebaseId
+      }
       optionParameters
       createdAt
     }

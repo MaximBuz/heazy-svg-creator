@@ -16,12 +16,14 @@ import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
 import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
 import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
 import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
+import { useAuth } from '../../contexts/Auth';
 
 const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
   copyTemplate,
   design,
   increment,
 }) => {
+  const { currentUser } = useAuth();
   const [active, setActive] = useState<Boolean>(false);
   const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', design.id], () =>
     getDownloadURL(ref(storage, design.thumbnailUrl))
@@ -114,11 +116,30 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
           position="absolute"
           zIndex={10}
         >
-          <Tooltip bgColor="#21272e64" color="white" label="Use this template" aria-label="Use this template">
-            <CopyIcon
-              _hover={{ transform: 'scale(1.15)' }}
+          <Tooltip
+            bgColor="#21272e64"
+            color="white"
+            label={
+              design?.user?.firebaseId === currentUser?.uid
+                ? 'You created this template'
+                : 'Get template'
+            }
+            aria-label={
+              design?.user?.firebaseId === currentUser?.uid
+                ? 'You created this template'
+                : 'Get template'
+            }
+          >
+            <DownloadIcon
+              _hover={{
+                transform: 'scale(1.15)',
+                opacity: design?.user?.firebaseId === currentUser?.uid ? 0.5 : 1,
+                cursor: design?.user?.firebaseId === currentUser?.uid ? 'not-allowed' : 'pointer',
+              }}
               textTransform="capitalize"
               transition="0.2s"
+              as="button"
+              disabled={design?.user?.firebaseId !== currentUser?.uid}
               onClick={() =>
                 copyTemplate.mutate(
                   {

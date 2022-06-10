@@ -120,14 +120,10 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
             bgColor="#21272e64"
             color="white"
             label={
-              design?.user?.firebaseId === currentUser?.uid
-                ? 'You created this template'
-                : 'Get template'
+              design?.user?.firebaseId === currentUser?.uid ? 'You created this template' : 'Get template'
             }
             aria-label={
-              design?.user?.firebaseId === currentUser?.uid
-                ? 'You created this template'
-                : 'Get template'
+              design?.user?.firebaseId === currentUser?.uid ? 'You created this template' : 'Get template'
             }
           >
             <DownloadIcon

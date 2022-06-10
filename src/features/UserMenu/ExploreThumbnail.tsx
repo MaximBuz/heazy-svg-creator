@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
-import { CopyIcon, DownloadIcon } from '@chakra-ui/icons';
+import { DownloadIcon } from '@chakra-ui/icons';
 import { useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getDownloadURL, ref } from 'firebase/storage';

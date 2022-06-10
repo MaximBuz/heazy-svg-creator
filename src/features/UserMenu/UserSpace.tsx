@@ -37,7 +37,6 @@ const UserSpace: React.FunctionComponent = memo(() => {
       </Box>
 
       <Accordion allowToggle defaultIndex={0}>
-
         {/* ----- YOUR TEMPLATES ----- */}
         <AccordionItem>
           <h2>
@@ -91,10 +90,7 @@ const UserSpace: React.FunctionComponent = memo(() => {
               </Box>
             </AccordionButton>
           </h2>
-          <AccordionPanel pl="1em" pr="1em">
-            <HStack mb="1em" dir="row" align="center" justify="center"></HStack>
-            <Explore />
-          </AccordionPanel>
+          <Explore />
         </AccordionItem>
       </Accordion>
     </Flex>

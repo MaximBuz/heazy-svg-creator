@@ -1,18 +1,30 @@
+import { Prisma } from '@prisma/client';
 import { Context } from '../../../context';
 
-export async function getAllPublicDesigns(_parent: any, _args: { sortBy: string }, context: Context) {
-  const sortKey = _args.sortBy || 'timesCopied';
-  const designs = await context.prisma.design.findMany({
-    where: { public: true, deleted: false },
-    orderBy: { [sortKey]: 'desc' },
-  });
-  return designs;
-}
+export async function getAllPublicDesigns(
+  _parent: any,
+  _args: { sortBy: string; take: number; type: number[]; cursor: number },
+  context: Context
+) {
+  // Grabbing arguments
+  const sortBy = _args.sortBy || 'timesCopied';
+  const take = _args.take || 5;
+  const type = _args.type || [1, 2, 3, 4];
+  const cursor = _args.cursor || null;
 
-export async function getAllPublicDesignsByType(_parent: any, _args: { typeId: number }, context: Context) {
-  const designs = await context.prisma.design.findMany({
-    where: { public: true, typeId: _args.typeId, deleted: false },
-  });
+  const searchParams: Prisma.DesignFindManyArgs = {
+    take,
+    skip: 1,
+    where: { public: true, deleted: false, type: { id: { in: type } } },
+    orderBy: { [sortBy]: 'desc' },
+  };
+
+  if (cursor)
+    searchParams.cursor = {
+      id: cursor,
+    };
+
+  const designs = await context.prisma.design.findMany(searchParams);
   return designs;
 }
 

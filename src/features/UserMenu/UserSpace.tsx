@@ -36,26 +36,9 @@ const UserSpace: React.FunctionComponent = memo(() => {
         </Heading>
       </Box>
 
-      <Accordion allowToggle>
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              _expanded={{ bg: '#3b4453', fontWeight: 'bolder' }}
-              _hover={{ bg: '#272c36' }}
-              _focus={{ boxShadow: 'none' }}
-            >
-              <Box flex="1" textAlign="center">
-                Explore
-              </Box>
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pl="1em" pr="1em">
-            <HStack mb="1em" dir="row" align="center" justify="center">
-            </HStack>
-            <Explore />
-          </AccordionPanel>
-        </AccordionItem>
+      <Accordion allowToggle defaultIndex={0}>
 
+        {/* ----- YOUR TEMPLATES ----- */}
         <AccordionItem>
           <h2>
             <AccordionButton
@@ -92,6 +75,25 @@ const UserSpace: React.FunctionComponent = memo(() => {
             {userQuery.isSuccess && userQuery.data && (
               <Templates search={search} designs={userQuery.data.user.designs as Design[]} />
             )}
+          </AccordionPanel>
+        </AccordionItem>
+
+        {/* ----- EXPLORE ----- */}
+        <AccordionItem>
+          <h2>
+            <AccordionButton
+              _expanded={{ bg: '#3b4453', fontWeight: 'bolder' }}
+              _hover={{ bg: '#272c36' }}
+              _focus={{ boxShadow: 'none' }}
+            >
+              <Box flex="1" textAlign="center">
+                Explore
+              </Box>
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pl="1em" pr="1em">
+            <HStack mb="1em" dir="row" align="center" justify="center"></HStack>
+            <Explore />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

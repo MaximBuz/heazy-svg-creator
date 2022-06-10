@@ -35,7 +35,12 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }
   const queryClient = useQueryClient();
   const designMutation = useUpdateDesignMutation(
     { endpoint, fetchParams: { headers: headers(idToken) } },
-    { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['getUserByFirebaseId']);
+        queryClient.invalidateQueries(['getPublicDesigns']);
+      },
+    }
   );
 
   return (

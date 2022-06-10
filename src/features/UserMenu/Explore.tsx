@@ -36,6 +36,11 @@ const Explore: React.FunctionComponent = () => {
   const incrementMutation = useIncrementTimesCopiedMutation({
     endpoint,
     fetchParams: { headers: headers(idToken) },
+  },{
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getUserByFirebaseId']);
+      queryClient.invalidateQueries(['getPublicDesigns']);
+    },
   });
 
   if (isLoading) {

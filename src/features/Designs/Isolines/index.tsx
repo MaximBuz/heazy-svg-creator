@@ -1,5 +1,4 @@
 import React, { Ref, useId } from 'react';
-import { bubblePath } from '../../../utils/path-algorithms/Bubble/bubblePath';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
@@ -13,10 +12,10 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
   // destructure some params
   const { width, height } = canvasDimensions;
   const { strokeWidth, strokeShrink, invertStrokeShrink } = isolinesState;
-  const { velocity, amount, depth } = isolinesState;
+  const { velocity, depth } = isolinesState;
   const { bgColor, startColor, endColor } = isolinesState;
 
-  // generate path
+  // generate paths
   const pathData = isolinePath(seed, width, height, velocity, depth);
 
   const randomClassId = useId().replaceAll(':', '');
@@ -40,7 +39,14 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
             result="newSource"
           ></feDisplacementMap>
         </filter>
-        <filter x="-5%" y="-5%" width="110%" height="110%" filterUnits="objectBoundingBox" id="pencilTexture2">
+        <filter
+          x="-5%"
+          y="-5%"
+          width="110%"
+          height="110%"
+          filterUnits="objectBoundingBox"
+          id="pencilTexture2"
+        >
           <feTurbulence
             type="fractalNoise"
             baseFrequency="2"
@@ -55,7 +61,14 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
           ></feColorMatrix>
           <feComposite operator="in" in2="f2" in="SourceGraphic" result="f3"></feComposite>
         </filter>
-        <filter x="-5%" y="-5%" width="110%" height="110%" filterUnits="objectBoundingBox" id="pencilTexture3">
+        <filter
+          x="-5%"
+          y="-5%"
+          width="110%"
+          height="110%"
+          filterUnits="objectBoundingBox"
+          id="pencilTexture3"
+        >
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.5"
@@ -78,13 +91,13 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
             result="f4"
           ></feDisplacementMap>
         </filter>
-        <filter id="pencilTexture4"
+        <filter
+          id="pencilTexture4"
           x="-20%"
           y="-20%"
           width="140%"
           height="140%"
           filterUnits="objectBoundingBox"
-          
         >
           <feTurbulence
             type="fractalNoise"
@@ -134,15 +147,25 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
           <feBlend mode="multiply" in2="f4" in="f5" result="out1"></feBlend>
           <feBlend mode="multiply" in="out1" in2="f6" result="out2"></feBlend>
         </filter>
-        <filter x="-2%" y="-2%" width="104%" height="104%" filterUnits="objectBoundingBox" id="pencilTexture5">
-      <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="3" result="noise">
-      </feTurbulence>
-      <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="3" in="SourceGraphic" result="newSource">
-      </feDisplacementMap>
+        <filter
+          x="-2%"
+          y="-2%"
+          width="104%"
+          height="104%"
+          filterUnits="objectBoundingBox"
+          id="pencilTexture5"
+        >
+          <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="3" result="noise"></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="3"
+            in="SourceGraphic"
+            result="newSource"
+          ></feDisplacementMap>
         </filter>
 
-
-        <g filter="url(#pencilTexture4)" >
+        <g filter="url(#pencilTexture4)">
           {pathData.map((circle, index) => (
             <path
               // options

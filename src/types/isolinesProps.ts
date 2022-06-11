@@ -16,7 +16,6 @@ export interface IIsolinesVariantsProps {
 
 export interface IIsolinesShapeProps {
   velocity: number;
-  amount: number;
   depth: number;
 }
 

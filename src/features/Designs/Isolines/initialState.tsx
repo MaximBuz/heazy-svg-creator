@@ -8,6 +8,5 @@ export const initialIsolineState: IIsolinesAllProps = {
   strokeShrink: false,
   invertStrokeShrink: false,
   velocity: 50,
-  amount: 10,
   depth: 4,
 };

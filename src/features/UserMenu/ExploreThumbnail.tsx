@@ -65,6 +65,7 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
             w="100%"
             maxH="160px"
             transition="0.3s"
+            objectFit="cover"
             sx={
               active
                 ? { filter: 'blur(1px) brightness(50%)', transform: 'scale(1.1)' }

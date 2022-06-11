@@ -100,7 +100,7 @@ const Explore: React.FunctionComponent = () => {
           placeholder="Filter"
         >
           {designTypes &&
-            designTypes.designTypes.map((design) => <option value={design.id}>{design.name}</option>)}
+            designTypes.designTypes.map((design) => <option key={design.id} value={design.id}>{design.name}</option>)}
         </Select>
       </HStack>
       <Stack spacing="5">

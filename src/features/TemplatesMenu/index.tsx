@@ -58,6 +58,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
             {designTypes ? (
               designTypes.designTypes.map((type) => (
                 <Thumbnail
+                  key={type.id}
                   isActive={activeDesign === type.id}
                   setDesign={setDesign}
                   image={

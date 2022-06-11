@@ -67,7 +67,7 @@ function convertToDataURL(svgRef) {
       canvas.setAttribute('height', h);
       const context = canvas.getContext('2d');
       context.drawImage(img, 0, 0, w, h);
-      const dataURL = canvas.toDataURL('image/jpeg', 0.5);
+      const dataURL = canvas.toDataURL('image/jpeg', w > 1000 ? 0.4 : w > 500 ? 0.8 : 1);
       resolve(dataURL);
     };
     img.onerror = () => {

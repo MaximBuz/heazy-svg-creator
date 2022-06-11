@@ -51,6 +51,7 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
           <Image
             w="100%"
             maxH="160px"
+            minH="160px"
             transition="0.3s"
             objectFit="cover"
             sx={

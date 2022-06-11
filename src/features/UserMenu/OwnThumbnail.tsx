@@ -111,7 +111,21 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
               onClick={() => set()}
             />
           </Tooltip>
-          {isPublic ? (
+          {copiedFrom ? (
+            <Tooltip
+              bgColor="#21272e64"
+              color="white"
+              label={`You copied this template from ${copiedFrom}`}
+              aria-label={`You copied this template from ${copiedFrom}`}
+            >
+              <ViewOffIcon
+                _hover={{ transform: 'scale(1.15)', opacity: 0.5 }}
+                cursor="not-allowed"
+                textTransform="capitalize"
+                transition="0.2s"
+              ></ViewOffIcon>
+            </Tooltip>
+          ) : isPublic ? (
             <Tooltip
               bgColor="#21272e64"
               color="white"

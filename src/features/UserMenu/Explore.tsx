@@ -54,6 +54,7 @@ const Explore: React.FunctionComponent = () => {
       onSuccess: () => {
         queryClient.invalidateQueries(['getUserByFirebaseId']);
         queryClient.invalidateQueries(['getPublicDesigns']);
+        setCursor(undefined);
       },
     }
   );

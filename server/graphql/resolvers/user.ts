@@ -8,6 +8,7 @@ export const User = {
     const designs = await context.prisma.design.findMany({
       where: { userId: _parent.id, deleted: false },
       orderBy: { createdAt: 'desc' },
+      include: { copiedFrom: true, type: true },
     });
     return designs;
   },

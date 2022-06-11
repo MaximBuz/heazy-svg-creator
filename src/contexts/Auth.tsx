@@ -15,6 +15,7 @@ import {
 import { useCreateNewUserMutation } from '../graphql/generated';
 import { endpoint, headers } from '../utils/apiConfig';
 import { IAuth } from '../types/authContext';
+import { useQueryClient } from 'react-query';
 
 const AuthContext = React.createContext(null);
 
@@ -28,6 +29,9 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<User>();
   const [idToken, setIdToken] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
+
+  // Queries
+  const queryClient = useQueryClient();
   const createNewUserMutation = useCreateNewUserMutation({
     endpoint,
     fetchParams: { headers: headers(idToken) },
@@ -50,7 +54,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout(): Promise<void> {
-    return signOut(auth);
+    return signOut(auth).then(() => queryClient.invalidateQueries());
   }
 
   function resetPassword(email): Promise<void> {

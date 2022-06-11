@@ -15,11 +15,14 @@ gql`
       }
       thumbnailUrl
       copiedFrom {
-        userName
         id
+        firebaseId
+        userName
       }
       user {
+        id
         firebaseId
+        userName
       }
       optionParameters
       createdAt

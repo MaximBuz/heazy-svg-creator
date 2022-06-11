@@ -136,7 +136,9 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
               transition="0.2s"
               as="button"
               disabled={design?.user?.firebaseId !== currentUser?.uid}
-              onClick={() =>
+              onClick={() => {
+                console.log(design.user);
+                
                 copyTemplate.mutate(
                   {
                     optionParameters: design.optionParameters,
@@ -144,10 +146,10 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
                     name: design.name,
                     public: true,
                     thumbnailUrl: design.thumbnailUrl,
-                    typeId: design.typeId,
+                    typeId: design.type.id,
                   },
                   { onSuccess: () => increment.mutate({ id: design.id }) }
-                )
+                )}
               }
             />
           </Tooltip>

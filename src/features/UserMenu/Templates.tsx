@@ -71,7 +71,7 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }
             }}
             mutation={designMutation}
             isPublic={design.public}
-            copiedFrom={design.copiedFrom}
+            copiedFrom={design.copiedFrom.userName}
             timesCopied={design.timesCopied}
             imageSrc={
               design.thumbnailUrl !== 'null'

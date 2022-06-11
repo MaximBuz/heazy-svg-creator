@@ -211,7 +211,7 @@ export type GetPublicDesignsQueryVariables = Exact<{
 }>;
 
 
-export type GetPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null, user: { __typename?: 'User', firebaseId: string } } | null> | null };
+export type GetPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, firebaseId: string, userName: string } | null, user: { __typename?: 'User', id: number, firebaseId: string, userName: string } } | null> | null };
 
 export type GetUserByFirebaseIdQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -466,11 +466,14 @@ export const GetPublicDesignsDocument = `
     }
     thumbnailUrl
     copiedFrom {
-      userName
       id
+      firebaseId
+      userName
     }
     user {
+      id
       firebaseId
+      userName
     }
     optionParameters
     createdAt

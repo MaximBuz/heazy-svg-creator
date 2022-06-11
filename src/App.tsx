@@ -25,6 +25,7 @@ import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 import { AuthProvider } from './contexts/Auth';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
+import Isolines from './features/Designs/Isolines';
 
 function App() {
   /* --------- STATE --------- */
@@ -39,13 +40,15 @@ function App() {
     if (design.name === 'bubble') return <Bubble svgRef={svgRef} seed={seed} />;
     if (design.name === 'corners') return <Corners svgRef={svgRef} seed={seed} />;
     if (design.name === 'marker') return <Marker svgRef={svgRef} seed={seed} />;
+    if (design.name === 'isolines') return <Isolines svgRef={svgRef} seed={seed} />;
   };
-
+  
   const renderOptionsMenu = () => {
     if (design.name === 'waves') return <WaveOptions />;
     if (design.name === 'bubble') return <BubbleOptions />;
     if (design.name === 'corners') return <CornerOptions />;
     if (design.name === 'marker') return <MarkerOptions />;
+    // if (design.name === 'isolines') return <IsolinesOptions svgRef={svgRef} seed={seed} />;
   };
 
   /* --------- STYLES --------- */

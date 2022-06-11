@@ -11,6 +11,7 @@ export interface IIsolinesProps {
 export interface IIsolinesVariantsProps {
   strokeWidth: number;
   strokeShrink: boolean;
+  invertStrokeShrink: boolean;
 }
 
 export interface IIsolinesShapeProps {

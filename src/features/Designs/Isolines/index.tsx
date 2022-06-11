@@ -142,10 +142,10 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
         </filter>
 
 
-        <g>
+        <g filter="url(#pencilTexture4)" >
           {pathData.map((circle, index) => (
             <path
-              filter="url(#pencilTexture5)" // options
+              // options
               d={circle}
               fill="none"
               strokeLinecap="round"

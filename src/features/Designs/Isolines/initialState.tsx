@@ -1,9 +1,9 @@
 import { IIsolinesAllProps } from '../../../types/isolinesProps';
 
 export const initialIsolineState: IIsolinesAllProps = {
-  bgColor: '#FBAE3C',
-  startColor: '#001e35',
-  endColor: '#001b2f',
+  bgColor: '#FEFEE2',
+  startColor: '#4d938c',
+  endColor: '#4D936D',
   strokeWidth: 5,
   strokeShrink: false,
   invertStrokeShrink: false,

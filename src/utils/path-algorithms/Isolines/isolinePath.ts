@@ -19,10 +19,10 @@ export interface IIsolineCoords {
 function initializeCoords(seed, velocity, width, height, iteration): IIsolineCoords {
   return {
     handles: {
-      right: (random(seed) - 0.5) * ((velocity / 100) * height / iteration),
-      left: (random(seed + 2) - 0.5) * ((velocity / 100) * width / iteration),
-      top: (random(seed + 3) - 0.5) * ((velocity / 100) * width / iteration),
-      bottom: (random(seed + 1) - 0.5) * ((velocity / 100) * height / iteration),
+      right: (random(seed) - 0.5) * (((velocity / 100) * height) / iteration),
+      left: (random(seed + 2) - 0.5) * (((velocity / 100) * width) / iteration),
+      top: (random(seed + 3) - 0.5) * (((velocity / 100) * width) / iteration),
+      bottom: (random(seed + 1) - 0.5) * (((velocity / 100) * height) / iteration),
     },
     anchors: {
       right: (random(seed) - 0.5) * (velocity / 100),
@@ -38,7 +38,7 @@ function calculatePath(
   size: number,
   outerCenter: { x: number; y: number },
   innerCenter: { x: number; y: number },
-  iteration: number,
+  iteration: number
 ) {
   const outerOffset = 1 / iteration;
   const innerOffset = 1 - outerOffset;
@@ -118,15 +118,15 @@ export function isolinePath(
   };
 
   const innerCenter = {
-    x: outerCenter.x + ((random(seed) - 0.5)) * velocity,
-    y: outerCenter.y + ((random(seed + 1) - 0.5)) * velocity,
+    x: outerCenter.x + (random(seed) - 0.5) * velocity,
+    y: outerCenter.y + (random(seed + 1) - 0.5) * velocity,
   };
 
   const size = (width + height) / 4;
 
   const isoline = [];
   for (let iteration = 1; iteration <= depth + 1; iteration++) {
-    const sizeOffset = iteration * velocity
+    const sizeOffset = iteration * velocity;
     isoline.push(
       calculatePath(
         initializeCoords(seed, velocity, width, height, Math.log(iteration)),

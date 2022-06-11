@@ -38,7 +38,8 @@ function calculatePath(
   size: number,
   outerCenter: { x: number; y: number },
   innerCenter: { x: number; y: number },
-  iteration: number
+  iteration: number,
+  pressure: number
 ) {
   const outerOffset = 1 / iteration;
   const innerOffset = 1 - outerOffset;
@@ -53,10 +54,10 @@ function calculatePath(
       y: y + size + init.anchors.bottom,
       h1: {
         x: x + size - init.handles.right + init.anchors.right,
-        y: y + size / 2 + init.anchors.right,
+        y: y + size / pressure + init.anchors.right,
       },
       h2: {
-        x: x + size / 2 + init.anchors.bottom,
+        x: x + size / pressure + init.anchors.bottom,
         y: y + size + init.handles.bottom + init.anchors.bottom,
       },
     },
@@ -64,12 +65,12 @@ function calculatePath(
       x: x - size + init.anchors.left,
       y: y + init.anchors.left,
       h1: {
-        x: x - size / 2 + init.anchors.bottom,
+        x: x - size / pressure + init.anchors.bottom,
         y: y + size - init.handles.bottom + init.anchors.bottom,
       },
       h2: {
         x: x - size + init.handles.left + init.anchors.left,
-        y: y + size / 2 + init.anchors.left,
+        y: y + size / pressure + init.anchors.left,
       },
     },
     {
@@ -77,10 +78,10 @@ function calculatePath(
       y: y - size + init.anchors.top,
       h1: {
         x: x - size - init.handles.left + init.anchors.left,
-        y: y - size / 2 + init.anchors.left,
+        y: y - size / pressure + init.anchors.left,
       },
       h2: {
-        x: x - size / 2 + init.anchors.top,
+        x: x - size / pressure + init.anchors.top,
         y: y - size + init.handles.top + init.anchors.top,
       },
     },
@@ -88,12 +89,12 @@ function calculatePath(
       x: x + size + init.anchors.right,
       y: y + init.anchors.right,
       h1: {
-        x: x + size / 2 + init.anchors.top,
+        x: x + size / pressure + init.anchors.top,
         y: y - size - init.handles.top + init.anchors.top,
       },
       h2: {
         x: x + size + init.handles.right + init.anchors.right,
-        y: y - size / 2 + init.anchors.right,
+        y: y - size / pressure + init.anchors.right,
       },
     },
   ];
@@ -110,7 +111,9 @@ export function isolinePath(
   width: number, // of this single blob (not the whole canvas)
   height: number, // of this single blob (not the whole canvas)
   velocity: number,
-  depth: number
+  depth: number,
+  size: number,
+  pressure: number
 ): string[] {
   const outerCenter = {
     x: width / 2,
@@ -118,11 +121,9 @@ export function isolinePath(
   };
 
   const innerCenter = {
-    x: outerCenter.x + (random(seed) - 0.5) * velocity,
-    y: outerCenter.y + (random(seed + 1) - 0.5) * velocity,
+    x: outerCenter.x + (random(seed)) * velocity * 3 ,
+    y: outerCenter.y + (random(seed + 1)) * velocity * 3 ,
   };
-
-  const size = (width + height) / 4;
 
   const isoline = [];
   for (let iteration = 1; iteration <= depth + 1; iteration++) {
@@ -133,7 +134,8 @@ export function isolinePath(
         size - sizeOffset,
         outerCenter,
         innerCenter,
-        iteration
+        iteration,
+        pressure
       )
     );
   }

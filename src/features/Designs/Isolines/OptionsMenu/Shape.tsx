@@ -16,7 +16,7 @@ export interface IShapeProps {
 }
 
 const Shape: React.FunctionComponent = () => {
-  const { bubbleState: state, setBubbleState: setState } = useDesign();
+  const { isolinesState: state, setIsolinesState: setState } = useDesign();
   return (
     <>
       {/* ----- HEADLINE ------ */}
@@ -24,7 +24,42 @@ const Shape: React.FunctionComponent = () => {
         Shape
       </Heading>
 
-      {/* ----- Sice SLIDER ------ */}
+      {/* ----- RADIUS SLIDER ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Radius
+      </Heading>
+
+      <HStack>
+        <SliderIconWrapper
+          viewBox={'0 0 224 224'}
+          onClick={() => state.radius > 0.5 && setState((prev) => ({ ...prev, radius: prev.radius - 0.1 }))}
+        >
+          <SizeLeft />
+        </SliderIconWrapper>
+
+        <Slider
+          aria-label="radius"
+          value={state.radius}
+          min={0.5}
+          max={1}
+          step={0.1}
+          onChange={(val) => setState((prev) => ({ ...prev, radius: val }))}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <SliderIconWrapper
+          viewBox={'0 0 469 469'}
+          onClick={() => state.radius < 2 && setState((prev) => ({ ...prev, radius: prev.radius + 0.1 }))}
+        >
+          <SizeRight />
+        </SliderIconWrapper>
+      </HStack>
+      
+      {/* ----- SIZE SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Size
       </Heading>
@@ -32,7 +67,7 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 224 224'}
-          onClick={() => state.size > 0 && setState((prev) => ({ ...prev, size: prev.size - 10 }))}
+          onClick={() => state.size > 0.1 && setState((prev) => ({ ...prev, size: prev.size - 0.2 }))}
         >
           <SizeLeft />
         </SliderIconWrapper>
@@ -40,8 +75,9 @@ const Shape: React.FunctionComponent = () => {
         <Slider
           aria-label="size"
           value={state.size}
-          min={0}
-          max={300}
+          min={0.1}
+          max={2}
+          step={0.1}
           onChange={(val) => setState((prev) => ({ ...prev, size: val }))}
         >
           <SliderTrack>
@@ -52,7 +88,42 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 469 469'}
-          onClick={() => state.size < 300 && setState((prev) => ({ ...prev, size: prev.size + 10 }))}
+          onClick={() => state.size < 2 && setState((prev) => ({ ...prev, size: prev.size + 0.2 }))}
+        >
+          <SizeRight />
+        </SliderIconWrapper>
+      </HStack>
+      
+      {/* ----- PRESSURE SLIDER ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Pressure
+      </Heading>
+
+      <HStack>
+        <SliderIconWrapper
+          viewBox={'0 0 224 224'}
+          onClick={() => state.pressure > 0.1 && setState((prev) => ({ ...prev, pressure: prev.pressure - 0.5 }))}
+        >
+          <SizeLeft />
+        </SliderIconWrapper>
+
+        <Slider
+          aria-label="size"
+          value={state.pressure}
+          min={0.1}
+          max={3}
+          step={0.1}
+          onChange={(val) => setState((prev) => ({ ...prev, pressure: val }))}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <SliderIconWrapper
+          viewBox={'0 0 469 469'}
+          onClick={() => state.pressure < 3 && setState((prev) => ({ ...prev, pressure: prev.pressure + 0.5 }))}
         >
           <SizeRight />
         </SliderIconWrapper>
@@ -90,6 +161,44 @@ const Shape: React.FunctionComponent = () => {
           viewBox={'0 0 444 456'}
           onClick={() =>
             state.velocity < 100 && setState((prev) => ({ ...prev, velocity: state.velocity + 10 }))
+          }
+        >
+          <VelocityRight />
+        </SliderIconWrapper>
+      </HStack>
+      
+      {/* ----- DEPTH SLIDER ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Depth
+      </Heading>
+
+      <HStack>
+        <SliderIconWrapper
+          viewBox={'0 0 465 465'}
+          onClick={() =>
+            state.depth > 0 && setState((prev) => ({ ...prev, depth: state.depth - 1 }))
+          }
+        >
+          <VelocityLeft />
+        </SliderIconWrapper>
+
+        <Slider
+          aria-label="depth"
+          value={state.depth}
+          min={0}
+          max={20}
+          onChange={(val) => setState((prev) => ({ ...prev, depth: val }))}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <SliderIconWrapper
+          viewBox={'0 0 444 456'}
+          onClick={() =>
+            state.depth < 20 && setState((prev) => ({ ...prev, depth: state.depth + 1 }))
           }
         >
           <VelocityRight />

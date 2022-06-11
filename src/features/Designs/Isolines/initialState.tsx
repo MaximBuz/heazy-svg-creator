@@ -5,8 +5,13 @@ export const initialIsolineState: IIsolinesAllProps = {
   startColor: '#4d938c',
   endColor: '#4D936D',
   strokeWidth: 5,
-  strokeShrink: false,
-  invertStrokeShrink: false,
+  strokeShrink: true,
+  strokeStyle: 4,
   velocity: 50,
   depth: 4,
+  radius: 0.5,
+  size: 1,
+  x: 0,
+  y: 0,
+  pressure: 2
 };

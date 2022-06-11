@@ -26,6 +26,7 @@ import { IWaveAllProps } from '../../../types/waveProps';
 import { IBubbleAllProps } from '../../../types/bubbleProps';
 import { IMarkerAllProps } from '../../../types/markerProps';
 import { ICornerAllProps } from '../../../types/cornerProps';
+import { IIsolinesAllProps } from '../../../types/isolinesProps';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
@@ -33,7 +34,8 @@ type IColorOptionProps =
   | { state: IWaveAllProps; setState: Dispatch<SetStateAction<IWaveAllProps>> }
   | { state: IBubbleAllProps; setState: Dispatch<SetStateAction<IBubbleAllProps>> }
   | { state: IMarkerAllProps; setState: Dispatch<SetStateAction<IMarkerAllProps>> }
-  | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>> }
+  | { state: ICornerAllProps; setState: Dispatch<SetStateAction<ICornerAllProps>>; }
+  | { state: IIsolinesAllProps; setState: Dispatch<SetStateAction<IIsolinesAllProps>> }
 
 const ColorOptions: React.FunctionComponent<IColorOptionProps> = memo(({ state, setState }) => {
   return (

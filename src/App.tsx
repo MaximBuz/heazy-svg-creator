@@ -26,6 +26,7 @@ import { AuthProvider } from './contexts/Auth';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 import Isolines from './features/Designs/Isolines';
+import IsolinesOptions from './features/Designs/Isolines/OptionsMenu';
 
 function App() {
   /* --------- STATE --------- */
@@ -48,7 +49,7 @@ function App() {
     if (design.name === 'bubble') return <BubbleOptions />;
     if (design.name === 'corners') return <CornerOptions />;
     if (design.name === 'marker') return <MarkerOptions />;
-    // if (design.name === 'isolines') return <IsolinesOptions svgRef={svgRef} seed={seed} />;
+    if (design.name === 'isolines') return <IsolinesOptions />;
   };
 
   /* --------- STYLES --------- */

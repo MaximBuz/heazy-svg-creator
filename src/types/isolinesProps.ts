@@ -8,18 +8,29 @@ export interface IIsolinesProps {
   height: number;
 }
 
+export type strokeStyles = 1 | 2 | 3 | 4;
+
 export interface IIsolinesVariantsProps {
   strokeWidth: number;
   strokeShrink: boolean;
-  invertStrokeShrink: boolean;
+  strokeStyle: strokeStyles;
 }
 
 export interface IIsolinesShapeProps {
   velocity: number;
   depth: number;
+  size: number;
+  radius: number;
+  pressure: number;
+}
+
+export interface IIsolinePositionProps {
+  x: number;
+  y: number;
 }
 
 export type IIsolinesAllProps =
   IIsolinesShapeProps &
   IIsolinesVariantsProps &
+  IIsolinePositionProps &
   IColors

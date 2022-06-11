@@ -10,22 +10,19 @@ import Variants from './Variants';
 // Types
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
-import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
 import { useDesign } from '../../../../contexts/Design';
 
-const BubbleOptions: React.FunctionComponent = () => {
-  const { bubbleState, setBubbleState } = useDesign();
+const IsolinesOptions: React.FunctionComponent = () => {
+  const { isolinesState, setIsolinesState } = useDesign();
   return (
     <>
       <Variants />
       <Divider />
       <Shape />
       <Divider />
-      <ColorOptions state={bubbleState} setState={setBubbleState} />
-      <Divider />
-      <ShadowOptions state={bubbleState} setState={setBubbleState} />
+      <ColorOptions state={isolinesState} setState={setIsolinesState} />
     </>
   );
 };
 
-export default BubbleOptions;
+export default IsolinesOptions;

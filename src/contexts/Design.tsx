@@ -19,6 +19,8 @@ import { svgToBlob } from '../utils/helpers/downloadBlob';
 import { useCanvasDimensions } from '../features';
 import { IDesignProvider } from '../types/designContext';
 import { useAuth } from './Auth';
+import { initialIsolineState } from '../features/Designs/Isolines/initialState';
+import { IIsolinesAllProps } from '../types/isolinesProps';
 
 const DesignContext = React.createContext(null);
 
@@ -28,7 +30,7 @@ export function useDesign() {
 }
 
 /* ----- PROVIDER ----- */
-export function DesignProvider ({ children }) {
+export function DesignProvider({ children }) {
   // get auth
   const auth = useAuth();
 
@@ -39,9 +41,13 @@ export function DesignProvider ({ children }) {
   const [bubbleState, setBubbleState] = useState<IBubbleAllProps>(initialBubbleState);
   const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
   const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
+  const [isolinesState, setIsolinesState] = useState<IIsolinesAllProps>(initialIsolineState);
 
   // getting DesignTypes from database
-  const { data: designTypes, isSuccess } = useGetDesignTypesQuery({ endpoint, fetchParams: { headers: headers(auth?.idToken) } });
+  const { data: designTypes, isSuccess } = useGetDesignTypesQuery({
+    endpoint,
+    fetchParams: { headers: headers(auth?.idToken) },
+  });
 
   // Setting state to parameters saved from templates
   function copyTemplateParams(designParams: Design) {
@@ -50,6 +56,7 @@ export function DesignProvider ({ children }) {
     if (type.name === 'bubble') setBubbleState({ ...bubbleState, ...designParams.optionParameters });
     if (type.name === 'corners') setCornerState({ ...cornerState, ...designParams.optionParameters });
     if (type.name === 'marker') setMarkerState({ ...markerState, ...designParams.optionParameters });
+    if (type.name === 'isolines') setIsolinesState({ ...isolinesState, ...designParams.optionParameters });
     setDesign(type);
   }
 
@@ -64,7 +71,10 @@ export function DesignProvider ({ children }) {
     svgRef: Ref<SVGAElement | null>
   ) {
     const reference = ref(storage, `thumbnails/${firebaseId}/${name}.png`);
-    return uploadBytes(reference, await svgToBlob(svgRef), { contentType: 'image/png', cacheControl: 'max-age=31536000'})
+    return uploadBytes(reference, await svgToBlob(svgRef), {
+      contentType: 'image/png',
+      cacheControl: 'max-age=31536000',
+    })
       .then((snapshot) => {
         mutation.mutate(
           {
@@ -93,6 +103,7 @@ export function DesignProvider ({ children }) {
             { name: 'bubble', id: 2 },
             { name: 'corners', id: 3 },
             { name: 'marker', id: 4 },
+            { name: 'isolines', id: 5 },
           ],
         },
 
@@ -107,6 +118,9 @@ export function DesignProvider ({ children }) {
 
     markerState,
     setMarkerState,
+
+    isolinesState,
+    setIsolinesState,
 
     copyTemplateParams,
     saveTemplate,

@@ -68,7 +68,9 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
                       ? bubble
                       : type.name === 'corners'
                       ? smoothStage
-                      : marker
+                      : type.name === 'marker'
+                      ? marker
+                      : marker // here put isolines placeholder
                   }
                   type={type}
                 ></Thumbnail>

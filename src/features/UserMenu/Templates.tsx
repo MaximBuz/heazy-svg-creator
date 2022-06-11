@@ -82,7 +82,9 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }
                 ? placeholderBubble
                 : design.type.name === 'corners'
                 ? placeholderCorners
-                : placeholderMarker
+                : design.type.name === 'markers'
+                ? placeholderMarker
+                : placeholderMarker // here put isolines placeholder
             }
             caption={design.name}
           ></OwnThumbnail>

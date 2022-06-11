@@ -38,7 +38,9 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
       ? placeholderBubble
       : design.type.name === 'corners'
       ? placeholderCorners
-      : placeholderMarker;
+      : design.type.name === 'markers'
+      ? placeholderMarker
+      : placeholderMarker; // here put isolines placeholder
 
   return (
     <AnimatePresence>
@@ -140,7 +142,7 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
               disabled={design?.user?.firebaseId !== currentUser?.uid}
               onClick={() => {
                 console.log(design.user);
-                
+
                 copyTemplate.mutate(
                   {
                     optionParameters: design.optionParameters,
@@ -151,8 +153,8 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
                     typeId: design.type.id,
                   },
                   { onSuccess: () => increment.mutate({ id: design.id }) }
-                )}
-              }
+                );
+              }}
             />
           </Tooltip>
         </HStack>

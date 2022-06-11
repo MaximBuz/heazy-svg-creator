@@ -1,3 +1,4 @@
+import { IIsolinesAllProps } from './isolinesProps';
 import { Dispatch, SetStateAction, Ref } from 'react';
 import { ICanvasDimensions } from './canvasDimensions';
 import { IDesignModes } from './designModes';
@@ -26,6 +27,9 @@ export interface IDesignProvider {
 
   markerState: IMarkerAllProps;
   setMarkerState: Dispatch<SetStateAction<IMarkerAllProps>>;
+
+  isolinesState: IIsolinesAllProps;
+  setIsolinesState: Dispatch<SetStateAction<IIsolinesAllProps>>;
 
   copyTemplateParams: (designParams: Design) => void;
   saveTemplate: (

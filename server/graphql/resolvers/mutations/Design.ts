@@ -14,16 +14,18 @@ export async function createNewDesign(
   context: Context
 ) {
   if (!context.uid) throw new GraphQLError(`Not Authorized`);
-  const design = await context.prisma.design.create({
-    data: {
-      name: _args.name,
-      type: { connect: { id: _args.typeId } },
-      optionParameters: _args.optionParameters,
-      user: { connect: { firebaseId: context.uid } },
-      thumbnailUrl: _args.thumbnailUrl,
-      copiedFrom: { connect: { id: _args.copiedFromUserId } },
-    },
-  });
+
+  const data: Prisma.DesignCreateInput = {
+    name: _args.name,
+    type: { connect: { id: _args.typeId } },
+    optionParameters: _args.optionParameters,
+    user: { connect: { firebaseId: context.uid } },
+    thumbnailUrl: _args.thumbnailUrl,
+  };
+
+  if (_args.copiedFromUserId) data.copiedFrom = { connect: { id: _args.copiedFromUserId } };
+
+  const design = await context.prisma.design.create({ data });
   return design;
 }
 

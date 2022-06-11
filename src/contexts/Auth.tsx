@@ -73,6 +73,7 @@ export function AuthProvider({ children }) {
           })
           .catch((err) => console.log(err));
       } else {
+        setIdToken(undefined);
         setCurrentUser(user);
         setLoading(false);
       }

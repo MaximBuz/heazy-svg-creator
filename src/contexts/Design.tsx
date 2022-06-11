@@ -64,7 +64,7 @@ export function DesignProvider ({ children }) {
     svgRef: Ref<SVGAElement | null>
   ) {
     const reference = ref(storage, `thumbnails/${firebaseId}/${name}.png`);
-    return uploadBytes(reference, await svgToBlob(svgRef), { contentType: 'image/png', cacheControl: 'max-age=' + 1000 * 60 * 60 * 24 })
+    return uploadBytes(reference, await svgToBlob(svgRef), { contentType: 'image/png', cacheControl: 'max-age=31536000'})
       .then((snapshot) => {
         mutation.mutate(
           {

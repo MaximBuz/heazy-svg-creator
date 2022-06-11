@@ -3,7 +3,7 @@ import { PrismaClient, Prisma } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const userData: Prisma.UserCreateInput = {
-  firebaseId: 'L3sVgPJtaQYSTjxjUdqeBZC2ylX2',
+  firebaseId: 'tlSixZcFlJaGB8P2HqmScEuXF6o1',
   email: 'mbuz.maxim@gmail.com',
   userName: 'codenameVandal',
 };

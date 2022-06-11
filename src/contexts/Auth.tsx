@@ -10,6 +10,7 @@ import {
   sendPasswordResetEmail,
   UserCredential,
   User,
+  sendEmailVerification,
 } from 'firebase/auth';
 
 import { useCreateNewUserMutation } from '../graphql/generated';
@@ -46,6 +47,9 @@ export function AuthProvider({ children }) {
         avatarUrl: String(userCred.user.photoURL),
       });
       return userCred;
+    }).then((userCred) => {
+      sendEmailVerification(auth.currentUser);
+      return userCred
     });
   }
 
@@ -54,7 +58,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout(): Promise<void> {
-    return signOut(auth).then(() => queryClient.invalidateQueries());
+    return signOut(auth).then(() => queryClient.removeQueries());
   }
 
   function resetPassword(email): Promise<void> {
@@ -62,7 +66,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         user
           .getIdToken(true)
@@ -74,7 +78,7 @@ export function AuthProvider({ children }) {
           .catch((err) => console.log(err));
       } else {
         setIdToken(undefined);
-        setCurrentUser(user);
+        setCurrentUser(undefined);
         setLoading(false);
       }
     });

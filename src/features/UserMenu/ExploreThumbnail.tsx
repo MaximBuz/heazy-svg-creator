@@ -16,6 +16,7 @@ import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
 import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
 import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
 import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
+// import placeholderIsolines from '../../assets/Thumbnails/placeholderIsolines.png';
 import { useAuth } from '../../contexts/Auth';
 
 const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
@@ -40,7 +41,9 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
       ? placeholderCorners
       : design.type.name === 'markers'
       ? placeholderMarker
-      : placeholderMarker; // here put isolines placeholder
+      : design.type.name === 'isolines'
+      ? placeholderMarker // here put isolines placeholder
+      : placeholderMarker // here put flare placeholder
 
   return (
     <AnimatePresence>

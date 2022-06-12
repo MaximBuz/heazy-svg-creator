@@ -21,6 +21,8 @@ import { IDesignProvider } from '../types/designContext';
 import { useAuth } from './Auth';
 import { initialIsolineState } from '../features/Designs/Isolines/initialState';
 import { IIsolinesAllProps } from '../types/isolinesProps';
+import { initialFlareState } from '../features/Designs/Flare/initialState';
+import { IFlareAllProps } from '../types/flareProps';
 
 const DesignContext = React.createContext(null);
 
@@ -42,6 +44,7 @@ export function DesignProvider({ children }) {
   const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
   const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
   const [isolinesState, setIsolinesState] = useState<IIsolinesAllProps>(initialIsolineState);
+  const [flareState, setFlareState] = useState<IFlareAllProps>(initialFlareState);
 
   // getting DesignTypes from database
   const { data: designTypes, isSuccess } = useGetDesignTypesQuery({
@@ -57,6 +60,7 @@ export function DesignProvider({ children }) {
     if (type.name === 'corners') setCornerState({ ...cornerState, ...designParams.optionParameters });
     if (type.name === 'marker') setMarkerState({ ...markerState, ...designParams.optionParameters });
     if (type.name === 'isolines') setIsolinesState({ ...isolinesState, ...designParams.optionParameters });
+    if (type.name === 'flare') setFlareState({ ...flareState, ...designParams.optionParameters });
     setDesign(type);
   }
 
@@ -104,6 +108,7 @@ export function DesignProvider({ children }) {
             { name: 'corners', id: 3 },
             { name: 'marker', id: 4 },
             { name: 'isolines', id: 5 },
+            { name: 'flare', id: 6 },
           ],
         },
 
@@ -121,6 +126,9 @@ export function DesignProvider({ children }) {
 
     isolinesState,
     setIsolinesState,
+
+    flareState,
+    setFlareState,
 
     copyTemplateParams,
     saveTemplate,

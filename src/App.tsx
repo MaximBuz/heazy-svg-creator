@@ -27,6 +27,7 @@ import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 import Isolines from './features/Designs/Isolines';
 import IsolinesOptions from './features/Designs/Isolines/OptionsMenu';
+import Flare from './features/Designs/Flare';
 
 function App() {
   /* --------- STATE --------- */
@@ -42,14 +43,16 @@ function App() {
     if (design.name === 'corners') return <Corners svgRef={svgRef} seed={seed} />;
     if (design.name === 'marker') return <Marker svgRef={svgRef} seed={seed} />;
     if (design.name === 'isolines') return <Isolines svgRef={svgRef} seed={seed} />;
+    if (design.name === 'flare') return <Flare svgRef={svgRef} seed={seed} />;
   };
-  
+
   const renderOptionsMenu = () => {
     if (design.name === 'waves') return <WaveOptions />;
     if (design.name === 'bubble') return <BubbleOptions />;
     if (design.name === 'corners') return <CornerOptions />;
     if (design.name === 'marker') return <MarkerOptions />;
     if (design.name === 'isolines') return <IsolinesOptions />;
+    if (design.name === 'flare') return <></>;
   };
 
   /* --------- STYLES --------- */

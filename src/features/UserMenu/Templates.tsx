@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Stack } from '@chakra-ui/react';
+import { Flex, Heading, Stack } from '@chakra-ui/react';
 import React from 'react';
 import { useQueryClient } from 'react-query';
 import { useDesign } from '../../contexts/Design';
@@ -11,6 +11,7 @@ import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
 import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
 import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
 import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
+import placeholderIsolines from '../../assets/Thumbnails/placeholderIsolines.png';
 
 // Components
 import OwnThumbnail from './OwnThumbnail';
@@ -84,7 +85,9 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }
                 ? placeholderCorners
                 : design.type.name === 'markers'
                 ? placeholderMarker
-                : placeholderMarker // here put isolines placeholder
+                : design.type.name === 'isolines'
+                ? placeholderMarker // here put isolines placeholder
+                : placeholderMarker // here put flare placeholder
             }
             caption={design.name}
           ></OwnThumbnail>

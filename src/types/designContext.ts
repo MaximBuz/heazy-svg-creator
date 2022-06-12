@@ -7,6 +7,7 @@ import { ICornerAllProps } from './cornerProps';
 import { IMarkerAllProps } from './markerProps';
 import { IWaveAllProps } from './waveProps';
 import { GetDesignTypesQuery, Design } from '../graphql/generated';
+import { IFlareAllProps } from './flareProps';
 
 export interface IDesignProvider {
   setWidth: Dispatch<SetStateAction<number>>;
@@ -30,6 +31,9 @@ export interface IDesignProvider {
 
   isolinesState: IIsolinesAllProps;
   setIsolinesState: Dispatch<SetStateAction<IIsolinesAllProps>>;
+  
+  flareState: IFlareAllProps;
+  setFlareState: Dispatch<SetStateAction<IFlareAllProps>>;
 
   copyTemplateParams: (designParams: Design) => void;
   saveTemplate: (

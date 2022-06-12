@@ -128,9 +128,10 @@ export function isolinePath(
   const isoline = [];
   for (let iteration = 1; iteration <= depth + 1; iteration++) {
     const sizeOffset = iteration * velocity;
+    
     isoline.push(
       calculatePath(
-        initializeCoords(seed, velocity, width, height, Math.log(iteration)),
+        initializeCoords(seed, velocity, width, height, Math.log(iteration + 1)),
         size - sizeOffset,
         outerCenter,
         innerCenter,
@@ -139,6 +140,6 @@ export function isolinePath(
       )
     );
   }
-
+  
   return isoline;
 }

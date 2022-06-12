@@ -6,6 +6,7 @@ import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
 import marker from '../../assets/Thumbnails/marker.svg';
 import bubble from '../../assets/Thumbnails/bubble.svg';
+import isolines from '../../assets/Thumbnails/isolines.png';
 import Logo from '../../assets/Logo.svg';
 import GitHubButton from 'react-github-btn';
 
@@ -70,7 +71,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
                       ? smoothStage
                       : type.name === 'marker'
                       ? marker
-                      : marker // here put isolines placeholder
+                      : isolines // here put isolines placeholder
                   }
                   type={type}
                 ></Thumbnail>

@@ -10,7 +10,8 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
   svgRef,
 }) => {
   const { isolinesState, canvasDimensions } = useDesign();
-
+  console.log(isolinesState);
+  
   // destructure some params
   const { width, height } = canvasDimensions;
   const { strokeWidth, strokeShrink, strokeStyle, radius, size, pressure } = isolinesState;

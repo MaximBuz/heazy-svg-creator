@@ -10,11 +10,10 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
   svgRef,
 }) => {
   const { isolinesState, canvasDimensions } = useDesign();
-  console.log(isolinesState);
   
   // destructure some params
   const { width, height } = canvasDimensions;
-  const { strokeWidth, strokeShrink, strokeStyle, radius, size, pressure } = isolinesState;
+  const { strokeWidth, strokeShrink, strokeStyle, radius, zoom, pressure, x, y } = isolinesState;
   const { velocity, depth } = isolinesState;
   const { bgColor, startColor, endColor } = isolinesState;
 
@@ -45,7 +44,7 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
               strokeWidth={strokeShrink ? strokeWidth / (index + 1) : strokeWidth}
               style={{
                 transformOrigin: 'center',
-                transform: `rotate(${(generateRandomNumber(seed) - 0.5) * 360}deg) scale(${size})`,
+                transform: `scale(${zoom}) translate(${x}px, ${y}px)`,
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
               }}
             ></path>

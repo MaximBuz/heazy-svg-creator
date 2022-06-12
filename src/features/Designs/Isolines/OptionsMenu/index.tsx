@@ -11,6 +11,7 @@ import Variants from './Variants';
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import { useDesign } from '../../../../contexts/Design';
+import Position from './Position';
 
 const IsolinesOptions: React.FunctionComponent = () => {
   const { isolinesState, setIsolinesState } = useDesign();
@@ -19,6 +20,8 @@ const IsolinesOptions: React.FunctionComponent = () => {
       <Variants />
       <Divider />
       <Shape />
+      <Divider />
+      <Position/>
       <Divider />
       <ColorOptions state={isolinesState} setState={setIsolinesState} />
     </>

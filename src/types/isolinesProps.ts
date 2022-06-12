@@ -19,12 +19,12 @@ export interface IIsolinesVariantsProps {
 export interface IIsolinesShapeProps {
   velocity: number;
   depth: number;
-  size: number;
   radius: number;
   pressure: number;
 }
 
 export interface IIsolinePositionProps {
+  zoom: number;
   x: number;
   y: number;
 }

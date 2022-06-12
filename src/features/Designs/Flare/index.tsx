@@ -47,6 +47,37 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
   const edgeWidth = 10;
 
   return (
+    <SvgCanvas width={width} height={height} svgRef={svgRef}>
+      <defs>
+        <radialGradient id="bubble-1"
+          cx="50%" cy="50%"
+          r="50%"
+          fx="50%" fy="50%"
+        >
+          <stop offset="0%" stopColor={farthestSideColor(0.3)}></stop>
+          <stop offset="100%" stopColor={farthestSideColor(0)}></stop>
+        </radialGradient>
+        
+        <radialGradient id="lens"
+          cx="50%" cy="50%"
+          r="50%"
+          fx="50%" fy="50%"
+        >
+          <stop offset="45%" stopColor={lensEnd}></stop>
+          <stop offset="40%" stopColor={backgroundColor(1)}></stop>
+          <stop offset="50%" stopColor={lensColor(lensOpacity)}></stop>
+        </radialGradient>
+
+
+      </defs>
+      {/* Bubble */}
+      {/* <circle cx={Math.round(rand(seed + 1) * 100) + "%"} cy={Math.round(random * 100) + "%"} r={Math.max(Math.round(random * 100), 50) + "%"} fill="url(#bubble-1)" /> */}
+      {/* Lens */}
+      <circle cx={`${Math.min(Math.round(random) * 200, 100)}px`} cy={`${Math.round(signedRandom * 200)}%`} r={Math.max(Math.round(random * 100), 50) + "%"} fill="url(#lens)" />
+    </SvgCanvas>
+  )
+
+  return (
     <Box
       width={width}
       height={height}

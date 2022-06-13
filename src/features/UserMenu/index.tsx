@@ -39,6 +39,7 @@ const UserMenu: React.FunctionComponent = () => {
         p="2"
         fill="none"
         gap="10px"
+        zIndex={1}
       >
         <Heading as="h4" size="xs">
           Personal Space

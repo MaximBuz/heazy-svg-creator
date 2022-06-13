@@ -31,7 +31,7 @@ export interface ISaveButtonProps {
 const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleStyles }) => {
   const { currentUser } = useAuth();
   const { onOpen: openUserSpace } = useUserSpace();
-  const { saveTemplate, design, waveState, bubbleState, cornerState, markerState } = useDesign();
+  const { saveTemplate, design, waveState, bubbleState, cornerState, markerState, isolinesState, flareState } = useDesign();
 
   // Handle saving Template
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -44,6 +44,8 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
       if (design.name === 'bubble') optionParameters = bubbleState;
       if (design.name === 'corners') optionParameters = cornerState;
       if (design.name === 'marker') optionParameters = markerState;
+      if (design.name === 'isolines') optionParameters = isolinesState;
+      if (design.name === 'flare') optionParameters = flareState;
       try {
         await saveTemplate(optionParameters, name, currentUser.uid, design.id, svgRef);
       } catch (err) {

@@ -29,7 +29,6 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
     isolinesState.innerOffsetX,
     isolinesState.innerOffsetY
   );
-  console.log(isolinesState);
 
   const randomClassId = useId().replaceAll(':', '');
   return (

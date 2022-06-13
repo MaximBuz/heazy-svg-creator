@@ -144,8 +144,6 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
               as="button"
               disabled={design?.user?.firebaseId !== currentUser?.uid}
               onClick={() => {
-                console.log(design.user);
-
                 copyTemplate.mutate(
                   {
                     optionParameters: design.optionParameters,

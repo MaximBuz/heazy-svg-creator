@@ -65,7 +65,7 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
       <SvgCanvas width={width} height={height} svgRef={svgRef}>
         <defs>
           <radialGradient id="lens-light">
-            <stop offset={random * 90 + '%'} stopColor={lensColor(0.5)}></stop>
+            <stop offset={random * 90 + '%'} stopColor={lensHex}></stop>
             <stop offset="100%" stopColor={lensColor(0)}></stop>
           </radialGradient>
 
@@ -124,7 +124,7 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
           )}
           <circle
             {...firstBubblePosition}
-            style={{ mixBlendMode: 'overlay', transition: '0.3s' }}
+            style={{ mixBlendMode: 'screen', transition: '0.3s' }} // Make this blendmode optional
             r={lensRadius + '%'}
             fill="url(#lens-light)"
           />

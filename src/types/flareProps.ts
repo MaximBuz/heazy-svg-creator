@@ -10,6 +10,7 @@ export interface IFlareColorProps {
   bgLightColor: string;
   irisColor: string;
   lensColor: string;
+  lensColorMode: string;
 }
 
 export interface IFlareShapeProps {

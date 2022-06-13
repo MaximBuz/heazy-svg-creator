@@ -9,9 +9,9 @@ const userData: Prisma.UserCreateInput = {
 };
 
 async function main() {
-  await prisma.designType.createMany({
-    data: [{ name: 'waves' }, { name: 'bubble' }, { name: 'corners' }, { name: 'marker' }, { name: 'isolines' }],
-  });
+  // await prisma.designType.createMany({
+  //   data: [{ name: 'waves' }, { name: 'bubble' }, { name: 'corners' }, { name: 'marker' }, { name: 'isolines' }],
+  // });
   await prisma.user.create({ data: userData });
 }
 

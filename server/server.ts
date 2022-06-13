@@ -6,6 +6,8 @@ import { context } from './context';
 import { getAuth } from 'firebase-admin/auth';
 import admin from './firebase';
 
+const PORT = process.env.PORT || 4000;
+
 const app = express();
 
 app.use(cors());
@@ -35,4 +37,4 @@ app.use((req, res, next) => {
 
 app.use('/graphql', graphqlHTTP({ schema, context, graphiql: true }));
 
-app.listen(4000, () => console.log('Server listening on Port 4000'));
+app.listen(PORT, () => console.log(`Server listening on Port ${PORT}`));

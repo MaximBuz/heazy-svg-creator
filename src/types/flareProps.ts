@@ -1,5 +1,3 @@
-import { IColors } from './colorProps';
-
 export interface IFlareProps {
   svgRef: any;
   seed: number;
@@ -7,22 +5,20 @@ export interface IFlareProps {
   height: number;
 }
 
-export interface IFlareVariantsProps {
-
+export interface IFlareColorProps {
+  bgColor: string;
+  bgLightColor: string;
+  irisColor: string;
+  lensColor: string;
 }
 
 export interface IFlareShapeProps {
-
+  lensRadius: number; // 80 - 100
+  lensVolume: number; // 1 - 5
+  lensCut: boolean;
+  irisWidth: number; // 1 - 10
+  irisIntensity: number; // 0 - 2
+  direction: number; // 0 - 3
 }
 
-export interface IIsolinePositionProps {
-  zoom: number;
-  x: number;
-  y: number;
-}
-
-export type IFlareAllProps =
-  IFlareShapeProps &
-  IFlareVariantsProps &
-  IIsolinePositionProps &
-  IColors
+export type IFlareAllProps = IFlareShapeProps & IFlareColorProps

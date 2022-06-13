@@ -1,21 +1,7 @@
 import React from 'react';
 import { ICornerSvgGroup } from '../../../types/cornerSvgGroup';
-function getTransformation(direction: number): string {
-  switch (direction) {
-    case 0: {
-      return 'scale(1, 1)';
-    }
-    case 1: {
-      return 'scale(-1, 1)';
-    }
-    case 2: {
-      return 'scale(1, -1)';
-    }
-    case 3: {
-      return 'scale(-1, -1)';
-    }
-  }
-}
+import mirror from '../../../utils/helpers/getTransform';
+
 
 const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
   // destructure some params
@@ -25,11 +11,8 @@ const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
   const { shadowColor, shadowSD, shadowX, shadowY } = props;
   const { startColor, endColor } = props;
 
-  // get transformatio property for mirroring
-  const scale = getTransformation(direction);
-
   return (
-    <g transform-origin={`${width / 2} ${height / 2}`} transform={scale}>
+    <g transform-origin={`${width / 2} ${height / 2}`} transform={mirror(direction)}>
       <linearGradient id={`linear-gradient-${classId}`}>
         <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
         <stop offset="100%" stopColor={endColor} stopOpacity="100%" />

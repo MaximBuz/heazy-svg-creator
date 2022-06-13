@@ -7,6 +7,7 @@ import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
 import marker from '../../assets/Thumbnails/marker.svg';
 import bubble from '../../assets/Thumbnails/bubble.svg';
 import isolines from '../../assets/Thumbnails/isolines.png';
+import flare from '../../assets/Thumbnails/flare.png';
 import Logo from '../../assets/Logo.svg';
 import GitHubButton from 'react-github-btn';
 
@@ -73,7 +74,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
                       ? marker
                       : type.name === 'isolines'
                       ? isolines
-                      : isolines // here put flare placeholder
+                      : flare // here put flare placeholder
                   }
                   type={type}
                 ></Thumbnail>

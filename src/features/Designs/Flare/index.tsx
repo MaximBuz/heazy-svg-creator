@@ -24,8 +24,9 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
   const farthestSideColor = (opacity) =>
     `rgb(${rgbStart.red}, ${rgbStart.green}, ${rgbStart.blue},${opacity})`;
   const farthestSidePosition = `-${Math.round(random * 100)}% ${Math.round(random * 100)}%`;
-  const farthestSideStart = Math.round((random - 0.5) * 50);
-  const farthestSideEnd = Math.round((random + 0.5) * 50);
+  const farthestSidePosition2 = { cx:`-${Math.round(signedRandom * 200)}` , cy:`${Math.round(signedRandom * 100)}%`} 
+  const farthestSideStart = Math.round((random - 1) * 50);
+  const farthestSideEnd = Math.round((random + 1) * 50);
 
   // Second Bubble
   const secondBubblePosition = `${Math.round(signedRandom * 50)}% -${Math.round(random * 100)}%`;
@@ -45,60 +46,52 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
   const lensEdge = Math.min(Math.round(random * 200), 50);
   const edgeSharpness = 0.8;
   const edgeWidth = 10;
-
-  // return (
-  //   <SvgCanvas width={width} height={height} svgRef={svgRef}>
-  //     <defs>
-  //       <radialGradient id="bubble-1"
-  //         cx="50%" cy="50%"
-  //         r="50%"
-  //         fx="50%" fy="50%"
-  //       >
-  //         <stop offset="0%" stopColor={farthestSideColor(0.3)}></stop>
-  //         <stop offset="100%" stopColor={farthestSideColor(0)}></stop>
-  //       </radialGradient>
-        
-  //       <radialGradient id="lens"
-  //         cx="50%" cy="50%"
-  //         r="50%"
-  //         fx="50%" fy="50%"
-  //       >
-  //         <stop offset="45%" stopColor={lensEnd}></stop>
-  //         <stop offset="40%" stopColor={backgroundColor(1)}></stop>
-  //         <stop offset="50%" stopColor={lensColor(lensOpacity)}></stop>
-  //       </radialGradient>
-
-
-  //     </defs>
-  //     {/* Bubble */}
-  //     {/* <circle cx={Math.round(rand(seed + 1) * 100) + "%"} cy={Math.round(random * 100) + "%"} r={Math.max(Math.round(random * 100), 50) + "%"} fill="url(#bubble-1)" /> */}
-  //     {/* Lens */}
-  //     <circle cx={`${Math.min(Math.round(random) * 200, 100)}px`} cy={`${Math.round(signedRandom * 200)}%`} r={Math.max(Math.round(random * 100), 50) + "%"} fill="url(#lens)" />
-  //   </SvgCanvas>
-  // )
-
   return (
-    <Box
-      width={width}
-      height={height}
-      bgImage={`
-      // Lens
-      radial-gradient(
-        circle farthest-corner at ${lensPosition(0, 0)},
-        ${lensColor(lensOpacity)} ${lensEdge - edgeWidth * 10}%,
-        ${backgroundColor(1)} ${lensEdge}%,
-        ${lensEnd} ${lensEdge + edgeWidth * edgeSharpness}%,
-        rgb(0, 0, 0, 0) ${lensEdge + edgeWidth}%
-      )
+    <>
+      <SvgCanvas width={width} height={height / 2} svgRef={svgRef}>
+        <defs>
+          <radialGradient id="bubble-1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset={`${farthestSideStart}%`} stopColor={farthestSideColor(0.3)}></stop>
+            <stop offset={`${farthestSideEnd}%`} stopColor={farthestSideColor(0)}></stop>
+          </radialGradient>
+
+          <radialGradient id="lens" >
+            <stop offset="45%" stopColor={lensEnd}></stop>
+            <stop offset="40%" stopColor={backgroundColor(1)}></stop>
+            <stop offset="50%" stopColor={lensColor(lensOpacity)}></stop>
+          </radialGradient>
+        </defs>
+        {/* Bubble */}
+        {/* <circle {...farthestSidePosition2} r="100%" fill="url(#bubble-1)" /> */}
+        {/* Lens */}
+        <circle
+          cx={`${Math.min(Math.round(random) * 200, 100)}px`}
+          cy={`${Math.round(signedRandom * 200)}%`}
+          r={Math.max(Math.round(random * 100), 50) + '%'}
+          fill="url(#lens)"
+        />
+      </SvgCanvas>
+      
+      <Box
+        width={width}
+        height={height / 2}
+        bgImage={`
+        // Lens
+        radial-gradient(
+          circle farthest-corner at ${lensPosition(0, 0)},
+          ${lensColor(lensOpacity)} ${lensEdge - edgeWidth * 10}%,
+          ${backgroundColor(1)} ${lensEdge}%,
+          ${lensEnd} ${lensEdge + edgeWidth * edgeSharpness}%,
+          rgb(0, 0, 0, 0) ${lensEdge + edgeWidth}%
+        )
 
 `}
-    ></Box>
+      ></Box>
+    </>
   );
 };
 
 export default Flare;
-
-
 
 /* 
 

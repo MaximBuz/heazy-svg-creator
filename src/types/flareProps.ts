@@ -10,7 +10,7 @@ export interface IFlareColorProps {
   bgLightColor: string;
   irisColor: string;
   lensColor: string;
-  lensColorMode: string;
+  lensColorMode: "color-dodge" | "darken" | "screen" | "normal" | "hard-light" | "soft-light"
 }
 
 export interface IFlareShapeProps {

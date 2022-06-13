@@ -18,6 +18,7 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
     bgLightColor,
     irisColor: irisHex,
     lensColor: lensHex,
+    lensColorMode,
     lensRadius,
     lensVolume,
     lensCut,
@@ -32,16 +33,16 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
   const signedRandom2 = rand(seed + 2) - 0.5;
 
   const rgbBg = hexRgb(bgColor);
+  const rgbBgLight = hexRgb(bgLightColor);
   const rgbLens = hexRgb(lensHex);
-  const rgbBgLightColor = hexRgb(bgLightColor);
-  const rgbLensIris = hexRgb(irisHex);
+  const rgbIris = hexRgb(irisHex);
 
   // Colors
+  const backgroundColor = (opacity) => `rgb(${rgbBg.red}, ${rgbBg.green}, ${rgbBg.blue},${opacity})`;
   const lensColor = (opacity) => `rgb(${rgbLens.red}, ${rgbLens.green}, ${rgbLens.blue},${opacity})`;
-  const irisColor = (opacity) =>
-    `rgb(${rgbLensIris.red}, ${rgbLensIris.green}, ${rgbLensIris.blue},${opacity})`;
+  const irisColor = (opacity) => `rgb(${rgbIris.red}, ${rgbIris.green}, ${rgbIris.blue},${opacity})`;
   const backgroundLightColor = (opacity) =>
-    `rgb(${rgbBgLightColor.red}, ${rgbBgLightColor.green}, ${rgbBgLightColor.blue},${opacity})`;
+    `rgb(${rgbBgLight.red}, ${rgbBgLight.green}, ${rgbBgLight.blue},${opacity})`;
 
   // Positions
   const firstBubblePosition = {
@@ -57,8 +58,7 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
     cy: `${Math.round(signedRandom2 * 100) + offsetY}%`,
   });
 
-  // Lens
-  const backgroundColor = (opacity) => `rgb(${rgbBg.red}, ${rgbBg.green}, ${rgbBg.blue},${opacity})`;
+  const mirrorIndices = [0, 1, 2, 3];
 
   return (
     <>
@@ -95,7 +95,10 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
         </defs>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>
 
-        <g transform-origin={`${width / 2} ${height / 2}`} transform={mirror(direction)}>
+        <g
+          transform-origin={`${width / 2} ${height / 2}`}
+          transform={mirror(mirrorIndices[Math.round(random * 4)])}
+        >
           <circle
             style={{ transition: '0.3s' }}
             {...backgroundLightPosition}
@@ -124,7 +127,7 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
           )}
           <circle
             {...firstBubblePosition}
-            style={{ mixBlendMode: 'screen', transition: '0.3s' }} // Make this blendmode optional
+            style={{ mixBlendMode: lensColorMode, transition: '0.3s' }}
             r={lensRadius + '%'}
             fill="url(#lens-light)"
           />

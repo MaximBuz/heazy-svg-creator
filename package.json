@@ -65,6 +65,7 @@
     ]
   },
   "devDependencies": {
-    "source-map-explorer": "^2.5.2"
+    "source-map-explorer": "^2.5.2",
+    "typescript": "latest"
   }
 }

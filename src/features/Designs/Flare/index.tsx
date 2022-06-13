@@ -82,7 +82,27 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
       width={width}
       height={height}
       bgImage={`
-      // Bubble
+      // Lens
+      radial-gradient(
+        circle farthest-corner at ${lensPosition(0, 0)},
+        ${lensColor(lensOpacity)} ${lensEdge - edgeWidth * 10}%,
+        ${backgroundColor(1)} ${lensEdge}%,
+        ${lensEnd} ${lensEdge + edgeWidth * edgeSharpness}%,
+        rgb(0, 0, 0, 0) ${lensEdge + edgeWidth}%
+      )
+
+`}
+    ></Box>
+  );
+};
+
+export default Flare;
+
+
+
+/* 
+
+// Bubble
       radial-gradient(
         circle farthest-side at ${farthestSidePosition},
         ${farthestSideColor(0.4)} ${farthestSideStart}%,
@@ -118,9 +138,5 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
         ${hexEnd} 26%,
         ${backgroundColor(1)} 72%
       );
-`}
-    ></Box>
-  );
-};
 
-export default Flare;
+*/

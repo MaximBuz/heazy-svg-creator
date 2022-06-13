@@ -10,6 +10,6 @@ export const initialFlareState: IFlareAllProps = {
   lensSpill: 4,
   lensCut: true,
   irisWidth: 5,
-  irisIntensity: 0.5,
+  irisIntensity: 1,
   direction: 0
 };

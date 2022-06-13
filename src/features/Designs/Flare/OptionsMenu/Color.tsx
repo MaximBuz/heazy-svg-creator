@@ -1,5 +1,5 @@
 // React
-import React, { Dispatch, memo, SetStateAction } from 'react';
+import React, { memo } from 'react';
 
 // Styles
 import {

@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { memo } from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';
@@ -8,7 +8,7 @@ import { Divider } from '@chakra-ui/react';
 import Shape from './Shape';
 import Color from './Color';
 
-const FlareOptions: React.FunctionComponent = () => {
+const FlareOptions: React.FunctionComponent = memo(() => {
 
   return (
     <>
@@ -17,6 +17,6 @@ const FlareOptions: React.FunctionComponent = () => {
       <Color />
     </>
   );
-};
+});
 
 export default FlareOptions;

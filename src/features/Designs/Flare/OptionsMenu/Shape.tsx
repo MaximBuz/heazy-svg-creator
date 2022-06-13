@@ -1,10 +1,15 @@
-import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch } from '@chakra-ui/react';
-import React  from 'react';
+import {
+  Heading,
+  HStack,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@chakra-ui/react';
+import React from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import { useDesign } from '../../../../contexts/Design';
 import * as icons from './icons';
-
-
 
 const Shape: React.FunctionComponent = () => {
   const { flareState: state, setFlareState: setState } = useDesign();
@@ -23,9 +28,11 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.lensRadius > 50 && setState((prev) => ({ ...prev, lensRadius: prev.lensRadius - 5 }))}
+          onClick={() =>
+            state.lensRadius > 50 && setState((prev) => ({ ...prev, lensRadius: prev.lensRadius - 5 }))
+          }
         >
-          <icons.radiusLeft />
+          <icons.lensRadiusLow />
         </SliderIconWrapper>
 
         <Slider
@@ -44,9 +51,11 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.lensRadius < 100 && setState((prev) => ({ ...prev, lensRadius: prev.lensRadius + 5 }))}
+          onClick={() =>
+            state.lensRadius < 100 && setState((prev) => ({ ...prev, lensRadius: prev.lensRadius + 5 }))
+          }
         >
-          <icons.radiusRight />
+          <icons.lensRadiusHigh />
         </SliderIconWrapper>
       </HStack>
 
@@ -58,9 +67,11 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.lensSpill > 1 && setState((prev) => ({ ...prev, lensSpill: prev.lensSpill - 0.5 }))}
+          onClick={() =>
+            state.lensSpill > 1 && setState((prev) => ({ ...prev, lensSpill: prev.lensSpill - 0.5 }))
+          }
         >
-          <icons.radiusLeft />
+          <icons.lensSpillLow />
         </SliderIconWrapper>
 
         <Slider
@@ -79,13 +90,14 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.lensSpill < 5 && setState((prev) => ({ ...prev, lensSpill: prev.lensSpill + 0.5 }))}
+          onClick={() =>
+            state.lensSpill < 5 && setState((prev) => ({ ...prev, lensSpill: prev.lensSpill + 0.5 }))
+          }
         >
-          <icons.radiusRight />
+          <icons.lensSpillHigh />
         </SliderIconWrapper>
       </HStack>
-      
-      
+
       {/* ----- IRIS WIDTH SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Iris Width
@@ -94,9 +106,11 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.irisWidth > 1 && setState((prev) => ({ ...prev, irisWidth: prev.irisWidth - 1 }))}
+          onClick={() =>
+            state.irisWidth > 1 && setState((prev) => ({ ...prev, irisWidth: prev.irisWidth - 1 }))
+          }
         >
-          <icons.radiusLeft />
+          <icons.irisWidthLow />
         </SliderIconWrapper>
 
         <Slider
@@ -115,12 +129,14 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.irisWidth < 15 && setState((prev) => ({ ...prev, irisWidth: prev.irisWidth + 1 }))}
+          onClick={() =>
+            state.irisWidth < 15 && setState((prev) => ({ ...prev, irisWidth: prev.irisWidth + 1 }))
+          }
         >
-          <icons.radiusRight />
+          <icons.irisWidthHigh />
         </SliderIconWrapper>
       </HStack>
-      
+
       {/* ----- IRIS INTENSITY SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Iris Intensity
@@ -129,9 +145,12 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.irisIntensity > 0.1 && setState((prev) => ({ ...prev, irisIntensity: prev.irisIntensity - 0.1 }))}
+          onClick={() =>
+            state.irisIntensity > 0.1 &&
+            setState((prev) => ({ ...prev, irisIntensity: prev.irisIntensity - 0.1 }))
+          }
         >
-          <icons.radiusLeft />
+          <icons.intensityLow />
         </SliderIconWrapper>
 
         <Slider
@@ -150,13 +169,14 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.irisIntensity < 2 && setState((prev) => ({ ...prev, irisIntensity: prev.irisIntensity + 0.1 }))}
+          onClick={() =>
+            state.irisIntensity < 2 &&
+            setState((prev) => ({ ...prev, irisIntensity: prev.irisIntensity + 0.1 }))
+          }
         >
-          <icons.radiusRight />
+          <icons.intensityHigh />
         </SliderIconWrapper>
       </HStack>
-
-     
     </>
   );
 };

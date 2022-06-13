@@ -12,6 +12,12 @@ async function main() {
   // await prisma.designType.createMany({
   //   data: [{ name: 'waves' }, { name: 'bubble' }, { name: 'corners' }, { name: 'marker' }, { name: 'isolines' }],
   // });
+  await prisma.designType.create({data: {name: "waves"}})
+  await prisma.designType.create({data: {name: "bubble"}})
+  await prisma.designType.create({data: {name: "corners"}})
+  await prisma.designType.create({data: {name: "marker"}})
+  await prisma.designType.create({data: {name: "isolines"}})
+  await prisma.designType.create({data: {name: "flare"}})
   await prisma.user.create({ data: userData });
 }
 

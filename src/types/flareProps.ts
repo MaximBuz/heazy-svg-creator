@@ -5,21 +5,23 @@ export interface IFlareProps {
   height: number;
 }
 
+export interface IFlareShapeProps {
+  lensRadius: number; // 80 - 100
+  lensSpill: number; // 1 - 5
+  lensCut: boolean;
+  irisWidth: number; // 1 - 15
+  irisIntensity: number; // 0 - 2
+  direction: number; // 0 - 3
+}
+
+export type TLensColorModes = "color-dodge" | "darken" | "screen" | "normal" | "hard-light" | "soft-light"
 export interface IFlareColorProps {
   bgColor: string;
   bgLightColor: string;
   irisColor: string;
   lensColor: string;
-  lensColorMode: "color-dodge" | "darken" | "screen" | "normal" | "hard-light" | "soft-light"
+  lensColorMode: TLensColorModes;
 }
 
-export interface IFlareShapeProps {
-  lensRadius: number; // 80 - 100
-  lensVolume: number; // 1 - 5
-  lensCut: boolean;
-  irisWidth: number; // 1 - 10
-  irisIntensity: number; // 0 - 2
-  direction: number; // 0 - 3
-}
 
 export type IFlareAllProps = IFlareShapeProps & IFlareColorProps

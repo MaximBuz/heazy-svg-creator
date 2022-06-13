@@ -5,27 +5,18 @@ import React from 'react';
 import { Divider } from '@chakra-ui/react';
 
 // Components
-import Variants from './Variants';
-
-// Types
 import Shape from './Shape';
-import ColorOptions from '../../../OptionsMenu/ColorOptions';
-import { useDesign } from '../../../../contexts/Design';
-import Position from './Position';
+import Color from './Color';
 
-const IsolinesOptions: React.FunctionComponent = () => {
-  const { isolinesState, setIsolinesState } = useDesign();
+const FlareOptions: React.FunctionComponent = () => {
+
   return (
     <>
-      <Variants />
-      <Divider />
       <Shape />
       <Divider />
-      <Position/>
-      <Divider />
-      <ColorOptions state={isolinesState} setState={setIsolinesState} />
+      <Color />
     </>
   );
 };
 
-export default IsolinesOptions;
+export default FlareOptions;

@@ -20,11 +20,10 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
     lensColor: lensHex,
     lensColorMode,
     lensRadius,
-    lensVolume,
+    lensSpill,
     lensCut,
     irisWidth,
     irisIntensity,
-    direction,
   } = flareState;
 
   const random = rand(seed);
@@ -83,8 +82,8 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
           </radialGradient>
 
           <radialGradient id="lens-middle-color">
-            <stop offset={lensVolume * 10 + '%'} stopColor={lensColor(0)}></stop>
-            <stop offset={100 - (lensVolume * 10) / 2 + '%'} stopColor={lensColor(1)}></stop>
+            <stop offset={(5-lensSpill) * 10 + '%'} stopColor={lensColor(0)}></stop>
+            <stop offset={100 - ((5-lensSpill) * 10) / 2 + '%'} stopColor={lensColor(1)}></stop>
             <stop offset="100%" stopColor={lensColor(0)}></stop>
           </radialGradient>
 

@@ -28,6 +28,7 @@ import { UserSpaceProvider } from './contexts/UserSpace';
 import Isolines from './features/Designs/Isolines';
 import IsolinesOptions from './features/Designs/Isolines/OptionsMenu';
 import Flare from './features/Designs/Flare';
+import FlareOptions from './features/Designs/Flare/OptionsMenu';
 
 function App() {
   /* --------- STATE --------- */
@@ -52,7 +53,7 @@ function App() {
     if (design.name === 'corners') return <CornerOptions />;
     if (design.name === 'marker') return <MarkerOptions />;
     if (design.name === 'isolines') return <IsolinesOptions />;
-    if (design.name === 'flare') return <></>;
+    if (design.name === 'flare') return <FlareOptions></FlareOptions>;
   };
 
   /* --------- STYLES --------- */

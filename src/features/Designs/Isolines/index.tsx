@@ -1,24 +1,35 @@
 import React, { Ref, useId } from 'react';
-import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 import { isolinePath } from '../../../utils/path-algorithms/Isolines/isolinePath';
 import StrokeStyles from './strokeStyles';
+import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 
 const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
   seed,
   svgRef,
 }) => {
   const { isolinesState, canvasDimensions } = useDesign();
-  
+
   // destructure some params
   const { width, height } = canvasDimensions;
-  const { strokeWidth, strokeShrink, strokeStyle, radius, zoom, pressure, x, y } = isolinesState;
-  const { velocity, depth } = isolinesState;
+  const { zoom, x, y } = isolinesState;
   const { bgColor, startColor, endColor } = isolinesState;
 
   // generate paths
-  const pathData = isolinePath(seed, width, height, velocity, depth, ((width + height) / 2) * radius, pressure);
+  const pathData = isolinePath(
+    seed,
+    width,
+    height,
+    isolinesState.velocity,
+    isolinesState.depth,
+    ((width + height) / 2) * isolinesState.radius,
+    isolinesState.pressure,
+    isolinesState.distance,
+    isolinesState.innerOffsetX,
+    isolinesState.innerOffsetY
+  );
+  console.log(isolinesState);
 
   const randomClassId = useId().replaceAll(':', '');
   return (
@@ -31,9 +42,9 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
         </linearGradient>
 
         {/* ACHTUNG ye dicker desto mehr */}
-        <StrokeStyles strokeStyle={strokeStyle}></StrokeStyles>
+        <StrokeStyles strokeStyle={isolinesState.strokeStyle}></StrokeStyles>
 
-        <g filter={strokeStyle > 1 && 'url(#strokeStyle)'}>
+        <g filter={isolinesState.strokeStyle > 1 && 'url(#strokeStyle)'}>
           {pathData.map((circle, index) => (
             <path
               // options
@@ -41,9 +52,13 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
               fill="none"
               strokeLinecap="round"
               stroke={`url(#linear-gradient-${randomClassId})`}
-              strokeWidth={strokeShrink ? strokeWidth / (index + 1) : strokeWidth}
+              strokeWidth={
+                isolinesState.strokeShrink
+                  ? isolinesState.strokeWidth / (index + 1)
+                  : isolinesState.strokeWidth
+              }
               style={{
-                transformOrigin: 'center',
+                transformOrigin: `center`,
                 transform: `scale(${zoom}) translate(${x}px, ${y}px)`,
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
               }}

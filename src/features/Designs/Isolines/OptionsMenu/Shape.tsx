@@ -59,7 +59,7 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.pressure > 0.1 && setState((prev) => ({ ...prev, pressure: prev.pressure - 0.5 }))}
+          onClick={() => state.pressure > 0.7 && setState((prev) => ({ ...prev, pressure: prev.pressure - 0.5 }))}
         >
           <icons.pressureLeft />
         </SliderIconWrapper>
@@ -67,7 +67,7 @@ const Shape: React.FunctionComponent = () => {
         <Slider
           aria-label="size"
           value={state.pressure}
-          min={0.1}
+          min={0.7}
           max={3}
           step={0.1}
           onChange={(val) => setState((prev) => ({ ...prev, pressure: val }))}
@@ -159,6 +159,44 @@ const Shape: React.FunctionComponent = () => {
           }
         >
           <icons.depthRight />
+        </SliderIconWrapper>
+      </HStack>
+      
+      {/* ----- Distance SLIDER ------ */}
+      <Heading as="h4" size="xs" opacity={0.5}>
+        Distance
+      </Heading>
+
+      <HStack>
+        <SliderIconWrapper
+          viewBox={'0 0 514 545'}
+          onClick={() =>
+            state.distance > 0 && setState((prev) => ({ ...prev, distance: state.distance - 20 }))
+          }
+        >
+          <icons.depthRight />
+        </SliderIconWrapper>
+
+        <Slider
+          aria-label="distance"
+          value={state.distance}
+          min={0}
+          max={200}
+          onChange={(val) => setState((prev) => ({ ...prev, distance: val }))}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <SliderIconWrapper
+          viewBox={'0 0 514 545'}
+          onClick={() =>
+            state.distance < 200 && setState((prev) => ({ ...prev, distance: state.distance + 20 }))
+          }
+        >
+          <icons.depthLeft />
         </SliderIconWrapper>
       </HStack>
     </>

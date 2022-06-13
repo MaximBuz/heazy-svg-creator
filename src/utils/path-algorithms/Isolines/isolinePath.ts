@@ -19,10 +19,10 @@ export interface IIsolineCoords {
 function initializeCoords(seed, velocity, width, height, iteration): IIsolineCoords {
   return {
     handles: {
-      right: (random(seed) - 0.5) * (((velocity / 100) * height) / iteration),
+      right: (random(seed + 1) - 0.5) * (((velocity / 100) * height) / iteration),
       left: (random(seed + 2) - 0.5) * (((velocity / 100) * width) / iteration),
       top: (random(seed + 3) - 0.5) * (((velocity / 100) * width) / iteration),
-      bottom: (random(seed + 1) - 0.5) * (((velocity / 100) * height) / iteration),
+      bottom: (random(seed) - 0.5) * (((velocity / 100) * height) / iteration),
     },
     anchors: {
       right: (random(seed) - 0.5) * (velocity / 100),
@@ -108,38 +108,43 @@ function calculatePath(
 
 export function isolinePath(
   seed: number,
-  width: number, // of this single blob (not the whole canvas)
-  height: number, // of this single blob (not the whole canvas)
+  width: number, 
+  height: number,
   velocity: number,
   depth: number,
   size: number,
-  pressure: number
+  pressure: number,
+  distance: number,
+  innerOffsetX: number,
+  innerOffsetY: number
 ): string[] {
+
   const outerCenter = {
     x: width / 2,
     y: height / 2,
   };
 
   const innerCenter = {
-    x: outerCenter.x + (random(seed)) * velocity * 3 ,
-    y: outerCenter.y + (random(seed + 1)) * velocity * 3 ,
+    x: outerCenter.x * innerOffsetX,
+    y: outerCenter.y * innerOffsetY,
   };
 
   const isoline = [];
-  for (let iteration = 1; iteration <= depth + 1; iteration++) {
-    const sizeOffset = iteration * velocity;
-    
-    isoline.push(
-      calculatePath(
-        initializeCoords(seed, velocity, width, height, Math.log(iteration + 1)),
-        size - sizeOffset,
-        outerCenter,
-        innerCenter,
-        iteration,
-        pressure
-      )
-    );
+  for (let iteration = 2; iteration <= depth + 1; iteration++) {
+    const sizeOffset = iteration * distance ;
+
+    if (size - sizeOffset > 0)
+      isoline.push(
+        calculatePath(
+          initializeCoords(seed, velocity, width, height, Math.log(iteration + 1)),
+          size - sizeOffset,
+          outerCenter,
+          innerCenter,
+          iteration,
+          pressure
+        )
+      );
   }
-  
+
   return isoline;
 }

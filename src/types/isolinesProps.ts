@@ -21,6 +21,9 @@ export interface IIsolinesShapeProps {
   depth: number;
   radius: number;
   pressure: number;
+  distance: number; // 0 - 200
+  innerOffsetX: number; // 0 - 2
+  innerOffsetY: number; // 0 - 2
 }
 
 export interface IIsolinePositionProps {

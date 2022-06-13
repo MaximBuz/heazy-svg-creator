@@ -63,8 +63,8 @@ const Position: React.FunctionComponent = () => {
         <Slider
           aria-label="size"
           value={state.y}
-          min={-200}
-          max={1500}
+          min={-500}
+          max={500}
           onChange={(val) => setState((prev) => ({ ...prev, y: val }))}
         >
           <SliderTrack>
@@ -97,8 +97,8 @@ const Position: React.FunctionComponent = () => {
         <Slider
           aria-label="size"
           value={state.x}
-          min={-200}
-          max={1500}
+          min={-500}
+          max={500}
           onChange={(val) => setState((prev) => ({ ...prev, x: val }))}
         >
           <SliderTrack>

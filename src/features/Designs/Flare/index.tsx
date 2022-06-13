@@ -99,7 +99,6 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
           transform={mirror(mirrorIndices[Math.round(random * 4)])}
         >
           <circle
-            style={{ transition: '0.3s' }}
             {...backgroundLightPosition}
             r={50 + random * 200 + '%'}
             fill="url(#background-light)"

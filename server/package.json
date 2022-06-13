@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "tsc": "./node_modules/typescript/bin/tsc",
-    "build": "rimraf ./build && npm run tsc",
-    "start": "npm run build && node build/index.js"
+    "build": "rimraf ./dist && npm run tsc",
+    "start": "npm run build && node dist/index.js"
   },
   "engines": {
     "node": "18.2.0"

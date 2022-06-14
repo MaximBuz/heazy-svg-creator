@@ -1,7 +1,7 @@
 import React, { Dispatch, memo, SetStateAction, useEffect } from 'react';
 
 // Design
-import { Flex, Stack, Image, Heading } from '@chakra-ui/react';
+import { Flex, Stack, Image, Heading, Text, Link } from '@chakra-ui/react';
 import stackedWave from '../../assets/Thumbnails/stackedWaves.svg';
 import smoothStage from '../../assets/Thumbnails/smoothStage.svg';
 import marker from '../../assets/Thumbnails/marker.svg';
@@ -94,20 +94,27 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
             justifyContent="space-around"
             alignItems="center"
             direction="column"
+            p="3"
           >
-            <Heading lineHeight="1em" fontWeight="lighter" fontSize="2xl" fontFamily="Karla, sans-serif;">
-              HEAZY.
-            </Heading>
             {/* <Icon as={UilLinkedin} boxSize="8" cursor="pointer"></Icon> */}
             <GitHubButton
               href="https://github.com/MaximBuz/heazy-svg-creator"
               data-color-scheme="no-preference: dark_dimmed; light: dark_dimmed; dark: dark_dimmed;"
-              data-size="small"
+              data-size="large"
               data-show-count="true"
               aria-label="Star MaximBuz/heazy-svg-creator on GitHub"
             >
               Star
             </GitHubButton>
+            <Flex mt="-1.5" gap="5px" alignItems="center">
+              <Link _hover={{opacity: 1}} opacity={0.5} fontSize="xs" href="https://heazy.studio/privacy">
+                Privacy
+              </Link>
+              <Text opacity={0.5}>|</Text>
+              <Link _hover={{opacity: 1}} opacity={0.5} fontSize="xs" href="https://www.buymeacoffee.com/mbuzmaxim3">
+                Buy me a coffee
+              </Link>
+            </Flex>
           </Flex>
         </Flex>
       </>

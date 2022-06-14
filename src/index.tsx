@@ -8,6 +8,7 @@ import theme from './utils/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { DesignProvider } from './contexts/Design';
+import { CookiesProvider } from './contexts/Cookies';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient({
@@ -40,7 +41,9 @@ root.render(
           src="//gc.zgo.at/count.js"
         ></script>
         <DesignProvider>
-          <App />
+          <CookiesProvider>
+            <App />
+          </CookiesProvider>
         </DesignProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} position="top-right" />

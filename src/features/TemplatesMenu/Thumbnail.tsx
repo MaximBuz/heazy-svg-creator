@@ -7,18 +7,20 @@ import { Flex, Text, Image, Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { IDesignModes } from '../../types/designModes';
 import { logEvent } from 'firebase/analytics';
-import { analytics } from '../../firebase';
 import { useUserSpace } from '../../contexts/UserSpace';
+import { useCookies } from '../../contexts/Cookies';
 
 export interface IThumbnailProps {
   isActive: boolean;
   image: string;
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
-  type: IDesignModes
+  type: IDesignModes;
 }
 
 const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, setDesign, type }) => {
   const { isOpen: userSpaceIsOpen, onClose: closeUserSpace } = useUserSpace();
+  // Analytics
+  const cookies = useCookies();
   return (
     <Flex
       justifyContent="center"
@@ -29,7 +31,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, 
       _hover={{ background: '#3b4453', cursor: 'pointer' }}
       onClick={() => {
         userSpaceIsOpen && closeUserSpace();
-        logEvent(analytics, 'choose_design', { type });
+        cookies.consent && cookies.analytics && logEvent(cookies.analytics, 'choose_design', { type });
         setDesign(type);
       }}
     >

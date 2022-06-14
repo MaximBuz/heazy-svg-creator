@@ -26,9 +26,23 @@ import {
 import { AuthProvider } from './contexts/Auth';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
+import { useCookies } from './contexts/Cookies';
 
 // Styling
-import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
+import {
+  Flex,
+  Container,
+  FlexProps,
+  ContainerProps,
+  useToast,
+  Box,
+  Text,
+  Link,
+  Button,
+  HStack,
+} from '@chakra-ui/react';
+import CookieToast from './components/cookieToast';
+import { getCookie } from './utils/helpers/cookies';
 
 function App() {
   /* --------- STATE --------- */
@@ -36,7 +50,6 @@ function App() {
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
   const svgRef = useRef<SVGAElement | null>(null);
-
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
@@ -81,7 +94,11 @@ function App() {
       <InitialAnimation />
       <Flex {...wrapperStyles}>
         <UserSpaceProvider>
-        <TemplateMenu designTypes={designTypes} activeDesign={design.id} setDesign={setDesign}></TemplateMenu>
+          <TemplateMenu
+            designTypes={designTypes}
+            activeDesign={design.id}
+            setDesign={setDesign}
+          ></TemplateMenu>
           <AuthProvider>
             <UserMenu />
             <Container {...canvasStyles}>{renderCanvas()}</Container>

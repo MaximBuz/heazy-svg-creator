@@ -9,21 +9,21 @@ import {
   AlertIcon,
   Text,
   Image,
-  HStack,
-  Popover,
-  PopoverArrow,
-  PopoverContent,
-  PopoverTrigger as OrigPopoverTrigger,
   useDisclosure,
+  VStack,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useToast,
 } from '@chakra-ui/react';
 
 import { RaceBy } from '@uiball/loaders';
 import React, { Dispatch, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
 import LoginImg from '../../assets/Login.svg';
-import { CloseIcon } from '@chakra-ui/icons';
-
-const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
 export interface ILoginProps {
   setRegistrationMode: Dispatch<boolean>;
@@ -34,8 +34,9 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
   const [loading, setLoading] = useState(false);
 
   const { login, resetPassword: resetPw } = useAuth();
-  const { onOpen: openPwReset, onClose: closePwReset, isOpen: pwResetIsOpen } = useDisclosure();
+  const { onClose: closePwReset, isOpen: pwResetIsOpen, onToggle: togglePwReset } = useDisclosure();
   const [resetPwEmail, setResetPwEmail] = useState<string>();
+  const toast = useToast();
 
   function handleLogin(e) {
     e.preventDefault();
@@ -105,43 +106,52 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
         </Text>
       </Text>
 
-      <Popover isLazy isOpen={pwResetIsOpen} placement="left">
-        <PopoverTrigger>
-          <Text color="#ffffff81" fontSize="xs">
-            <Text _hover={{ cursor: 'pointer' }} color="#ffffffcd" display="inline">
-              Forgot your password?
-            </Text>
-          </Text>
-        </PopoverTrigger>
-        <PopoverContent p={5} bgColor="#2D3748" border="none" _focus={{ boxShadow: 'none' }}>
-          <PopoverArrow bgColor="#2D3748" />
-          <HStack spacing={4}>
-            <CloseIcon
-              as="button"
-              onClick={openPwReset}
-              cursor="pointer"
-              opacity={0.5}
-              _hover={{ opacity: 1 }}
-            ></CloseIcon>
-            <FormControl>
-              <Input
-                placeholder="Template name"
-                type="email"
-                onChange={(e) => setResetPwEmail(e.target.value)}
-                id="templateName"
-              />
-            </FormControl>
-            <Button
-              colorScheme="blue"
-              onClick={() => {
-                resetPw(resetPwEmail);
-              }}
-            >
-              Send
-            </Button>
-          </HStack>
-        </PopoverContent>
-      </Popover>
+      <Text
+        onClick={togglePwReset}
+        _hover={{ cursor: 'pointer' }}
+        fontSize="xs"
+        color="#ffffffcd"
+        display="inline"
+      >
+        Forgot your password?
+      </Text>
+
+      <Modal isCentered isOpen={pwResetIsOpen} onClose={closePwReset}>
+        <ModalOverlay />
+        <ModalContent pb={2}>
+          <ModalHeader>Reset Password</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack spacing={4}>
+              <FormControl>
+                <Input
+                  placeholder="Enter your email"
+                  type="email"
+                  onChange={(e) => setResetPwEmail(e.target.value)}
+                  id="email"
+                />
+              </FormControl>
+              <Button
+                colorScheme="blue"
+                onClick={() => {
+                  resetPw(resetPwEmail).then(() => {
+                    toast({
+                      title: 'Success.',
+                      description: "We've send you a reset password email.",
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    closePwReset();
+                  });
+                }}
+              >
+                Send
+              </Button>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 };

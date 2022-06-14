@@ -1,14 +1,14 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { chakra, Circle, Divider, Flex, Heading, Icon, Stack, useOutsideClick } from '@chakra-ui/react';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
 import { useUserSpace } from '../../contexts/UserSpace';
 import Login from './Login';
 import Registration from './Registration';
 import UserSpace from './UserSpace';
 
-const UserMenu: React.FunctionComponent = () => {
+const UserMenu: React.FunctionComponent = memo(() => {
   // Auth
   const { currentUser, logout } = useAuth();
   const [registrationMode, setRegistrationMode] = useState(false);
@@ -136,6 +136,6 @@ const UserMenu: React.FunctionComponent = () => {
       </AnimatePresence>
     </>
   );
-};
+});
 
 export default UserMenu;

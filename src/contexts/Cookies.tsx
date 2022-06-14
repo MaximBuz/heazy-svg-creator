@@ -49,19 +49,20 @@ export function CookiesProvider({ children }) {
     setTimeout(() => {
       const cookie = getCookie('consent');
       if (cookie === undefined) {
-        cookieConsent({
-          position: 'bottom',
-          duration: null,
-          isClosable: true,
-          id: 'cookie',
-          render: () => (
-            <CookieToast
-              accept={accept}
-              decline={decline}
-              close={() => cookieConsent.close('cookie')}
-            ></CookieToast>
-          ),
-        });
+        !cookieConsent.isActive('cookie') &&
+          cookieConsent({
+            position: 'bottom',
+            duration: null,
+            isClosable: true,
+            id: 'cookie',
+            render: () => (
+              <CookieToast
+                accept={accept}
+                decline={decline}
+                close={() => cookieConsent.close('cookie')}
+              ></CookieToast>
+            ),
+          });
       }
     }, 3000);
   }, []);

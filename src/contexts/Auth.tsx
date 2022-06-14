@@ -64,7 +64,7 @@ export function AuthProvider({ children }) {
     });
   }
 
-  function logout (): Promise<void> {
+  function logout(): Promise<void> {
     const loggedOutUser = auth.currentUser;
     return signOut(auth).then(() => {
       logEvent(analytics, 'logout', { user: loggedOutUser });
@@ -73,7 +73,9 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email): Promise<void> {
-    return sendPasswordResetEmail(auth, email);
+    return sendPasswordResetEmail(auth, email).then(() =>
+      logEvent(analytics, 'reset_password', { user: auth.currentUser })
+    );
   }
 
   useEffect(() => {

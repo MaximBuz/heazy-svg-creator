@@ -67,8 +67,9 @@ const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
       >
         <Box rounded="xl" w="100%" h="100%" overflow="hidden" background="transparent">
           <Image
-            // w="100%"
+            w="100%"
             maxH="160px"
+            minH="160px"
             transition="0.3s"
             objectFit="cover"
             sx={

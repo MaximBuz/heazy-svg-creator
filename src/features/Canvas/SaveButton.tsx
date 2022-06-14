@@ -33,7 +33,16 @@ export interface ISaveButtonProps {
 const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleStyles }) => {
   const { currentUser } = useAuth();
   const { onOpen: openUserSpace } = useUserSpace();
-  const { saveTemplate, design, waveState, bubbleState, cornerState, markerState, isolinesState, flareState } = useDesign();
+  const {
+    saveTemplate,
+    design,
+    waveState,
+    bubbleState,
+    cornerState,
+    markerState,
+    isolinesState,
+    flareState,
+  } = useDesign();
 
   // Handle saving Template
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -58,7 +67,7 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
     openUserSpace();
   }
 
-  function handleUnauthorizedSave () {
+  function handleUnauthorizedSave() {
     logEvent(analytics, 'unauthorized_save_template', { user: currentUser, design });
     openUserSpace();
   }
@@ -68,7 +77,9 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
         <Circle
           title="Save as a template"
           as="button"
-          onClick={() => (currentUser ? (onToggle()) : handleUnauthorizedSave())}
+          onClick={() => {
+            currentUser ? onToggle() : handleUnauthorizedSave();
+          }}
           {...CircleStyles}
         >
           <Icon boxSize="5" viewBox="0 0 24 24" fill="white">

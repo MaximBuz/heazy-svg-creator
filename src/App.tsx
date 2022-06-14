@@ -1,5 +1,5 @@
 // React
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Features
 import {
@@ -19,7 +19,7 @@ import {
   CanvasControls,
   TemplateMenu,
   OptionsMenu,
-  UserMenu
+  UserMenu,
 } from './features';
 
 // Context
@@ -36,6 +36,7 @@ function App() {
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
   const svgRef = useRef<SVGAElement | null>(null);
+
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
@@ -79,8 +80,8 @@ function App() {
     <>
       <InitialAnimation />
       <Flex {...wrapperStyles}>
-        <TemplateMenu designTypes={designTypes} activeDesign={design.id} setDesign={setDesign}></TemplateMenu>
         <UserSpaceProvider>
+        <TemplateMenu designTypes={designTypes} activeDesign={design.id} setDesign={setDesign}></TemplateMenu>
           <AuthProvider>
             <UserMenu />
             <Container {...canvasStyles}>{renderCanvas()}</Container>

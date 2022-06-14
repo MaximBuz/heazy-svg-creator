@@ -56,6 +56,11 @@ export function AuthProvider({ children }) {
         return userCred;
       });
   }
+  function resendEmailVerififaction(): Promise<void> {
+    return sendEmailVerification(auth.currentUser).then(() => {
+      logEvent(analytics, 'resend_email_verification', { user: auth.currentUser });
+    });
+  }
 
   function login(email, password): Promise<UserCredential> {
     return signInWithEmailAndPassword(auth, email, password).then((userCred) => {
@@ -104,6 +109,7 @@ export function AuthProvider({ children }) {
     login,
     logout,
     resetPassword,
+    resendEmailVerififaction
   };
 
   return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;

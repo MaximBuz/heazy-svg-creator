@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { chakra, Circle, Divider, Flex, Heading, Icon, Stack, useOutsideClick } from '@chakra-ui/react';
+import { chakra, Circle, Divider, Flex, Heading, Icon, Stack } from '@chakra-ui/react';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
 import React, { memo, useRef, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
@@ -16,10 +16,6 @@ const UserMenu: React.FunctionComponent = memo(() => {
   // Drawer handling
   const drawerRef = useRef();
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useUserSpace();
-  useOutsideClick({
-    ref: drawerRef,
-    handler: () => closeUserSpace(),
-  });
 
   // Make animatable with Framer Motion
   const UserSection = chakra(motion.div, {

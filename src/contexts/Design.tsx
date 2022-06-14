@@ -24,6 +24,7 @@ import { IIsolinesAllProps } from '../types/isolinesProps';
 import { initialFlareState } from '../features/Designs/Flare/initialState';
 import { IFlareAllProps } from '../types/flareProps';
 import { logEvent } from 'firebase/analytics';
+import { useUserSpace } from './UserSpace';
 
 const DesignContext = React.createContext(null);
 

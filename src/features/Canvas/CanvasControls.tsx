@@ -1,6 +1,7 @@
 import { Flex, Circle, Icon } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React from 'react';
+import { useUserSpace } from '../../contexts/UserSpace';
 import { ICanvasControlsProps } from '../../types/canvasControlsProps';
 
 import DiceIcon from './DiceIcon';
@@ -26,6 +27,7 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
     whileHover: { scale: 1.1, rotate: -10 },
     whileTap: { scale: 0.9, rotate: 10 },
   };
+  const { isOpen: userSpaceIsOpen, onClose: closeUserSpace } = useUserSpace();
   return (
     <Flex
       position="absolute"
@@ -39,7 +41,10 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       <SaveButton CircleStyles={CircleStyles} svgRef={svgRef} />
 
       {/* ZOOM IN  */}
-      <Circle {...CircleStyles} onClick={() => setZoom((zoom) => zoom + 0.1)}>
+      <Circle {...CircleStyles} onClick={() => {
+        userSpaceIsOpen && closeUserSpace();
+        setZoom((zoom) => zoom + 0.1);
+      }}>
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             fill="white"
@@ -49,7 +54,10 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       </Circle>
 
       {/* ZOOM OUT  */}
-      <Circle {...CircleStyles} onClick={() => setZoom((zoom) => zoom - 0.1)}>
+      <Circle {...CircleStyles} onClick={() => {
+        userSpaceIsOpen && closeUserSpace();
+        setZoom((zoom) => zoom - 0.1);
+      }}>
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +70,10 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       <Circle
         {...CircleStyles}
         p="2.5"
-        onClick={() => setSeed(seed + 1)}
+        onClick={() => {
+          userSpaceIsOpen && closeUserSpace();
+          setSeed(seed + 1);
+        }}
         borderWidth="5px"
         whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
       >

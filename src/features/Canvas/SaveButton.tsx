@@ -21,6 +21,8 @@ import { useAuth } from '../../contexts/Auth';
 import { useDesign } from '../../contexts/Design';
 import { useUserSpace } from '../../contexts/UserSpace';
 import { CloseIcon } from '@chakra-ui/icons';
+import { logEvent } from 'firebase/analytics';
+import { analytics } from '../../firebase';
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
 
 export interface ISaveButtonProps {
@@ -55,13 +57,18 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({ svgRef, CircleS
     setName('');
     openUserSpace();
   }
+
+  function handleUnauthorizedSave () {
+    logEvent(analytics, 'unauthorized_save_template', { user: currentUser, design });
+    openUserSpace();
+  }
   return (
     <Popover isLazy isOpen={isOpen} placement="left">
       <PopoverTrigger>
         <Circle
           title="Save as a template"
           as="button"
-          onClick={() => (currentUser ? onToggle() : openUserSpace())}
+          onClick={() => (currentUser ? (onToggle()) : handleUnauthorizedSave())}
           {...CircleStyles}
         >
           <Icon boxSize="5" viewBox="0 0 24 24" fill="white">

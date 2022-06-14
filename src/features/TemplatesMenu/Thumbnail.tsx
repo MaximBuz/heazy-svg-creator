@@ -6,6 +6,8 @@ import { Flex, Text, Image, Box } from '@chakra-ui/react';
 // Utils
 import { motion } from 'framer-motion';
 import { IDesignModes } from '../../types/designModes';
+import { logEvent } from 'firebase/analytics';
+import { analytics } from '../../firebase';
 
 export interface IThumbnailProps {
   isActive: boolean;
@@ -24,6 +26,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, 
       transition="0.5s"
       _hover={{ background: '#3b4453', cursor: 'pointer' }}
       onClick={() => {
+        logEvent(analytics, 'choose_design', { type });
         setDesign(type);
       }}
     >

@@ -1,4 +1,4 @@
-import React, { Dispatch, memo, SetStateAction } from 'react';
+import React, { Dispatch, memo, SetStateAction, useEffect } from 'react';
 
 // Design
 import { Flex, Stack, Image, Heading } from '@chakra-ui/react';

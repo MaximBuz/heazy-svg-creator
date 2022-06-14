@@ -13,7 +13,7 @@ import { endpoint, headers } from '../utils/apiConfig';
 import { useQueryClient } from 'react-query';
 
 // firebase
-import { storage } from '../firebase';
+import { analytics, storage } from '../firebase';
 import { ref, uploadBytes } from 'firebase/storage';
 import { svgToBlob } from '../utils/helpers/downloadBlob';
 import { useCanvasDimensions } from '../features';
@@ -23,6 +23,8 @@ import { initialIsolineState } from '../features/Designs/Isolines/initialState';
 import { IIsolinesAllProps } from '../types/isolinesProps';
 import { initialFlareState } from '../features/Designs/Flare/initialState';
 import { IFlareAllProps } from '../types/flareProps';
+import { logEvent } from 'firebase/analytics';
+import { useUserSpace } from './UserSpace';
 
 const DesignContext = React.createContext(null);
 
@@ -87,7 +89,12 @@ export function DesignProvider({ children }) {
             thumbnailUrl: snapshot.ref.toString(),
             optionParameters: designParams,
           },
-          { onSuccess: () => queryClient.invalidateQueries(['getUserByFirebaseId']) }
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(['getUserByFirebaseId']);
+              logEvent(analytics, 'saved_template', { user: auth.currentUser, design: typeId, name });
+            }
+          }
         );
       })
       .catch(() => console.log('Failed to upload thumbnail'));

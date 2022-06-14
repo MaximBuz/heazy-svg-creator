@@ -6,5 +6,6 @@ export interface IAuth {
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  resendEmailVerififaction: () => Promise<void>;
   idToken: string;
 }

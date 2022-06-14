@@ -12,11 +12,18 @@ import CornerOptions from './Designs/Corners/OptionsMenu';
 import Marker from './Designs/Marker';
 import MarkerOptions from './Designs/Marker/OptionsMenu';
 
+import Isolines from './Designs/Isolines';
+import IsolinesOptions from './Designs/Isolines/OptionsMenu';
+
+import Flare from './Designs/Flare';
+import FlareOptions from './Designs/Flare/OptionsMenu';
+
 import CanvasControls from './Canvas/CanvasControls';
 import useCanvasDimensions from './Canvas/useCanvasDimensions';
 
 import TemplateMenu from './TemplatesMenu';
 import OptionsMenu from './OptionsMenu';
+import UserMenu from './UserMenu';
 
 export {
   InitialAnimation,
@@ -28,8 +35,13 @@ export {
   CornerOptions,
   Marker,
   MarkerOptions,
+  Isolines,
+  IsolinesOptions,
+  Flare,
+  FlareOptions,
   CanvasControls,
   useCanvasDimensions,
   TemplateMenu,
   OptionsMenu,
+  UserMenu
 };

@@ -9,7 +9,17 @@ import {
   AlertIcon,
   Text,
   Image,
+  useDisclosure,
+  VStack,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useToast,
 } from '@chakra-ui/react';
+
 import { RaceBy } from '@uiball/loaders';
 import React, { Dispatch, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
@@ -20,9 +30,13 @@ export interface ILoginProps {
 }
 
 const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) => {
-  const { login } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const { login, resetPassword: resetPw } = useAuth();
+  const { onClose: closePwReset, isOpen: pwResetIsOpen, onToggle: togglePwReset } = useDisclosure();
+  const [resetPwEmail, setResetPwEmail] = useState<string>();
+  const toast = useToast();
 
   function handleLogin(e) {
     e.preventDefault();
@@ -39,7 +53,15 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
   }
 
   return (
-    <Flex p="5" direction="column" mt="1em" textAlign="center" gap="10px" height="80%" justifyContent="center">
+    <Flex
+      p="5"
+      direction="column"
+      mt="1em"
+      textAlign="center"
+      gap="10px"
+      height="80%"
+      justifyContent="center"
+    >
       <Image src={LoginImg} h="20%"></Image>
       <Box mt="1em">
         <Heading as="h4" size="md" fontWeight={800}>
@@ -83,6 +105,53 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
           Register
         </Text>
       </Text>
+
+      <Text
+        onClick={togglePwReset}
+        _hover={{ cursor: 'pointer' }}
+        fontSize="xs"
+        color="#ffffffcd"
+        display="inline"
+      >
+        Forgot your password?
+      </Text>
+
+      <Modal isCentered isOpen={pwResetIsOpen} onClose={closePwReset}>
+        <ModalOverlay />
+        <ModalContent pb={2}>
+          <ModalHeader>Reset Password</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack spacing={4}>
+              <FormControl>
+                <Input
+                  placeholder="Enter your email"
+                  type="email"
+                  onChange={(e) => setResetPwEmail(e.target.value)}
+                  id="email"
+                />
+              </FormControl>
+              <Button
+                colorScheme="blue"
+                onClick={() => {
+                  resetPw(resetPwEmail).then(() => {
+                    toast({
+                      title: 'Success.',
+                      description: "We've send you a reset password email.",
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    closePwReset();
+                  });
+                }}
+              >
+                Send
+              </Button>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 };

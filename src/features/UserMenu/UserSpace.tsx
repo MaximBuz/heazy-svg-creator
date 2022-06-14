@@ -4,7 +4,7 @@ import { Design, useGetUserByFirebaseIdQuery } from '../../graphql/generated';
 import { endpoint, headers } from '../../utils/apiConfig';
 
 // Design
-import { Box, Flex, Heading, HStack, Icon } from '@chakra-ui/react';
+import { Box, Flex, Heading, HStack, Icon, Text } from '@chakra-ui/react';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Input } from '@chakra-ui/react';
 import Templates from './Templates';
 import Explore from './Explore';
@@ -13,7 +13,7 @@ import QueryLoading from '../../components/queryLoading';
 
 const UserSpace: React.FunctionComponent = memo(() => {
   // Auth
-  const { idToken } = useAuth();
+  const { idToken, currentUser } = useAuth();
   const userQuery = useGetUserByFirebaseIdQuery({ endpoint, fetchParams: { headers: headers(idToken) } });
 
   // Filter
@@ -34,6 +34,7 @@ const UserSpace: React.FunctionComponent = memo(() => {
         <Heading as="h5" size="md" fontWeight={300}>
           {userQuery.isSuccess && userQuery.data.user.userName}
         </Heading>
+        {!currentUser?.emailVerified && <Text fontSize="sm">Please do not forget to verify your email!</Text>}
       </Box>
 
       <Accordion allowToggle defaultIndex={0}>

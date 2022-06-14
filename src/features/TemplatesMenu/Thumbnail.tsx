@@ -6,6 +6,9 @@ import { Flex, Text, Image, Box } from '@chakra-ui/react';
 // Utils
 import { motion } from 'framer-motion';
 import { IDesignModes } from '../../types/designModes';
+import { logEvent } from 'firebase/analytics';
+import { analytics } from '../../firebase';
+import { useUserSpace } from '../../contexts/UserSpace';
 
 export interface IThumbnailProps {
   isActive: boolean;
@@ -15,6 +18,7 @@ export interface IThumbnailProps {
 }
 
 const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, setDesign, type }) => {
+  const { isOpen: userSpaceIsOpen, onClose: closeUserSpace } = useUserSpace();
   return (
     <Flex
       justifyContent="center"
@@ -24,6 +28,8 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, 
       transition="0.5s"
       _hover={{ background: '#3b4453', cursor: 'pointer' }}
       onClick={() => {
+        userSpaceIsOpen && closeUserSpace();
+        logEvent(analytics, 'choose_design', { type });
         setDesign(type);
       }}
     >

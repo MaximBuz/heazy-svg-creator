@@ -1,7 +1,7 @@
 // React
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-// Components
+// Features
 import {
   InitialAnimation,
   Waves,
@@ -12,23 +12,23 @@ import {
   CornerOptions,
   Marker,
   MarkerOptions,
+  Isolines,
+  IsolinesOptions,
+  Flare,
+  FlareOptions,
   CanvasControls,
   TemplateMenu,
   OptionsMenu,
+  UserMenu,
 } from './features';
-import UserMenu from './features/UserMenu';
-
-// Styling
-import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 // Context
 import { AuthProvider } from './contexts/Auth';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
-import Isolines from './features/Designs/Isolines';
-import IsolinesOptions from './features/Designs/Isolines/OptionsMenu';
-import Flare from './features/Designs/Flare';
-import FlareOptions from './features/Designs/Flare/OptionsMenu';
+
+// Styling
+import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 function App() {
   /* --------- STATE --------- */
@@ -36,6 +36,7 @@ function App() {
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
   const svgRef = useRef<SVGAElement | null>(null);
+
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
@@ -79,8 +80,8 @@ function App() {
     <>
       <InitialAnimation />
       <Flex {...wrapperStyles}>
-        <TemplateMenu designTypes={designTypes} activeDesign={design.id} setDesign={setDesign}></TemplateMenu>
         <UserSpaceProvider>
+        <TemplateMenu designTypes={designTypes} activeDesign={design.id} setDesign={setDesign}></TemplateMenu>
           <AuthProvider>
             <UserMenu />
             <Container {...canvasStyles}>{renderCanvas()}</Container>

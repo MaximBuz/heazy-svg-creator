@@ -1,7 +1,7 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { chakra, Circle, Divider, Flex, Heading, Icon, Stack } from '@chakra-ui/react';
+import { chakra, Circle, Divider, Flex, Heading, Icon, Stack, useOutsideClick } from '@chakra-ui/react';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
 import { useUserSpace } from '../../contexts/UserSpace';
 import Login from './Login';
@@ -9,14 +9,18 @@ import Registration from './Registration';
 import UserSpace from './UserSpace';
 
 const UserMenu: React.FunctionComponent = () => {
-
   // Auth
   const { currentUser, logout } = useAuth();
   const [registrationMode, setRegistrationMode] = useState(false);
 
-  // Drawer Opening
+  // Drawer handling
+  const drawerRef = useRef();
   const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useUserSpace();
-  
+  useOutsideClick({
+    ref: drawerRef,
+    handler: () => closeUserSpace(),
+  });
+
   // Make animatable with Framer Motion
   const UserSection = chakra(motion.div, {
     shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
@@ -40,6 +44,7 @@ const UserMenu: React.FunctionComponent = () => {
         fill="none"
         gap="10px"
         zIndex={1}
+        ref={drawerRef}
       >
         <Heading as="h4" size="xs">
           Personal Space

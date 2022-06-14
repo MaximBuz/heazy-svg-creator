@@ -1,5 +1,5 @@
 // React
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 // Features
 import {
@@ -26,7 +26,6 @@ import {
 import { AuthProvider } from './contexts/Auth';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
-import { useCookies } from './contexts/Cookies';
 
 // Styling
 import {
@@ -34,15 +33,7 @@ import {
   Container,
   FlexProps,
   ContainerProps,
-  useToast,
-  Box,
-  Text,
-  Link,
-  Button,
-  HStack,
 } from '@chakra-ui/react';
-import CookieToast from './components/cookieToast';
-import { getCookie } from './utils/helpers/cookies';
 
 function App() {
   /* --------- STATE --------- */

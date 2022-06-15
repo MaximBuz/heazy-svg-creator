@@ -21,6 +21,7 @@
     Developed by <a href="https://www.linkedin.com/in/maxim-buz-17a2a717b/">Maxim Buz</a>
     <br/>
     <a href="https://heazy.studio/">heazy.studio</a>
+    <a href="https://www.youtube.com/watch?v=58rATWqcFxo">YouTube Showcase</a>
   </p>
 </div>
 
@@ -48,9 +49,9 @@
 [![Product Name Screen Shot][product-screenshot]](https://heazy.studio/)
 
 Heazy let's you generate cool SVG designs for your website projects (and presentations, if thats your thing).
-Easily generate unique and funky vector graphics within minutes right inside your browser, without having to learn any advanced tools like Adobe Illustrator.
+Easily generate unique and funky vector graphics within minutes right inside your browser, without having to learn any advanced tools like Adobe Illustrator. Create a user account to save your very own design templates and explore the desings other users have made public.
 
-You can download your designs in PNG and SVG, or copy code snippets for your JavaScript or TypeScript React projects.
+You can download any design in PNG and SVG, or copy code snippets for your JavaScript or TypeScript React projects.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -60,15 +61,23 @@ You can download your designs in PNG and SVG, or copy code snippets for your Jav
 
 heazy.studio was created by using the following awesome tools:
 
+Frontend:<br/>
 * [TypeScript](https://www.typescriptlang.org/)
 * [React.js](https://reactjs.org/)
+* [React Query](https://react-query.tanstack.com/)
 * [Chakra UI](https://chakra-ui.com/)
 
-Note: All path-algorithms were painstakingly coded by hand with vanilla TypeScript. They are still work in progress!
+Backend:<br/>
+* [TypeScript](https://www.typescriptlang.org/)
+* [Node / Express](https://expressjs.com/)
+* [GraphQL](https://graphql.org/)
+* [Prisma](https://www.prisma.io/)
+* [PostgreSQL](https://www.postgresql.org/)
 
+Authentication, Image Storage and Analytics:
+* [Firebase](https://firebase.google.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- CONTACT -->
 ## Contact

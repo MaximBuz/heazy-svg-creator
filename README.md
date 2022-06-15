@@ -20,7 +20,6 @@
     <br/>
     Developed by <a href="https://www.linkedin.com/in/maxim-buz-17a2a717b/">Maxim Buz</a>
     <br/>
-    <a href="https://heazy.studio/">heazy.studio</a>
     <a href="https://www.youtube.com/watch?v=58rATWqcFxo">YouTube Showcase</a>
   </p>
 </div>

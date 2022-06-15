@@ -1,20 +1,10 @@
 import { Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import Lottie from 'react-lottie-light';
-import animationData from './InitialAnimation.json';
+import LogoAnimation from './LogoAnimation';
 
 function InitialAnimation() {
   const [isRunning, setIsRunning] = useState<boolean>(true);
   const [opacity, setOpacity] = useState<number>(1);
-
-  const options = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
 
   useEffect(() => {
     (async () => {
@@ -50,13 +40,7 @@ function InitialAnimation() {
           transition: 'all 1s ease',
         }}
       >
-        <Lottie
-          options={options}
-          width={100}
-          height={100}
-          isStopped={!isRunning}
-          animationData={animationData}
-        />
+        <LogoAnimation/>
       </Flex>
     );
   }

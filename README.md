@@ -64,7 +64,7 @@ heazy.studio was created by using the following awesome tools:
 Frontend:<br/>
 * [TypeScript](https://www.typescriptlang.org/)
 * [React.js](https://reactjs.org/)
-* [React Query](https://chakra-ui.com/](https://react-query.tanstack.com/)
+* [React Query](https://react-query.tanstack.com/)
 * [Chakra UI](https://chakra-ui.com/)
 
 Backend:<br/>

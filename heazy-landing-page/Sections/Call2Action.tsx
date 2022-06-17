@@ -18,9 +18,9 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
       alignItems="center"
       width="100%"
       height="100vh"
-      padding={["0 1.5em"]}
+      padding={['0 1.5em']}
     >
-      <Heading fontWeight="800" fontSize={{base: "2.5em", lg: "4em"}} lineHeight={1}>
+      <Heading fontWeight="800" fontSize={{ base: '2.5em', lg: '4em' }} lineHeight={1}>
         What are you wating for?<br></br>
         <span
           style={{
@@ -34,20 +34,30 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
         </span>{' '}
         is waiting for you!
       </Heading>
-      <Text fontSize='20px'>
-        No sign ups, logins, credit cards etc. We promise!
-      </Text>
-      <Button
-        as="a"
-        href="https://app.heazy.studio/"
-        rounded="full"
-        size="lg"
-        bg='#05f'
-        color="white"
-        _hover={{transform: 'scale(1.05)' }}
-      >
-        Try it out!
-      </Button>
+      <Text fontSize="20px">No sign ups, logins, credit cards etc. We promise!</Text>
+      <Flex gap="10px">
+        <Button
+          as="a"
+          href="https://app.heazy.studio/"
+          rounded="full"
+          size="lg"
+          bg="#05f"
+          color="white"
+          _hover={{ transform: 'scale(1.05)' }}
+        >
+          Try it out!
+        </Button>
+        <Button
+          as="a"
+          href="https://www.youtube.com/watch?v=58rATWqcFxo"
+          rounded="full"
+          size="lg"
+          variant="outline"
+          _hover={{ bg: '#ffffff40', color: 'white', transform: 'scale(1.05)' }}
+        >
+          Watch Showcase
+        </Button>
+      </Flex>
     </Flex>
   );
 };

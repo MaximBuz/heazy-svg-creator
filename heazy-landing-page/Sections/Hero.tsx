@@ -9,7 +9,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
     <Flex direction="column">
       {/* NAVBAR */}
       <Navbar />
-      
+
       {/* HERO TITLE */}
       <Flex gap={50} direction="column" justifyContent="center" alignItems="center">
         <Flex
@@ -20,7 +20,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
           alignItems="center"
           gap="20px"
         >
-          <Heading fontWeight="800" fontSize={{base: "3em", lg: "4em"}}>
+          <Heading fontWeight="800" fontSize={{ base: '3em', lg: '4em' }}>
             The design you want.
             <br />
             Without the{' '}
@@ -36,15 +36,27 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             </span>
           </Heading>
           <Flex direction="column" alignItems="center" gap="5px">
-            <Button
-              as="a"
-              href="https://app.heazy.studio/"
-              rounded="full"
-              size="lg"
-              _hover={{ bg: '#05f', color: 'white', transform:"scale(1.05)" }}
-            >
-              Start Designing
-            </Button>
+            <Flex gap="10px">
+              <Button
+                as="a"
+                href="https://app.heazy.studio/"
+                rounded="full"
+                size="lg"
+                _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
+              >
+                Start Designing
+              </Button>
+              <Button
+                as="a"
+                href="https://www.youtube.com/watch?v=58rATWqcFxo"
+                rounded="full"
+                size="lg"
+                variant="outline"
+                _hover={{ bg: '#ffffff40', color: 'white', transform: 'scale(1.05)' }}
+              >
+                Watch Showcase
+              </Button>
+            </Flex>
             <Text opacity={0.5}>Free for ever. No signup required.</Text>
           </Flex>
         </Flex>

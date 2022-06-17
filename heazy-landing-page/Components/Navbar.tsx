@@ -13,12 +13,18 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
       justifyContent="space-between"
       width="100%"
       height="80px"
-      mt={{base: "10px", md:"20px"}}
+      mt={{ base: '10px', md: '20px' }}
       mr=" auto"
       ml=" auto"
     >
       <Link href="/">
-        <Image src={Logo} alt="heazy svg creator logo" width="35px" height="35px" style={{cursor: "pointer"}} />
+        <Image
+          src={Logo}
+          alt="heazy svg creator logo"
+          width="35px"
+          height="35px"
+          style={{ cursor: 'pointer' }}
+        />
       </Link>
       <UnorderedList display="flex" alignItems="center" justifyContent="center" gap="40px">
         <ListItem
@@ -44,7 +50,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
           Inspirations
         </ListItem>
         <Button
-          display={{base: "none", sm: "flex"}}
+          display={{ base: 'none', sm: 'flex' }}
           as="a"
           href="https://app.heazy.studio/"
           rounded="full"

@@ -54,12 +54,22 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
 
         <FeatureCard
           text="Heazy prides itself in having some of the most customizable templates on the web. Always create stunningly unique visuals."
-          icon="/resize-icon.svg"
+          icon="/pallette-icon.svg"
         ></FeatureCard>
 
         <FeatureCard
           text="Never struggle with finding ideas again. Click through the options and be sure to always create something beautiful."
           icon="/inspiration-icon.svg"
+        ></FeatureCard>
+        
+        <FeatureCard
+          text="Easily save your coolest templates to your profile. Reuse and randomize your designs as often as you want."
+          icon="/save-icon.svg"
+        ></FeatureCard>
+        
+        <FeatureCard
+          text="Share your designs with the world and become inspired by community-created templates, right inside of heazy."
+          icon="/share-icon.svg"
         ></FeatureCard>
       </Flex>
     </Flex>

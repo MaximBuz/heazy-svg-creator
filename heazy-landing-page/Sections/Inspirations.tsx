@@ -23,7 +23,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
       mb="10%"
     >
       <SectionDivider text="Inspirations" />
-      <Heading fontWeight="700" fontSize={{base: "2em", lg: "3em"}}>
+      <Heading fontWeight="700" fontSize={{ base: '2em', lg: '3em' }}>
         Heazy{' '}
         <span
           style={{
@@ -101,7 +101,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
 
         <Flex
           direction={{ base: 'column', lg: 'row' }}
-          height={{ base: '150vh', lg: '80vh', xl: "75vh" }}
+          height={{ base: '150vh', md: "220vh", lg: '80vh', xl: '75vh' }}
           width={['100%', '100%', '70%', '100%']}
           justifyContent="center"
           alignItems="center"
@@ -173,6 +173,53 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
               ></Image>
             </Box>
           </Flex>
+        </Flex>
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          height={{ base: '120vh', md: "160vh", lg: '40vh', xl: '50vh' }}
+          width={['100%', '100%', '70%', '100%']}
+          justifyContent="center"
+          alignItems="center"
+          gap="20px"
+        >
+          <Box
+            position="relative"
+            width={{ base: '100%', lg: '35%' }}
+            height={{ base: '67%', md: "65%", lg: "100%", xl: '100%' }}
+            transition="0.5s"
+            rounded="sm"
+            boxShadow="0 0px 35px -5px #152238"
+            _hover={{
+              transform: 'scale(1.05)',
+              boxShadow: '0 0px 35px 2px #233860',
+            }}
+          >
+            <Image
+              src="/heazy-poster.jpg"
+              layout="fill"
+              objectFit="cover"
+              alt="heazy-svg-generator-inspiration"
+            ></Image>
+          </Box>
+          <Box
+            position="relative"
+            width={{ base: '100%', lg: '65%' }}
+            height={{ base: '33%', md: "35%",lg: "100%",  xl: '100%' }}
+            transition="0.5s"
+            rounded="sm"
+            boxShadow="0 0px 35px -5px #152238"
+            _hover={{
+              transform: 'scale(1.05)',
+              boxShadow: '0 0px 35px 2px #233860',
+            }}
+          >
+            <Image
+              src="/heazy-life.jpg"
+              layout="fill"
+              objectFit="cover"
+              alt="heazy-svg-generator-inspiration"
+            ></Image>
+          </Box>
         </Flex>
       </Flex>
     </Flex>

@@ -44,7 +44,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
                 size="lg"
                 _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
               >
-                Start Designing
+                Try it out
               </Button>
               <Button
                 as="a"

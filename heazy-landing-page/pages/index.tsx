@@ -8,6 +8,7 @@ import Features from '../Sections/Features';
 import Hero from '../Sections/Hero';
 import Inspirations from '../Sections/Inspirations';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Home: NextPage = () => {
   return (
@@ -57,6 +58,20 @@ const Home: NextPage = () => {
           width="100%"
         >
           <Link href="/privacy">Privacy Notice</Link>
+        </Flex>
+        <Flex position="fixed" width="100%" justifyContent={{base: "center", lg: "flex-start"}} bottom={{base: "3em",lg:"2em"}} left={{lg:"2em"}}>
+          <a
+            href="https://www.producthunt.com/posts/heazy?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-heazy"
+            target="_blank"
+          >
+            <Image
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=351231&theme=dark"
+              alt="HEAZY - Free&#0032;SVG&#0032;design&#0032;asset&#0032;platform | Product Hunt"
+              style={{ width: '250px', height: '54px' }}
+              width="250"
+              height="54"
+            />
+          </a>
         </Flex>
         <footer></footer>
       </div>

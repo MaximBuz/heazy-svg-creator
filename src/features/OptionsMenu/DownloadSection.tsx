@@ -75,6 +75,12 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRe
                   }}
                   colorScheme="gray"
                   variant="outline"
+                  disabled={
+                    navigator.vendor.match(/apple/i) &&
+                    !navigator.userAgent.match(/crios/i) &&
+                    !navigator.userAgent.match(/fxios/i) &&
+                    !navigator.userAgent.match(/Opera|OPT\//)
+                  }
                 >
                   React
                 </Button>
@@ -86,6 +92,12 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRe
                   }}
                   colorScheme="gray"
                   variant="outline"
+                  disabled={
+                    navigator.vendor.match(/apple/i) &&
+                    !navigator.userAgent.match(/crios/i) &&
+                    !navigator.userAgent.match(/fxios/i) &&
+                    !navigator.userAgent.match(/Opera|OPT\//)
+                  }
                 >
                   React TypeScript
                 </Button>

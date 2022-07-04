@@ -1,9 +1,21 @@
 function stringify(obj) {
   const cleaned = JSON.stringify(obj, null, 2);
 
-  return cleaned.replace(/^[\t ]*"[^:\n\r]+(?<!\\)":/gm, function (match) {
-    return match.replace(/"/g, '');
-  });
+  let isSafari =
+    navigator.vendor.match(/apple/i) &&
+    !navigator.userAgent.match(/crios/i) &&
+    !navigator.userAgent.match(/fxios/i) &&
+    !navigator.userAgent.match(/Opera|OPT\//);
+
+  if (isSafari) {
+    // Safari browser is used
+    return '';
+  } else {
+    // This DOES NOT WORK in Safari
+    return cleaned.replace(/^[\t ]*"[^:\n\r]+":/gm, function (match) {
+      return match.replace(/"/g, '');
+    });
+  }
 }
 
 function cssToJsx(string) {

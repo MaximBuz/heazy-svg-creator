@@ -36,13 +36,14 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             </span>
           </Heading>
           <Flex direction="column" alignItems="center" gap="5px">
-            <Flex gap="10px">
+            <Flex gap="10px" >
               <Button
                 as="a"
                 href="https://app.heazy.studio/"
                 rounded="full"
                 size="lg"
                 _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
+                
               >
                 Start Designing
               </Button>

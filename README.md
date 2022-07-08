@@ -36,6 +36,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
+    <li><a href="#installation">Run locally</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -77,6 +78,54 @@ Authentication, Image Storage and Analytics:
 * [Firebase](https://firebase.google.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- INSTALLATION -->
+## Run locally
+
+### Firebase
+* Visit <a href="https://firebase.google.com/">Firebase</a> and add a new project
+* Make sure to enable Google Analytics
+* As soon as the project was set up by Google, click on "Add Firebase to your web app" and give it a nickname
+* Leave "Firebase hosting" unchecked
+* Inside your local repo, go into <code>./src/firebase/index.ts</code> and switch out <code>firebaseConfig</code> with the new API keys provided by Firebase
+* Back on the firebase website click on "continue to console" and add Authentication and Storage to your project
+
+### Frontend
+```bash
+npm install
+```
+(fyi: due to the use of Chakra UI and the recent update of React 18, you will receive some npm warnings)
+```bash
+npm start
+```
+
+### Backend
+```bash
+cd server && npm install
+```
+```bash
+touch .env
+```
+* Make sure you have a running postgres server and have all connection information available to you
+* Visit <a href="https://firebase.google.com/">Firebase</a>, go to project settings > Service accounts and generate a new private key
+* Open the generated file and copy all its contents
+* open the .env file and add the following environment variables
+```bash
+DATABASE_URL="postgresql://DB_USERNAME:DB_PASSWORD@HOST:5432/heazy?schema=public"
+GOOGLE_CREDS="<paste_firebase_private_key_here>"
+PORT=4000
+```
+* To setup the database, run the following command
+```bash
+npx prisma migrate dev --name init
+```
+```bash
+npm run start
+```
+
+Now you should have frontend and backend up and running!
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 <!-- CONTACT -->
 ## Contact

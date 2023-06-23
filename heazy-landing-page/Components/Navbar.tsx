@@ -52,7 +52,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
         <Button
           display={{ base: 'none', sm: 'flex' }}
           as="a"
-          href="https://app.heazy.studio/"
+          href="https://heazy-svg-creator-maximbuz.vercel.app/"
           rounded="full"
           _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
         >

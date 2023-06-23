@@ -39,7 +39,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             <Flex gap="10px" >
               <Button
                 as="a"
-                href="https://app.heazy.studio/"
+                href="https://heazy-svg-creator-maximbuz.vercel.app/"
                 rounded="full"
                 size="lg"
                 _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}

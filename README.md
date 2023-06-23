@@ -105,6 +105,11 @@ npx prisma migrate dev --name init
 ```bash
 npm run start
 ```
+* Finally, run the following seed on your database
+```sql
+INSERT INTO public."DesignType" (name)
+VALUES  ('waves'), ('bubble'), ('corners'), ('marker'), ('isolines'), ('flare');
+```
 
 Now you should have frontend and backend up and running!
 <p align="right">(<a href="#top">back to top</a>)</p>

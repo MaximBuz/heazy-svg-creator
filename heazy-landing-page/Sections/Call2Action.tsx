@@ -38,7 +38,7 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
       <Flex gap="10px">
         <Button
           as="a"
-          href="https://heazy-svg-creator-maximbuz.vercel.app/"
+          href="https://app.heazystudio.com/"
           rounded="full"
           size="lg"
           bg="#05f"

@@ -22,7 +22,7 @@ const CookieToast: React.FunctionComponent<ICookieToastProps> = ({ accept, decli
         <Text fontSize="sm">We use cookies to collect usage statistics.</Text>
         <Text fontSize="sm">
           Click{' '}
-          <Link textDecoration="underline" href="https://heazy.studio/privacy">
+          <Link textDecoration="underline" href="https://heazystudio.com/privacy">
             here
           </Link>{' '}
           for more information.

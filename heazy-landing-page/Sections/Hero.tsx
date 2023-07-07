@@ -39,7 +39,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             <Flex gap="10px" >
               <Button
                 as="a"
-                href="https://app.heazystudio.com/"
+                href={process.env.NEXT_PUBLIC_APP_URL || "https://app.heazystudio.com/"}
                 rounded="full"
                 size="lg"
                 _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}

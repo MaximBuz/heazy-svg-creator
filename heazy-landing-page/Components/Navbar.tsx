@@ -52,7 +52,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
         <Button
           display={{ base: 'none', sm: 'flex' }}
           as="a"
-          href="https://app.heazystudio.com/"
+          href={process.env.NEXT_PUBLIC_APP_URL || "https://app.heazystudio.com/"}
           rounded="full"
           _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
         >

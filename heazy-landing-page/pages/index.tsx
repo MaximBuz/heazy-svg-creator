@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <Meta
         title="Generate unique SVG design assets with ease | Heazy"
         desc="An intuitive design studio in your browser for creating and exporting unique SVG designs as PNG, SVG or React JavaScript and TypeScript snippets."
-        canonical="https://heazystudio.com/"
+        canonical={process.env.NEXT_PUBLIC_APP_URL || "https://app.heazystudio.com/"}
         css="/static/css/styles.css"
         js="/static/js/scripts.js"
       />

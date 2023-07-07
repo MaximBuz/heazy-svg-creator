@@ -10,7 +10,7 @@ const Privacy: NextPage = () => {
       <Meta
         title="Privacy Policy | Heazy"
         desc="Our privacy policy."
-        canonical="https://heazy.studio/privacy"
+        canonical={process.env.NEXT_PUBLIC_APP_URL + "/privacy" || "https://app.heazystudio.com/privacy"}
         css="/static/css/styles.css"
         js="/static/js/scripts.js"
       />

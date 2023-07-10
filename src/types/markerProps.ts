@@ -30,5 +30,8 @@ export interface IMarkerGhostProps {
   ghostEndColor: string;
 }
 
-
-export type IMarkerAllProps = IMarkerShapeProps & IMarkerPositionProps & IMarkerGhostProps & IColors & IShadow;
+export type IMarkerAllProps = IMarkerShapeProps &
+  IMarkerPositionProps &
+  IMarkerGhostProps &
+  IColors &
+  IShadow;

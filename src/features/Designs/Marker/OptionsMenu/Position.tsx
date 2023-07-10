@@ -31,7 +31,9 @@ const Position: React.FunctionComponent = () => {
         Mirror
       </Heading>
       <Tabs
-        onChange={(index) => setState((prev) => ({ ...prev, mirror: index === 0 ? false : true }))}
+        onChange={(index) =>
+          setState((prev) => ({ ...prev, mirror: index === 0 ? false : true }))
+        }
         defaultIndex={state.mirror === false ? 0 : 1}
         isFitted
         variant="unstyled"
@@ -79,7 +81,8 @@ const Position: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
           onClick={() =>
-            state.yPosition > -200 && setState((prev) => ({ ...prev, yPosition: prev.yPosition - 100 }))
+            state.yPosition > -200 &&
+            setState((prev) => ({ ...prev, yPosition: prev.yPosition - 100 }))
           }
         >
           <YPosLeft />
@@ -101,7 +104,8 @@ const Position: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
           onClick={() =>
-            state.yPosition < 1500 && setState((prev) => ({ ...prev, yPosition: prev.yPosition + 100 }))
+            state.yPosition < 1500 &&
+            setState((prev) => ({ ...prev, yPosition: prev.yPosition + 100 }))
           }
         >
           <YPosRight />
@@ -117,7 +121,8 @@ const Position: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
           onClick={() =>
-            state.padding > -200 && setState((prev) => ({ ...prev, padding: prev.padding - 10 }))
+            state.padding > -200 &&
+            setState((prev) => ({ ...prev, padding: prev.padding - 10 }))
           }
         >
           <PaddingRight />
@@ -138,7 +143,10 @@ const Position: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.padding < 200 && setState((prev) => ({ ...prev, padding: prev.padding + 10 }))}
+          onClick={() =>
+            state.padding < 200 &&
+            setState((prev) => ({ ...prev, padding: prev.padding + 10 }))
+          }
         >
           <PaddingLeft />
         </SliderIconWrapper>

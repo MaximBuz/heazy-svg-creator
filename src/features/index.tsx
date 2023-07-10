@@ -43,5 +43,5 @@ export {
   useCanvasDimensions,
   TemplateMenu,
   OptionsMenu,
-  UserMenu
+  UserMenu,
 };

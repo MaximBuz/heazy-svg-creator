@@ -7,7 +7,12 @@ interface ISvgCanvasProps {
   children: ReactNode;
 }
 
-const SvgCanvas: React.FunctionComponent<ISvgCanvasProps> = ({ width, height, svgRef, children }) => {
+const SvgCanvas: React.FunctionComponent<ISvgCanvasProps> = ({
+  width,
+  height,
+  svgRef,
+  children,
+}) => {
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}

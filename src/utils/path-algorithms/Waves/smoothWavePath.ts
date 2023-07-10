@@ -19,15 +19,15 @@ function getRandomAnchors(
   for (let waveNo = 0; waveNo <= breaks; waveNo++) {
     // get X and Y coordinates
     const pointCoordinate = pointCoordinates[waveNo];
-    let [initialX, initialY] = [pointCoordinate[0], pointCoordinate[1]];
+    const [initialX, initialY] = [pointCoordinate[0], pointCoordinate[1]];
 
     // calculate random components for y
     const random = rndm(seed + (waveNo + 1));
     const signedRandomPart = (random - 0.5) * velocity;
 
     // randomize y coordinate
-    let y = initialY + (signedRandomPart * waveSize) / 3;
-    let x = initialX;
+    const y = initialY + (signedRandomPart * waveSize) / 3;
+    const x = initialX;
 
     coordinates.push([x, y]);
   }
@@ -46,7 +46,7 @@ export function smoothWavePath(
   solid: boolean,
   smooth: number
 ): string[] {
-  let initialWaveSize = height * (1 - balance);
+  const initialWaveSize = height * (1 - balance);
 
   // save each full wave in here
   const waves = [];
@@ -54,7 +54,13 @@ export function smoothWavePath(
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
     const currentWaveSize = initialWaveSize + stack * distance;
-    const anchorPoints = getRandomAnchors(seed * (stack + 1), velocity, breaks, currentWaveSize, width);
+    const anchorPoints = getRandomAnchors(
+      seed * (stack + 1),
+      velocity,
+      breaks,
+      currentWaveSize,
+      width
+    );
 
     let commands;
     let path;
@@ -70,7 +76,7 @@ export function smoothWavePath(
       commands = anchorPoints.reduce((acc, point, index, array) => {
         return `${acc} ${getBezier(point, index, array, smooth)}`; // change this
       });
-      path = [`M0 0`, commands];
+      path = ['M0 0', commands];
       path.push(`L${width} ${height}`, `L0 ${height}Z`);
     }
     waves.push(path.join(' '));

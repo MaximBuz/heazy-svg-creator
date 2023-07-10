@@ -31,7 +31,7 @@ export interface IDesignProvider {
 
   isolinesState: IIsolinesAllProps;
   setIsolinesState: Dispatch<SetStateAction<IIsolinesAllProps>>;
-  
+
   flareState: IFlareAllProps;
   setFlareState: Dispatch<SetStateAction<IFlareAllProps>>;
 

@@ -43,7 +43,10 @@ const Shape: React.FunctionComponent = memo(() => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 456 456'}
-          onClick={() => state.balance > 0 && setState((prev) => ({ ...prev, balance: prev.balance - 0.1 }))}
+          onClick={() =>
+            state.balance > 0 &&
+            setState((prev) => ({ ...prev, balance: prev.balance - 0.1 }))
+          }
         >
           <BalanceLeft />
         </SliderIconWrapper>
@@ -62,7 +65,10 @@ const Shape: React.FunctionComponent = memo(() => {
         </Slider>
         <SliderIconWrapper
           viewBox={'0 0 456 456'}
-          onClick={() => state.balance < 1 && setState((prev) => ({ ...prev, balance: prev.balance + 0.1 }))}
+          onClick={() =>
+            state.balance < 1 &&
+            setState((prev) => ({ ...prev, balance: prev.balance + 0.1 }))
+          }
         >
           <BalanceRight />
         </SliderIconWrapper>
@@ -77,7 +83,8 @@ const Shape: React.FunctionComponent = memo(() => {
         <SliderIconWrapper
           viewBox={'0 0 413 88'}
           onClick={() =>
-            state.velocity > 0 && setState((prev) => ({ ...prev, velocity: state.velocity - 0.1 }))
+            state.velocity > 0 &&
+            setState((prev) => ({ ...prev, velocity: state.velocity - 0.1 }))
           }
         >
           <VelocityLeft />
@@ -100,7 +107,8 @@ const Shape: React.FunctionComponent = memo(() => {
         <SliderIconWrapper
           viewBox={'0 0 412 286'}
           onClick={() =>
-            state.velocity < 1 && setState((prev) => ({ ...prev, velocity: prev.velocity + 0.1 }))
+            state.velocity < 1 &&
+            setState((prev) => ({ ...prev, velocity: prev.velocity + 0.1 }))
           }
         >
           <VelocityRight />
@@ -115,7 +123,10 @@ const Shape: React.FunctionComponent = memo(() => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 420 78'}
-          onClick={() => state.breaks > 1 && setState((prev) => ({ ...prev, breaks: prev.breaks - 1 }))}
+          onClick={() =>
+            state.breaks > 1 &&
+            setState((prev) => ({ ...prev, breaks: prev.breaks - 1 }))
+          }
         >
           <ComplexityLeft />
         </SliderIconWrapper>
@@ -135,7 +146,10 @@ const Shape: React.FunctionComponent = memo(() => {
 
         <SliderIconWrapper
           viewBox={'0 0 432 158'}
-          onClick={() => state.breaks < 20 && setState((prev) => ({ ...prev, breaks: prev.breaks + 1 }))}
+          onClick={() =>
+            state.breaks < 20 &&
+            setState((prev) => ({ ...prev, breaks: prev.breaks + 1 }))
+          }
         >
           <ComplexityRight />
         </SliderIconWrapper>
@@ -149,7 +163,10 @@ const Shape: React.FunctionComponent = memo(() => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 420 200'}
-          onClick={() => state.smooth > 0.05 && setState((prev) => ({ ...prev, smooth: prev.smooth - 0.05 }))}
+          onClick={() =>
+            state.smooth > 0.05 &&
+            setState((prev) => ({ ...prev, smooth: prev.smooth - 0.05 }))
+          }
         >
           <Edgy />
         </SliderIconWrapper>
@@ -170,7 +187,10 @@ const Shape: React.FunctionComponent = memo(() => {
 
         <SliderIconWrapper
           viewBox={'0 0 432 158'}
-          onClick={() => state.smooth < 0.25 && setState((prev) => ({ ...prev, smooth: prev.smooth + 0.05 }))}
+          onClick={() =>
+            state.smooth < 0.25 &&
+            setState((prev) => ({ ...prev, smooth: prev.smooth + 0.05 }))
+          }
         >
           <Smooth />
         </SliderIconWrapper>
@@ -184,7 +204,9 @@ const Shape: React.FunctionComponent = memo(() => {
         defaultValue={state.stacks}
         min={0}
         max={100}
-        onChange={(val) => setState((prev) => ({ ...prev, stacks: Number(val) }))}
+        onChange={(val) =>
+          setState((prev) => ({ ...prev, stacks: Number(val) }))
+        }
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -201,7 +223,8 @@ const Shape: React.FunctionComponent = memo(() => {
         <SliderIconWrapper
           viewBox={'0 0 446 123'}
           onClick={() =>
-            state.distance >= 25 && setState((prev) => ({ ...prev, distance: prev.distance - 25 }))
+            state.distance >= 25 &&
+            setState((prev) => ({ ...prev, distance: prev.distance - 25 }))
           }
         >
           <DistanceLeft />
@@ -223,7 +246,8 @@ const Shape: React.FunctionComponent = memo(() => {
         <SliderIconWrapper
           viewBox={'0 0 445 303'}
           onClick={() =>
-            state.distance <= 125 && setState((prev) => ({ ...prev, distance: prev.distance + 25 }))
+            state.distance <= 125 &&
+            setState((prev) => ({ ...prev, distance: prev.distance + 25 }))
           }
         >
           <DistanceRight />

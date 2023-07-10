@@ -107,11 +107,21 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
               Star
             </GitHubButton>
             <Flex mt="-1.5" gap="5px" alignItems="center">
-              <Link _hover={{opacity: 1}} opacity={0.5} fontSize="xs" href="https://heazy.studio/privacy">
+              <Link
+                _hover={{ opacity: 1 }}
+                opacity={0.5}
+                fontSize="xs"
+                href="https://heazy.studio/privacy"
+              >
                 Privacy
               </Link>
               <Text opacity={0.5}>|</Text>
-              <Link _hover={{opacity: 1}} opacity={0.5} fontSize="xs" href="https://www.buymeacoffee.com/mbuzmaxim3">
+              <Link
+                _hover={{ opacity: 1 }}
+                opacity={0.5}
+                fontSize="xs"
+                href="https://www.buymeacoffee.com/mbuzmaxim3"
+              >
                 Buy me a coffee
               </Link>
             </Flex>

@@ -1,4 +1,8 @@
-import { CreateNewDesignMutation, Design, IncrementTimesCopiedMutation } from '../graphql/generated';
+import {
+  CreateNewDesignMutation,
+  Design,
+  IncrementTimesCopiedMutation,
+} from '../graphql/generated';
 import { UseMutationResult } from 'react-query';
 import { Exact } from '../graphql/generated';
 

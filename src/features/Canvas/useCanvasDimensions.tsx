@@ -5,7 +5,11 @@ import { ICanvasDimensions } from '../../types/canvasDimensions';
 const useCanvasDimensions = (
   defaultWidth = 800,
   defaultHeight = 600
-): [Dispatch<SetStateAction<number>>, Dispatch<SetStateAction<number>>, ICanvasDimensions] => {
+): [
+  Dispatch<SetStateAction<number>>,
+  Dispatch<SetStateAction<number>>,
+  ICanvasDimensions,
+] => {
   const [width, setWidth] = useState<number>(defaultWidth);
   const [height, setHeight] = useState<number>(defaultHeight);
   const canvasDimensions = useMemo<ICanvasDimensions>(() => {
@@ -21,4 +25,3 @@ const useCanvasDimensions = (
 };
 
 export default useCanvasDimensions;
- 

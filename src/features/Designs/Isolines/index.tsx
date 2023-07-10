@@ -5,10 +5,10 @@ import { isolinePath } from '../../../utils/path-algorithms/Isolines/isolinePath
 import StrokeStyles from './strokeStyles';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 
-const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
-  seed,
-  svgRef,
-}) => {
+const Isolines: React.FunctionComponent<{
+  svgRef: Ref<SVGAElement | null>;
+  seed: number;
+}> = ({ seed, svgRef }) => {
   const { isolinesState, canvasDimensions } = useDesign();
 
   // destructure some params
@@ -57,7 +57,7 @@ const Isolines: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed:
                   : isolinesState.strokeWidth
               }
               style={{
-                transformOrigin: `center`,
+                transformOrigin: 'center',
                 transform: `scale(${zoom}) translate(${x}px, ${y}px)`,
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',
               }}

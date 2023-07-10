@@ -9,7 +9,9 @@ export interface IQueryErrorProps {
   heading?: string;
 }
 
-const QueryError: React.FunctionComponent<IQueryErrorProps> = ({ withImage }) => {
+const QueryError: React.FunctionComponent<IQueryErrorProps> = ({
+  withImage,
+}) => {
   return (
     <Flex
       direction="column"
@@ -20,7 +22,9 @@ const QueryError: React.FunctionComponent<IQueryErrorProps> = ({ withImage }) =>
       justifyContent="center"
       p="5"
     >
-      {withImage && <Image pos="relative" right="15px" src={ErrorImg} h="20%"></Image>}
+      {withImage && (
+        <Image pos="relative" right="15px" src={ErrorImg} h="20%"></Image>
+      )}
       <Box mt="1em">
         <Heading as="h4" size="md" fontWeight={800}>
           oooops...{' '}

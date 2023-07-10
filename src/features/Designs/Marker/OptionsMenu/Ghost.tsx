@@ -23,7 +23,8 @@ import GhostLeft from './Icons/GhostLeft';
 import GhostRight from './Icons/GhostRight';
 import { useDesign } from '../../../../contexts/Design';
 
-const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
+const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
+  OrigPopoverTrigger;
 
 const Ghost: React.FunctionComponent = () => {
   const { markerState: state, setMarkerState: setState } = useDesign();
@@ -36,7 +37,9 @@ const Ghost: React.FunctionComponent = () => {
 
       {/* ------ GHOST? ------ */}
       <Tabs
-        onChange={(index) => setState((prev) => ({ ...prev, ghost: index === 0 ? false : true }))}
+        onChange={(index) =>
+          setState((prev) => ({ ...prev, ghost: index === 0 ? false : true }))
+        }
         defaultIndex={state.ghost === false ? 0 : 1}
         isFitted
         variant="unstyled"
@@ -91,14 +94,26 @@ const Ghost: React.FunctionComponent = () => {
               ></Circle>
             </PopoverTrigger>
             <InputGroup>
-              <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
+              <InputLeftElement
+                opacity={0.7}
+                pointerEvents="none"
+                children="#"
+              />
               <Input
                 value={state.ghostStartColor.replace('#', '')}
-                onChange={(e) => setState((prev) => ({ ...prev, ghostStartColor: `#${e.target.value}` }))}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    ghostStartColor: `#${e.target.value}`,
+                  }))
+                }
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
+          <PopoverContent
+            rootProps={{ style: { right: 0 } }}
+            width="fit-content"
+          >
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -106,7 +121,8 @@ const Ghost: React.FunctionComponent = () => {
                 onChange={(col) =>
                   setState((prev) => ({
                     ...prev,
-                    ghostStartColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                    ghostStartColor:
+                      '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
                   }))
                 }
                 /* WE NEED OPACITY / ALPHA TOO */
@@ -118,7 +134,9 @@ const Ghost: React.FunctionComponent = () => {
         </Popover>
         <HideColorButton
           color={state.ghostStartColor}
-          setColor={(color: string) => setState((prev) => ({ ...prev, ghostStartColor: color }))}
+          setColor={(color: string) =>
+            setState((prev) => ({ ...prev, ghostStartColor: color }))
+          }
         />
       </HStack>
 
@@ -140,14 +158,26 @@ const Ghost: React.FunctionComponent = () => {
               ></Circle>
             </PopoverTrigger>
             <InputGroup>
-              <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
+              <InputLeftElement
+                opacity={0.7}
+                pointerEvents="none"
+                children="#"
+              />
               <Input
                 value={state.ghostEndColor.replace('#', '')}
-                onChange={(e) => setState((prev) => ({ ...prev, ghostEndColor: `#${e.target.value}` }))}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    ghostEndColor: `#${e.target.value}`,
+                  }))
+                }
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
+          <PopoverContent
+            rootProps={{ style: { right: 0 } }}
+            width="fit-content"
+          >
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -155,7 +185,8 @@ const Ghost: React.FunctionComponent = () => {
                 onChange={(col) =>
                   setState((prev) => ({
                     ...prev,
-                    ghostEndColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                    ghostEndColor:
+                      '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
                   }))
                 }
                 /* WE NEED OPACITY / ALPHA TOO */
@@ -167,7 +198,9 @@ const Ghost: React.FunctionComponent = () => {
         </Popover>
         <HideColorButton
           color={state.ghostEndColor}
-          setColor={(col: string) => setState((prev) => ({ ...prev, ghostEndColor: col }))}
+          setColor={(col: string) =>
+            setState((prev) => ({ ...prev, ghostEndColor: col }))
+          }
         />
       </HStack>
     </>

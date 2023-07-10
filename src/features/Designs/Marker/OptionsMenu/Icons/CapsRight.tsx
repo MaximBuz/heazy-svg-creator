@@ -8,7 +8,6 @@ const CapsRight: React.FunctionComponent = () => {
         strokeWidth="173"
         strokeLinecap="square"
       />
-      
     </>
   );
 };

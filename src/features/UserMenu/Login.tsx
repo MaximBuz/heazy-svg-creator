@@ -29,12 +29,18 @@ export interface ILoginProps {
   setRegistrationMode: Dispatch<boolean>;
 }
 
-const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) => {
+const Login: React.FunctionComponent<ILoginProps> = ({
+  setRegistrationMode,
+}) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const { login, resetPassword: resetPw } = useAuth();
-  const { onClose: closePwReset, isOpen: pwResetIsOpen, onToggle: togglePwReset } = useDisclosure();
+  const {
+    onClose: closePwReset,
+    isOpen: pwResetIsOpen,
+    onToggle: togglePwReset,
+  } = useDisclosure();
   const [resetPwEmail, setResetPwEmail] = useState<string>();
   const toast = useToast();
 
@@ -73,14 +79,26 @@ const Login: React.FunctionComponent<ILoginProps> = ({ setRegistrationMode }) =>
       </Box>
       <form onSubmit={handleLogin}>
         <FormControl isRequired>
-          <Input name="login-email" mt={5} placeholder="Email" type="email"></Input>
+          <Input
+            name="login-email"
+            mt={5}
+            placeholder="Email"
+            type="email"
+          ></Input>
         </FormControl>
         <FormControl isRequired>
-          <Input mt="10px" name="login-pw" placeholder="Password" type="password"></Input>
+          <Input
+            mt="10px"
+            name="login-pw"
+            placeholder="Password"
+            type="password"
+          ></Input>
         </FormControl>
         <Button
           isLoading={loading}
-          spinner={<RaceBy size={150} lineWeight={5} speed={1.4} color="white" />}
+          spinner={
+            <RaceBy size={150} lineWeight={5} speed={1.4} color="white" />
+          }
           width="100%"
           type="submit"
           mt={5}

@@ -71,5 +71,7 @@ export function CookiesProvider({ children }) {
     consent: consent,
     analytics: analytics,
   };
-  return <CookiesContext.Provider value={value}>{children}</CookiesContext.Provider>;
+  return (
+    <CookiesContext.Provider value={value}>{children}</CookiesContext.Provider>
+  );
 }

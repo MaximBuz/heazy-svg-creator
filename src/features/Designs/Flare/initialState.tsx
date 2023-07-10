@@ -11,5 +11,5 @@ export const initialFlareState: IFlareAllProps = {
   lensCut: true,
   irisWidth: 5,
   irisIntensity: 1,
-  direction: 0
+  direction: 0,
 };

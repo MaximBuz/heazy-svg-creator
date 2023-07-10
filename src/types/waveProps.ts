@@ -20,11 +20,10 @@ export interface IWaveShapeProps {
   breaks: number;
   stacks: number;
   distance: number;
-  smooth: number
+  smooth: number;
 }
 
-export type IWaveAllProps =
-  IWaveShapeProps &
+export type IWaveAllProps = IWaveShapeProps &
   IWaveVariantsProps &
   IColors &
   IShadow;

@@ -1,4 +1,3 @@
-
 // Layout
 import {
   Heading,
@@ -48,7 +47,8 @@ const Variants: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox="0 0 394 366"
           onClick={() =>
-            state.strokeWidth > 0 && setState((prev) => ({ ...prev, strokeWidth: prev.strokeWidth - 1 }))
+            state.strokeWidth > 0 &&
+            setState((prev) => ({ ...prev, strokeWidth: prev.strokeWidth - 1 }))
           }
         >
           <LineWidthLeft />
@@ -60,7 +60,9 @@ const Variants: React.FunctionComponent = () => {
           min={0}
           max={20}
           step={0.5}
-          onChange={(val) => setState((prev) => ({ ...prev, strokeWidth: val }))}
+          onChange={(val) =>
+            setState((prev) => ({ ...prev, strokeWidth: val }))
+          }
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -71,7 +73,11 @@ const Variants: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox="0 0 433 325"
           onClick={() =>
-            state.strokeWidth < 50 && setState((prev) => ({ ...prev, strokeWidth: state.strokeWidth + 1}))
+            state.strokeWidth < 50 &&
+            setState((prev) => ({
+              ...prev,
+              strokeWidth: state.strokeWidth + 1,
+            }))
           }
         >
           <LineWidthRight />
@@ -84,7 +90,9 @@ const Variants: React.FunctionComponent = () => {
         <Switch
           isChecked={state.strokeShrink}
           size="lg"
-          onChange={() => setState((prev) => ({ ...prev, strokeShrink: !state.strokeShrink }))}
+          onChange={() =>
+            setState((prev) => ({ ...prev, strokeShrink: !state.strokeShrink }))
+          }
         />
       </HStack>
 
@@ -92,7 +100,12 @@ const Variants: React.FunctionComponent = () => {
         Stroke Style
       </Heading>
       <Tabs
-        onChange={(index) => setState((prev) => ({ ...prev, strokeStyle: index + 1 as strokeStyles }))}
+        onChange={(index) =>
+          setState((prev) => ({
+            ...prev,
+            strokeStyle: (index + 1) as strokeStyles,
+          }))
+        }
         defaultIndex={4 - 1}
         isFitted
         variant="unstyled"

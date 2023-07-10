@@ -1,7 +1,7 @@
 function stringify(obj) {
   const cleaned = JSON.stringify(obj, null, 2);
 
-  let isSafari =
+  const isSafari =
     navigator.vendor.match(/apple/i) &&
     !navigator.userAgent.match(/crios/i) &&
     !navigator.userAgent.match(/fxios/i) &&
@@ -21,12 +21,15 @@ function stringify(obj) {
 function cssToJsx(string) {
   string = string.replace('style="', '').slice(0, -1);
   string = string.replaceAll('&quot;', "'");
-  string = `{"${string.replace(/; /g, '", "').replace(/: /g, '": "').replace(';', '')}"}`;
+  string = `{"${string
+    .replace(/; /g, '", "')
+    .replace(/: /g, '": "')
+    .replace(';', '')}"}`;
 
   const obj = JSON.parse(string);
 
   const keyValues = Object.keys(obj).map((key) => {
-    var camelCased = key.replace(/-[a-z]/g, (g) => g[1].toUpperCase());
+    const camelCased = key.replace(/-[a-z]/g, (g) => g[1].toUpperCase());
     return { [camelCased]: obj[key] };
   });
   return 'style={' + stringify(Object.assign({}, ...keyValues)) + '}';

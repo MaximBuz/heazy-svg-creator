@@ -8,7 +8,11 @@ import { initialMarkerState } from '../features/Designs/Marker/initialState';
 import { IMarkerAllProps } from '../types/markerProps';
 import { initialWaveState } from '../features/Designs/Waves/initialState';
 import { IWaveAllProps } from '../types/waveProps';
-import { Design, useCreateNewDesignMutation, useGetDesignTypesQuery } from '../graphql/generated';
+import {
+  Design,
+  useCreateNewDesignMutation,
+  useGetDesignTypesQuery,
+} from '../graphql/generated';
 import { endpoint, headers } from '../utils/apiConfig';
 import { useQueryClient } from 'react-query';
 
@@ -44,11 +48,16 @@ export function DesignProvider({ children }) {
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
   const [design, setDesign] = useState<IDesignModes>({ name: 'waves', id: 1 });
   const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
-  const [bubbleState, setBubbleState] = useState<IBubbleAllProps>(initialBubbleState);
-  const [cornerState, setCornerState] = useState<ICornerAllProps>(initialCornerState);
-  const [markerState, setMarkerState] = useState<IMarkerAllProps>(initialMarkerState);
-  const [isolinesState, setIsolinesState] = useState<IIsolinesAllProps>(initialIsolineState);
-  const [flareState, setFlareState] = useState<IFlareAllProps>(initialFlareState);
+  const [bubbleState, setBubbleState] =
+    useState<IBubbleAllProps>(initialBubbleState);
+  const [cornerState, setCornerState] =
+    useState<ICornerAllProps>(initialCornerState);
+  const [markerState, setMarkerState] =
+    useState<IMarkerAllProps>(initialMarkerState);
+  const [isolinesState, setIsolinesState] =
+    useState<IIsolinesAllProps>(initialIsolineState);
+  const [flareState, setFlareState] =
+    useState<IFlareAllProps>(initialFlareState);
 
   // getting DesignTypes from database
   const { data: designTypes, isSuccess } = useGetDesignTypesQuery({
@@ -59,18 +68,27 @@ export function DesignProvider({ children }) {
   // Setting state to parameters saved from templates
   function copyTemplateParams(designParams: Design) {
     const type = designParams.type;
-    if (type.name === 'waves') setWaveState({ ...waveState, ...designParams.optionParameters });
-    if (type.name === 'bubble') setBubbleState({ ...bubbleState, ...designParams.optionParameters });
-    if (type.name === 'corners') setCornerState({ ...cornerState, ...designParams.optionParameters });
-    if (type.name === 'marker') setMarkerState({ ...markerState, ...designParams.optionParameters });
-    if (type.name === 'isolines') setIsolinesState({ ...isolinesState, ...designParams.optionParameters });
-    if (type.name === 'flare') setFlareState({ ...flareState, ...designParams.optionParameters });
+    if (type.name === 'waves')
+      setWaveState({ ...waveState, ...designParams.optionParameters });
+    if (type.name === 'bubble')
+      setBubbleState({ ...bubbleState, ...designParams.optionParameters });
+    if (type.name === 'corners')
+      setCornerState({ ...cornerState, ...designParams.optionParameters });
+    if (type.name === 'marker')
+      setMarkerState({ ...markerState, ...designParams.optionParameters });
+    if (type.name === 'isolines')
+      setIsolinesState({ ...isolinesState, ...designParams.optionParameters });
+    if (type.name === 'flare')
+      setFlareState({ ...flareState, ...designParams.optionParameters });
     setDesign(type);
   }
 
   // Save template to database
   const queryClient = useQueryClient();
-  const mutation = useCreateNewDesignMutation({ endpoint, fetchParams: { headers: headers(auth?.idToken) } });
+  const mutation = useCreateNewDesignMutation({
+    endpoint,
+    fetchParams: { headers: headers(auth?.idToken) },
+  });
   async function saveTemplate(
     designParams: Pick<Design, 'optionParameters'>,
     name: string,
@@ -94,7 +112,13 @@ export function DesignProvider({ children }) {
           {
             onSuccess: () => {
               queryClient.invalidateQueries(['getUserByFirebaseId']);
-              cookies.consent && cookies.analytics && logEvent(cookies.analytics, 'saved_template', { user: auth.currentUser, design: typeId, name });
+              cookies.consent &&
+                cookies.analytics &&
+                logEvent(cookies.analytics, 'saved_template', {
+                  user: auth.currentUser,
+                  design: typeId,
+                  name,
+                });
             },
           }
         );
@@ -143,5 +167,7 @@ export function DesignProvider({ children }) {
     saveTemplate,
   };
 
-  return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>;
+  return (
+    <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
+  );
 }

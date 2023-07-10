@@ -30,7 +30,12 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
   width,
 }) => {
   return (
-    <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={drawerButtonRef}>
+    <Drawer
+      isOpen={isOpen}
+      placement="right"
+      onClose={onClose}
+      finalFocusRef={drawerButtonRef}
+    >
       {/* <DrawerOverlay /> */}
       <DrawerContent bgColor="#1c1f27">
         <DrawerHeader>
@@ -47,7 +52,12 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
               >
                 <ChevronLeftIcon onClick={onClose} />
               </Circle>
-              <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
+              <Heading
+                as="h3"
+                size="xs"
+                textTransform="uppercase"
+                textAlign="center"
+              >
                 Dimensions
               </Heading>
             </Flex>
@@ -67,9 +77,17 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                 />
                 <Input
                   value={width}
-                  onChange={(e) => e.target.value[0] !== '0' && setWidth(Number(e.target.value))}
+                  onChange={(e) =>
+                    e.target.value[0] !== '0' &&
+                    setWidth(Number(e.target.value))
+                  }
                 />
-                <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
+                <InputRightElement
+                  fontWeight="light"
+                  opacity={0.7}
+                  fontSize="sm"
+                  children="px"
+                />
               </InputGroup>
               <InputGroup>
                 <InputLeftElement
@@ -81,9 +99,17 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
                 />
                 <Input
                   value={height}
-                  onChange={(e) => e.target.value[0] !== '0' && setHeight(Number(e.target.value))}
+                  onChange={(e) =>
+                    e.target.value[0] !== '0' &&
+                    setHeight(Number(e.target.value))
+                  }
                 />
-                <InputRightElement fontWeight="light" opacity={0.7} fontSize="sm" children="px" />
+                <InputRightElement
+                  fontWeight="light"
+                  opacity={0.7}
+                  fontSize="sm"
+                  children="px"
+                />
               </InputGroup>
             </HStack>
             <Spacer></Spacer>

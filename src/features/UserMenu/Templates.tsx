@@ -22,7 +22,10 @@ export interface ITemplatesProps {
   designs: Design[];
 }
 
-const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }) => {
+const Templates: React.FunctionComponent<ITemplatesProps> = ({
+  search,
+  designs,
+}) => {
   // Closing UserSpace
   const { onClose } = useUserSpace();
 
@@ -59,7 +62,11 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({ search, designs }
     <Stack spacing="5">
       {designs
         .filter((design) => {
-          if (search && !design.name.toLowerCase().includes(search.toLowerCase())) return false;
+          if (
+            search &&
+            !design.name.toLowerCase().includes(search.toLowerCase())
+          )
+            return false;
           else return true;
         })
         .map((design) => (

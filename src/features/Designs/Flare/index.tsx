@@ -5,10 +5,10 @@ import { useDesign } from '../../../contexts/Design';
 import hexRgb from 'hex-rgb';
 import mirror from '../../../utils/helpers/getTransform';
 
-const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
-  seed,
-  svgRef,
-}) => {
+const Flare: React.FunctionComponent<{
+  svgRef: Ref<SVGAElement | null>;
+  seed: number;
+}> = ({ seed, svgRef }) => {
   const { flareState, canvasDimensions } = useDesign();
 
   // destructure some params
@@ -37,9 +37,12 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
   const rgbIris = hexRgb(irisHex);
 
   // Colors
-  const backgroundColor = (opacity) => `rgb(${rgbBg.red}, ${rgbBg.green}, ${rgbBg.blue},${opacity})`;
-  const lensColor = (opacity) => `rgb(${rgbLens.red}, ${rgbLens.green}, ${rgbLens.blue},${opacity})`;
-  const irisColor = (opacity) => `rgb(${rgbIris.red}, ${rgbIris.green}, ${rgbIris.blue},${opacity})`;
+  const backgroundColor = (opacity) =>
+    `rgb(${rgbBg.red}, ${rgbBg.green}, ${rgbBg.blue},${opacity})`;
+  const lensColor = (opacity) =>
+    `rgb(${rgbLens.red}, ${rgbLens.green}, ${rgbLens.blue},${opacity})`;
+  const irisColor = (opacity) =>
+    `rgb(${rgbIris.red}, ${rgbIris.green}, ${rgbIris.blue},${opacity})`;
   const backgroundLightColor = (opacity) =>
     `rgb(${rgbBgLight.red}, ${rgbBgLight.green}, ${rgbBgLight.blue},${opacity})`;
 
@@ -69,27 +72,51 @@ const Flare: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: nu
           </radialGradient>
 
           <radialGradient id="lens-iris">
-            <stop offset={50 - irisWidth * 2 + '%'} stopColor={backgroundColor(0)}></stop>
-            <stop offset={90 - irisWidth + '%'} stopColor={irisColor(irisIntensity / 2)}></stop>
-            <stop offset={90 + irisWidth / 2 + '%'} stopColor={irisColor(irisIntensity)}></stop>
-            <stop offset={`100%`} stopColor={backgroundColor(0)}></stop>
+            <stop
+              offset={50 - irisWidth * 2 + '%'}
+              stopColor={backgroundColor(0)}
+            ></stop>
+            <stop
+              offset={90 - irisWidth + '%'}
+              stopColor={irisColor(irisIntensity / 2)}
+            ></stop>
+            <stop
+              offset={90 + irisWidth / 2 + '%'}
+              stopColor={irisColor(irisIntensity)}
+            ></stop>
+            <stop offset={'100%'} stopColor={backgroundColor(0)}></stop>
           </radialGradient>
 
           <radialGradient id="lens-dark-edge">
             <stop offset="0%" stopColor={backgroundColor(0)}></stop>
-            <stop offset={85 - random * 10 + '%'} stopColor={backgroundColor(1)}></stop>
-            <stop offset={100 - random * 10 + '%'} stopColor={backgroundColor(0)}></stop>
+            <stop
+              offset={85 - random * 10 + '%'}
+              stopColor={backgroundColor(1)}
+            ></stop>
+            <stop
+              offset={100 - random * 10 + '%'}
+              stopColor={backgroundColor(0)}
+            ></stop>
           </radialGradient>
 
           <radialGradient id="lens-middle-color">
-            <stop offset={(5-lensSpill) * 10 + '%'} stopColor={lensColor(0)}></stop>
-            <stop offset={100 - ((5-lensSpill) * 10) / 2 + '%'} stopColor={lensColor(1)}></stop>
+            <stop
+              offset={(5 - lensSpill) * 10 + '%'}
+              stopColor={lensColor(0)}
+            ></stop>
+            <stop
+              offset={100 - ((5 - lensSpill) * 10) / 2 + '%'}
+              stopColor={lensColor(1)}
+            ></stop>
             <stop offset="100%" stopColor={lensColor(0)}></stop>
           </radialGradient>
 
           <radialGradient id="background-light">
-            <stop offset={`0%`} stopColor={backgroundLightColor(0.5)}></stop>
-            <stop offset={50 + random * 50 + '%'} stopColor={backgroundLightColor(0)}></stop>
+            <stop offset={'0%'} stopColor={backgroundLightColor(0.5)}></stop>
+            <stop
+              offset={50 + random * 50 + '%'}
+              stopColor={backgroundLightColor(0)}
+            ></stop>
           </radialGradient>
         </defs>
         <rect x="0" y="0" width={width} height={height} fill={bgColor}></rect>

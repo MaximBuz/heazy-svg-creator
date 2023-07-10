@@ -21,7 +21,7 @@ const WaveOptions: React.FunctionComponent = () => {
       <Divider />
       <ColorOptions state={waveState} setState={setWaveState} />
       <Divider />
-      <ShadowOptions state={waveState} setState={setWaveState}/>
+      <ShadowOptions state={waveState} setState={setWaveState} />
     </>
   );
 };

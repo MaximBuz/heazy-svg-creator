@@ -2,7 +2,6 @@ import React from 'react';
 import { ICornerSvgGroup } from '../../../types/cornerSvgGroup';
 import mirror from '../../../utils/helpers/getTransform';
 
-
 const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
   // destructure some params
   const { width, height, classId } = props;
@@ -12,7 +11,10 @@ const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
   const { startColor, endColor } = props;
 
   return (
-    <g transform-origin={`${width / 2} ${height / 2}`} transform={mirror(direction)}>
+    <g
+      transform-origin={`${width / 2} ${height / 2}`}
+      transform={mirror(direction)}
+    >
       <linearGradient id={`linear-gradient-${classId}`}>
         <stop offset="0%" stopColor={startColor} stopOpacity="100%" />
         <stop offset="100%" stopColor={endColor} stopOpacity="100%" />
@@ -20,8 +22,19 @@ const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
 
       {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
       {solid && (
-        <filter id={`shadow-${classId}`} x="-20%" width="150%" y="-20%" height="150%">
-          <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
+        <filter
+          id={`shadow-${classId}`}
+          x="-20%"
+          width="150%"
+          y="-20%"
+          height="150%"
+        >
+          <feDropShadow
+            dx={shadowX}
+            dy={shadowY}
+            stdDeviation={shadowSD}
+            floodColor={shadowColor}
+          />
         </filter>
       )}
       {path.map((wave, index) => (
@@ -33,7 +46,9 @@ const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
           filter={solid ? `url(#shadow-${classId})` : undefined}
           stroke={!solid ? `url(#linear-gradient-${classId})` : undefined}
           strokeWidth={
-            strokeWidth && strokeShrink ? strokeWidth - (strokeWidth / path.length) * index : strokeWidth
+            strokeWidth && strokeShrink
+              ? strokeWidth - (strokeWidth / path.length) * index
+              : strokeWidth
           }
           style={{
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s',

@@ -1,4 +1,11 @@
-import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react';
+import {
+  Heading,
+  HStack,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@chakra-ui/react';
 import React from 'react';
 import { useDesign } from '../../../../contexts/Design';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
@@ -12,7 +19,6 @@ const CenterPosition: React.FunctionComponent = () => {
       <Heading as="h3" size="xs" textTransform="uppercase">
         Inner Offset
       </Heading>
-      
 
       {/* ----- Y CenterPosition SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
@@ -22,7 +28,13 @@ const CenterPosition: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.innerOffsetY > 0 && setState((prev) => ({ ...prev, innerOffsetY: prev.innerOffsetY - 0.1 }))}
+          onClick={() =>
+            state.innerOffsetY > 0 &&
+            setState((prev) => ({
+              ...prev,
+              innerOffsetY: prev.innerOffsetY - 0.1,
+            }))
+          }
         >
           <icons.YPosLeft />
         </SliderIconWrapper>
@@ -33,7 +45,9 @@ const CenterPosition: React.FunctionComponent = () => {
           min={0}
           max={2}
           step={0.1}
-          onChange={(val) => setState((prev) => ({ ...prev, innerOffsetY: val }))}
+          onChange={(val) =>
+            setState((prev) => ({ ...prev, innerOffsetY: val }))
+          }
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -43,7 +57,13 @@ const CenterPosition: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.innerOffsetY < 2 && setState((prev) => ({ ...prev, innerOffsetY: prev.innerOffsetY + 0.1 }))}
+          onClick={() =>
+            state.innerOffsetY < 2 &&
+            setState((prev) => ({
+              ...prev,
+              innerOffsetY: prev.innerOffsetY + 0.1,
+            }))
+          }
         >
           <icons.YPosRight />
         </SliderIconWrapper>
@@ -57,7 +77,13 @@ const CenterPosition: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.innerOffsetX > 0 && setState((prev) => ({ ...prev, innerOffsetX: prev.innerOffsetX - 0.1 }))}
+          onClick={() =>
+            state.innerOffsetX > 0 &&
+            setState((prev) => ({
+              ...prev,
+              innerOffsetX: prev.innerOffsetX - 0.1,
+            }))
+          }
         >
           <icons.XPosLeft />
         </SliderIconWrapper>
@@ -68,7 +94,9 @@ const CenterPosition: React.FunctionComponent = () => {
           min={0}
           max={2}
           step={0.1}
-          onChange={(val) => setState((prev) => ({ ...prev, innerOffsetX: val }))}
+          onChange={(val) =>
+            setState((prev) => ({ ...prev, innerOffsetX: val }))
+          }
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -78,7 +106,13 @@ const CenterPosition: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.innerOffsetX < 2 && setState((prev) => ({ ...prev, innerOffsetX: prev.innerOffsetX + 0.1 }))}
+          onClick={() =>
+            state.innerOffsetX < 2 &&
+            setState((prev) => ({
+              ...prev,
+              innerOffsetX: prev.innerOffsetX + 0.1,
+            }))
+          }
         >
           <icons.XPosRight />
         </SliderIconWrapper>

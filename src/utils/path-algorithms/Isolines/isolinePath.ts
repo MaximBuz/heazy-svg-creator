@@ -16,10 +16,17 @@ export interface IIsolineCoords {
   };
 }
 
-function initializeCoords(seed, velocity, width, height, iteration): IIsolineCoords {
+function initializeCoords(
+  seed,
+  velocity,
+  width,
+  height,
+  iteration
+): IIsolineCoords {
   return {
     handles: {
-      right: (random(seed + 1) - 0.5) * (((velocity / 100) * height) / iteration),
+      right:
+        (random(seed + 1) - 0.5) * (((velocity / 100) * height) / iteration),
       left: (random(seed + 2) - 0.5) * (((velocity / 100) * width) / iteration),
       top: (random(seed + 3) - 0.5) * (((velocity / 100) * width) / iteration),
       bottom: (random(seed) - 0.5) * (((velocity / 100) * height) / iteration),
@@ -47,7 +54,7 @@ function calculatePath(
   const x = outerOffset * outerCenter.x + innerOffset * innerCenter.x;
   const y = outerOffset * outerCenter.y + innerOffset * innerCenter.y;
 
-  let start = `M ${x + size + init.anchors.right} ${y + init.anchors.right}`;
+  const start = `M ${x + size + init.anchors.right} ${y + init.anchors.right}`;
   const coords = [
     {
       x: x + init.anchors.bottom,
@@ -101,14 +108,17 @@ function calculatePath(
   return (
     start +
     coords
-      .map((coord) => ` C${coord.h1.x} ${coord.h1.y} ${coord.h2.x} ${coord.h2.y} ${coord.x} ${coord.y}`)
+      .map(
+        (coord) =>
+          ` C${coord.h1.x} ${coord.h1.y} ${coord.h2.x} ${coord.h2.y} ${coord.x} ${coord.y}`
+      )
       .join(' ')
   );
 }
 
 export function isolinePath(
   seed: number,
-  width: number, 
+  width: number,
   height: number,
   velocity: number,
   depth: number,
@@ -118,7 +128,6 @@ export function isolinePath(
   innerOffsetX: number,
   innerOffsetY: number
 ): string[] {
-
   const outerCenter = {
     x: width / 2,
     y: height / 2,
@@ -131,12 +140,18 @@ export function isolinePath(
 
   const isoline = [];
   for (let iteration = 2; iteration <= depth + 1; iteration++) {
-    const sizeOffset = iteration * distance ;
+    const sizeOffset = iteration * distance;
 
     if (size - sizeOffset > 0)
       isoline.push(
         calculatePath(
-          initializeCoords(seed, velocity, width, height, Math.log(iteration + 1)),
+          initializeCoords(
+            seed,
+            velocity,
+            width,
+            height,
+            Math.log(iteration + 1)
+          ),
           size - sizeOffset,
           outerCenter,
           innerCenter,

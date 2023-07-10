@@ -1,21 +1,21 @@
-import React, { memo, useState } from "react";
-import { useAuth } from "../../contexts/Auth";
-import { Design, useGetUserByFirebaseIdQuery } from "../../graphql/generated";
-import { endpoint, headers } from "../../utils/apiConfig";
+import React, { memo, useState } from 'react';
+import { useAuth } from '../../contexts/Auth';
+import { Design, useGetUserByFirebaseIdQuery } from '../../graphql/generated';
+import { endpoint, headers } from '../../utils/apiConfig';
 
 // Design
-import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import {
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
   Input,
-} from "@chakra-ui/react";
-import Templates from "./Templates";
-import Explore from "./Explore";
-import QueryError from "../../components/queryError";
-import QueryLoading from "../../components/queryLoading";
+} from '@chakra-ui/react';
+import Templates from './Templates';
+import Explore from './Explore';
+import QueryError from '../../components/queryError';
+import QueryLoading from '../../components/queryLoading';
 
 const UserSpace: React.FunctionComponent = memo(() => {
   // Auth
@@ -28,7 +28,7 @@ const UserSpace: React.FunctionComponent = memo(() => {
   } = useAuth();
 
   // Filter
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>('');
 
   if (currentUserLoading) {
     return <QueryLoading size={80} speed={1} color="#363E4A" />;
@@ -55,9 +55,9 @@ const UserSpace: React.FunctionComponent = memo(() => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              _expanded={{ bg: "#3b4453", fontWeight: "bolder" }}
-              _hover={{ bg: "#272c36" }}
-              _focus={{ boxShadow: "none" }}
+              _expanded={{ bg: '#3b4453', fontWeight: 'bolder' }}
+              _hover={{ bg: '#272c36' }}
+              _focus={{ boxShadow: 'none' }}
             >
               <Box pl="5" pr="5" flex="1" textAlign="center">
                 Your templates
@@ -85,9 +85,9 @@ const UserSpace: React.FunctionComponent = memo(() => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              _expanded={{ bg: "#3b4453", fontWeight: "bolder" }}
-              _hover={{ bg: "#272c36" }}
-              _focus={{ boxShadow: "none" }}
+              _expanded={{ bg: '#3b4453', fontWeight: 'bolder' }}
+              _hover={{ bg: '#272c36' }}
+              _focus={{ boxShadow: 'none' }}
             >
               <Box flex="1" textAlign="center">
                 Explore Templates

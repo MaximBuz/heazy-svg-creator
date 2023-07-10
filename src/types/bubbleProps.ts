@@ -1,7 +1,6 @@
 import { IColors } from './colorProps';
 import { IShadow } from './shadowProps';
 
-
 export interface IBubbleProps {
   svgRef: any;
   seed: number;
@@ -19,8 +18,7 @@ export interface IBubbleShapeProps {
   size: number;
 }
 
-export type IBubbleAllProps =
-  IBubbleShapeProps &
+export type IBubbleAllProps = IBubbleShapeProps &
   IBubbleVariantsProps &
   IColors &
   IShadow;

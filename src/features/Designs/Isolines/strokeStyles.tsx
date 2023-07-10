@@ -1,18 +1,27 @@
 import React from 'react';
 import { IIsolinesVariantsProps } from '../../../types/isolinesProps';
 
-const StrokeStyles: React.FunctionComponent<Pick<IIsolinesVariantsProps, 'strokeStyle'>> = ({
-  strokeStyle,
-}) => {
-  if (strokeStyle === 1)
-    return (
-      <></>
-    );
+const StrokeStyles: React.FunctionComponent<
+  Pick<IIsolinesVariantsProps, 'strokeStyle'>
+> = ({ strokeStyle }) => {
+  if (strokeStyle === 1) return <></>;
 
   if (strokeStyle === 2)
     return (
-      <filter x="-2%" y="-2%" width="104%" height="104%" filterUnits="objectBoundingBox" id="strokeStyle">
-        <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="3" result="noise"></feTurbulence>
+      <filter
+        x="-2%"
+        y="-2%"
+        width="104%"
+        height="104%"
+        filterUnits="objectBoundingBox"
+        id="strokeStyle"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="1.2"
+          numOctaves="3"
+          result="noise"
+        ></feTurbulence>
         <feDisplacementMap
           xChannelSelector="R"
           yChannelSelector="G"
@@ -25,7 +34,14 @@ const StrokeStyles: React.FunctionComponent<Pick<IIsolinesVariantsProps, 'stroke
 
   if (strokeStyle === 3)
     return (
-      <filter x="-5%" y="-5%" width="110%" height="110%" filterUnits="objectBoundingBox" id="strokeStyle">
+      <filter
+        x="-5%"
+        y="-5%"
+        width="110%"
+        height="110%"
+        filterUnits="objectBoundingBox"
+        id="strokeStyle"
+      >
         <feTurbulence
           type="fractalNoise"
           baseFrequency="0.5"
@@ -38,8 +54,18 @@ const StrokeStyles: React.FunctionComponent<Pick<IIsolinesVariantsProps, 'stroke
           values="0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -1.5 1.5"
           result="f2"
         ></feColorMatrix>
-        <feComposite operator="in" in2="f2b" in="SourceGraphic" result="f3"></feComposite>
-        <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="3" result="noise"></feTurbulence>
+        <feComposite
+          operator="in"
+          in2="f2b"
+          in="SourceGraphic"
+          result="f3"
+        ></feComposite>
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="1.2"
+          numOctaves="3"
+          result="noise"
+        ></feTurbulence>
         <feDisplacementMap
           xChannelSelector="R"
           yChannelSelector="G"
@@ -52,7 +78,14 @@ const StrokeStyles: React.FunctionComponent<Pick<IIsolinesVariantsProps, 'stroke
 
   if (strokeStyle === 4)
     return (
-      <filter id="strokeStyle" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox">
+      <filter
+        id="strokeStyle"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+      >
         <feTurbulence
           type="fractalNoise"
           baseFrequency="0.03"
@@ -105,8 +138,20 @@ const StrokeStyles: React.FunctionComponent<Pick<IIsolinesVariantsProps, 'stroke
 
   if (strokeStyle === 5)
     return (
-      <filter x="-2%" y="-2%" width="104%" height="104%" filterUnits="objectBoundingBox" id="strokeStyle">
-        <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="3" result="noise"></feTurbulence>
+      <filter
+        x="-2%"
+        y="-2%"
+        width="104%"
+        height="104%"
+        filterUnits="objectBoundingBox"
+        id="strokeStyle"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="1.2"
+          numOctaves="3"
+          result="noise"
+        ></feTurbulence>
         <feDisplacementMap
           xChannelSelector="R"
           yChannelSelector="G"

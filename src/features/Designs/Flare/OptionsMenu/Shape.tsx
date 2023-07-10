@@ -29,7 +29,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.lensRadius > 50 && setState((prev) => ({ ...prev, lensRadius: prev.lensRadius - 5 }))
+            state.lensRadius > 50 &&
+            setState((prev) => ({ ...prev, lensRadius: prev.lensRadius - 5 }))
           }
         >
           <icons.lensRadiusLow />
@@ -52,7 +53,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.lensRadius < 100 && setState((prev) => ({ ...prev, lensRadius: prev.lensRadius + 5 }))
+            state.lensRadius < 100 &&
+            setState((prev) => ({ ...prev, lensRadius: prev.lensRadius + 5 }))
           }
         >
           <icons.lensRadiusHigh />
@@ -68,7 +70,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.lensSpill > 1 && setState((prev) => ({ ...prev, lensSpill: prev.lensSpill - 0.5 }))
+            state.lensSpill > 1 &&
+            setState((prev) => ({ ...prev, lensSpill: prev.lensSpill - 0.5 }))
           }
         >
           <icons.lensSpillLow />
@@ -91,7 +94,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.lensSpill < 5 && setState((prev) => ({ ...prev, lensSpill: prev.lensSpill + 0.5 }))
+            state.lensSpill < 5 &&
+            setState((prev) => ({ ...prev, lensSpill: prev.lensSpill + 0.5 }))
           }
         >
           <icons.lensSpillHigh />
@@ -107,7 +111,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.irisWidth > 1 && setState((prev) => ({ ...prev, irisWidth: prev.irisWidth - 1 }))
+            state.irisWidth > 1 &&
+            setState((prev) => ({ ...prev, irisWidth: prev.irisWidth - 1 }))
           }
         >
           <icons.irisWidthLow />
@@ -130,7 +135,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.irisWidth < 15 && setState((prev) => ({ ...prev, irisWidth: prev.irisWidth + 1 }))
+            state.irisWidth < 15 &&
+            setState((prev) => ({ ...prev, irisWidth: prev.irisWidth + 1 }))
           }
         >
           <icons.irisWidthHigh />
@@ -147,7 +153,10 @@ const Shape: React.FunctionComponent = () => {
           viewBox={'0 0 514 545'}
           onClick={() =>
             state.irisIntensity > 0.1 &&
-            setState((prev) => ({ ...prev, irisIntensity: prev.irisIntensity - 0.1 }))
+            setState((prev) => ({
+              ...prev,
+              irisIntensity: prev.irisIntensity - 0.1,
+            }))
           }
         >
           <icons.intensityLow />
@@ -159,7 +168,9 @@ const Shape: React.FunctionComponent = () => {
           min={0.1}
           max={2}
           step={0.1}
-          onChange={(val) => setState((prev) => ({ ...prev, irisIntensity: val }))}
+          onChange={(val) =>
+            setState((prev) => ({ ...prev, irisIntensity: val }))
+          }
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -171,7 +182,10 @@ const Shape: React.FunctionComponent = () => {
           viewBox={'0 0 514 545'}
           onClick={() =>
             state.irisIntensity < 2 &&
-            setState((prev) => ({ ...prev, irisIntensity: prev.irisIntensity + 0.1 }))
+            setState((prev) => ({
+              ...prev,
+              irisIntensity: prev.irisIntensity + 0.1,
+            }))
           }
         >
           <icons.intensityHigh />

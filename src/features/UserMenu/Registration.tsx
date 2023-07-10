@@ -19,7 +19,9 @@ export interface IRegistrationProps {
   setRegistrationMode: Dispatch<boolean>;
 }
 
-const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistrationMode }) => {
+const Registration: React.FunctionComponent<IRegistrationProps> = ({
+  setRegistrationMode,
+}) => {
   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,15 @@ const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistra
     }
   }
   return (
-    <Flex direction="column" mt="1em" textAlign="center" gap="10px" height="90%" justifyContent="center" p="5">
+    <Flex
+      direction="column"
+      mt="1em"
+      textAlign="center"
+      gap="10px"
+      height="90%"
+      justifyContent="center"
+      p="5"
+    >
       <Image src={Register} h="20%"></Image>
       <Box mt="1em">
         <Heading as="h4" size="md" fontWeight={800}>
@@ -57,13 +67,28 @@ const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistra
       </Box>
       <form onSubmit={handleRegistration}>
         <FormControl isRequired>
-          <Input name="registration-userName" mt={5} placeholder="Username" type="text"></Input>
+          <Input
+            name="registration-userName"
+            mt={5}
+            placeholder="Username"
+            type="text"
+          ></Input>
         </FormControl>
         <FormControl isRequired>
-          <Input mt="10px" name="registration-email" placeholder="Email" type="email"></Input>
+          <Input
+            mt="10px"
+            name="registration-email"
+            placeholder="Email"
+            type="email"
+          ></Input>
         </FormControl>
         <FormControl isRequired>
-          <Input mt="10px" name="registration-pw" placeholder="Password" type="password"></Input>
+          <Input
+            mt="10px"
+            name="registration-pw"
+            placeholder="Password"
+            type="password"
+          ></Input>
         </FormControl>
         <FormControl isRequired>
           <Input
@@ -75,7 +100,9 @@ const Registration: React.FunctionComponent<IRegistrationProps> = ({ setRegistra
         </FormControl>
         <Button
           isLoading={loading}
-          spinner={<RaceBy size={150} lineWeight={5} speed={1.4} color="white" />}
+          spinner={
+            <RaceBy size={150} lineWeight={5} speed={1.4} color="white" />
+          }
           width="100%"
           type="submit"
           mt={5}

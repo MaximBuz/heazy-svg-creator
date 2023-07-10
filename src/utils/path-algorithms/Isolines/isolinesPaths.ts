@@ -9,11 +9,5 @@ export function isolinesPaths(
   amount: number,
   depth: number
 ) {
-  
-
-
-
-
-
-  return
+  return;
 }

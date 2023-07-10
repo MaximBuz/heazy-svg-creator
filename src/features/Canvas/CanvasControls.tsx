@@ -41,10 +41,13 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       <SaveButton CircleStyles={CircleStyles} svgRef={svgRef} />
 
       {/* ZOOM IN  */}
-      <Circle {...CircleStyles} onClick={() => {
-        userSpaceIsOpen && closeUserSpace();
-        setZoom((zoom) => zoom + 0.1);
-      }}>
+      <Circle
+        {...CircleStyles}
+        onClick={() => {
+          userSpaceIsOpen && closeUserSpace();
+          setZoom((zoom) => zoom + 0.1);
+        }}
+      >
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             fill="white"
@@ -54,10 +57,13 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       </Circle>
 
       {/* ZOOM OUT  */}
-      <Circle {...CircleStyles} onClick={() => {
-        userSpaceIsOpen && closeUserSpace();
-        setZoom((zoom) => zoom - 0.1);
-      }}>
+      <Circle
+        {...CircleStyles}
+        onClick={() => {
+          userSpaceIsOpen && closeUserSpace();
+          setZoom((zoom) => zoom - 0.1);
+        }}
+      >
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             xmlns="http://www.w3.org/2000/svg"

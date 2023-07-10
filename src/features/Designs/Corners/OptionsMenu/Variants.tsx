@@ -34,7 +34,9 @@ const Variants: React.FunctionComponent = () => {
 
       {/* ------ SOLID vs. OUTLINE ------ */}
       <Tabs
-        onChange={(index) => setState((prev) => ({ ...prev, solid: index === 0 ? true : false }))}
+        onChange={(index) =>
+          setState((prev) => ({ ...prev, solid: index === 0 ? true : false }))
+        }
         defaultIndex={0}
         isFitted
         variant="unstyled"
@@ -81,7 +83,11 @@ const Variants: React.FunctionComponent = () => {
             <SliderIconWrapper
               viewBox="0 0 394 366"
               onClick={() =>
-                state.strokeWidth > 0 && setState((prev) => ({ ...prev, strokeWidth: prev.strokeWidth - 1 }))
+                state.strokeWidth > 0 &&
+                setState((prev) => ({
+                  ...prev,
+                  strokeWidth: prev.strokeWidth - 1,
+                }))
               }
             >
               <LineWidthLeft />
@@ -93,7 +99,9 @@ const Variants: React.FunctionComponent = () => {
               min={0}
               max={50}
               step={0.5}
-              onChange={(val) => setState((prev) => ({ ...prev, strokeWidth: val }))}
+              onChange={(val) =>
+                setState((prev) => ({ ...prev, strokeWidth: val }))
+              }
             >
               <SliderTrack>
                 <SliderFilledTrack />
@@ -105,7 +113,10 @@ const Variants: React.FunctionComponent = () => {
               viewBox="0 0 433 325"
               onClick={() =>
                 state.strokeWidth < 50 &&
-                setState((prev) => ({ ...prev, strokeWidth: state.strokeWidth + 1 }))
+                setState((prev) => ({
+                  ...prev,
+                  strokeWidth: state.strokeWidth + 1,
+                }))
               }
             >
               <LineWidthRight />
@@ -117,7 +128,12 @@ const Variants: React.FunctionComponent = () => {
             </Heading>
             <Switch
               size="lg"
-              onChange={() => setState((prev) => ({ ...prev, strokeShrink: !state.strokeShrink }))}
+              onChange={() =>
+                setState((prev) => ({
+                  ...prev,
+                  strokeShrink: !state.strokeShrink,
+                }))
+              }
             />
           </HStack>
         </>

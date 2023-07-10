@@ -1,7 +1,13 @@
 // Layout
-import { Checkbox, CheckboxGroup, Flex, Heading, HStack, Switch } from '@chakra-ui/react';
+import {
+  Checkbox,
+  CheckboxGroup,
+  Flex,
+  Heading,
+  HStack,
+  Switch,
+} from '@chakra-ui/react';
 import { useDesign } from '../../../../contexts/Design';
-
 
 const Position: React.FunctionComponent = () => {
   const { cornerState: state, setCornerState: setState } = useDesign();
@@ -18,7 +24,10 @@ const Position: React.FunctionComponent = () => {
             <Checkbox
               isChecked={state.topLeftCorner}
               onChange={() => {
-                setState((prev) => ({ ...prev, topLeftCorner: !prev.topLeftCorner }));
+                setState((prev) => ({
+                  ...prev,
+                  topLeftCorner: !prev.topLeftCorner,
+                }));
               }}
             >
               Top left
@@ -26,7 +35,10 @@ const Position: React.FunctionComponent = () => {
             <Checkbox
               isChecked={state.bottomLeftCorner}
               onChange={() => {
-                setState((prev) => ({ ...prev, bottomLeftCorner: !prev.bottomLeftCorner }));
+                setState((prev) => ({
+                  ...prev,
+                  bottomLeftCorner: !prev.bottomLeftCorner,
+                }));
               }}
             >
               Bottom left
@@ -37,7 +49,10 @@ const Position: React.FunctionComponent = () => {
             <Checkbox
               isChecked={state.topRightCorner}
               onChange={() => {
-                setState((prev) => ({ ...prev, topRightCorner: !prev.topRightCorner }));
+                setState((prev) => ({
+                  ...prev,
+                  topRightCorner: !prev.topRightCorner,
+                }));
               }}
             >
               Top right
@@ -45,7 +60,10 @@ const Position: React.FunctionComponent = () => {
             <Checkbox
               isChecked={state.bottomRightCorner}
               onChange={() => {
-                setState((prev) => ({ ...prev, bottomRightCorner: !prev.bottomRightCorner }));
+                setState((prev) => ({
+                  ...prev,
+                  bottomRightCorner: !prev.bottomRightCorner,
+                }));
               }}
             >
               Bottom right

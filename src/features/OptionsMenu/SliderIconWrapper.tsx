@@ -7,7 +7,11 @@ export interface ISliderIconWrapperProps {
   viewBox: string;
 }
 
-const SliderIconWrapper: React.FunctionComponent<ISliderIconWrapperProps> = ({ onClick, children, viewBox }) => {
+const SliderIconWrapper: React.FunctionComponent<ISliderIconWrapperProps> = ({
+  onClick,
+  children,
+  viewBox,
+}) => {
   return (
     <>
       <>

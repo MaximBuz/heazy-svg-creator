@@ -7,7 +7,11 @@ export interface ICookieToastProps {
   close: () => void;
 }
 
-const CookieToast: React.FunctionComponent<ICookieToastProps> = ({ accept, decline, close }) => {
+const CookieToast: React.FunctionComponent<ICookieToastProps> = ({
+  accept,
+  decline,
+  close,
+}) => {
   return (
     <Flex
       padding="2em"
@@ -22,7 +26,10 @@ const CookieToast: React.FunctionComponent<ICookieToastProps> = ({ accept, decli
         <Text fontSize="sm">We use cookies to collect usage statistics.</Text>
         <Text fontSize="sm">
           Click{' '}
-          <Link textDecoration="underline" href="https://heazystudio.com/privacy">
+          <Link
+            textDecoration="underline"
+            href="https://heazystudio.com/privacy"
+          >
             here
           </Link>{' '}
           for more information.

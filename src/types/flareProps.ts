@@ -14,7 +14,13 @@ export interface IFlareShapeProps {
   direction: number; // 0 - 3
 }
 
-export type TLensColorModes = "color-dodge" | "darken" | "screen" | "normal" | "hard-light" | "soft-light"
+export type TLensColorModes =
+  | 'color-dodge'
+  | 'darken'
+  | 'screen'
+  | 'normal'
+  | 'hard-light'
+  | 'soft-light';
 export interface IFlareColorProps {
   bgColor: string;
   bgLightColor: string;
@@ -23,5 +29,4 @@ export interface IFlareColorProps {
   lensColorMode: TLensColorModes;
 }
 
-
-export type IFlareAllProps = IFlareShapeProps & IFlareColorProps
+export type IFlareAllProps = IFlareShapeProps & IFlareColorProps;

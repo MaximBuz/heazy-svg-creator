@@ -30,7 +30,11 @@ export async function getPublicDesigns(
   return designs;
 }
 
-export async function getDesignById(_parent: any, _args: { id: number }, context: Context) {
+export async function getDesignById(
+  _parent: any,
+  _args: { id: number },
+  context: Context
+) {
   const design = await context.prisma.design.findFirst({
     where: {
       OR: [

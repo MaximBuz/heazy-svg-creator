@@ -1,5 +1,5 @@
 import GraphQLJSON from 'graphql-type-json';
-import { DateTimeResolver } from "graphql-scalars"
+import { DateTimeResolver } from 'graphql-scalars';
 import { Query } from './queries';
 import { Mutation } from './mutations';
 import { User } from './user';

@@ -1,4 +1,4 @@
-const Edgy: React.FunctionComponent = (props) => {
+const Edgy: React.FunctionComponent = () => {
   return (
     <>
       <path

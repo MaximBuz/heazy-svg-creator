@@ -1,10 +1,15 @@
-import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react';
-import React  from 'react';
+import {
+  Heading,
+  HStack,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@chakra-ui/react';
+import React from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import { useDesign } from '../../../../contexts/Design';
 import * as icons from './icons';
-
-
 
 const Shape: React.FunctionComponent = () => {
   const { isolinesState: state, setIsolinesState: setState } = useDesign();
@@ -23,7 +28,10 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.radius > 0.5 && setState((prev) => ({ ...prev, radius: prev.radius - 0.1 }))}
+          onClick={() =>
+            state.radius > 0.5 &&
+            setState((prev) => ({ ...prev, radius: prev.radius - 0.1 }))
+          }
         >
           <icons.radiusLeft />
         </SliderIconWrapper>
@@ -44,13 +52,15 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.radius < 2 && setState((prev) => ({ ...prev, radius: prev.radius + 0.1 }))}
+          onClick={() =>
+            state.radius < 2 &&
+            setState((prev) => ({ ...prev, radius: prev.radius + 0.1 }))
+          }
         >
           <icons.radiusRight />
         </SliderIconWrapper>
       </HStack>
-      
-      
+
       {/* ----- PRESSURE SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Pressure
@@ -59,7 +69,10 @@ const Shape: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.pressure > 0.7 && setState((prev) => ({ ...prev, pressure: prev.pressure - 0.5 }))}
+          onClick={() =>
+            state.pressure > 0.7 &&
+            setState((prev) => ({ ...prev, pressure: prev.pressure - 0.5 }))
+          }
         >
           <icons.pressureLeft />
         </SliderIconWrapper>
@@ -80,7 +93,10 @@ const Shape: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 550'}
-          onClick={() => state.pressure < 3 && setState((prev) => ({ ...prev, pressure: prev.pressure + 0.5 }))}
+          onClick={() =>
+            state.pressure < 3 &&
+            setState((prev) => ({ ...prev, pressure: prev.pressure + 0.5 }))
+          }
         >
           <icons.pressureRight />
         </SliderIconWrapper>
@@ -95,7 +111,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.velocity > 0 && setState((prev) => ({ ...prev, velocity: state.velocity - 10 }))
+            state.velocity > 0 &&
+            setState((prev) => ({ ...prev, velocity: state.velocity - 10 }))
           }
         >
           <icons.velocityLeft />
@@ -117,13 +134,14 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.velocity < 100 && setState((prev) => ({ ...prev, velocity: state.velocity + 10 }))
+            state.velocity < 100 &&
+            setState((prev) => ({ ...prev, velocity: state.velocity + 10 }))
           }
         >
           <icons.velocityRight />
         </SliderIconWrapper>
       </HStack>
-      
+
       {/* ----- DEPTH SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Depth
@@ -133,7 +151,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.depth > 0 && setState((prev) => ({ ...prev, depth: state.depth - 1 }))
+            state.depth > 0 &&
+            setState((prev) => ({ ...prev, depth: state.depth - 1 }))
           }
         >
           <icons.depthLeft />
@@ -155,13 +174,14 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.depth < 20 && setState((prev) => ({ ...prev, depth: state.depth + 1 }))
+            state.depth < 20 &&
+            setState((prev) => ({ ...prev, depth: state.depth + 1 }))
           }
         >
           <icons.depthRight />
         </SliderIconWrapper>
       </HStack>
-      
+
       {/* ----- Distance SLIDER ------ */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Distance
@@ -171,7 +191,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.distance > 0 && setState((prev) => ({ ...prev, distance: state.distance - 20 }))
+            state.distance > 0 &&
+            setState((prev) => ({ ...prev, distance: state.distance - 20 }))
           }
         >
           <icons.depthRight />
@@ -193,7 +214,8 @@ const Shape: React.FunctionComponent = () => {
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
           onClick={() =>
-            state.distance < 200 && setState((prev) => ({ ...prev, distance: state.distance + 20 }))
+            state.distance < 200 &&
+            setState((prev) => ({ ...prev, distance: state.distance + 20 }))
           }
         >
           <icons.depthLeft />

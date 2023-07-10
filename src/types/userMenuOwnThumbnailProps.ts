@@ -19,6 +19,6 @@ export interface IOwnThumbnailProps {
   caption: string;
   set: () => void;
   isPublic: boolean;
-  timesCopied: Number;
+  timesCopied: number;
   copiedFrom: any;
 }

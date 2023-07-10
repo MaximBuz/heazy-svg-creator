@@ -7,7 +7,10 @@ export interface IFeatureCardProps {
   icon: string;
 }
 
-const FeatureCard: React.FunctionComponent<IFeatureCardProps> = ({ text, icon }) => {
+const FeatureCard: React.FunctionComponent<IFeatureCardProps> = ({
+  text,
+  icon,
+}) => {
   return (
     <Flex
       position="relative"
@@ -28,7 +31,12 @@ const FeatureCard: React.FunctionComponent<IFeatureCardProps> = ({ text, icon })
         transform: 'scale(1.05)',
       }}
     >
-      <Image src={icon} width="50px" height="50px" alt="SVG Resizing Icon"></Image>
+      <Image
+        src={icon}
+        width="50px"
+        height="50px"
+        alt="SVG Resizing Icon"
+      ></Image>
       <Text>{text}</Text>
     </Flex>
   );

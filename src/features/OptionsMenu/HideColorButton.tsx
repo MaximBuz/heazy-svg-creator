@@ -8,7 +8,10 @@ export interface IHideColorButtonProps {
   setColor: Dispatch<SetStateAction<string>>;
 }
 
-const HideColorButton: React.FunctionComponent<IHideColorButtonProps> = ({ color, setColor }) => {
+const HideColorButton: React.FunctionComponent<IHideColorButtonProps> = ({
+  color,
+  setColor,
+}) => {
   return (
     <>
       <Circle
@@ -19,7 +22,7 @@ const HideColorButton: React.FunctionComponent<IHideColorButtonProps> = ({ color
         _hover={{ background: '#373d48', cursor: 'pointer' }}
         boxShadow="0 0 0 1px #52555A"
         onClick={() => {
-          let col = hexRgb(color);
+          const col = hexRgb(color);
           col.alpha > 0
             ? setColor('#' + rgbHex(col.red, col.green, col.blue, 0))
             : setColor('#' + rgbHex(col.red, col.green, col.blue, 1));

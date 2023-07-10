@@ -1,5 +1,13 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { chakra, Circle, Divider, Flex, Heading, Icon, Stack } from '@chakra-ui/react';
+import {
+  chakra,
+  Circle,
+  Divider,
+  Flex,
+  Heading,
+  Icon,
+  Stack,
+} from '@chakra-ui/react';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
 import React, { memo, useRef, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
@@ -15,7 +23,11 @@ const UserMenu: React.FunctionComponent = memo(() => {
 
   // Drawer handling
   const drawerRef = useRef();
-  const { isOpen: userSpaceIsOpen, onOpen: openUserSpace, onClose: closeUserSpace } = useUserSpace();
+  const {
+    isOpen: userSpaceIsOpen,
+    onOpen: openUserSpace,
+    onClose: closeUserSpace,
+  } = useUserSpace();
 
   // Make animatable with Framer Motion
   const UserSection = chakra(motion.div, {
@@ -92,7 +104,12 @@ const UserMenu: React.FunctionComponent = memo(() => {
                 >
                   <ChevronLeftIcon onClick={closeUserSpace} />
                 </Circle>
-                <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
+                <Heading
+                  as="h3"
+                  size="xs"
+                  textTransform="uppercase"
+                  textAlign="center"
+                >
                   Personal Space
                 </Heading>
                 {firebaseUser ? (

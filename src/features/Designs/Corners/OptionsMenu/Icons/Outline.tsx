@@ -1,4 +1,4 @@
-const Outline: React.FunctionComponent = (props) => {
+const Outline: React.FunctionComponent = () => {
   return (
     <>
       <path

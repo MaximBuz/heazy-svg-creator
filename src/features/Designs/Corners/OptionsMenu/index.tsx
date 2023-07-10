@@ -1,5 +1,5 @@
 // React
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 // Styling
 import { Divider } from '@chakra-ui/react';

@@ -22,9 +22,9 @@ const IsolinesOptions: React.FunctionComponent = () => {
       <Divider />
       <Shape />
       <Divider />
-      <Position/>
+      <Position />
       <Divider />
-      <CenterPosition/>
+      <CenterPosition />
       <Divider />
       <ColorOptions state={isolinesState} setState={setIsolinesState} />
     </>

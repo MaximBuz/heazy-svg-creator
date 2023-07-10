@@ -1,4 +1,11 @@
-import { AccordionPanel, Button, HStack, Icon, Select, Stack } from '@chakra-ui/react';
+import {
+  AccordionPanel,
+  Button,
+  HStack,
+  Icon,
+  Select,
+  Stack,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import {
@@ -27,14 +34,17 @@ const Explore: React.FunctionComponent = () => {
   const [cursor, setCursor] = useState<number>();
   const [sort, setSort] = useState<string>('timesCopied');
   const [filterType, setFilterType] = useState<number>();
-  const { data, isSuccess, isError, isLoading, refetch } = useGetPublicDesignsQuery(
-    {
-      endpoint,
-      fetchParams: { headers: headers(idToken) },
-    },
-    { cursor, sortBy: sort, type: filterType },
-    { onSuccess: () => setCursor(data?.designs[data?.designs.length - 1]?.id) }
-  );
+  const { data, isSuccess, isError, isLoading, refetch } =
+    useGetPublicDesignsQuery(
+      {
+        endpoint,
+        fetchParams: { headers: headers(idToken) },
+      },
+      { cursor, sortBy: sort, type: filterType },
+      {
+        onSuccess: () => setCursor(data?.designs[data?.designs.length - 1]?.id),
+      }
+    );
   useEffect(() => {
     refetch().then(() => setCursor(undefined));
   }, [sort, filterType]);
@@ -100,7 +110,11 @@ const Explore: React.FunctionComponent = () => {
           placeholder="Filter"
         >
           {designTypes &&
-            designTypes.designTypes.map((design) => <option key={design.id} value={design.id}>{design.name}</option>)}
+            designTypes.designTypes.map((design) => (
+              <option key={design.id} value={design.id}>
+                {design.name}
+              </option>
+            ))}
         </Select>
       </HStack>
       <Stack spacing="5">

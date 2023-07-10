@@ -40,7 +40,7 @@ function InitialAnimation() {
           transition: 'all 1s ease',
         }}
       >
-        <LogoAnimation/>
+        <LogoAnimation />
       </Flex>
     );
   }

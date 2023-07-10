@@ -25,7 +25,8 @@ import HideColorButton from '../../../OptionsMenu/HideColorButton';
 import { useDesign } from '../../../../contexts/Design';
 import { TLensColorModes } from '../../../../types/flareProps';
 
-const PopoverTrigger: React.FC<{ children: React.ReactNode }> = OrigPopoverTrigger;
+const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
+  OrigPopoverTrigger;
 
 const Color: React.FunctionComponent = memo(() => {
   const { flareState: state, setFlareState: setState } = useDesign();
@@ -55,14 +56,26 @@ const Color: React.FunctionComponent = memo(() => {
               ></Circle>
             </PopoverTrigger>
             <InputGroup>
-              <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
+              <InputLeftElement
+                opacity={0.7}
+                pointerEvents="none"
+                children="#"
+              />
               <Input
                 value={state.bgColor.replace('#', '')}
-                onChange={(e) => setState((prev) => ({ ...prev, bgColor: `#${e.target.value}` }))}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    bgColor: `#${e.target.value}`,
+                  }))
+                }
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
+          <PopoverContent
+            rootProps={{ style: { right: 0 } }}
+            width="fit-content"
+          >
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -70,7 +83,8 @@ const Color: React.FunctionComponent = memo(() => {
                 onChange={(col) =>
                   setState((prev) => ({
                     ...prev,
-                    bgColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                    bgColor:
+                      '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
                   }))
                 }
                 onColor
@@ -81,8 +95,10 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.bgColor}
-          // @ts-ignore
-          setColor={(color) => setState((prev) => ({ ...prev, bgColor: color }))}
+          setColor={(color) =>
+            // @ts-ignore
+            setState((prev) => ({ ...prev, bgColor: color }))
+          }
         />
       </HStack>
 
@@ -104,14 +120,26 @@ const Color: React.FunctionComponent = memo(() => {
               ></Circle>
             </PopoverTrigger>
             <InputGroup>
-              <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
+              <InputLeftElement
+                opacity={0.7}
+                pointerEvents="none"
+                children="#"
+              />
               <Input
                 value={state.bgLightColor.replace('#', '')}
-                onChange={(e) => setState((prev) => ({ ...prev, bgLightColor: `#${e.target.value}` }))}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    bgLightColor: `#${e.target.value}`,
+                  }))
+                }
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
+          <PopoverContent
+            rootProps={{ style: { right: 0 } }}
+            width="fit-content"
+          >
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -119,7 +147,8 @@ const Color: React.FunctionComponent = memo(() => {
                 onChange={(col) =>
                   setState((prev) => ({
                     ...prev,
-                    bgLightColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                    bgLightColor:
+                      '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
                   }))
                 }
                 onColor
@@ -130,8 +159,10 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.bgLightColor}
-          // @ts-ignore
-          setColor={(color) => setState((prev) => ({ ...prev, bgLightColor: color }))}
+          setColor={(color) =>
+            // @ts-ignore
+            setState((prev) => ({ ...prev, bgLightColor: color }))
+          }
         />
       </HStack>
 
@@ -153,14 +184,26 @@ const Color: React.FunctionComponent = memo(() => {
               ></Circle>
             </PopoverTrigger>
             <InputGroup>
-              <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
+              <InputLeftElement
+                opacity={0.7}
+                pointerEvents="none"
+                children="#"
+              />
               <Input
                 value={state.irisColor.replace('#', '')}
-                onChange={(e) => setState((prev) => ({ ...prev, irisColor: `#${e.target.value}` }))}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    irisColor: `#${e.target.value}`,
+                  }))
+                }
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
+          <PopoverContent
+            rootProps={{ style: { right: 0 } }}
+            width="fit-content"
+          >
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -168,7 +211,8 @@ const Color: React.FunctionComponent = memo(() => {
                 onChange={(col) =>
                   setState((prev) => ({
                     ...prev,
-                    irisColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                    irisColor:
+                      '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
                   }))
                 }
                 onColor
@@ -179,8 +223,10 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.irisColor}
-          // @ts-ignore
-          setColor={(color) => setState((prev) => ({ ...prev, irisColor: color }))}
+          setColor={(color) =>
+            // @ts-ignore
+            setState((prev) => ({ ...prev, irisColor: color }))
+          }
         />
       </HStack>
 
@@ -202,14 +248,26 @@ const Color: React.FunctionComponent = memo(() => {
               ></Circle>
             </PopoverTrigger>
             <InputGroup>
-              <InputLeftElement opacity={0.7} pointerEvents="none" children="#" />
+              <InputLeftElement
+                opacity={0.7}
+                pointerEvents="none"
+                children="#"
+              />
               <Input
                 value={state.lensColor.replace('#', '')}
-                onChange={(e) => setState((prev) => ({ ...prev, lensColor: `#${e.target.value}` }))}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    lensColor: `#${e.target.value}`,
+                  }))
+                }
               />
             </InputGroup>
           </HStack>
-          <PopoverContent rootProps={{ style: { right: 0 } }} width="fit-content">
+          <PopoverContent
+            rootProps={{ style: { right: 0 } }}
+            width="fit-content"
+          >
             <PopoverArrow></PopoverArrow>
             <PopoverBody>
               <ColorPicker
@@ -217,7 +275,8 @@ const Color: React.FunctionComponent = memo(() => {
                 onChange={(col) =>
                   setState((prev) => ({
                     ...prev,
-                    lensColor: '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
+                    lensColor:
+                      '#' + rgbHex(col.rgb.r, col.rgb.g, col.rgb.b, col.rgb.a),
                   }))
                 }
                 onColor
@@ -228,8 +287,10 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.lensColor}
-          // @ts-ignore
-          setColor={(color) => setState((prev) => ({ ...prev, lensColor: color }))}
+          setColor={(color) =>
+            // @ts-ignore
+            setState((prev) => ({ ...prev, lensColor: color }))
+          }
         />
       </HStack>
 
@@ -238,7 +299,12 @@ const Color: React.FunctionComponent = memo(() => {
         Lens color
       </Heading>
       <Select
-        onChange={(e) => setState((prev) => ({ ...prev, lensColorMode: e.target.value as TLensColorModes }))}
+        onChange={(e) =>
+          setState((prev) => ({
+            ...prev,
+            lensColorMode: e.target.value as TLensColorModes,
+          }))
+        }
         cursor="pointer"
         icon={
           <Icon

@@ -4,10 +4,10 @@ import CornerSvgGroup from './CornerSvgGroup';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Corners: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
-  seed,
-  svgRef,
-}) => {
+const Corners: React.FunctionComponent<{
+  svgRef: Ref<SVGSVGElement | null>;
+  seed: number;
+}> = ({ seed, svgRef }) => {
   const { cornerState, canvasDimensions } = useDesign();
 
   // set up params that are needed to generate a path
@@ -43,7 +43,7 @@ const Corners: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: 
   const svgElementProps = {
     width: canvasDimensions.width,
     height: canvasDimensions.height,
-    svgRef
+    svgRef,
   };
 
   /*  -----GENERATE PATHS----- */
@@ -53,43 +53,73 @@ const Corners: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: 
     mirrored = smoothCornerPath(seed, ...pathParams);
   } else {
     // else generate unique ones for each corner
-    cornerState.topLeftCorner && (topLeft = smoothCornerPath(seed, ...pathParams));
-    cornerState.topRightCorner && (topRight = smoothCornerPath(seed + 1, ...pathParams));
-    cornerState.bottomLeftCorner && (bottomLeft = smoothCornerPath(seed + 2, ...pathParams));
-    cornerState.bottomRightCorner && (bottomRight = smoothCornerPath(seed + 3, ...pathParams));
+    cornerState.topLeftCorner &&
+      (topLeft = smoothCornerPath(seed, ...pathParams));
+    cornerState.topRightCorner &&
+      (topRight = smoothCornerPath(seed + 1, ...pathParams));
+    cornerState.bottomLeftCorner &&
+      (bottomLeft = smoothCornerPath(seed + 2, ...pathParams));
+    cornerState.bottomRightCorner &&
+      (bottomRight = smoothCornerPath(seed + 3, ...pathParams));
   }
 
   /* ------IF MIRROR------ */
   if (cornerState.mirror)
     return (
       <SvgCanvas {...svgElementProps}>
-        <rect x="0" y="0" width={canvasDimensions.width} height={canvasDimensions.height} fill={cornerState.bgColor}></rect>
+        <rect
+          x="0"
+          y="0"
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
+          fill={cornerState.bgColor}
+        ></rect>
         {/* TOP LEFT CORNER */}
-        {cornerState.topLeftCorner && <CornerSvgGroup path={mirrored} direction={0} {...svgGroupProps} />}
+        {cornerState.topLeftCorner && (
+          <CornerSvgGroup path={mirrored} direction={0} {...svgGroupProps} />
+        )}
 
         {/* TOP RIGHT CORNER */}
-        {cornerState.topRightCorner && <CornerSvgGroup path={mirrored} direction={1} {...svgGroupProps} />}
+        {cornerState.topRightCorner && (
+          <CornerSvgGroup path={mirrored} direction={1} {...svgGroupProps} />
+        )}
 
         {/* BOTTOM LEFT CORNER */}
-        {cornerState.bottomLeftCorner && <CornerSvgGroup path={mirrored} direction={2} {...svgGroupProps} />}
+        {cornerState.bottomLeftCorner && (
+          <CornerSvgGroup path={mirrored} direction={2} {...svgGroupProps} />
+        )}
 
         {/* BOTTOM RIGHT CORNER */}
-        {cornerState.bottomRightCorner && <CornerSvgGroup path={mirrored} direction={3} {...svgGroupProps} />}
+        {cornerState.bottomRightCorner && (
+          <CornerSvgGroup path={mirrored} direction={3} {...svgGroupProps} />
+        )}
       </SvgCanvas>
     );
 
   /* -----IF NO MIRROR----- */
   return (
     <SvgCanvas {...svgElementProps}>
-      <rect x="0" y="0" width={canvasDimensions.width} height={canvasDimensions.height} fill={cornerState.bgColor}></rect>
+      <rect
+        x="0"
+        y="0"
+        width={canvasDimensions.width}
+        height={canvasDimensions.height}
+        fill={cornerState.bgColor}
+      ></rect>
       {/* TOP LEFT CORNER */}
-      {cornerState.topLeftCorner && <CornerSvgGroup path={topLeft} direction={0} {...svgGroupProps} />}
+      {cornerState.topLeftCorner && (
+        <CornerSvgGroup path={topLeft} direction={0} {...svgGroupProps} />
+      )}
 
       {/* TOP RIGHT CORNER */}
-      {cornerState.topRightCorner && <CornerSvgGroup path={topRight} direction={1} {...svgGroupProps} />}
+      {cornerState.topRightCorner && (
+        <CornerSvgGroup path={topRight} direction={1} {...svgGroupProps} />
+      )}
 
       {/* BOTTOM LEFT CORNER */}
-      {cornerState.bottomLeftCorner && <CornerSvgGroup path={bottomLeft} direction={2} {...svgGroupProps} />}
+      {cornerState.bottomLeftCorner && (
+        <CornerSvgGroup path={bottomLeft} direction={2} {...svgGroupProps} />
+      )}
 
       {/* BOTTOM RIGHT CORNER */}
       {cornerState.bottomRightCorner && (

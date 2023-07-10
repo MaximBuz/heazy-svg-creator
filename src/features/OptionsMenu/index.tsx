@@ -1,22 +1,36 @@
 import React, { ReactNode, Ref, useRef } from 'react';
 
 // Design
-import { Flex, Stack, Heading, Divider, useDisclosure, useToast } from '@chakra-ui/react';
+import {
+  Flex,
+  Stack,
+  Heading,
+  Divider,
+  useDisclosure,
+  useToast,
+} from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { contentWrapperStyles, dimensionsButtonStyles, wrapperStyles } from './Styles';
+import {
+  contentWrapperStyles,
+  dimensionsButtonStyles,
+  wrapperStyles,
+} from './Styles';
 import DimensionsDrawer from './DimensionsDrawer';
 import DownloadSection from './DownloadSection';
 import { useDesign } from '../../contexts/Design';
 
 export interface IOptionsMenuProps {
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   children: ReactNode;
 }
 
-const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({ svgRef, children }) => {
+const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({
+  svgRef,
+  children,
+}) => {
   const { setWidth, setHeight, canvasDimensions } = useDesign();
 
   /* ---------- PROPS ---------- */
@@ -36,7 +50,12 @@ const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({ svgRef, child
         <Heading as="h3" size="xs" textTransform="uppercase">
           Dimensions
         </Heading>
-        <Flex as={motion.button} ref={drawerButtonRef} onClick={onOpen} {...dimensionsButtonStyles}>
+        <Flex
+          as={motion.button}
+          ref={drawerButtonRef}
+          onClick={onOpen}
+          {...dimensionsButtonStyles}
+        >
           <Flex direction="column" textAlign="left">
             <Heading fontSize="sm" fontWeight="bolder">
               {`${widthRatio}:${heightRatio}`}

@@ -1,30 +1,30 @@
 import gql from 'graphql-tag';
 
 gql`
-query getUserByFirebaseId {
-  user: getUserByFirebaseId {
-    id
-    firebaseId
-    email
-    userName
-    avatarUrl
-    designs {
+  query getUserByFirebaseId {
+    user: getUserByFirebaseId {
       id
-      timesCopied
-      public
-      name
-      type {
+      firebaseId
+      email
+      userName
+      avatarUrl
+      designs {
         id
+        timesCopied
+        public
         name
+        type {
+          id
+          name
+        }
+        thumbnailUrl
+        copiedFrom {
+          userName
+          id
+        }
+        optionParameters
+        createdAt
       }
-      thumbnailUrl
-      copiedFrom {
-        userName
-        id
-      }
-      optionParameters
-      createdAt
     }
   }
-}
 `;

@@ -9,7 +9,6 @@ import Shape from './Shape';
 import Color from './Color';
 
 const FlareOptions: React.FunctionComponent = memo(() => {
-
   return (
     <>
       <Shape />

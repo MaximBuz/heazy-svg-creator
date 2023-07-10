@@ -24,11 +24,15 @@ import {
 import { downloadSectionStyles } from './Styles';
 
 export interface IDownloadSectionProps {
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toast: any;
 }
 
-const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRef, toast }) => {
+const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({
+  svgRef,
+  toast,
+}) => {
   return (
     <Flex {...downloadSectionStyles}>
       <Stack direction="row" spacing={2}>
@@ -40,12 +44,16 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRe
         >
           Download SVG
         </Button>
-        <Button onClick={() => downloadSvgAsPng(svgRef)} colorScheme="gray" variant="outline">
+        <Button
+          onClick={() => downloadSvgAsPng(svgRef)}
+          colorScheme="gray"
+          variant="outline"
+        >
           PNG
         </Button>
 
         <Popover isLazy gutter={15}>
-          {/* @ts-ignore */}
+          {/* @ts-ignore bug in chakra ui*/}
           <PopoverTrigger>
             <IconButton
               icon={
@@ -71,7 +79,11 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRe
                   flex="0.5"
                   onClick={() => {
                     downloadSvgAsReact(svgRef);
-                    toast({ title: 'Copied to clipboard!', status: 'success', isClosable: true });
+                    toast({
+                      title: 'Copied to clipboard!',
+                      status: 'success',
+                      isClosable: true,
+                    });
                   }}
                   colorScheme="gray"
                   variant="outline"
@@ -88,7 +100,11 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({ svgRe
                   flex="1"
                   onClick={() => {
                     downloadSvgAsReactTS(svgRef);
-                    toast({ title: 'Copied to clipboard!', status: 'success', isClosable: true });
+                    toast({
+                      title: 'Copied to clipboard!',
+                      status: 'success',
+                      isClosable: true,
+                    });
                   }}
                   colorScheme="gray"
                   variant="outline"

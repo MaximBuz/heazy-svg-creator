@@ -4,10 +4,10 @@ import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Bubble: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
-  seed,
-  svgRef,
-}) => {
+const Bubble: React.FunctionComponent<{
+  svgRef: Ref<SVGSVGElement | null>;
+  seed: number;
+}> = ({ seed, svgRef }) => {
   const { bubbleState, canvasDimensions } = useDesign();
   // destructure some params
   const { width, height } = canvasDimensions;
@@ -32,7 +32,12 @@ const Bubble: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: n
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
         {solid && (
           <filter id={`shadow-${randomClassId}`}>
-            <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
+            <feDropShadow
+              dx={shadowX}
+              dy={shadowY}
+              stdDeviation={shadowSD}
+              floodColor={shadowColor}
+            />
           </filter>
         )}
         <path

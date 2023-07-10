@@ -1,6 +1,22 @@
 import { NextPage } from 'next';
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Heading, Text, Flex } from '@chakra-ui/react';
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Box,
+  Heading,
+  Text,
+  Flex,
+} from '@chakra-ui/react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
 import Meta from '../partials/seo-meta';
 import Navbar from '../Components/Navbar';
 
@@ -10,7 +26,10 @@ const Privacy: NextPage = () => {
       <Meta
         title="Privacy Policy | Heazy"
         desc="Our privacy policy."
-        canonical={process.env.NEXT_PUBLIC_APP_URL + "/privacy" || "https://app.heazystudio.com/privacy"}
+        canonical={
+          process.env.NEXT_PUBLIC_APP_URL + '/privacy' ||
+          'https://app.heazystudio.com/privacy'
+        }
         css="/static/css/styles.css"
         js="/static/js/scripts.js"
       />
@@ -28,7 +47,12 @@ const Privacy: NextPage = () => {
               <Navbar></Navbar>
 
               <Box p="3em">
-                <Heading textAlign="center" mb="0.5em" fontWeight="700" fontSize={{ base: '2em', lg: '3em' }}>
+                <Heading
+                  textAlign="center"
+                  mb="0.5em"
+                  fontWeight="700"
+                  fontSize={{ base: '2em', lg: '3em' }}
+                >
                   Privacy
                 </Heading>
                 <Heading
@@ -37,10 +61,15 @@ const Privacy: NextPage = () => {
                   fontWeight="400"
                   fontSize={{ base: '0.75em', lg: '1.5em' }}
                 >
-                  These policies describe how your information is collected, <br /> used and shared when you
-                  use heazy.studio
+                  These policies describe how your information is collected,{' '}
+                  <br /> used and shared when you use heazy.studio
                 </Heading>
-                <Heading textAlign="center" mb="2em" fontWeight="400" fontSize={{ base: '0.5em', lg: '1em' }}>
+                <Heading
+                  textAlign="center"
+                  mb="2em"
+                  fontWeight="400"
+                  fontSize={{ base: '0.5em', lg: '1em' }}
+                >
                   Last updated June 14, 2022
                 </Heading>
                 <Tabs>
@@ -64,15 +93,21 @@ const Privacy: NextPage = () => {
                           </h2>
                           <AccordionPanel pb={4}>
                             <Text>
-                              This privacy notice for Maxim Buz ('Company', 'we', 'us', or 'our',), describes
-                              how and why we might collect, store, use, and/or share ('process') your
-                              information when you use our services ('Services'), such as when you: Visit our
-                              website at https://heazy.studio/, or any website of ours that links to this
-                              privacy notice Engage with us in other related ways, including any sales,
-                              marketing, or events Questions or concerns? Reading this privacy notice will
-                              help you understand your privacy rights and choices. If you do not agree with
-                              our policies and practices, please do not use our Services. If you still have
-                              any questions or concerns, please contact us at mbuz.maxim@gmail.com.
+                              This privacy notice for Maxim Buz ('Company',
+                              'we', 'us', or 'our',), describes how and why we
+                              might collect, store, use, and/or share
+                              ('process') your information when you use our
+                              services ('Services'), such as when you: Visit our
+                              website at https://heazy.studio/, or any website
+                              of ours that links to this privacy notice Engage
+                              with us in other related ways, including any
+                              sales, marketing, or events Questions or concerns?
+                              Reading this privacy notice will help you
+                              understand your privacy rights and choices. If you
+                              do not agree with our policies and practices,
+                              please do not use our Services. If you still have
+                              any questions or concerns, please contact us at
+                              mbuz.maxim@gmail.com.
                             </Text>
                             <Heading as="h3" size="sm">
                               Summary of Key points
@@ -177,7 +212,8 @@ To save or protect an individual's vital interest. We may process your informati
                             <AccordionButton>
                               <Box flex="1" textAlign="left">
                                 <Heading as="h2" size="md">
-                                  What legal bases do we rely on to process your information?
+                                  What legal bases do we rely on to process your
+                                  information?
                                 </Heading>
                               </Box>
                               <AccordionIcon />
@@ -217,7 +253,8 @@ If the information is publicly available and is specified by the regulations`}</
                             <AccordionButton>
                               <Box flex="1" textAlign="left">
                                 <Heading as="h2" size="md">
-                                  When and with whom do we share your personal information?
+                                  When and with whom do we share your personal
+                                  information?
                                 </Heading>
                               </Box>
                               <AccordionIcon />
@@ -244,7 +281,8 @@ Business Transfers. We may share or transfer your information in connection with
                             <AccordionButton>
                               <Box flex="1" textAlign="left">
                                 <Heading as="h2" size="md">
-                                  Do we use cookies and other tracking technologies?
+                                  Do we use cookies and other tracking
+                                  technologies?
                                 </Heading>
                               </Box>
                               <AccordionIcon />
@@ -369,7 +407,11 @@ If you have questions or comments about your privacy rights, you may email us at
                             </AccordionButton>
                           </h2>
                           <AccordionPanel pb={4}>
-                            <Text>{`Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognising and implementing DNT signals has been finalised. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.`}</Text>
+                            <Text>
+                              {
+                                "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognising and implementing DNT signals has been finalised. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice."
+                              }
+                            </Text>
                           </AccordionPanel>
                         </AccordionItem>
                         <AccordionItem>
@@ -414,14 +456,19 @@ Germany`}</Text>
                             <AccordionButton>
                               <Box flex="1" textAlign="left">
                                 <Heading as="h2" size="md">
-                                  How can you review, update, or delete the data we collect from you?
+                                  How can you review, update, or delete the data
+                                  we collect from you?
                                 </Heading>
                               </Box>
                               <AccordionIcon />
                             </AccordionButton>
                           </h2>
                           <AccordionPanel pb={4}>
-                            <Text>{`Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please contact us at mbuz.maxim@gmail.com.`}</Text>
+                            <Text>
+                              {
+                                'Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please contact us at mbuz.maxim@gmail.com.'
+                              }
+                            </Text>
                           </AccordionPanel>
                         </AccordionItem>
                       </Accordion>
@@ -528,7 +575,8 @@ Google Analytics: https://tools.google.com/dlpage/gaoptout`}
                             <AccordionButton>
                               <Box flex="1" textAlign="left">
                                 <Heading as="h2" size="md">
-                                  What about other tracking technologies, like web beacons?
+                                  What about other tracking technologies, like
+                                  web beacons?
                                 </Heading>
                               </Box>
                               <AccordionIcon />
@@ -536,7 +584,9 @@ Google Analytics: https://tools.google.com/dlpage/gaoptout`}
                           </h2>
                           <AccordionPanel pb={4}>
                             <Text>
-                              {`Cookies are not the only way to recognize or track visitors to a website. We may use other, similar technologies from time to time, like web beacons (sometimes called "tracking pixels" or "clear gifs"). These are tiny graphics files that contain a unique identifier that enable us to recognize when someone has visited our Websites or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.`}
+                              {
+                                'Cookies are not the only way to recognize or track visitors to a website. We may use other, similar technologies from time to time, like web beacons (sometimes called "tracking pixels" or "clear gifs"). These are tiny graphics files that contain a unique identifier that enable us to recognize when someone has visited our Websites or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.'
+                              }
                             </Text>
                           </AccordionPanel>
                         </AccordionItem>
@@ -546,7 +596,8 @@ Google Analytics: https://tools.google.com/dlpage/gaoptout`}
                             <AccordionButton>
                               <Box flex="1" textAlign="left">
                                 <Heading as="h2" size="md">
-                                  Do you use Flash cookies or Local Shared Objects?
+                                  Do you use Flash cookies or Local Shared
+                                  Objects?
                                 </Heading>
                               </Box>
                               <AccordionIcon />
@@ -575,7 +626,7 @@ Please note that setting the Flash Player to restrict or limit acceptance of Fla
                             </AccordionButton>
                           </h2>
                           <AccordionPanel pb={4}>
-                            <Text>{`In short: No.`}</Text>
+                            <Text>{'In short: No.'}</Text>
                           </AccordionPanel>
                         </AccordionItem>
 

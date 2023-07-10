@@ -1,17 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./App.css";
-import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import theme from "./utils/theme";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { DesignProvider } from "./contexts/Design";
-import { CookiesProvider } from "./contexts/Cookies";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './App.css';
+import reportWebVitals from './reportWebVitals';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import theme from './utils/theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { DesignProvider } from './contexts/Design';
+import { CookiesProvider } from './contexts/Cookies';
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 const queryClient = new QueryClient({
   defaultOptions: {

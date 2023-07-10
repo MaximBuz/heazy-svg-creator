@@ -10,7 +10,12 @@ export interface IQueryLoadingProps {
 
 const QueryLoading: React.FunctionComponent<IQueryLoadingProps> = (props) => {
   return (
-    <Flex width="100%" height="100%" justifyContent="center" alignItems="center">
+    <Flex
+      width="100%"
+      height="100%"
+      justifyContent="center"
+      alignItems="center"
+    >
       <Jelly {...props} />
     </Flex>
   );

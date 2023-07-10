@@ -1,12 +1,12 @@
-import { GetUserByFirebaseIdQuery } from "./../graphql/generated";
-import { User, UserCredential } from "firebase/auth";
+import { GetUserByFirebaseIdQuery } from './../graphql/generated';
+import { User, UserCredential } from 'firebase/auth';
 
 export interface IAuth {
   firebaseUser: User;
   currentUserLoading: boolean;
   currentUserIsError: boolean;
   currentUserIsSuccess: boolean;
-  currentUser: GetUserByFirebaseIdQuery["user"];
+  currentUser: GetUserByFirebaseIdQuery['user'];
   signup: (
     email: string,
     password: string,

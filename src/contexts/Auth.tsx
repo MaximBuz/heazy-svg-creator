@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 
 /* FIREBASE */
-import { auth } from "../firebase";
+import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -11,17 +11,17 @@ import {
   UserCredential,
   User,
   sendEmailVerification,
-} from "firebase/auth";
+} from 'firebase/auth';
 
 import {
   useCreateNewUserMutation,
   useGetUserByFirebaseIdQuery,
-} from "../graphql/generated";
-import { endpoint, headers } from "../utils/apiConfig";
-import { IAuth } from "../types/authContext";
-import { useQueryClient } from "react-query";
-import { logEvent } from "firebase/analytics";
-import { useCookies } from "./Cookies";
+} from '../graphql/generated';
+import { endpoint, headers } from '../utils/apiConfig';
+import { IAuth } from '../types/authContext';
+import { useQueryClient } from 'react-query';
+import { logEvent } from 'firebase/analytics';
+import { useCookies } from './Cookies';
 
 const AuthContext = React.createContext(null);
 
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
 
   const [firebaseUser, setFirebaseUUser] = useState<User>();
-  const [idToken, setIdToken] = useState<string>("");
+  const [idToken, setIdToken] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
   // Analytics
@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
       .then((userCred) => {
         cookies.consent &&
           cookies.analytics &&
-          logEvent(cookies.analytics, "register", { userCred });
+          logEvent(cookies.analytics, 'register', { userCred });
         sendEmailVerification(auth.currentUser);
         return userCred;
       });
@@ -76,7 +76,7 @@ export function AuthProvider({ children }) {
     return sendEmailVerification(auth.currentUser).then(() => {
       cookies.consent &&
         cookies.analytics &&
-        logEvent(cookies.analytics, "resend_email_verification", {
+        logEvent(cookies.analytics, 'resend_email_verification', {
           user: auth.currentUser,
         });
     });
@@ -87,7 +87,7 @@ export function AuthProvider({ children }) {
       (userCred) => {
         cookies.consent &&
           cookies.analytics &&
-          logEvent(cookies.analytics, "login", { userCred });
+          logEvent(cookies.analytics, 'login', { userCred });
         return userCred;
       }
     );
@@ -98,7 +98,7 @@ export function AuthProvider({ children }) {
     return signOut(auth).then(() => {
       cookies.consent &&
         cookies.analytics &&
-        logEvent(cookies.analytics, "logout", { user: loggedOutUser });
+        logEvent(cookies.analytics, 'logout', { user: loggedOutUser });
       queryClient.removeQueries();
     });
   }
@@ -108,7 +108,7 @@ export function AuthProvider({ children }) {
       () =>
         cookies.consent &&
         cookies.analytics &&
-        logEvent(cookies.analytics, "reset_password", {
+        logEvent(cookies.analytics, 'reset_password', {
           user: auth.currentUser,
         })
     );

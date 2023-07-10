@@ -1,6 +1,5 @@
 import { IColors } from './colorProps';
 
-
 export interface IIsolinesProps {
   svgRef: any;
   seed: number;
@@ -32,8 +31,7 @@ export interface IIsolinePositionProps {
   y: number;
 }
 
-export type IIsolinesAllProps =
-  IIsolinesShapeProps &
+export type IIsolinesAllProps = IIsolinesShapeProps &
   IIsolinesVariantsProps &
   IIsolinePositionProps &
-  IColors
+  IColors;

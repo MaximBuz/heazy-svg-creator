@@ -13,7 +13,7 @@ export async function createNewDesign(
   },
   context: Context
 ) {
-  if (!context.uid) throw new GraphQLError(`Not Authorized`);
+  if (!context.uid) throw new GraphQLError('Not Authorized');
 
   const data: Prisma.DesignCreateInput = {
     name: _args.name,
@@ -23,7 +23,8 @@ export async function createNewDesign(
     thumbnailUrl: _args.thumbnailUrl,
   };
 
-  if (_args.copiedFromUserId) data.copiedFrom = { connect: { id: _args.copiedFromUserId } };
+  if (_args.copiedFromUserId)
+    data.copiedFrom = { connect: { id: _args.copiedFromUserId } };
 
   const design = await context.prisma.design.create({ data });
   return design;
@@ -31,13 +32,15 @@ export async function createNewDesign(
 
 export async function updateDesign(
   _parent: any,
-  _args: Partial<Pick<Prisma.DesignUpdateInput, 'public' | 'optionParameters' | 'name'>> & {
+  _args: Partial<
+    Pick<Prisma.DesignUpdateInput, 'public' | 'optionParameters' | 'name'>
+  > & {
     id: number;
     delete: boolean;
   },
   context: Context
 ) {
-  if (!context.uid) throw new GraphQLError(`Not Authorized`);
+  if (!context.uid) throw new GraphQLError('Not Authorized');
   const { id, delete: shouldDelete, ...data } = _args;
   const design = await context.prisma.design.update({
     where: { id },
@@ -46,8 +49,12 @@ export async function updateDesign(
   return design;
 }
 
-export async function incrementTimesCopied(_parent: any, _args: { id: number }, context: Context) {
-  if (!context.uid) throw new GraphQLError(`Not Authorized`);
+export async function incrementTimesCopied(
+  _parent: any,
+  _args: { id: number },
+  context: Context
+) {
+  if (!context.uid) throw new GraphQLError('Not Authorized');
   const design = await context.prisma.design.update({
     where: { id: _args.id },
     data: { timesCopied: { increment: 1 } },

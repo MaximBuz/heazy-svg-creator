@@ -1,11 +1,15 @@
 import { zip } from '../../helpers/zipArray';
 
-export function getCoordinates (sections: number, width: number, waveSize: number): [number, number][] {
+export function getCoordinates(
+  sections: number,
+  width: number,
+  waveSize: number
+): [number, number][] {
   const equal = width / sections;
   const x = [];
   const y = [];
 
-  for (let cut = 0; cut <= sections; cut++){
+  for (let cut = 0; cut <= sections; cut++) {
     x.push(equal * cut);
     y.push(waveSize);
   }

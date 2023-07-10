@@ -3,10 +3,10 @@ import { markerPath } from '../../../utils/path-algorithms/Marker/markerPath';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
-const Marker: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: number }> = ({
-  seed,
-  svgRef,
-}) => {
+const Marker: React.FunctionComponent<{
+  svgRef: Ref<SVGSVGElement | null>;
+  seed: number;
+}> = ({ seed, svgRef }) => {
   const { markerState, canvasDimensions } = useDesign();
 
   // destructure some params
@@ -19,7 +19,16 @@ const Marker: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: n
   const { bgColor, startColor, endColor } = markerState;
 
   // Generate path
-  const pathData = markerPath(seed, width, markerHeight, zickZacks, padding, mirror, yPosition, pressure);
+  const pathData = markerPath(
+    seed,
+    width,
+    markerHeight,
+    zickZacks,
+    padding,
+    mirror,
+    yPosition,
+    pressure
+  );
   const randomClassId = useId().replaceAll(':', '');
   return (
     <SvgCanvas width={width} height={height} svgRef={svgRef}>
@@ -31,14 +40,33 @@ const Marker: React.FunctionComponent<{ svgRef: Ref<SVGAElement | null>; seed: n
         </linearGradient>
 
         {/* in the shadow you have to put in either x and width or y and height for shadows to stay in box */}
-        <filter id={`shadow-${randomClassId}`} y="-20%" height="150%" x="-20%" width="150%">
-          <feDropShadow dx={shadowX} dy={shadowY} stdDeviation={shadowSD} floodColor={shadowColor} />
+        <filter
+          id={`shadow-${randomClassId}`}
+          y="-20%"
+          height="150%"
+          x="-20%"
+          width="150%"
+        >
+          <feDropShadow
+            dx={shadowX}
+            dy={shadowY}
+            stdDeviation={shadowSD}
+            floodColor={shadowColor}
+          />
         </filter>
         {ghost && (
           <>
             <linearGradient id={`ghost-linear-gradient-${randomClassId}`}>
-              <stop offset="0%" stopColor={ghostStartColor} stopOpacity="100%" />
-              <stop offset="100%" stopColor={ghostEndColor} stopOpacity="100%" />
+              <stop
+                offset="0%"
+                stopColor={ghostStartColor}
+                stopOpacity="100%"
+              />
+              <stop
+                offset="100%"
+                stopColor={ghostEndColor}
+                stopOpacity="100%"
+              />
             </linearGradient>
             <path
               d={pathData}

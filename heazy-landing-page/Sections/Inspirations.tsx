@@ -101,7 +101,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
 
         <Flex
           direction={{ base: 'column', lg: 'row' }}
-          height={{ base: '150vh', md: "220vh", lg: '80vh', xl: '75vh' }}
+          height={{ base: '150vh', md: '220vh', lg: '80vh', xl: '75vh' }}
           width={['100%', '100%', '70%', '100%']}
           justifyContent="center"
           alignItems="center"
@@ -176,7 +176,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
         </Flex>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
-          height={{ base: '120vh', md: "160vh", lg: '40vh', xl: '50vh' }}
+          height={{ base: '120vh', md: '160vh', lg: '40vh', xl: '50vh' }}
           width={['100%', '100%', '70%', '100%']}
           justifyContent="center"
           alignItems="center"
@@ -185,7 +185,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
           <Box
             position="relative"
             width={{ base: '100%', lg: '35%' }}
-            height={{ base: '67%', md: "65%", lg: "100%", xl: '100%' }}
+            height={{ base: '67%', md: '65%', lg: '100%', xl: '100%' }}
             transition="0.5s"
             rounded="sm"
             boxShadow="0 0px 35px -5px #152238"
@@ -204,7 +204,7 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
           <Box
             position="relative"
             width={{ base: '100%', lg: '65%' }}
-            height={{ base: '33%', md: "35%",lg: "100%",  xl: '100%' }}
+            height={{ base: '33%', md: '35%', lg: '100%', xl: '100%' }}
             transition="0.5s"
             rounded="sm"
             boxShadow="0 0px 35px -5px #152238"

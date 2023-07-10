@@ -1,4 +1,11 @@
-import { Heading, HStack, Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react';
+import {
+  Heading,
+  HStack,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@chakra-ui/react';
 import React from 'react';
 import { useDesign } from '../../../../contexts/Design';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
@@ -20,7 +27,10 @@ const Position: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.zoom > 0.1 && setState((prev) => ({ ...prev, zoom: prev.zoom - 0.2 }))}
+          onClick={() =>
+            state.zoom > 0.1 &&
+            setState((prev) => ({ ...prev, zoom: prev.zoom - 0.2 }))
+          }
         >
           <icons.zoomLeft />
         </SliderIconWrapper>
@@ -41,7 +51,10 @@ const Position: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 514 545'}
-          onClick={() => state.zoom < 2 && setState((prev) => ({ ...prev, zoom: prev.zoom + 0.2 }))}
+          onClick={() =>
+            state.zoom < 2 &&
+            setState((prev) => ({ ...prev, zoom: prev.zoom + 0.2 }))
+          }
         >
           <icons.zoomRight />
         </SliderIconWrapper>
@@ -55,7 +68,9 @@ const Position: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.y > -200 && setState((prev) => ({ ...prev, y: prev.y - 100 }))}
+          onClick={() =>
+            state.y > -200 && setState((prev) => ({ ...prev, y: prev.y - 100 }))
+          }
         >
           <icons.YPosLeft />
         </SliderIconWrapper>
@@ -75,7 +90,9 @@ const Position: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.y < 1500 && setState((prev) => ({ ...prev, y: prev.y + 100 }))}
+          onClick={() =>
+            state.y < 1500 && setState((prev) => ({ ...prev, y: prev.y + 100 }))
+          }
         >
           <icons.YPosRight />
         </SliderIconWrapper>
@@ -89,7 +106,9 @@ const Position: React.FunctionComponent = () => {
       <HStack>
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.x > -200 && setState((prev) => ({ ...prev, x: prev.x - 100 }))}
+          onClick={() =>
+            state.x > -200 && setState((prev) => ({ ...prev, x: prev.x - 100 }))
+          }
         >
           <icons.XPosLeft />
         </SliderIconWrapper>
@@ -109,7 +128,9 @@ const Position: React.FunctionComponent = () => {
 
         <SliderIconWrapper
           viewBox={'0 0 24 24'}
-          onClick={() => state.x < 1500 && setState((prev) => ({ ...prev, x: prev.x + 100 }))}
+          onClick={() =>
+            state.x < 1500 && setState((prev) => ({ ...prev, x: prev.x + 100 }))
+          }
         >
           <icons.XPosRight />
         </SliderIconWrapper>

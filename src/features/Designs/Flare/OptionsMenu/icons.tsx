@@ -215,7 +215,14 @@ export const lensRadiusHigh: React.FunctionComponent = () => {
   return (
     // 0 0 514 545
     <>
-      <circle cx="257" cy="273" r="203" fill="url(#paint0_radial_108_92)" stroke="white" stroke-width="30" />
+      <circle
+        cx="257"
+        cy="273"
+        r="203"
+        fill="url(#paint0_radial_108_92)"
+        stroke="white"
+        stroke-width="30"
+      />
       <defs>
         <radialGradient
           id="paint0_radial_108_92"
@@ -237,7 +244,14 @@ export const lensSpillHigh: React.FunctionComponent = () => {
   return (
     // 0 0 514 545
     <>
-      <circle cx="257" cy="273" r="203" fill="url(#paint0_radial_108_96)" stroke="white" stroke-width="30" />
+      <circle
+        cx="257"
+        cy="273"
+        r="203"
+        fill="url(#paint0_radial_108_96)"
+        stroke="white"
+        stroke-width="30"
+      />
       <defs>
         <radialGradient
           id="paint0_radial_108_96"
@@ -259,7 +273,14 @@ export const lensSpillLow: React.FunctionComponent = () => {
   return (
     // 0 0 514 545
     <>
-      <circle cx="257" cy="273" r="203" fill="url(#paint0_radial_108_94)" stroke="white" stroke-width="30" />
+      <circle
+        cx="257"
+        cy="273"
+        r="203"
+        fill="url(#paint0_radial_108_94)"
+        stroke="white"
+        stroke-width="30"
+      />
       <defs>
         <radialGradient
           id="paint0_radial_108_94"

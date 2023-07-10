@@ -1,11 +1,27 @@
-import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from 'react-query';
+import {
+  useMutation,
+  useQuery,
+  UseMutationOptions,
+  UseQueryOptions,
+} from 'react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 
-function fetcher<TData, TVariables>(endpoint: string, requestInit: RequestInit, query: string, variables?: TVariables) {
+function fetcher<TData, TVariables>(
+  endpoint: string,
+  requestInit: RequestInit,
+  query: string,
+  variables?: TVariables
+) {
   return async (): Promise<TData> => {
     const res = await fetch(endpoint, {
       method: 'POST',
@@ -22,7 +38,7 @@ function fetcher<TData, TVariables>(endpoint: string, requestInit: RequestInit, 
     }
 
     return json.data;
-  }
+  };
 }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -70,7 +86,6 @@ export type Mutation = {
   updateUser?: Maybe<User>;
 };
 
-
 export type MutationCreateNewDesignArgs = {
   copiedFromUserId?: InputMaybe<Scalars['Int']>;
   name: Scalars['String'];
@@ -80,7 +95,6 @@ export type MutationCreateNewDesignArgs = {
   typeId: Scalars['Int'];
 };
 
-
 export type MutationCreateNewUserArgs = {
   avatarUrl?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
@@ -88,11 +102,9 @@ export type MutationCreateNewUserArgs = {
   userName: Scalars['String'];
 };
 
-
 export type MutationIncrementTimesCopiedArgs = {
   id: Scalars['Int'];
 };
-
 
 export type MutationUpdateDesignArgs = {
   delete?: InputMaybe<Scalars['Boolean']>;
@@ -101,7 +113,6 @@ export type MutationUpdateDesignArgs = {
   optionParameters?: InputMaybe<Scalars['JSON']>;
   public?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationUpdateUserArgs = {
   userName?: InputMaybe<Scalars['String']>;
@@ -116,11 +127,9 @@ export type Query = {
   getUserById?: Maybe<User>;
 };
 
-
 export type QueryGetDesignByIdArgs = {
   id: Scalars['Int'];
 };
-
 
 export type QueryGetPublicDesignsArgs = {
   cursor?: InputMaybe<Scalars['Int']>;
@@ -128,7 +137,6 @@ export type QueryGetPublicDesignsArgs = {
   take?: InputMaybe<Scalars['Int']>;
   type?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
 };
-
 
 export type QueryGetUserByIdArgs = {
   id: Scalars['Int'];
@@ -153,8 +161,21 @@ export type CreateNewDesignMutationVariables = Exact<{
   optionParameters: Scalars['JSON'];
 }>;
 
-
-export type CreateNewDesignMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+export type CreateNewDesignMutation = {
+  __typename?: 'Mutation';
+  design?: {
+    __typename?: 'Design';
+    id: number;
+    timesCopied: number;
+    public: boolean;
+    name: string;
+    thumbnailUrl?: string | null;
+    optionParameters: any;
+    createdAt: any;
+    type: { __typename?: 'DesignType'; id: number; name: string };
+    copiedFrom?: { __typename?: 'User'; id: number; userName: string } | null;
+  } | null;
+};
 
 export type CreateNewUserMutationVariables = Exact<{
   firebaseId: Scalars['String'];
@@ -163,15 +184,37 @@ export type CreateNewUserMutationVariables = Exact<{
   avatarUrl?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type CreateNewUserMutation = { __typename?: 'Mutation', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null } | null };
+export type CreateNewUserMutation = {
+  __typename?: 'Mutation';
+  user?: {
+    __typename?: 'User';
+    id: number;
+    firebaseId: string;
+    email: string;
+    userName: string;
+    avatarUrl?: string | null;
+  } | null;
+};
 
 export type IncrementTimesCopiedMutationVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
-
-export type IncrementTimesCopiedMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+export type IncrementTimesCopiedMutation = {
+  __typename?: 'Mutation';
+  design?: {
+    __typename?: 'Design';
+    id: number;
+    timesCopied: number;
+    public: boolean;
+    name: string;
+    thumbnailUrl?: string | null;
+    optionParameters: any;
+    createdAt: any;
+    type: { __typename?: 'DesignType'; id: number; name: string };
+    copiedFrom?: { __typename?: 'User'; id: number; userName: string } | null;
+  } | null;
+};
 
 export type UpdateDesignMutationVariables = Exact<{
   id: Scalars['Int'];
@@ -181,50 +224,158 @@ export type UpdateDesignMutationVariables = Exact<{
   delete?: InputMaybe<Scalars['Boolean']>;
 }>;
 
-
-export type UpdateDesignMutation = { __typename?: 'Mutation', design?: { __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, userName: string } | null } | null };
+export type UpdateDesignMutation = {
+  __typename?: 'Mutation';
+  design?: {
+    __typename?: 'Design';
+    id: number;
+    timesCopied: number;
+    public: boolean;
+    name: string;
+    thumbnailUrl?: string | null;
+    optionParameters: any;
+    createdAt: any;
+    type: { __typename?: 'DesignType'; id: number; name: string };
+    copiedFrom?: { __typename?: 'User'; id: number; userName: string } | null;
+  } | null;
+};
 
 export type UpdateUserMutationVariables = Exact<{
   userName?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type UpdateUserMutation = { __typename?: 'Mutation', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null } | null };
+export type UpdateUserMutation = {
+  __typename?: 'Mutation';
+  user?: {
+    __typename?: 'User';
+    id: number;
+    firebaseId: string;
+    email: string;
+    userName: string;
+    avatarUrl?: string | null;
+  } | null;
+};
 
 export type GetDesignByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
+export type GetDesignByIdQuery = {
+  __typename?: 'Query';
+  design?: {
+    __typename?: 'Design';
+    id: number;
+    name: string;
+    timesCopied: number;
+    public: boolean;
+    thumbnailUrl?: string | null;
+    optionParameters: any;
+    createdAt: any;
+    type: { __typename?: 'DesignType'; id: number; name: string };
+    copiedFrom?: { __typename?: 'User'; userName: string; id: number } | null;
+  } | null;
+};
 
-export type GetDesignByIdQuery = { __typename?: 'Query', design?: { __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null };
+export type GetDesignTypesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetDesignTypesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetDesignTypesQuery = { __typename?: 'Query', designTypes: Array<{ __typename?: 'DesignType', id: number, name: string } | null> };
+export type GetDesignTypesQuery = {
+  __typename?: 'Query';
+  designTypes: Array<{
+    __typename?: 'DesignType';
+    id: number;
+    name: string;
+  } | null>;
+};
 
 export type GetPublicDesignsQueryVariables = Exact<{
   sortBy?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
+  type?: InputMaybe<
+    Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>
+  >;
   take?: InputMaybe<Scalars['Int']>;
   cursor?: InputMaybe<Scalars['Int']>;
 }>;
 
+export type GetPublicDesignsQuery = {
+  __typename?: 'Query';
+  designs?: Array<{
+    __typename?: 'Design';
+    id: number;
+    name: string;
+    timesCopied: number;
+    public: boolean;
+    thumbnailUrl?: string | null;
+    optionParameters: any;
+    createdAt: any;
+    type: { __typename?: 'DesignType'; id: number; name: string };
+    copiedFrom?: {
+      __typename?: 'User';
+      id: number;
+      firebaseId: string;
+      userName: string;
+    } | null;
+    user: {
+      __typename?: 'User';
+      id: number;
+      firebaseId: string;
+      userName: string;
+    };
+  } | null> | null;
+};
 
-export type GetPublicDesignsQuery = { __typename?: 'Query', designs?: Array<{ __typename?: 'Design', id: number, name: string, timesCopied: number, public: boolean, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', id: number, firebaseId: string, userName: string } | null, user: { __typename?: 'User', id: number, firebaseId: string, userName: string } } | null> | null };
+export type GetUserByFirebaseIdQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetUserByFirebaseIdQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetUserByFirebaseIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
+export type GetUserByFirebaseIdQuery = {
+  __typename?: 'Query';
+  user?: {
+    __typename?: 'User';
+    id: number;
+    firebaseId: string;
+    email: string;
+    userName: string;
+    avatarUrl?: string | null;
+    designs?: Array<{
+      __typename?: 'Design';
+      id: number;
+      timesCopied: number;
+      public: boolean;
+      name: string;
+      thumbnailUrl?: string | null;
+      optionParameters: any;
+      createdAt: any;
+      type: { __typename?: 'DesignType'; id: number; name: string };
+      copiedFrom?: { __typename?: 'User'; userName: string; id: number } | null;
+    } | null> | null;
+  } | null;
+};
 
 export type GetUserByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
-
-export type GetUserByIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, firebaseId: string, email: string, userName: string, avatarUrl?: string | null, designs?: Array<{ __typename?: 'Design', id: number, timesCopied: number, public: boolean, name: string, thumbnailUrl?: string | null, optionParameters: any, createdAt: any, type: { __typename?: 'DesignType', id: number, name: string }, copiedFrom?: { __typename?: 'User', userName: string, id: number } | null } | null> | null } | null };
-
+export type GetUserByIdQuery = {
+  __typename?: 'Query';
+  user?: {
+    __typename?: 'User';
+    id: number;
+    firebaseId: string;
+    email: string;
+    userName: string;
+    avatarUrl?: string | null;
+    designs?: Array<{
+      __typename?: 'Design';
+      id: number;
+      timesCopied: number;
+      public: boolean;
+      name: string;
+      thumbnailUrl?: string | null;
+      optionParameters: any;
+      createdAt: any;
+      type: { __typename?: 'DesignType'; id: number; name: string };
+      copiedFrom?: { __typename?: 'User'; userName: string; id: number } | null;
+    } | null> | null;
+  } | null;
+};
 
 export const CreateNewDesignDocument = `
     mutation createNewDesign($public: Boolean, $name: String!, $typeId: Int!, $thumbnailUrl: String!, $copiedFromUserId: Int, $optionParameters: JSON!) {
@@ -255,17 +406,33 @@ export const CreateNewDesignDocument = `
 }
     `;
 export const useCreateNewDesignMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<CreateNewDesignMutation, TError, CreateNewDesignMutationVariables, TContext>
-    ) =>
-    useMutation<CreateNewDesignMutation, TError, CreateNewDesignMutationVariables, TContext>(
-      ['createNewDesign'],
-      (variables?: CreateNewDesignMutationVariables) => fetcher<CreateNewDesignMutation, CreateNewDesignMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateNewDesignDocument, variables)(),
-      options
-    );
+  TError = unknown,
+  TContext = unknown,
+>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  options?: UseMutationOptions<
+    CreateNewDesignMutation,
+    TError,
+    CreateNewDesignMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<
+    CreateNewDesignMutation,
+    TError,
+    CreateNewDesignMutationVariables,
+    TContext
+  >(
+    ['createNewDesign'],
+    (variables?: CreateNewDesignMutationVariables) =>
+      fetcher<CreateNewDesignMutation, CreateNewDesignMutationVariables>(
+        dataSource.endpoint,
+        dataSource.fetchParams || {},
+        CreateNewDesignDocument,
+        variables
+      )(),
+    options
+  );
 export const CreateNewUserDocument = `
     mutation createNewUser($firebaseId: String!, $email: String!, $userName: String!, $avatarUrl: String) {
   user: createNewUser(
@@ -282,18 +449,31 @@ export const CreateNewUserDocument = `
   }
 }
     `;
-export const useCreateNewUserMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>
-    ) =>
-    useMutation<CreateNewUserMutation, TError, CreateNewUserMutationVariables, TContext>(
-      ['createNewUser'],
-      (variables?: CreateNewUserMutationVariables) => fetcher<CreateNewUserMutation, CreateNewUserMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateNewUserDocument, variables)(),
-      options
-    );
+export const useCreateNewUserMutation = <TError = unknown, TContext = unknown>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  options?: UseMutationOptions<
+    CreateNewUserMutation,
+    TError,
+    CreateNewUserMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<
+    CreateNewUserMutation,
+    TError,
+    CreateNewUserMutationVariables,
+    TContext
+  >(
+    ['createNewUser'],
+    (variables?: CreateNewUserMutationVariables) =>
+      fetcher<CreateNewUserMutation, CreateNewUserMutationVariables>(
+        dataSource.endpoint,
+        dataSource.fetchParams || {},
+        CreateNewUserDocument,
+        variables
+      )(),
+    options
+  );
 export const IncrementTimesCopiedDocument = `
     mutation incrementTimesCopied($id: Int!) {
   design: incrementTimesCopied(id: $id) {
@@ -316,17 +496,36 @@ export const IncrementTimesCopiedDocument = `
 }
     `;
 export const useIncrementTimesCopiedMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<IncrementTimesCopiedMutation, TError, IncrementTimesCopiedMutationVariables, TContext>
-    ) =>
-    useMutation<IncrementTimesCopiedMutation, TError, IncrementTimesCopiedMutationVariables, TContext>(
-      ['incrementTimesCopied'],
-      (variables?: IncrementTimesCopiedMutationVariables) => fetcher<IncrementTimesCopiedMutation, IncrementTimesCopiedMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, IncrementTimesCopiedDocument, variables)(),
-      options
-    );
+  TError = unknown,
+  TContext = unknown,
+>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  options?: UseMutationOptions<
+    IncrementTimesCopiedMutation,
+    TError,
+    IncrementTimesCopiedMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<
+    IncrementTimesCopiedMutation,
+    TError,
+    IncrementTimesCopiedMutationVariables,
+    TContext
+  >(
+    ['incrementTimesCopied'],
+    (variables?: IncrementTimesCopiedMutationVariables) =>
+      fetcher<
+        IncrementTimesCopiedMutation,
+        IncrementTimesCopiedMutationVariables
+      >(
+        dataSource.endpoint,
+        dataSource.fetchParams || {},
+        IncrementTimesCopiedDocument,
+        variables
+      )(),
+    options
+  );
 export const UpdateDesignDocument = `
     mutation updateDesign($id: Int!, $public: Boolean, $name: String, $optionParameters: JSON, $delete: Boolean) {
   design: updateDesign(
@@ -354,18 +553,31 @@ export const UpdateDesignDocument = `
   }
 }
     `;
-export const useUpdateDesignMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<UpdateDesignMutation, TError, UpdateDesignMutationVariables, TContext>
-    ) =>
-    useMutation<UpdateDesignMutation, TError, UpdateDesignMutationVariables, TContext>(
-      ['updateDesign'],
-      (variables?: UpdateDesignMutationVariables) => fetcher<UpdateDesignMutation, UpdateDesignMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UpdateDesignDocument, variables)(),
-      options
-    );
+export const useUpdateDesignMutation = <TError = unknown, TContext = unknown>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  options?: UseMutationOptions<
+    UpdateDesignMutation,
+    TError,
+    UpdateDesignMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<
+    UpdateDesignMutation,
+    TError,
+    UpdateDesignMutationVariables,
+    TContext
+  >(
+    ['updateDesign'],
+    (variables?: UpdateDesignMutationVariables) =>
+      fetcher<UpdateDesignMutation, UpdateDesignMutationVariables>(
+        dataSource.endpoint,
+        dataSource.fetchParams || {},
+        UpdateDesignDocument,
+        variables
+      )(),
+    options
+  );
 export const UpdateUserDocument = `
     mutation updateUser($userName: String) {
   user: updateUser(userName: $userName) {
@@ -377,18 +589,31 @@ export const UpdateUserDocument = `
   }
 }
     `;
-export const useUpdateUserMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<UpdateUserMutation, TError, UpdateUserMutationVariables, TContext>
-    ) =>
-    useMutation<UpdateUserMutation, TError, UpdateUserMutationVariables, TContext>(
-      ['updateUser'],
-      (variables?: UpdateUserMutationVariables) => fetcher<UpdateUserMutation, UpdateUserMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UpdateUserDocument, variables)(),
-      options
-    );
+export const useUpdateUserMutation = <TError = unknown, TContext = unknown>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  options?: UseMutationOptions<
+    UpdateUserMutation,
+    TError,
+    UpdateUserMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<
+    UpdateUserMutation,
+    TError,
+    UpdateUserMutationVariables,
+    TContext
+  >(
+    ['updateUser'],
+    (variables?: UpdateUserMutationVariables) =>
+      fetcher<UpdateUserMutation, UpdateUserMutationVariables>(
+        dataSource.endpoint,
+        dataSource.fetchParams || {},
+        UpdateUserDocument,
+        variables
+      )(),
+    options
+  );
 export const GetDesignByIdDocument = `
     query getDesignById($id: Int!) {
   design: getDesignById(id: $id) {
@@ -413,18 +638,23 @@ export const GetDesignByIdDocument = `
 }
     `;
 export const useGetDesignByIdQuery = <
-      TData = GetDesignByIdQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables: GetDesignByIdQueryVariables,
-      options?: UseQueryOptions<GetDesignByIdQuery, TError, TData>
-    ) =>
-    useQuery<GetDesignByIdQuery, TError, TData>(
-      ['getDesignById', variables],
-      fetcher<GetDesignByIdQuery, GetDesignByIdQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetDesignByIdDocument, variables),
-      options
-    );
+  TData = GetDesignByIdQuery,
+  TError = unknown,
+>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  variables: GetDesignByIdQueryVariables,
+  options?: UseQueryOptions<GetDesignByIdQuery, TError, TData>
+) =>
+  useQuery<GetDesignByIdQuery, TError, TData>(
+    ['getDesignById', variables],
+    fetcher<GetDesignByIdQuery, GetDesignByIdQueryVariables>(
+      dataSource.endpoint,
+      dataSource.fetchParams || {},
+      GetDesignByIdDocument,
+      variables
+    ),
+    options
+  );
 export const GetDesignTypesDocument = `
     query getDesignTypes {
   designTypes: getDesignTypes {
@@ -434,18 +664,25 @@ export const GetDesignTypesDocument = `
 }
     `;
 export const useGetDesignTypesQuery = <
-      TData = GetDesignTypesQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: GetDesignTypesQueryVariables,
-      options?: UseQueryOptions<GetDesignTypesQuery, TError, TData>
-    ) =>
-    useQuery<GetDesignTypesQuery, TError, TData>(
-      variables === undefined ? ['getDesignTypes'] : ['getDesignTypes', variables],
-      fetcher<GetDesignTypesQuery, GetDesignTypesQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetDesignTypesDocument, variables),
-      options
-    );
+  TData = GetDesignTypesQuery,
+  TError = unknown,
+>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  variables?: GetDesignTypesQueryVariables,
+  options?: UseQueryOptions<GetDesignTypesQuery, TError, TData>
+) =>
+  useQuery<GetDesignTypesQuery, TError, TData>(
+    variables === undefined
+      ? ['getDesignTypes']
+      : ['getDesignTypes', variables],
+    fetcher<GetDesignTypesQuery, GetDesignTypesQueryVariables>(
+      dataSource.endpoint,
+      dataSource.fetchParams || {},
+      GetDesignTypesDocument,
+      variables
+    ),
+    options
+  );
 export const GetPublicDesignsDocument = `
     query getPublicDesigns($sortBy: String, $type: [Int], $take: Int, $cursor: Int) {
   designs: getPublicDesigns(
@@ -481,18 +718,25 @@ export const GetPublicDesignsDocument = `
 }
     `;
 export const useGetPublicDesignsQuery = <
-      TData = GetPublicDesignsQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: GetPublicDesignsQueryVariables,
-      options?: UseQueryOptions<GetPublicDesignsQuery, TError, TData>
-    ) =>
-    useQuery<GetPublicDesignsQuery, TError, TData>(
-      variables === undefined ? ['getPublicDesigns'] : ['getPublicDesigns', variables],
-      fetcher<GetPublicDesignsQuery, GetPublicDesignsQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetPublicDesignsDocument, variables),
-      options
-    );
+  TData = GetPublicDesignsQuery,
+  TError = unknown,
+>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  variables?: GetPublicDesignsQueryVariables,
+  options?: UseQueryOptions<GetPublicDesignsQuery, TError, TData>
+) =>
+  useQuery<GetPublicDesignsQuery, TError, TData>(
+    variables === undefined
+      ? ['getPublicDesigns']
+      : ['getPublicDesigns', variables],
+    fetcher<GetPublicDesignsQuery, GetPublicDesignsQueryVariables>(
+      dataSource.endpoint,
+      dataSource.fetchParams || {},
+      GetPublicDesignsDocument,
+      variables
+    ),
+    options
+  );
 export const GetUserByFirebaseIdDocument = `
     query getUserByFirebaseId {
   user: getUserByFirebaseId {
@@ -522,18 +766,25 @@ export const GetUserByFirebaseIdDocument = `
 }
     `;
 export const useGetUserByFirebaseIdQuery = <
-      TData = GetUserByFirebaseIdQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: GetUserByFirebaseIdQueryVariables,
-      options?: UseQueryOptions<GetUserByFirebaseIdQuery, TError, TData>
-    ) =>
-    useQuery<GetUserByFirebaseIdQuery, TError, TData>(
-      variables === undefined ? ['getUserByFirebaseId'] : ['getUserByFirebaseId', variables],
-      fetcher<GetUserByFirebaseIdQuery, GetUserByFirebaseIdQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetUserByFirebaseIdDocument, variables),
-      options
-    );
+  TData = GetUserByFirebaseIdQuery,
+  TError = unknown,
+>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  variables?: GetUserByFirebaseIdQueryVariables,
+  options?: UseQueryOptions<GetUserByFirebaseIdQuery, TError, TData>
+) =>
+  useQuery<GetUserByFirebaseIdQuery, TError, TData>(
+    variables === undefined
+      ? ['getUserByFirebaseId']
+      : ['getUserByFirebaseId', variables],
+    fetcher<GetUserByFirebaseIdQuery, GetUserByFirebaseIdQueryVariables>(
+      dataSource.endpoint,
+      dataSource.fetchParams || {},
+      GetUserByFirebaseIdDocument,
+      variables
+    ),
+    options
+  );
 export const GetUserByIdDocument = `
     query getUserById($id: Int!) {
   user: getUserById(id: $id) {
@@ -562,16 +813,18 @@ export const GetUserByIdDocument = `
   }
 }
     `;
-export const useGetUserByIdQuery = <
-      TData = GetUserByIdQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables: GetUserByIdQueryVariables,
-      options?: UseQueryOptions<GetUserByIdQuery, TError, TData>
-    ) =>
-    useQuery<GetUserByIdQuery, TError, TData>(
-      ['getUserById', variables],
-      fetcher<GetUserByIdQuery, GetUserByIdQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, GetUserByIdDocument, variables),
-      options
-    );
+export const useGetUserByIdQuery = <TData = GetUserByIdQuery, TError = unknown>(
+  dataSource: { endpoint: string; fetchParams?: RequestInit },
+  variables: GetUserByIdQueryVariables,
+  options?: UseQueryOptions<GetUserByIdQuery, TError, TData>
+) =>
+  useQuery<GetUserByIdQuery, TError, TData>(
+    ['getUserById', variables],
+    fetcher<GetUserByIdQuery, GetUserByIdQueryVariables>(
+      dataSource.endpoint,
+      dataSource.fetchParams || {},
+      GetUserByIdDocument,
+      variables
+    ),
+    options
+  );

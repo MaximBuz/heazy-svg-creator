@@ -16,14 +16,19 @@ const Home: NextPage = () => {
       <Meta
         title="Generate unique SVG design assets with ease | Heazy"
         desc="An intuitive design studio in your browser for creating and exporting unique SVG designs as PNG, SVG or React JavaScript and TypeScript snippets."
-        canonical={process.env.NEXT_PUBLIC_APP_URL || "https://app.heazystudio.com/"}
+        canonical={
+          process.env.NEXT_PUBLIC_APP_URL || 'https://app.heazystudio.com/'
+        }
         css="/static/css/styles.css"
         js="/static/js/scripts.js"
       />
       <div style={{ fontFamily: 'Karla, sans-serif', color: '#c5cfd9' }}>
         <Head>
           <title>Heazy - SVG Studio</title>
-          <meta name="Home - Heazy" content="Generate unique SVG design assets with ease" />
+          <meta
+            name="Home - Heazy"
+            content="Generate unique SVG design assets with ease"
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -59,10 +64,17 @@ const Home: NextPage = () => {
         >
           <Link href="/privacy">Privacy Notice</Link>
         </Flex>
-        <Flex position="fixed" width="100%" justifyContent={{base: "center", lg: "flex-start"}} bottom={{base: "3em",lg:"2em"}} left={{lg:"2em"}}>
+        <Flex
+          position="fixed"
+          width="100%"
+          justifyContent={{ base: 'center', lg: 'flex-start' }}
+          bottom={{ base: '3em', lg: '2em' }}
+          left={{ lg: '2em' }}
+        >
           <a
             href="https://www.producthunt.com/posts/heazy?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-heazy"
             target="_blank"
+            rel="noreferrer"
           >
             <Image
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=351231&theme=dark"

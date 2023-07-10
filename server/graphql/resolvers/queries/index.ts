@@ -7,5 +7,5 @@ export const Query = {
   getUserById,
   getPublicDesigns,
   getDesignById,
-  getDesignTypes
+  getDesignTypes,
 };

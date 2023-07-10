@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 import { Flex, Text, Image, Box, HStack, Tooltip } from '@chakra-ui/react';
 
 // Utils
-import { CopyIcon, DeleteIcon, DownloadIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import {
+  CopyIcon,
+  DeleteIcon,
+  DownloadIcon,
+  ViewIcon,
+  ViewOffIcon,
+} from '@chakra-ui/icons';
 import { useMutation, useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { deleteObject, getDownloadURL, ref } from 'firebase/storage';
@@ -21,11 +27,13 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
   timesCopied,
   copiedFrom,
 }) => {
-  const [active, setActive] = useState<Boolean>(false);
+  const [active, setActive] = useState<boolean>(false);
   const { data: thumbnailUrl, isSuccess } = useQuery(['thumbnail', id], () =>
     getDownloadURL(ref(storage, imageSrc))
   );
-  const deletion = useMutation(['thumbnail', id], () => deleteObject(ref(storage, imageSrc)));
+  const deletion = useMutation(['thumbnail', id], () =>
+    deleteObject(ref(storage, imageSrc))
+  );
 
   return (
     <AnimatePresence>
@@ -47,7 +55,13 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
           bounce: 0,
         }}
       >
-        <Box rounded="xl" w="100%" h="100%" overflow="hidden" background="transparent">
+        <Box
+          rounded="xl"
+          w="100%"
+          h="100%"
+          overflow="hidden"
+          background="transparent"
+        >
           <Image
             w="100%"
             maxH="160px"
@@ -56,7 +70,10 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
             objectFit="cover"
             sx={
               active
-                ? { filter: 'blur(1px) brightness(50%)', transform: 'scale(1.1)' }
+                ? {
+                    filter: 'blur(1px) brightness(50%)',
+                    transform: 'scale(1.1)',
+                  }
                 : { filter: 'blur(0px) brightness(80%)', transform: 'scale(1)' }
             }
             src={isSuccess ? thumbnailUrl : imageSrc}
@@ -102,11 +119,20 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
           align="center"
           justify="center"
           transition="0.3s"
-          sx={active ? { opacity: 1, transform: 'translate(0, 0.8em)' } : { opacity: 0 }}
+          sx={
+            active
+              ? { opacity: 1, transform: 'translate(0, 0.8em)' }
+              : { opacity: 0 }
+          }
           position="absolute"
           zIndex={10}
         >
-          <Tooltip bgColor="#21272e64" color="white" label="Use this template" aria-label="Use this template">
+          <Tooltip
+            bgColor="#21272e64"
+            color="white"
+            label="Use this template"
+            aria-label="Use this template"
+          >
             <CopyIcon
               _hover={{ transform: 'scale(1.15)' }}
               textTransform="capitalize"
@@ -157,7 +183,12 @@ const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
               ></ViewIcon>
             </Tooltip>
           )}
-          <Tooltip bgColor="#21272e64" color="white" label="Delete template" aria-label="Delete template">
+          <Tooltip
+            bgColor="#21272e64"
+            color="white"
+            label="Delete template"
+            aria-label="Delete template"
+          >
             <DeleteIcon
               _hover={{ transform: 'scale(1.15)' }}
               textTransform="capitalize"

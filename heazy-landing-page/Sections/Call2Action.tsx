@@ -20,7 +20,11 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
       height="100vh"
       padding={['0 1.5em']}
     >
-      <Heading fontWeight="800" fontSize={{ base: '2.5em', lg: '4em' }} lineHeight={1}>
+      <Heading
+        fontWeight="800"
+        fontSize={{ base: '2.5em', lg: '4em' }}
+        lineHeight={1}
+      >
         What are you wating for?<br></br>
         <span
           style={{
@@ -34,11 +38,15 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
         </span>{' '}
         is waiting for you!
       </Heading>
-      <Text fontSize="20px">No sign ups, logins, credit cards etc. We promise!</Text>
+      <Text fontSize="20px">
+        No sign ups, logins, credit cards etc. We promise!
+      </Text>
       <Flex gap="10px">
         <Button
           as="a"
-          href={process.env.NEXT_PUBLIC_APP_URL || "https://app.heazystudio.com/"}
+          href={
+            process.env.NEXT_PUBLIC_APP_URL || 'https://app.heazystudio.com/'
+          }
           rounded="full"
           size="lg"
           bg="#05f"

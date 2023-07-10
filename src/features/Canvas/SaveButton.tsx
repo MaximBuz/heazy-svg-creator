@@ -1,5 +1,5 @@
 // React
-import React, { Ref, useState } from "react";
+import React, { Ref, useState } from 'react';
 
 // Styles
 import {
@@ -14,21 +14,21 @@ import {
   PopoverContent,
   PopoverTrigger as OrigPopoverTrigger,
   useDisclosure,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 // Contexts
-import { useAuth } from "../../contexts/Auth";
-import { useDesign } from "../../contexts/Design";
-import { useUserSpace } from "../../contexts/UserSpace";
-import { CloseIcon } from "@chakra-ui/icons";
-import { logEvent } from "firebase/analytics";
-import { useCookies } from "../../contexts/Cookies";
+import { useAuth } from '../../contexts/Auth';
+import { useDesign } from '../../contexts/Design';
+import { useUserSpace } from '../../contexts/UserSpace';
+import { CloseIcon } from '@chakra-ui/icons';
+import { logEvent } from 'firebase/analytics';
+import { useCookies } from '../../contexts/Cookies';
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;
 
 export interface ISaveButtonProps {
-  svgRef: Ref<SVGAElement | null>;
-  CircleStyles: any;
+  svgRef: Ref<SVGSVGElement | null>;
+  CircleStyles: unknown;
 }
 
 const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({
@@ -53,17 +53,17 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({
 
   // Handle saving Template
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>('');
   async function handleSave() {
     onClose();
     if (firebaseUser) {
       let optionParameters;
-      if (design.name === "waves") optionParameters = waveState;
-      if (design.name === "bubble") optionParameters = bubbleState;
-      if (design.name === "corners") optionParameters = cornerState;
-      if (design.name === "marker") optionParameters = markerState;
-      if (design.name === "isolines") optionParameters = isolinesState;
-      if (design.name === "flare") optionParameters = flareState;
+      if (design.name === 'waves') optionParameters = waveState;
+      if (design.name === 'bubble') optionParameters = bubbleState;
+      if (design.name === 'corners') optionParameters = cornerState;
+      if (design.name === 'marker') optionParameters = markerState;
+      if (design.name === 'isolines') optionParameters = isolinesState;
+      if (design.name === 'flare') optionParameters = flareState;
       try {
         await saveTemplate(
           optionParameters,
@@ -76,14 +76,14 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({
         console.log(err);
       }
     }
-    setName("");
+    setName('');
     openUserSpace();
   }
 
   function handleUnauthorizedSave() {
     cookies.consent &&
       cookies.analytics &&
-      logEvent(cookies.analytics, "unauthorized_save_template", {
+      logEvent(cookies.analytics, 'unauthorized_save_template', {
         user: firebaseUser,
         design,
       });
@@ -112,7 +112,7 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({
         p={5}
         bgColor="#2D3748"
         border="none"
-        _focus={{ boxShadow: "none" }}
+        _focus={{ boxShadow: 'none' }}
       >
         <PopoverArrow bgColor="#2D3748" />
         <HStack spacing={4}>

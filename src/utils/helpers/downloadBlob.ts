@@ -1,7 +1,9 @@
 import { svgToJsx } from './regexHelpers';
 
 export function downloadSVGAsText(svgRef) {
-  const base64doc = btoa(unescape(encodeURIComponent(svgRef.current.outerHTML)));
+  const base64doc = btoa(
+    unescape(encodeURIComponent(svgRef.current.outerHTML))
+  );
   const a = document.createElement('a');
   const e = new MouseEvent('click');
   a.download = 'download.svg';
@@ -67,7 +69,10 @@ function convertToDataURL(svgRef) {
       canvas.setAttribute('height', h);
       const context = canvas.getContext('2d');
       context.drawImage(img, 0, 0, w, h);
-      const dataURL = canvas.toDataURL('image/jpeg', w > 1000 ? 0.4 : w > 500 ? 0.8 : 1);
+      const dataURL = canvas.toDataURL(
+        'image/jpeg',
+        w > 1000 ? 0.4 : w > 500 ? 0.8 : 1
+      );
       resolve(dataURL);
     };
     img.onerror = () => {

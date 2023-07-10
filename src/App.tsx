@@ -28,27 +28,24 @@ import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 
 // Styling
-import {
-  Flex,
-  Container,
-  FlexProps,
-  ContainerProps,
-} from '@chakra-ui/react';
+import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
 
 function App() {
   /* --------- STATE --------- */
   const { design, setDesign, designTypes } = useDesign();
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
-  const svgRef = useRef<SVGAElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
     if (design.name === 'waves') return <Waves svgRef={svgRef} seed={seed} />;
     if (design.name === 'bubble') return <Bubble svgRef={svgRef} seed={seed} />;
-    if (design.name === 'corners') return <Corners svgRef={svgRef} seed={seed} />;
+    if (design.name === 'corners')
+      return <Corners svgRef={svgRef} seed={seed} />;
     if (design.name === 'marker') return <Marker svgRef={svgRef} seed={seed} />;
-    if (design.name === 'isolines') return <Isolines svgRef={svgRef} seed={seed} />;
+    if (design.name === 'isolines')
+      return <Isolines svgRef={svgRef} seed={seed} />;
     if (design.name === 'flare') return <Flare svgRef={svgRef} seed={seed} />;
   };
 
@@ -93,7 +90,12 @@ function App() {
           <AuthProvider>
             <UserMenu />
             <Container {...canvasStyles}>{renderCanvas()}</Container>
-            <CanvasControls svgRef={svgRef} seed={seed} setSeed={setSeed} setZoom={setZoom} />
+            <CanvasControls
+              svgRef={svgRef}
+              seed={seed}
+              setSeed={setSeed}
+              setZoom={setZoom}
+            />
           </AuthProvider>
           <OptionsMenu svgRef={svgRef}>{renderOptionsMenu()}</OptionsMenu>
         </UserSpaceProvider>

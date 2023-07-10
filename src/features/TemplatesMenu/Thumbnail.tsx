@@ -17,7 +17,12 @@ export interface IThumbnailProps {
   type: IDesignModes;
 }
 
-const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, setDesign, type }) => {
+const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
+  isActive,
+  image,
+  setDesign,
+  type,
+}) => {
   const { isOpen: userSpaceIsOpen, onClose: closeUserSpace } = useUserSpace();
   // Analytics
   const cookies = useCookies();
@@ -31,7 +36,9 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({ isActive, image, 
       _hover={{ background: '#3b4453', cursor: 'pointer' }}
       onClick={() => {
         userSpaceIsOpen && closeUserSpace();
-        cookies.consent && cookies.analytics && logEvent(cookies.analytics, 'choose_design', { type });
+        cookies.consent &&
+          cookies.analytics &&
+          logEvent(cookies.analytics, 'choose_design', { type });
         setDesign(type);
       }}
     >

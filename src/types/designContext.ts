@@ -31,7 +31,7 @@ export interface IDesignProvider {
 
   isolinesState: IIsolinesAllProps;
   setIsolinesState: Dispatch<SetStateAction<IIsolinesAllProps>>;
-  
+
   flareState: IFlareAllProps;
   setFlareState: Dispatch<SetStateAction<IFlareAllProps>>;
 
@@ -41,6 +41,6 @@ export interface IDesignProvider {
     name: string,
     firebaseId: string,
     typeId: number,
-    svgRef: Ref<SVGAElement | null>
+    svgRef: Ref<SVGSVGElement | null>
   ) => void;
 }

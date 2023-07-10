@@ -27,11 +27,10 @@ export interface ICornerShapeProps {
   breaks: number;
   stacks: number;
   distance: number;
-  smooth: number
+  smooth: number;
 }
 
-export type ICornerAllProps =
-  ICornerShapeProps &
+export type ICornerAllProps = ICornerShapeProps &
   ICornerVariantsProps &
   ICornerPositionProps &
   IColors &

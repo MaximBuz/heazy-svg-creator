@@ -1,5 +1,5 @@
 // React
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 
 // Features
 import {
@@ -20,15 +20,20 @@ import {
   TemplateMenu,
   OptionsMenu,
   UserMenu,
-} from "./features";
+} from './features';
 
 // Context
-import { AuthProvider } from "./contexts/Auth";
-import { useDesign } from "./contexts/Design";
-import { UserSpaceProvider } from "./contexts/UserSpace";
+import { AuthProvider } from './contexts/Auth';
+import { useDesign } from './contexts/Design';
+import { UserSpaceProvider } from './contexts/UserSpace';
 
 // Styling
-import { Flex, Container, FlexProps, ContainerProps } from "@chakra-ui/react";
+import {
+  Flex,
+  Container,
+  FlexProps,
+  ContainerProps,
+} from '@chakra-ui/react';
 
 function App() {
   /* --------- STATE --------- */
@@ -39,42 +44,40 @@ function App() {
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {
-    if (design.name === "waves") return <Waves svgRef={svgRef} seed={seed} />;
-    if (design.name === "bubble") return <Bubble svgRef={svgRef} seed={seed} />;
-    if (design.name === "corners")
-      return <Corners svgRef={svgRef} seed={seed} />;
-    if (design.name === "marker") return <Marker svgRef={svgRef} seed={seed} />;
-    if (design.name === "isolines")
-      return <Isolines svgRef={svgRef} seed={seed} />;
-    if (design.name === "flare") return <Flare svgRef={svgRef} seed={seed} />;
+    if (design.name === 'waves') return <Waves svgRef={svgRef} seed={seed} />;
+    if (design.name === 'bubble') return <Bubble svgRef={svgRef} seed={seed} />;
+    if (design.name === 'corners') return <Corners svgRef={svgRef} seed={seed} />;
+    if (design.name === 'marker') return <Marker svgRef={svgRef} seed={seed} />;
+    if (design.name === 'isolines') return <Isolines svgRef={svgRef} seed={seed} />;
+    if (design.name === 'flare') return <Flare svgRef={svgRef} seed={seed} />;
   };
 
   const renderOptionsMenu = () => {
-    if (design.name === "waves") return <WaveOptions />;
-    if (design.name === "bubble") return <BubbleOptions />;
-    if (design.name === "corners") return <CornerOptions />;
-    if (design.name === "marker") return <MarkerOptions />;
-    if (design.name === "isolines") return <IsolinesOptions />;
-    if (design.name === "flare") return <FlareOptions></FlareOptions>;
+    if (design.name === 'waves') return <WaveOptions />;
+    if (design.name === 'bubble') return <BubbleOptions />;
+    if (design.name === 'corners') return <CornerOptions />;
+    if (design.name === 'marker') return <MarkerOptions />;
+    if (design.name === 'isolines') return <IsolinesOptions />;
+    if (design.name === 'flare') return <FlareOptions></FlareOptions>;
   };
 
   /* --------- STYLES --------- */
   const wrapperStyles: FlexProps = {
-    direction: "row",
-    bgColor: "#141820",
-    overflow: "hidden",
-    justifyContent: "space-between",
-    w: "100vw",
-    h: "100vh",
+    direction: 'row',
+    bgColor: '#141820',
+    overflow: 'hidden',
+    justifyContent: 'space-between',
+    w: '100vw',
+    h: '100vh',
   };
   const canvasStyles: ContainerProps = {
     transform: `scale(${zoom})`,
-    transition: "transform 0.3s cubic-bezier(0,.5,.5,1)",
-    justifyContent: "center",
-    alignContent: "center",
+    transition: 'transform 0.3s cubic-bezier(0,.5,.5,1)',
+    justifyContent: 'center',
+    alignContent: 'center',
     centerContent: true,
-    padding: "3",
-    m: "0",
+    padding: '3',
+    m: '0',
   };
 
   return (
@@ -86,19 +89,12 @@ function App() {
             designTypes={designTypes}
             activeDesign={design.id}
             setDesign={setDesign}
-          />
-
+          ></TemplateMenu>
           <AuthProvider>
             <UserMenu />
             <Container {...canvasStyles}>{renderCanvas()}</Container>
-            <CanvasControls
-              svgRef={svgRef}
-              seed={seed}
-              setSeed={setSeed}
-              setZoom={setZoom}
-            />
+            <CanvasControls svgRef={svgRef} seed={seed} setSeed={setSeed} setZoom={setZoom} />
           </AuthProvider>
-
           <OptionsMenu svgRef={svgRef}>{renderOptionsMenu()}</OptionsMenu>
         </UserSpaceProvider>
       </Flex>

@@ -34,7 +34,6 @@
     "react-scripts": "^5.0.0",
     "rgb-hex": "^4.0.0",
     "save": "^2.5.0",
-    "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -64,7 +63,15 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-standard-with-typescript": "^36.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
     "source-map-explorer": "^2.5.2",
-    "typescript": "latest"
+    "typescript": "^5.1.6"
   }
 }

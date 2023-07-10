@@ -20,6 +20,7 @@
   },
   "ignorePatterns": [
     "node_modules/",
-    "build/"
+    "build/",
+    "*.d.ts"
   ]
 }

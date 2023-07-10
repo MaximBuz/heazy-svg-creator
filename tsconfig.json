@@ -24,6 +24,7 @@
     "src/index.d.ts"
   ],
   "include": [
-    "src"
-, "src/graphql"  ]
+    "src",
+    "src/graphql"
+  ]
 }

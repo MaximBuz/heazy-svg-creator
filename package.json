@@ -44,7 +44,9 @@
     "eject": "react-scripts eject",
     "generate": "graphql-codegen",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "lint": "eslint ."
+    "lint:app": "eslint . --ignore-pattern \"heazy-landing-page/\" --ignore-pattern \"server/\"",
+    "lint:server": "eslint ./server",
+    "lint:landing": "eslint ./heazy-landing-page"
   },
   "eslintConfig": {
     "extends": [

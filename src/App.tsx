@@ -35,7 +35,7 @@ function App() {
   const { design, setDesign, designTypes } = useDesign();
   const [seed, setSeed] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
-  const svgRef = useRef<SVGAElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
   /* --------- RENDERING --------- */
   const renderCanvas = () => {

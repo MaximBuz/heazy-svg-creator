@@ -10,7 +10,7 @@ import UserSpace from './UserSpace';
 
 const UserMenu: React.FunctionComponent = memo(() => {
   // Auth
-  const { currentUser, logout } = useAuth();
+  const { firebaseUser, logout } = useAuth();
   const [registrationMode, setRegistrationMode] = useState(false);
 
   // Drawer handling
@@ -95,7 +95,7 @@ const UserMenu: React.FunctionComponent = memo(() => {
                 <Heading as="h3" size="xs" textTransform="uppercase" textAlign="center">
                   Personal Space
                 </Heading>
-                {currentUser ? (
+                {firebaseUser ? (
                   <Circle
                     as="button"
                     onClick={logout}
@@ -120,7 +120,7 @@ const UserMenu: React.FunctionComponent = memo(() => {
               <Divider></Divider>
             </Stack>
 
-            {currentUser ? (
+            {firebaseUser ? (
               <UserSpace />
             ) : registrationMode ? (
               <Registration setRegistrationMode={setRegistrationMode} />

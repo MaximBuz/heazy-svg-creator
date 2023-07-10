@@ -24,7 +24,7 @@ import {
 import { downloadSectionStyles } from './Styles';
 
 export interface IDownloadSectionProps {
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toast: any;
 }

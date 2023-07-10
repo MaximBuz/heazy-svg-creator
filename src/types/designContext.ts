@@ -41,6 +41,6 @@ export interface IDesignProvider {
     name: string,
     firebaseId: string,
     typeId: number,
-    svgRef: Ref<SVGAElement | null>
+    svgRef: Ref<SVGSVGElement | null>
   ) => void;
 }

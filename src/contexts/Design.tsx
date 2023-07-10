@@ -94,7 +94,7 @@ export function DesignProvider({ children }) {
     name: string,
     firebaseId: string,
     typeId: number,
-    svgRef: Ref<SVGAElement | null>
+    svgRef: Ref<SVGSVGElement | null>
   ) {
     const reference = ref(storage, `thumbnails/${firebaseId}/${name}.png`);
     return uploadBytes(reference, await svgToBlob(svgRef), {

@@ -23,7 +23,7 @@ import DownloadSection from './DownloadSection';
 import { useDesign } from '../../contexts/Design';
 
 export interface IOptionsMenuProps {
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   children: ReactNode;
 }
 

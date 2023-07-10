@@ -11,7 +11,12 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
       <Navbar />
 
       {/* HERO TITLE */}
-      <Flex gap={50} direction="column" justifyContent="center" alignItems="center">
+      <Flex
+        gap={50}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Flex
           minHeight="75vh"
           direction="column"
@@ -36,14 +41,20 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             </span>
           </Heading>
           <Flex direction="column" alignItems="center" gap="5px">
-            <Flex gap="10px" >
+            <Flex gap="10px">
               <Button
                 as="a"
-                href={process.env.NEXT_PUBLIC_APP_URL || "https://app.heazystudio.com/"}
+                href={
+                  process.env.NEXT_PUBLIC_APP_URL ||
+                  'https://app.heazystudio.com/'
+                }
                 rounded="full"
                 size="lg"
-                _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
-                
+                _hover={{
+                  bg: '#05f',
+                  color: 'white',
+                  transform: 'scale(1.05)',
+                }}
               >
                 Start Designing
               </Button>
@@ -53,7 +64,11 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
                 rounded="full"
                 size="lg"
                 variant="outline"
-                _hover={{ bg: '#ffffff40', color: 'white', transform: 'scale(1.05)' }}
+                _hover={{
+                  bg: '#ffffff40',
+                  color: 'white',
+                  transform: 'scale(1.05)',
+                }}
               >
                 Watch Showcase
               </Button>

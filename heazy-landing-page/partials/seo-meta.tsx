@@ -1,5 +1,11 @@
 import Head from 'next/head';
-const Meta = (props: { title: string; desc: string; canonical: string; css: string; js: string }) => (
+const Meta = (props: {
+  title: string;
+  desc: string;
+  canonical: string;
+  css: string;
+  js: string;
+}) => (
   <Head>
     <title></title>
     <meta name="description" content={props.desc} />

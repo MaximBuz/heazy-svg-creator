@@ -16,14 +16,14 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
       backgroundSize="contain"
       direction="column"
       width="100%"
-      mb={{ base: "10em" }}
+      mb={{ base: '10em' }}
       justifyContent="flex-start"
       alignItems="center"
       textAlign="center"
       gap="50px"
     >
-      <SectionDivider text="Features"/>
-      <Heading fontWeight="700" fontSize={{base: "2em", lg: "3em"}}>
+      <SectionDivider text="Features" />
+      <Heading fontWeight="700" fontSize={{ base: '2em', lg: '3em' }}>
         Heazy is{' '}
         <span
           style={{
@@ -41,7 +41,13 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
 
       {/* FEATURE TILES */}
 
-      <Flex padding={["0 1em", "0 2em", "0 100px", "0 200px", "0 300px", "0 500px"]} flexWrap="wrap" gap="35px" justifyContent="center" alignItems="center">
+      <Flex
+        padding={['0 1em', '0 2em', '0 100px', '0 200px', '0 300px', '0 500px']}
+        flexWrap="wrap"
+        gap="35px"
+        justifyContent="center"
+        alignItems="center"
+      >
         <FeatureCard
           text="Heazy let's you create beautiful vector visuals that can be re-sized to any resolution without loosing quality."
           icon="/resize-icon.svg"
@@ -61,12 +67,12 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
           text="Never struggle with finding ideas again. Click through the options and be sure to always create something beautiful."
           icon="/inspiration-icon.svg"
         ></FeatureCard>
-        
+
         <FeatureCard
           text="Easily save your coolest templates to your profile. Reuse and randomize your designs as often as you want."
           icon="/save-icon.svg"
         ></FeatureCard>
-        
+
         <FeatureCard
           text="Share your designs with the world and become inspired by community-created templates, right inside of heazy."
           icon="/share-icon.svg"

@@ -5,11 +5,18 @@ export interface ISectionDividerProps {
   text: string;
 }
 
-const SectionDivider: React.FunctionComponent<ISectionDividerProps> = ({ text }) => {
+const SectionDivider: React.FunctionComponent<ISectionDividerProps> = ({
+  text,
+}) => {
   return (
     <HStack ml="auto" mr="auto">
       <Divider width="20vw" />
-      <Text fontSize=".625em" fontWeight="600" letterSpacing=".2em" textTransform="uppercase">
+      <Text
+        fontSize=".625em"
+        fontWeight="600"
+        letterSpacing=".2em"
+        textTransform="uppercase"
+      >
         {text}
       </Text>
       <Divider width="20vw" />

@@ -4,7 +4,7 @@ import { Design, useGetUserByFirebaseIdQuery } from "../../graphql/generated";
 import { endpoint, headers } from "../../utils/apiConfig";
 
 // Design
-import { Box, Flex, Heading, HStack, Icon, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/react";
 import {
   Accordion,
   AccordionItem,

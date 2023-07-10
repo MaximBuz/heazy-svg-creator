@@ -20,6 +20,7 @@ function stringify(obj) {
 
 function cssToJsx(string) {
   string = string.replace('style="', '').slice(0, -1);
+  // eslint-disable-next-line quotes
   string = string.replaceAll('&quot;', "'");
   string = `{"${string
     .replace(/; /g, '", "')
@@ -37,7 +38,7 @@ function cssToJsx(string) {
 
 export function svgToJsx(svg: string): string {
   return svg
-    .replaceAll(/(?:style=")(.*?)\"/g, (match) => cssToJsx(match))
+    .replaceAll(/(?:style=")(.*?)"/g, (match) => cssToJsx(match))
     .replaceAll('stroke-width', 'strokeWidth')
     .replaceAll('stroke-linecap', 'strokeLinecap')
     .replaceAll('stroke-linejoin', 'strokeLinejoin')

@@ -1,4 +1,4 @@
-const Smooth: React.FunctionComponent = (props) => {
+const Smooth: React.FunctionComponent = () => {
   return (
     <>
       <path

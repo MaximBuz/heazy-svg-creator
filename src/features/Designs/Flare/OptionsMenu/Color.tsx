@@ -95,8 +95,8 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.bgColor}
-          // @ts-ignore
           setColor={(color) =>
+            // @ts-ignore
             setState((prev) => ({ ...prev, bgColor: color }))
           }
         />
@@ -159,8 +159,8 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.bgLightColor}
-          // @ts-ignore
           setColor={(color) =>
+            // @ts-ignore
             setState((prev) => ({ ...prev, bgLightColor: color }))
           }
         />
@@ -223,8 +223,8 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.irisColor}
-          // @ts-ignore
           setColor={(color) =>
+            // @ts-ignore
             setState((prev) => ({ ...prev, irisColor: color }))
           }
         />
@@ -287,8 +287,8 @@ const Color: React.FunctionComponent = memo(() => {
         </Popover>
         <HideColorButton
           color={state.lensColor}
-          // @ts-ignore
           setColor={(color) =>
+            // @ts-ignore
             setState((prev) => ({ ...prev, lensColor: color }))
           }
         />

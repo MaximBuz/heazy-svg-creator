@@ -1,7 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useAuth } from '../../contexts/Auth';
-import { Design, useGetUserByFirebaseIdQuery } from '../../graphql/generated';
-import { endpoint, headers } from '../../utils/apiConfig';
+import { Design } from '../../graphql/generated';
 
 // Design
 import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';

@@ -3,7 +3,6 @@ import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 import { isolinePath } from '../../../utils/path-algorithms/Isolines/isolinePath';
 import StrokeStyles from './strokeStyles';
-import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 
 const Isolines: React.FunctionComponent<{
   svgRef: Ref<SVGSVGElement | null>;

@@ -25,6 +25,7 @@ import { downloadSectionStyles } from './Styles';
 
 export interface IDownloadSectionProps {
   svgRef: Ref<SVGAElement | null>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toast: any;
 }
 
@@ -52,7 +53,7 @@ const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({
         </Button>
 
         <Popover isLazy gutter={15}>
-          {/* @ts-ignore */}
+          {/* @ts-ignore bug in chakra ui*/}
           <PopoverTrigger>
             <IconButton
               icon={

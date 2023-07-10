@@ -155,6 +155,7 @@ const Login: React.FunctionComponent<ILoginProps> = ({
                   resetPw(resetPwEmail).then(() => {
                     toast({
                       title: 'Success.',
+                      // eslint-disable-next-line quotes
                       description: "We've send you a reset password email.",
                       status: 'success',
                       duration: 5000,

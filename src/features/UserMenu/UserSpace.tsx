@@ -19,19 +19,21 @@ import QueryLoading from "../../components/queryLoading";
 
 const UserSpace: React.FunctionComponent = memo(() => {
   // Auth
-  const { idToken, currentUser } = useAuth();
-  const userQuery = useGetUserByFirebaseIdQuery({
-    endpoint,
-    fetchParams: { headers: headers(idToken) },
-  });
+  const {
+    currentUser,
+    firebaseUser,
+    currentUserIsSuccess,
+    currentUserIsError,
+    currentUserLoading,
+  } = useAuth();
 
   // Filter
   const [search, setSearch] = useState<string>("");
 
-  if (userQuery.isLoading) {
+  if (currentUserLoading) {
     return <QueryLoading size={80} speed={1} color="#363E4A" />;
   }
-  if (userQuery.isError) {
+  if (currentUserIsError) {
     return <QueryError withImage />;
   }
   return (
@@ -41,9 +43,9 @@ const UserSpace: React.FunctionComponent = memo(() => {
           Hey there!
         </Heading>
         <Heading as="h5" size="md" fontWeight={300}>
-          {userQuery.isSuccess && userQuery.data.user.userName}
+          {currentUserIsSuccess && currentUser.userName}
         </Heading>
-        {!currentUser?.emailVerified && (
+        {!firebaseUser?.emailVerified && (
           <Text fontSize="sm">Please do not forget to verify your email!</Text>
         )}
       </Box>
@@ -70,10 +72,10 @@ const UserSpace: React.FunctionComponent = memo(() => {
                 placeholder="Search"
               />
             </HStack>
-            {userQuery.isSuccess && userQuery.data && (
+            {currentUser && (
               <Templates
                 search={search}
-                designs={userQuery.data.user.designs as Design[]}
+                designs={currentUser.designs as Design[]}
               />
             )}
           </AccordionPanel>

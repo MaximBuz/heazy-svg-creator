@@ -46,7 +46,10 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "lint:app": "eslint . --ignore-pattern \"heazy-landing-page/\" --ignore-pattern \"server/\"",
     "lint:server": "eslint ./server",
-    "lint:landing": "eslint ./heazy-landing-page"
+    "lint:landing": "eslint ./heazy-landing-page",
+    "fix-lint:app": "eslint . --fix --ignore-pattern \"heazy-landing-page/\" --ignore-pattern \"server/\"",
+    "fix-lint:server": "eslint ./server --fix",
+    "fix-lint:landing": "eslint ./heazy-landing-page --fix"
   },
   "eslintConfig": {
     "extends": [

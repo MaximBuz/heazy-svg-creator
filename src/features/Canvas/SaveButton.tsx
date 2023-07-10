@@ -28,7 +28,7 @@ const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
 
 export interface ISaveButtonProps {
   svgRef: Ref<SVGAElement | null>;
-  CircleStyles: any;
+  CircleStyles: unknown;
 }
 
 const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({

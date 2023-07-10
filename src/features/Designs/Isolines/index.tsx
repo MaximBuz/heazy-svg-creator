@@ -6,7 +6,7 @@ import StrokeStyles from './strokeStyles';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 
 const Isolines: React.FunctionComponent<{
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   seed: number;
 }> = ({ seed, svgRef }) => {
   const { isolinesState, canvasDimensions } = useDesign();

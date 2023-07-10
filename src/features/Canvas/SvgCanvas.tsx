@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, Ref } from 'react';
 
 interface ISvgCanvasProps {
   width: number;
   height: number;
-  svgRef: any;
+  svgRef: Ref<SVGSVGElement>;
   children: ReactNode;
 }
 

@@ -4,7 +4,7 @@ import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
 const Waves: React.FunctionComponent<{
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   seed: number;
 }> = ({ seed, svgRef }) => {
   const { waveState, canvasDimensions } = useDesign();

@@ -5,7 +5,7 @@ import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
 const Bubble: React.FunctionComponent<{
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   seed: number;
 }> = ({ seed, svgRef }) => {
   const { bubbleState, canvasDimensions } = useDesign();

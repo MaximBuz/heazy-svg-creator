@@ -4,7 +4,7 @@ import SvgCanvas from '../../Canvas/SvgCanvas';
 import { useDesign } from '../../../contexts/Design';
 
 const Marker: React.FunctionComponent<{
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   seed: number;
 }> = ({ seed, svgRef }) => {
   const { markerState, canvasDimensions } = useDesign();

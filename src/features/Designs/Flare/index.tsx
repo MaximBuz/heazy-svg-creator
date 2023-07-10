@@ -6,7 +6,7 @@ import hexRgb from 'hex-rgb';
 import mirror from '../../../utils/helpers/getTransform';
 
 const Flare: React.FunctionComponent<{
-  svgRef: Ref<SVGAElement | null>;
+  svgRef: Ref<SVGSVGElement | null>;
   seed: number;
 }> = ({ seed, svgRef }) => {
   const { flareState, canvasDimensions } = useDesign();

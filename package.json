@@ -5,6 +5,8 @@
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "2.0.0-next.0",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@graphql-codegen/cli": "^2.6.2",
@@ -49,7 +51,8 @@
     "lint:landing": "eslint ./heazy-landing-page --parser-options '{\"project\":\"./heazy-landing-page/tsconfig.json\"}'",
     "fix-lint:app": "eslint . --fix --ignore-pattern \"heazy-landing-page/\" --ignore-pattern \"server/\" --parser-options '{\"project\":\"./tsconfig.json\"}'",
     "fix-lint:server": "eslint ./server --parser-options '{\"project\":\"./server/tsconfig.json\"}' --fix",
-    "fix-lint:landing": "eslint ./heazy-landing-page --parser-options '{\"project\":\"./heazy-landing-page/tsconfig.json\"}' --fix"
+    "fix-lint:landing": "eslint ./heazy-landing-page --parser-options '{\"project\":\"./heazy-landing-page/tsconfig.json\"}' --fix",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -77,6 +80,7 @@
     "eslint-plugin-prettier": "^5.0.0-alpha.2",
     "prettier": "^3.0.0",
     "source-map-explorer": "^2.5.2",
-    "typescript": "latest"
+    "typescript": "latest",
+    "husky": "^8.0.0"
   }
 }

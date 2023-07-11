@@ -47,6 +47,12 @@ export function AuthProvider({ children }) {
     fetchParams: { headers: headers(idToken) },
   });
 
+  useEffect(() => {
+    if (idToken) {
+      userQuery.refetch();
+    }
+  }, [idToken]);
+
   // Mutations
   const createNewUserMutation = useCreateNewUserMutation({
     endpoint,

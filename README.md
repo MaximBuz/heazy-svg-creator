@@ -95,7 +95,7 @@ touch .env
 * open the .env file and add the following environment variables
 ```bash
 DATABASE_URL="postgresql://DB_USERNAME:DB_PASSWORD@HOST:5432/heazy?schema=public"
-GOOGLE_CREDS=paste_firebase_private_key_here
+GOOGLE_CREDS=paste_firebase_full_object_here
 PORT=4000
 ```
 * To setup the database, run the following command

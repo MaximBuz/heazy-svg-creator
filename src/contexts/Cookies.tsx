@@ -60,11 +60,11 @@ export function CookiesProvider({ children }) {
                 accept={accept}
                 decline={decline}
                 close={() => cookieConsent.close('cookie')}
-              ></CookieToast>
+              />
             ),
           });
       }
-    }, 3000);
+    }, 4000);
   }, []);
 
   const value: ICookiesDrawer = {

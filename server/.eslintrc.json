@@ -3,7 +3,7 @@
     "../.eslintrc.json"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./server/tsconfig.json"
   },
   "ignorePatterns": []
 }

@@ -9,6 +9,7 @@ import SaveButton from './SaveButton';
 
 const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
   seed,
+  currentZoom,
   setSeed,
   setZoom,
   svgRef,
@@ -27,7 +28,19 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
     whileHover: { scale: 1.1, rotate: -10 },
     whileTap: { scale: 0.9, rotate: 10 },
   };
-  const { isOpen: userSpaceIsOpen, onClose: closeUserSpace } = useUserSpace();
+
+  const { onClose: closeUserSpace } = useUserSpace();
+
+  const onClickZoom = (amount: number, overwrite = false) => {
+    closeUserSpace();
+
+    if (overwrite) {
+      setZoom(amount);
+    } else {
+      setZoom((v) => v + amount);
+    }
+  };
+
   return (
     <Flex
       position="absolute"
@@ -40,14 +53,24 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
     >
       <SaveButton CircleStyles={CircleStyles} svgRef={svgRef} />
 
+      {/* RESET ZOOM */}
+      {currentZoom !== 1 && (
+        <Circle {...CircleStyles} onClick={() => onClickZoom(1, true)}>
+          <Icon boxSize="5" viewBox="0 0 334 334">
+            <path
+              d="M109.792 209V89.3117H157.013C166.052 89.3117 173.766 90.9286 180.156 94.1623C186.584 97.3571 191.474 101.896 194.825 107.779C198.214 113.623 199.909 120.5 199.909 128.409C199.909 136.357 198.195 143.195 194.766 148.922C191.338 154.61 186.37 158.974 179.864 162.013C173.396 165.052 165.565 166.571 156.37 166.571H124.753V146.234H152.279C157.11 146.234 161.123 145.571 164.318 144.247C167.513 142.922 169.89 140.935 171.448 138.286C173.045 135.636 173.844 132.344 173.844 128.409C173.844 124.435 173.045 121.084 171.448 118.357C169.89 115.63 167.493 113.565 164.26 112.162C161.065 110.721 157.032 110 152.162 110H135.097V209H109.792ZM174.429 154.532L204.175 209H176.24L147.136 154.532H174.429Z"
+              fill="white"
+            />
+            <path
+              d="M309.771 288.853L255.126 234.65C276.337 208.202 286.609 174.633 283.83 140.844C281.051 107.056 265.431 75.6159 240.183 52.9898C214.935 30.3638 181.978 18.2712 148.088 19.1986C114.197 20.1259 81.9506 34.0027 57.9777 57.9756C34.0048 81.9485 20.128 114.195 19.2007 148.085C18.2733 181.976 30.3659 214.933 52.9919 240.181C75.618 265.429 107.058 281.049 140.846 283.828C174.635 286.607 208.204 276.335 234.652 255.123L288.855 309.327C290.225 310.707 291.854 311.803 293.649 312.551C295.443 313.299 297.369 313.684 299.313 313.684C301.257 313.684 303.183 313.299 304.978 312.551C306.772 311.803 308.401 310.707 309.771 309.327C312.426 306.58 313.909 302.91 313.909 299.09C313.909 295.27 312.426 291.6 309.771 288.853ZM152.021 255.123C131.629 255.123 111.695 249.076 94.7397 237.747C77.7844 226.418 64.5692 210.315 56.7655 191.476C48.9618 172.636 46.92 151.905 50.8983 131.905C54.8766 111.904 64.6963 93.533 79.1157 79.1136C93.5351 64.6942 111.906 54.8745 131.907 50.8962C151.907 46.9179 172.638 48.9597 191.478 56.7634C210.317 64.5671 226.42 77.7823 237.749 94.7377C249.079 111.693 255.126 131.627 255.126 152.019C255.126 179.364 244.263 205.589 224.927 224.925C205.591 244.261 179.366 255.123 152.021 255.123Z"
+              fill="white"
+            />
+          </Icon>
+        </Circle>
+      )}
+
       {/* ZOOM IN  */}
-      <Circle
-        {...CircleStyles}
-        onClick={() => {
-          userSpaceIsOpen && closeUserSpace();
-          setZoom((zoom) => zoom + 0.1);
-        }}
-      >
+      <Circle {...CircleStyles} onClick={() => onClickZoom(0.1)}>
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             fill="white"
@@ -57,13 +80,7 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
       </Circle>
 
       {/* ZOOM OUT  */}
-      <Circle
-        {...CircleStyles}
-        onClick={() => {
-          userSpaceIsOpen && closeUserSpace();
-          setZoom((zoom) => zoom - 0.1);
-        }}
-      >
+      <Circle {...CircleStyles} onClick={() => onClickZoom(-0.1)}>
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             xmlns="http://www.w3.org/2000/svg"
@@ -72,12 +89,12 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
           />
         </Icon>
       </Circle>
+
       {/* randomize dice */}
       <Circle
         {...CircleStyles}
         p="2.5"
         onClick={() => {
-          userSpaceIsOpen && closeUserSpace();
           setSeed(seed + 1);
         }}
         borderWidth="5px"

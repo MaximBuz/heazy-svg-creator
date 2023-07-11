@@ -93,6 +93,7 @@ function App() {
             <CanvasControls
               svgRef={svgRef}
               seed={seed}
+              currentZoom={zoom}
               setSeed={setSeed}
               setZoom={setZoom}
             />

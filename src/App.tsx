@@ -1,21 +1,9 @@
 // React
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 // Features
 import {
   InitialAnimation,
-  Waves,
-  WaveOptions,
-  Bubble,
-  BubbleOptions,
-  Corners,
-  CornerOptions,
-  Marker,
-  MarkerOptions,
-  Isolines,
-  IsolinesOptions,
-  Flare,
-  FlareOptions,
   CanvasControls,
   TemplateMenu,
   OptionsMenu,

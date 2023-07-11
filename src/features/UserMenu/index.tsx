@@ -16,6 +16,11 @@ import Login from './Login';
 import Registration from './Registration';
 import UserSpace from './UserSpace';
 
+// Make animatable with Framer Motion
+const UserSection = chakra(motion.div, {
+  shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
+});
+
 const UserMenu: React.FunctionComponent = memo(() => {
   // Auth
   const { firebaseUser, logout } = useAuth();
@@ -28,11 +33,6 @@ const UserMenu: React.FunctionComponent = memo(() => {
     onOpen: openUserSpace,
     onClose: closeUserSpace,
   } = useUserSpace();
-
-  // Make animatable with Framer Motion
-  const UserSection = chakra(motion.div, {
-    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
-  });
 
   return (
     <>
@@ -82,7 +82,7 @@ const UserMenu: React.FunctionComponent = memo(() => {
             initial={{ left: 0 }}
             animate={{ left: '180px' }}
             exit={{ left: '-85px' }}
-            //@ts-expect-error
+            //@ts-expect-error wrong types implemented in chakra library
             transition={{
               duration: 0.4,
               type: 'spring',

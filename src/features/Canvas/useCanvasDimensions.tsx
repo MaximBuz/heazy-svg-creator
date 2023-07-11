@@ -12,12 +12,14 @@ const useCanvasDimensions = (
 ] => {
   const [width, setWidth] = useState<number>(defaultWidth);
   const [height, setHeight] = useState<number>(defaultHeight);
+
   const canvasDimensions = useMemo<ICanvasDimensions>(() => {
+    const aspectRatio = getAspectRatio(width / height, 50);
     return {
-      width: width,
-      height: height,
-      widthRatio: getAspectRatio(width / height, 50)[0],
-      heightRatio: getAspectRatio(width / height, 50)[1],
+      width,
+      height,
+      widthRatio: aspectRatio[0],
+      heightRatio: aspectRatio[1],
     };
   }, [width, height]);
 

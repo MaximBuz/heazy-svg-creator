@@ -8,7 +8,6 @@ import DiceIcon from './DiceIcon';
 import SaveButton from './SaveButton';
 
 const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
-  seed,
   currentZoom,
   setSeed,
   setZoom,
@@ -53,9 +52,12 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
     >
       <SaveButton CircleStyles={CircleStyles} svgRef={svgRef} />
 
-      {/* RESET ZOOM */}
       {currentZoom !== 1 && (
-        <Circle {...CircleStyles} onClick={() => onClickZoom(1, true)}>
+        <Circle
+          title="Reset zoom"
+          {...CircleStyles}
+          onClick={() => onClickZoom(1, true)}
+        >
           <Icon boxSize="5" viewBox="0 0 334 334">
             <path
               d="M109.792 209V89.3117H157.013C166.052 89.3117 173.766 90.9286 180.156 94.1623C186.584 97.3571 191.474 101.896 194.825 107.779C198.214 113.623 199.909 120.5 199.909 128.409C199.909 136.357 198.195 143.195 194.766 148.922C191.338 154.61 186.37 158.974 179.864 162.013C173.396 165.052 165.565 166.571 156.37 166.571H124.753V146.234H152.279C157.11 146.234 161.123 145.571 164.318 144.247C167.513 142.922 169.89 140.935 171.448 138.286C173.045 135.636 173.844 132.344 173.844 128.409C173.844 124.435 173.045 121.084 171.448 118.357C169.89 115.63 167.493 113.565 164.26 112.162C161.065 110.721 157.032 110 152.162 110H135.097V209H109.792ZM174.429 154.532L204.175 209H176.24L147.136 154.532H174.429Z"
@@ -69,8 +71,11 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
         </Circle>
       )}
 
-      {/* ZOOM IN  */}
-      <Circle {...CircleStyles} onClick={() => onClickZoom(0.1)}>
+      <Circle
+        title="Zoom in"
+        {...CircleStyles}
+        onClick={() => onClickZoom(0.1)}
+      >
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             fill="white"
@@ -79,8 +84,11 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
         </Icon>
       </Circle>
 
-      {/* ZOOM OUT  */}
-      <Circle {...CircleStyles} onClick={() => onClickZoom(-0.1)}>
+      <Circle
+        title="Zoom out"
+        {...CircleStyles}
+        onClick={() => onClickZoom(-0.1)}
+      >
         <Icon boxSize="5" viewBox="0 0 24 24">
           <path
             xmlns="http://www.w3.org/2000/svg"
@@ -90,13 +98,11 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
         </Icon>
       </Circle>
 
-      {/* randomize dice */}
       <Circle
+        title="Randomize your design"
         {...CircleStyles}
         p="2.5"
-        onClick={() => {
-          setSeed(seed + 1);
-        }}
+        onClick={() => setSeed((seed) => seed + 1)}
         borderWidth="5px"
         whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
       >

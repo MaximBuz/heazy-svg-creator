@@ -5,6 +5,7 @@ firebase-service-account-key.json
 /node_modules
 /.pnp
 .pnp.js
+.env
 
 # testing
 /coverage

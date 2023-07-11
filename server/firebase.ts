@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { initializeApp } from 'firebase-admin/app';
-const firebaseCert = require('firebase-admin');
-const dotenv = require('dotenv');
+import firebaseCert from 'firebase-admin';
+import dotenv from 'dotenv';
 dotenv.config();
 
 const admin = initializeApp({

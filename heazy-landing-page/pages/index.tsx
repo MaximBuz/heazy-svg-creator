@@ -15,7 +15,7 @@ const Home: NextPage = () => {
     <>
       <Meta
         title="Generate unique SVG design assets with ease | Heazy"
-        desc="An intuitive design studio in your browser for creating and exporting unique SVG designs as PNG, SVG or React JavaScript and TypeScript snippets."
+        desc="Intuitive design studio right inside your browser. Create and export unique SVG designs in seconds. Generate React and TypeScript snippets."
         canonical={
           process.env.NEXT_PUBLIC_APP_URL || 'https://app.heazystudio.com/'
         }
@@ -24,12 +24,15 @@ const Home: NextPage = () => {
       />
       <div style={{ fontFamily: 'Karla, sans-serif', color: '#c5cfd9' }}>
         <Head>
-          <title>Heazy - SVG Studio</title>
+          <title>
+            Heazy Studio: The design you want. Without the design time.
+          </title>
           <meta
             name="Home - Heazy"
             content="Generate unique SVG design assets with ease"
           />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
 
         <main>

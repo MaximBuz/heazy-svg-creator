@@ -28,76 +28,60 @@ import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 
 // Styling
-import { Flex, Container, FlexProps, ContainerProps } from '@chakra-ui/react';
+import { Flex, Container } from '@chakra-ui/react';
+import useCanvasContent from './hooks/useCanvasContent';
+import useOptionsContent from './hooks/useOptionsContent';
 
 function App() {
-  /* --------- STATE --------- */
   const { design, setDesign, designTypes } = useDesign();
-  const [seed, setSeed] = useState<number>(1);
+
+  const { component: canvasContent, setSeed, canvasRef } = useCanvasContent();
+  const { component: optionsContent } = useOptionsContent();
+
   const [zoom, setZoom] = useState<number>(1);
-  const svgRef = useRef<SVGSVGElement | null>(null);
-
-  /* --------- RENDERING --------- */
-  const renderCanvas = () => {
-    if (design.name === 'waves') return <Waves svgRef={svgRef} seed={seed} />;
-    if (design.name === 'bubble') return <Bubble svgRef={svgRef} seed={seed} />;
-    if (design.name === 'corners')
-      return <Corners svgRef={svgRef} seed={seed} />;
-    if (design.name === 'marker') return <Marker svgRef={svgRef} seed={seed} />;
-    if (design.name === 'isolines')
-      return <Isolines svgRef={svgRef} seed={seed} />;
-    if (design.name === 'flare') return <Flare svgRef={svgRef} seed={seed} />;
-  };
-
-  const renderOptionsMenu = () => {
-    if (design.name === 'waves') return <WaveOptions />;
-    if (design.name === 'bubble') return <BubbleOptions />;
-    if (design.name === 'corners') return <CornerOptions />;
-    if (design.name === 'marker') return <MarkerOptions />;
-    if (design.name === 'isolines') return <IsolinesOptions />;
-    if (design.name === 'flare') return <FlareOptions></FlareOptions>;
-  };
-
-  /* --------- STYLES --------- */
-  const wrapperStyles: FlexProps = {
-    direction: 'row',
-    bgColor: '#141820',
-    overflow: 'hidden',
-    justifyContent: 'space-between',
-    w: '100vw',
-    h: '100vh',
-  };
-  const canvasStyles: ContainerProps = {
-    transform: `scale(${zoom})`,
-    transition: 'transform 0.3s cubic-bezier(0,.5,.5,1)',
-    justifyContent: 'center',
-    alignContent: 'center',
-    centerContent: true,
-    padding: '3',
-    m: '0',
-  };
 
   return (
     <>
       <InitialAnimation />
-      <Flex {...wrapperStyles}>
+      <Flex
+        direction="row"
+        bgColor="#141820"
+        overflow="hidden"
+        justifyContent="space-between"
+        w="100vw"
+        h="100vh"
+      >
         <UserSpaceProvider>
           <TemplateMenu
             designTypes={designTypes}
             activeDesign={design.id}
             setDesign={setDesign}
-          ></TemplateMenu>
+          />
+
           <AuthProvider>
             <UserMenu />
-            <Container {...canvasStyles}>{renderCanvas()}</Container>
+
+            <Container
+              centerContent
+              transform={`scale(${zoom})`}
+              transition="transform 0.3s cubic-bezier(0,.5,.5,1)"
+              justifyContent="center"
+              alignContent="center"
+              padding="3"
+              m="0"
+            >
+              {canvasContent}
+            </Container>
+
             <CanvasControls
-              svgRef={svgRef}
+              svgRef={canvasRef}
               currentZoom={zoom}
               setSeed={setSeed}
               setZoom={setZoom}
             />
           </AuthProvider>
-          <OptionsMenu svgRef={svgRef}>{renderOptionsMenu()}</OptionsMenu>
+
+          <OptionsMenu svgRef={canvasRef}>{optionsContent}</OptionsMenu>
         </UserSpaceProvider>
       </Flex>
     </>

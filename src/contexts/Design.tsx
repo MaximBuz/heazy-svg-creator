@@ -68,19 +68,22 @@ export function DesignProvider({ children }) {
   // Setting state to parameters saved from templates
   function copyTemplateParams(designParams: Design) {
     const type = designParams.type;
-    if (type.name === 'waves')
-      setWaveState({ ...waveState, ...designParams.optionParameters });
-    if (type.name === 'bubble')
-      setBubbleState({ ...bubbleState, ...designParams.optionParameters });
-    if (type.name === 'corners')
-      setCornerState({ ...cornerState, ...designParams.optionParameters });
-    if (type.name === 'marker')
-      setMarkerState({ ...markerState, ...designParams.optionParameters });
-    if (type.name === 'isolines')
-      setIsolinesState({ ...isolinesState, ...designParams.optionParameters });
-    if (type.name === 'flare')
-      setFlareState({ ...flareState, ...designParams.optionParameters });
+
     setDesign(type);
+
+    if (type.name === 'waves') {
+      setWaveState({ ...waveState, ...designParams.optionParameters });
+    } else if (type.name === 'bubble') {
+      setBubbleState({ ...bubbleState, ...designParams.optionParameters });
+    } else if (type.name === 'corners') {
+      setCornerState({ ...cornerState, ...designParams.optionParameters });
+    } else if (type.name === 'marker') {
+      setMarkerState({ ...markerState, ...designParams.optionParameters });
+    } else if (type.name === 'isolines') {
+      setIsolinesState({ ...isolinesState, ...designParams.optionParameters });
+    } else if (type.name === 'flare') {
+      setFlareState({ ...flareState, ...designParams.optionParameters });
+    }
   }
 
   // Save template to database

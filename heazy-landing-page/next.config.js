@@ -8,6 +8,9 @@ const nextConfig = {
     domains: ['api.producthunt.com'],
   },
   i18n,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;

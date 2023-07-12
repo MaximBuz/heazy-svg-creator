@@ -3,10 +3,23 @@ import React from 'react';
 import Image from 'next/image';
 import Logo from '../public/Logo.svg';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 export interface INavbarProps {}
 
 const Navbar: React.FunctionComponent<INavbarProps> = () => {
+  const router = useRouter();
+  const { t } = useTranslation('navbar');
+
+  const changeTo = router.locale === 'en' ? 'de' : 'en';
+  const flag = router.locale === 'en' ? '🇩🇪' : '🇬🇧';
+
+  const onToggleLanguageClick = () => {
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: changeTo });
+  };
+
   return (
     <Flex
       alignItems="center"
@@ -34,6 +47,17 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
       >
         <ListItem
           as="a"
+          onClick={onToggleLanguageClick}
+          fontSize="lg"
+          listStyleType="none"
+          cursor="pointer"
+          transition="0.3s"
+          _hover={{ color: 'white', transform: 'scale(1.05)' }}
+        >
+          {flag}
+        </ListItem>
+        <ListItem
+          as="a"
           href="/#features"
           fontSize="lg"
           listStyleType="none"
@@ -41,7 +65,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
           transition="0.3s"
           _hover={{ color: 'white', transform: 'scale(1.05)' }}
         >
-          Features
+          {t('features')}
         </ListItem>
         <ListItem
           as="a"
@@ -52,7 +76,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
           transition="0.3s"
           _hover={{ color: 'white', transform: 'scale(1.05)' }}
         >
-          Inspirations
+          {t('inspirations')}
         </ListItem>
         <Button
           display={{ base: 'none', sm: 'flex' }}
@@ -63,7 +87,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = () => {
           rounded="full"
           _hover={{ bg: '#05f', color: 'white', transform: 'scale(1.05)' }}
         >
-          Try it out!
+          {t('try')}
         </Button>
       </UnorderedList>
     </Flex>

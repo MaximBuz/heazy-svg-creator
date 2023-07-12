@@ -5,7 +5,7 @@
     "next/core-web-vitals"
   ],
   "parserOptions": {
-    "project": "./heazy-landing-page/tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "ignorePatterns": []
 }

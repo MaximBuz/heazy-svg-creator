@@ -1,0 +1,14 @@
+{
+  "dividerText": "Features",
+  "title1": "Heazy is ",
+  "title2": "easy.",
+  "description": "Unique vector assets within seconds.",
+  "features": {
+    "1": "Heazy let's you create beautiful vector visuals that can be re-sized to any resolution without loosing quality.",
+    "2": "Export your creations to SVG and PNG or easily copy JavaScript and TypeScript React snippets to your clipboard.",
+    "3": "Heazy prides itself in having some of the most customizable templates on the web. Always create stunningly unique visuals.",
+    "4": "Never struggle with finding ideas again. Click through the options and be sure to always create something beautiful.",
+    "5": "Easily save your coolest templates to your profile. Reuse and randomize your designs as often as you want.",
+    "6": "Share your designs with the world and become inspired by community-created templates, right inside of heazy."
+  }
+}

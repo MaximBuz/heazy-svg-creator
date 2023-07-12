@@ -2,10 +2,13 @@ import { Box, Flex, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 import SectionDivider from '../Components/SectionDivider';
+import { useTranslation } from 'next-i18next';
 
 export interface IInspirationsProps {}
 
 const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
+  const { t } = useTranslation('inspirations');
+
   return (
     <Flex
       id="inspirations"
@@ -22,9 +25,9 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
       gap="50px"
       mb="10%"
     >
-      <SectionDivider text="Inspirations" />
+      <SectionDivider text={t('dividerText')} />
       <Heading fontWeight="700" fontSize={{ base: '2em', lg: '3em' }}>
-        Heazy{' '}
+        {t('title1')}
         <span
           style={{
             backgroundImage: 'linear-gradient(120deg,#f724e9 0%,#0c4ab5 87%)',
@@ -33,13 +36,12 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
             WebkitBackgroundClip: 'text',
           }}
         >
-          inspires.
+          {t('title2')}
         </span>
         <br />
-        Instantly cure design fatigue.
+        {t('description')}
       </Heading>
 
-      {/* IMAGE WRAPPER */}
       <Flex
         justifyContent="center"
         alignItems="center"
@@ -48,7 +50,6 @@ const Inspirations: React.FunctionComponent<IInspirationsProps> = () => {
         gap="20px"
         wrap="wrap"
       >
-        {/* IMAGE ROW */}
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           height={{ base: '100vh', lg: '30vh', xl: '40vh', '2xl': '47.5vh' }}

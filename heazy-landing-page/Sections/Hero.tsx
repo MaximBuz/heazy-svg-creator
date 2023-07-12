@@ -1,16 +1,17 @@
 import { Flex, Button, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import Navbar from '../Components/Navbar';
+import { useTranslation } from 'next-i18next';
 
 export interface IHeroProps {}
 
 const Hero: React.FunctionComponent<IHeroProps> = () => {
+  const { t } = useTranslation('hero');
+
   return (
     <Flex direction="column">
-      {/* NAVBAR */}
       <Navbar />
 
-      {/* HERO TITLE */}
       <Flex
         gap={50}
         direction="column"
@@ -26,9 +27,9 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
           gap="20px"
         >
           <Heading fontWeight="800" fontSize={{ base: '3em', lg: '4em' }}>
-            The design you want.
+            {t('title1')}
             <br />
-            Without the{' '}
+            {t('title2')}
             <span
               style={{
                 backgroundImage: 'linear-gradient(207deg,#00c58d 23%,#05f 87%)',
@@ -37,7 +38,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
                 WebkitBackgroundClip: 'text',
               }}
             >
-              design time.
+              {t('title3')}
             </span>
           </Heading>
           <Flex direction="column" alignItems="center" gap="5px">
@@ -56,7 +57,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
                   transform: 'scale(1.05)',
                 }}
               >
-                Start Designing
+                {t('leftButton')}
               </Button>
               <Button
                 as="a"
@@ -70,10 +71,10 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
                   transform: 'scale(1.05)',
                 }}
               >
-                Watch Showcase
+                {t('rightButton')}
               </Button>
             </Flex>
-            <Text opacity={0.5}>Free for ever. No signup required.</Text>
+            <Text opacity={0.5}>{t('buttonInfo')}</Text>
           </Flex>
         </Flex>
         <Flex mb="10em" justifyContent="center" alignItems="flex-start">

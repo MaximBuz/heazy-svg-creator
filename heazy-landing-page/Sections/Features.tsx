@@ -3,10 +3,11 @@ import React from 'react';
 import OverviewBG from '../public/overview-bg.png';
 import FeatureCard from '../Components/FeatureCard';
 import SectionDivider from '../Components/SectionDivider';
-
+import { useTranslation } from 'next-i18next';
 export interface IFeaturesProps {}
 
 const Features: React.FunctionComponent<IFeaturesProps> = () => {
+  const { t } = useTranslation('features');
   return (
     <Flex
       id="features"
@@ -22,9 +23,10 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
       textAlign="center"
       gap="50px"
     >
-      <SectionDivider text="Features" />
+      <SectionDivider text={t('dividerText')} />
+
       <Heading fontWeight="700" fontSize={{ base: '2em', lg: '3em' }}>
-        Heazy is{' '}
+        {t('title1')}
         <span
           style={{
             backgroundImage: 'linear-gradient(29deg,#d3dd11 0%,#ff0084 87%)',
@@ -33,13 +35,11 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
             WebkitBackgroundClip: 'text',
           }}
         >
-          easy.
+          {t('title2')}
         </span>
         <br />
-        Unique vector assets within seconds.
+        {t('description')}
       </Heading>
-
-      {/* FEATURE TILES */}
 
       <Flex
         padding={['0 1em', '0 2em', '0 100px', '0 200px', '0 300px', '0 500px']}
@@ -48,35 +48,12 @@ const Features: React.FunctionComponent<IFeaturesProps> = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <FeatureCard
-          text="Heazy let's you create beautiful vector visuals that can be re-sized to any resolution without loosing quality."
-          icon="/resize-icon.svg"
-        ></FeatureCard>
-
-        <FeatureCard
-          text="Export your creations to SVG and PNG or easily copy JavaScript and TypeScript React snippets to your clipboard."
-          icon="/export-icon.svg"
-        ></FeatureCard>
-
-        <FeatureCard
-          text="Heazy prides itself in having some of the most customizable templates on the web. Always create stunningly unique visuals."
-          icon="/pallette-icon.svg"
-        ></FeatureCard>
-
-        <FeatureCard
-          text="Never struggle with finding ideas again. Click through the options and be sure to always create something beautiful."
-          icon="/inspiration-icon.svg"
-        ></FeatureCard>
-
-        <FeatureCard
-          text="Easily save your coolest templates to your profile. Reuse and randomize your designs as often as you want."
-          icon="/save-icon.svg"
-        ></FeatureCard>
-
-        <FeatureCard
-          text="Share your designs with the world and become inspired by community-created templates, right inside of heazy."
-          icon="/share-icon.svg"
-        ></FeatureCard>
+        <FeatureCard text={t('features.1')} icon="/resize-icon.svg" />
+        <FeatureCard text={t('features.2')} icon="/export-icon.svg" />
+        <FeatureCard text={t('features.3')} icon="/pallette-icon.svg" />
+        <FeatureCard text={t('features.4')} icon="/inspiration-icon.svg" />
+        <FeatureCard text={t('features.5')} icon="/save-icon.svg" />
+        <FeatureCard text={t('features.6')} icon="/share-icon.svg" />
       </Flex>
     </Flex>
   );

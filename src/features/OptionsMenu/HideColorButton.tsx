@@ -1,11 +1,11 @@
 import { Circle, Icon } from '@chakra-ui/react';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import hexRgb from 'hex-rgb';
 import rgbHex from 'rgb-hex';
 
 export interface IHideColorButtonProps {
   color: string;
-  setColor: Dispatch<SetStateAction<string>>;
+  setColor: (string) => void;
 }
 
 const HideColorButton: React.FunctionComponent<IHideColorButtonProps> = ({

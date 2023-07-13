@@ -33,15 +33,14 @@ const Color: React.FunctionComponent = memo(() => {
 
   return (
     <>
-      {/* -------------- COLOR -------------- */}
       <Heading as="h3" size="xs" textTransform="uppercase">
         Color
       </Heading>
 
-      {/* Backgound Color */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Background
       </Heading>
+
       <HStack>
         <Popover>
           <HStack spacing={4}>
@@ -96,13 +95,11 @@ const Color: React.FunctionComponent = memo(() => {
         <HideColorButton
           color={state.bgColor}
           setColor={(color) =>
-            // @ts-ignore
             setState((prev) => ({ ...prev, bgColor: color }))
           }
         />
       </HStack>
 
-      {/* Wave Start Color */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Background-Light color
       </Heading>
@@ -160,13 +157,11 @@ const Color: React.FunctionComponent = memo(() => {
         <HideColorButton
           color={state.bgLightColor}
           setColor={(color) =>
-            // @ts-ignore
             setState((prev) => ({ ...prev, bgLightColor: color }))
           }
         />
       </HStack>
 
-      {/* Wave Start Color */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Iris color
       </Heading>
@@ -224,13 +219,11 @@ const Color: React.FunctionComponent = memo(() => {
         <HideColorButton
           color={state.irisColor}
           setColor={(color) =>
-            // @ts-ignore
             setState((prev) => ({ ...prev, irisColor: color }))
           }
         />
       </HStack>
 
-      {/* Lens Color */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Lens color
       </Heading>
@@ -288,13 +281,11 @@ const Color: React.FunctionComponent = memo(() => {
         <HideColorButton
           color={state.lensColor}
           setColor={(color) =>
-            // @ts-ignore
             setState((prev) => ({ ...prev, lensColor: color }))
           }
         />
       </HStack>
 
-      {/* Lens ColorMode */}
       <Heading as="h4" size="xs" opacity={0.5}>
         Lens color
       </Heading>

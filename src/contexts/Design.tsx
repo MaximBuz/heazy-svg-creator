@@ -46,7 +46,9 @@ export function DesignProvider({ children }) {
 
   // Design State
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
+
   const [design, setDesign] = useState<IDesignModes>({ name: 'waves', id: 1 });
+
   const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
   const [bubbleState, setBubbleState] =
     useState<IBubbleAllProps>(initialBubbleState);

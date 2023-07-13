@@ -1,5 +1,7 @@
+import { Ref } from 'react';
+
 export interface IFlareProps {
-  svgRef: any;
+  svgRef: Ref<SVGSVGElement | null>;
   seed: number;
   width: number;
   height: number;

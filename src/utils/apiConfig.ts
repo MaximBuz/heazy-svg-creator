@@ -1,6 +1,6 @@
-export const endpoint =
-  process.env.REACT_APP_API_URL ||
-  'https://heazy-backend.herokuapp.com/graphql';
+import { environment } from './environment';
+
+export const endpoint = environment.apiUrl;
 
 export const headers = (idToken: string) => {
   if (idToken)

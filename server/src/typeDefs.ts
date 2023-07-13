@@ -53,4 +53,4 @@ type Mutation {
 `;
 
 // saves a graphql schema on runtime
-fs.writeFileSync('./graphql/schema.graphql', typeDefs);
+fs.writeFileSync('./src/schema.graphql', typeDefs);

@@ -10,6 +10,7 @@ export async function getPublicDesigns(
   const take = args.take || 3;
   const type = args.type || Array.from({ length: 6 }, (_, index) => index + 1);
   const sortBy = args.sortBy || 'timesCopied';
+  console.log(sortBy);
 
   const searchParams: Prisma.DesignFindManyArgs = {
     take,

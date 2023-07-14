@@ -1,8 +1,9 @@
-import { MutationCreateNewDesignArgs } from './../../../../../src/graphql/generated';
 import { Design, Prisma } from '@prisma/client';
 import { GraphQLError } from 'graphql';
 import { Context } from '../../../../context';
 import { Errors } from '../../../helpers/Errors';
+import { MutationCreateNewDesignArgs } from '../../types';
+
 export async function createNewDesign(
   _parent: never,
   {

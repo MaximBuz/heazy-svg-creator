@@ -8,7 +8,7 @@ export const useEventLogger = () => {
     eventName: string,
     eventParams: Record<string, unknown>
   ) {
-    if (!cookies.consent || !cookies.analytics) return;
+    if (!cookies?.consent || !cookies?.analytics) return;
 
     return logEvent(cookies.analytics, eventName, eventParams);
   }

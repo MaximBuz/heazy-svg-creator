@@ -135,7 +135,7 @@ export type QueryGetPublicDesignsArgs = {
   cursor?: InputMaybe<Scalars['Int']>;
   sortBy?: InputMaybe<Scalars['String']>;
   take?: InputMaybe<Scalars['Int']>;
-  type?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  type?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type QueryGetUserByIdArgs = {
@@ -289,9 +289,7 @@ export type GetDesignTypesQuery = {
 
 export type GetPublicDesignsQueryVariables = Exact<{
   sortBy?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<
-    Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>
-  >;
+  type?: InputMaybe<Array<Scalars['Int']> | Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   cursor?: InputMaybe<Scalars['Int']>;
 }>;
@@ -684,7 +682,7 @@ export const useGetDesignTypesQuery = <
     options
   );
 export const GetPublicDesignsDocument = `
-    query getPublicDesigns($sortBy: String, $type: [Int], $take: Int, $cursor: Int) {
+    query getPublicDesigns($sortBy: String, $type: [Int!], $take: Int, $cursor: Int) {
   designs: getPublicDesigns(
     sortBy: $sortBy
     type: $type

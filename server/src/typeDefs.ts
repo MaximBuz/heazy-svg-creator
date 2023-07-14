@@ -38,7 +38,7 @@ type DesignType {
 type Query {
   getUserByFirebaseId: User
   getUserById(id: Int!): User
-  getPublicDesigns(sortBy: String, type:[Int], take: Int, cursor: Int): [Design]
+  getPublicDesigns(sortBy: String, type:[Int!], take: Int, cursor: Int): [Design]
   getDesignById(id: Int!): Design
   getDesignTypes: [DesignType]!
 }

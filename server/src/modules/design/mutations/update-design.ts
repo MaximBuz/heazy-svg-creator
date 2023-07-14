@@ -1,15 +1,11 @@
-import { Prisma } from '@prisma/client';
 import { GraphQLError } from 'graphql';
 import { Context } from '../../../../context';
 import { Errors } from '../../../helpers/Errors';
-
-type UpdateDesignArgs = Partial<
-  Pick<Prisma.DesignUpdateInput, 'public' | 'optionParameters' | 'name'>
-> & { id: number; delete: boolean };
+import { MutationUpdateDesignArgs } from '../../types';
 
 export async function updateDesign(
   _parent: never,
-  args: UpdateDesignArgs,
+  args: MutationUpdateDesignArgs,
   context: Context
 ) {
   if (!context.uid) throw new GraphQLError(Errors.NOT_ALLOWED);
@@ -18,7 +14,12 @@ export async function updateDesign(
 
   const design = await context.prisma.design.update({
     where: { id },
-    data: { ...data, deleted: shouldDelete ? true : false },
+    data: {
+      ...data,
+      name: data.name || '',
+      deleted: shouldDelete ? true : false,
+      public: data.public ?? false,
+    },
   });
 
   return design;

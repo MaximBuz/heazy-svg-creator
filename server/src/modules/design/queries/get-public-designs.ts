@@ -1,24 +1,15 @@
 import { Design, Prisma } from '@prisma/client';
 import { Context } from '../../../../context';
-
-type GetPublicDesignArgs = {
-  sortBy: string;
-  take: number;
-  type: number[];
-  cursor: number;
-};
+import { QueryGetPublicDesignsArgs } from '../../types';
 
 export async function getPublicDesigns(
   _parent: never,
-  args: GetPublicDesignArgs,
+  args: QueryGetPublicDesignsArgs,
   { prisma }: Context
 ): Promise<Design[]> {
-  const {
-    sortBy = 'timesCopied',
-    take = 3,
-    type = [1, 2, 3, 4],
-    cursor = null,
-  } = args;
+  const take = args.take || 3;
+  const type = args.type || Array.from({ length: 6 }, (_, index) => index + 1);
+  const sortBy = args.sortBy || 'timesCopied';
 
   const searchParams: Prisma.DesignFindManyArgs = {
     take,
@@ -26,8 +17,8 @@ export async function getPublicDesigns(
     orderBy: { [sortBy]: 'desc' },
   };
 
-  if (cursor) {
-    searchParams.cursor = { id: cursor };
+  if (args.cursor) {
+    searchParams.cursor = { id: args.cursor };
     searchParams.skip = 1;
   }
 

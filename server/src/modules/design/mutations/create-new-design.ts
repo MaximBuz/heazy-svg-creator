@@ -1,16 +1,8 @@
+import { MutationCreateNewDesignArgs } from './../../../../../src/graphql/generated';
 import { Design, Prisma } from '@prisma/client';
 import { GraphQLError } from 'graphql';
 import { Context } from '../../../../context';
 import { Errors } from '../../../helpers/Errors';
-
-type CreateNewDesignArgs = {
-  name: string;
-  typeId: number;
-  optionParameters: Prisma.InputJsonValue;
-  thumbnailUrl: string;
-  copiedFromUserId: number;
-};
-
 export async function createNewDesign(
   _parent: never,
   {
@@ -19,7 +11,7 @@ export async function createNewDesign(
     optionParameters,
     thumbnailUrl,
     copiedFromUserId,
-  }: CreateNewDesignArgs,
+  }: MutationCreateNewDesignArgs,
   { uid, prisma }: Context
 ): Promise<Design> {
   if (!uid) throw new GraphQLError(Errors.NOT_ALLOWED);
@@ -29,7 +21,7 @@ export async function createNewDesign(
     type: { connect: { id: typeId } },
     optionParameters,
     user: { connect: { firebaseId: uid } },
-    thumbnailUrl: thumbnailUrl,
+    thumbnailUrl: thumbnailUrl || '',
   };
 
   if (copiedFromUserId) data.copiedFrom = { connect: { id: copiedFromUserId } };

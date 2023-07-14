@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 gql`
   query getPublicDesigns(
     $sortBy: String
-    $type: [Int]
+    $type: [Int!]
     $take: Int
     $cursor: Int
   ) {

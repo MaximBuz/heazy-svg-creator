@@ -7,7 +7,8 @@
     "dev": "nodemon",
     "tsc": "./node_modules/typescript/bin/tsc",
     "build": "rimraf ./dist && npm run tsc",
-    "start": "npm run build && node dist/server.js"
+    "start": "npm run build && node dist/server/server.js",
+    "graphql:codegen": "wait-on tcp:4000 -t 10000 && graphql-codegen --config codegen.yml"
   },
   "engines": {
     "node": "18.2.0"
@@ -20,7 +21,14 @@
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.35",
     "node-ts": "^5.1.2",
-    "prisma": "^3.14.0"
+    "prisma": "^3.14.0",
+    "@graphql-codegen/add": "3.2.1",
+    "@graphql-codegen/cli": "2.13.8",
+    "@graphql-codegen/typescript": "2.8.0",
+    "@graphql-codegen/typescript-graphql-request": "4.5.7",
+    "@graphql-codegen/typescript-operations": "2.5.5",
+    "@graphql-codegen/typescript-resolvers": "2.7.5",
+    "wait-on": "7.0.1"
   },
   "dependencies": {
     "@graphql-tools/schema": "^8.3.13",

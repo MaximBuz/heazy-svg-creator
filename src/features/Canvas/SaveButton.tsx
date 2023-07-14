@@ -21,8 +21,8 @@ import { useAuth } from '../../contexts/Auth';
 import { useDesign } from '../../contexts/Design';
 import { useUserSpace } from '../../contexts/UserSpace';
 import { CloseIcon } from '@chakra-ui/icons';
-import { logEvent } from 'firebase/analytics';
-import { useCookies } from '../../contexts/Cookies';
+import { useEventLogger } from '../../hooks/useEventLogger';
+
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;
 
@@ -49,7 +49,7 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({
   } = useDesign();
 
   // Analytics
-  const cookies = useCookies();
+  const { sendEventLog } = useEventLogger();
 
   // Handle saving Template
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -81,12 +81,9 @@ const SaveButton: React.FunctionComponent<ISaveButtonProps> = ({
   }
 
   function handleUnauthorizedSave() {
-    cookies.consent &&
-      cookies.analytics &&
-      logEvent(cookies.analytics, 'unauthorized_save_template', {
-        user: firebaseUser,
-        design,
-      });
+    sendEventLog('unauthorized_save_template', {
+      design: design.name,
+    });
     openUserSpace();
   }
   return (

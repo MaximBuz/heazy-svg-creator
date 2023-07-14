@@ -9,6 +9,7 @@ import { IDesignModes } from '../../types/designModes';
 import { logEvent } from 'firebase/analytics';
 import { useUserSpace } from '../../contexts/UserSpace';
 import { useCookies } from '../../contexts/Cookies';
+import { useEventLogger } from '../../hooks/useEventLogger';
 
 export interface IThumbnailProps {
   isActive: boolean;
@@ -24,8 +25,17 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
   type,
 }) => {
   const { isOpen: userSpaceIsOpen, onClose: closeUserSpace } = useUserSpace();
-  // Analytics
-  const cookies = useCookies();
+
+  const { sendEventLog } = useEventLogger();
+
+  const onSelectDesign = () => {
+    if (userSpaceIsOpen) {
+      closeUserSpace();
+    }
+    sendEventLog('choose_design', { type });
+    setDesign(type);
+  };
+
   return (
     <Flex
       justifyContent="center"
@@ -34,13 +44,7 @@ const Thumbnail: React.FunctionComponent<IThumbnailProps> = ({
       position="relative"
       transition="0.5s"
       _hover={{ background: '#3b4453', cursor: 'pointer' }}
-      onClick={() => {
-        userSpaceIsOpen && closeUserSpace();
-        cookies.consent &&
-          cookies.analytics &&
-          logEvent(cookies.analytics, 'choose_design', { type });
-        setDesign(type);
-      }}
+      onClick={onSelectDesign}
     >
       <Box
         transition="0.5s"

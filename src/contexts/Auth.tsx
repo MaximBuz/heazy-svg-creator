@@ -20,8 +20,7 @@ import {
 import { endpoint, headers } from '../utils/apiConfig';
 import { IAuth } from '../types/authContext';
 import { useQueryClient } from 'react-query';
-import { logEvent } from 'firebase/analytics';
-import { useCookies } from './Cookies';
+import { useEventLogger } from '../hooks/useEventLogger';
 
 const AuthContext = React.createContext(null);
 
@@ -39,7 +38,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState<boolean>(true);
 
   // Analytics
-  const cookies = useCookies();
+  const { sendEventLog } = useEventLogger();
 
   // Queries
   const userQuery = useGetUserByFirebaseIdQuery({
@@ -71,29 +70,23 @@ export function AuthProvider({ children }) {
         return userCred;
       })
       .then((userCred) => {
-        cookies.consent &&
-          cookies.analytics &&
-          logEvent(cookies.analytics, 'register', { userCred });
+        sendEventLog('register', { userCred });
         sendEmailVerification(auth.currentUser);
         return userCred;
       });
   }
   function resendEmailVerififaction(): Promise<void> {
     return sendEmailVerification(auth.currentUser).then(() => {
-      cookies.consent &&
-        cookies.analytics &&
-        logEvent(cookies.analytics, 'resend_email_verification', {
-          user: auth.currentUser,
-        });
+      sendEventLog('resend_email_verification', {
+        user: auth.currentUser,
+      });
     });
   }
 
   function login(email, password): Promise<UserCredential> {
     return signInWithEmailAndPassword(auth, email, password).then(
       (userCred) => {
-        cookies.consent &&
-          cookies.analytics &&
-          logEvent(cookies.analytics, 'login', { userCred });
+        sendEventLog('login', { userCred });
         return userCred;
       }
     );
@@ -102,21 +95,14 @@ export function AuthProvider({ children }) {
   function logout(): Promise<void> {
     const loggedOutUser = auth.currentUser;
     return signOut(auth).then(() => {
-      cookies.consent &&
-        cookies.analytics &&
-        logEvent(cookies.analytics, 'logout', { user: loggedOutUser });
+      sendEventLog('logout', { loggedOutUser });
       queryClient.removeQueries();
     });
   }
 
   function resetPassword(email): Promise<void> {
-    return sendPasswordResetEmail(auth, email).then(
-      () =>
-        cookies.consent &&
-        cookies.analytics &&
-        logEvent(cookies.analytics, 'reset_password', {
-          user: auth.currentUser,
-        })
+    return sendPasswordResetEmail(auth, email).then(() =>
+      sendEventLog('reset_password', { user: auth.currentUser })
     );
   }
 

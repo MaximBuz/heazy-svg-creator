@@ -27,8 +27,7 @@ import { initialIsolineState } from '../features/Designs/Isolines/initialState';
 import { IIsolinesAllProps } from '../types/isolinesProps';
 import { initialFlareState } from '../features/Designs/Flare/initialState';
 import { IFlareAllProps } from '../types/flareProps';
-import { logEvent } from 'firebase/analytics';
-import { useCookies } from './Cookies';
+import { useEventLogger } from '../hooks/useEventLogger';
 
 const DesignContext = React.createContext(null);
 
@@ -42,7 +41,7 @@ export function DesignProvider({ children }) {
   // get auth
   const auth = useAuth();
   // Analytics
-  const cookies = useCookies();
+  const { sendEventLog } = useEventLogger();
 
   // Design State
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
@@ -117,13 +116,11 @@ export function DesignProvider({ children }) {
           {
             onSuccess: () => {
               queryClient.invalidateQueries(['getUserByFirebaseId']);
-              cookies.consent &&
-                cookies.analytics &&
-                logEvent(cookies.analytics, 'saved_template', {
-                  user: auth.currentUser,
-                  design: typeId,
-                  name,
-                });
+              sendEventLog('saved_template', {
+                user: auth.currentUser,
+                design: typeId,
+                name,
+              });
             },
           }
         );

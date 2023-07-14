@@ -31,7 +31,6 @@ export function CookiesProvider({ children }) {
     }
   }, []);
 
-  /* --------- COOKIE CONSENT --------- */
   function accept() {
     setConsent(true);
     setAnalytics(getAnalytics(app));

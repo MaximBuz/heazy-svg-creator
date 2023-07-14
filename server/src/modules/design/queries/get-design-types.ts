@@ -1,5 +1,5 @@
 import { DesignType } from '@prisma/client';
-import { Context } from '../../../context';
+import { Context } from '../../../../context';
 
 export async function getDesignTypes(
   _parent: never,

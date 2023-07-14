@@ -1,7 +1,7 @@
 import { GraphQLError } from 'graphql';
 import { Design as TDesign, DesignType, User } from '@prisma/client';
-import { Context } from '../../context';
-import { Errors } from '../helpers/Errors';
+import { Context } from '../../../../context';
+import { Errors } from '../../../helpers/Errors';
 
 export const Design = {
   async user(parent: TDesign, _args: never, context: Context): Promise<User> {

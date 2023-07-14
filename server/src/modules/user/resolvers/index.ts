@@ -1,7 +1,7 @@
 import { Design, DesignType, User as UserType } from '@prisma/client';
-import { Context } from '../../context';
+import { Context } from '../../../../context';
 import { GraphQLError } from 'graphql';
-import { Errors } from '../helpers/Errors';
+import { Errors } from '../../../helpers/Errors';
 
 export const User = {
   async designs(

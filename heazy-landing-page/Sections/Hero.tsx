@@ -7,9 +7,7 @@ export interface IHeroProps {}
 
 const Hero: React.FunctionComponent<IHeroProps> = () => {
   const { t } = useTranslation('hero');
-  const [isMobile] = useMediaQuery(
-    '(max-width: 768px)'
-    );
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   return (
     <Flex direction="column">

@@ -1,5 +1,5 @@
 import { Flex, Circle, Icon } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import React from 'react';
 import { useUserSpace } from '../../contexts/UserSpace';
 import { ICanvasControlsProps } from '../../types/canvasControlsProps';
@@ -24,8 +24,7 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
     centerContent: true,
     borderColor: '#141820',
     borderWidth: '5px',
-    whileHover: { scale: 1.1, rotate: -10 },
-    whileTap: { scale: 0.9, rotate: 10 },
+    whileHover: { scale: 1.1 },
   };
 
   const { onClose: closeUserSpace } = useUserSpace();
@@ -38,6 +37,21 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
     } else {
       setZoom((v) => v + amount);
     }
+  };
+
+  const rotateControls = useAnimation();
+
+  const handleButtonClick = async () => {
+    setSeed((seed) => seed + 1);
+
+    const rotateTo =
+      Math.max((Math.random() - 0.5) * 360 * 6, 360 * 1) *
+      (Math.random() < 0.5 ? -1 : 1);
+
+    await rotateControls.start({
+      rotate: [0, rotateTo],
+      transition: { duration: 1, ease: 'backInOut' },
+    });
   };
 
   return (
@@ -102,9 +116,9 @@ const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
         title="Randomize your design"
         {...CircleStyles}
         p="2.5"
-        onClick={() => setSeed((seed) => seed + 1)}
+        onClick={handleButtonClick}
         borderWidth="5px"
-        whileTap={{ scale: 0.9, rotate: (Math.random() - 0.5) * 360 * 1.5 }}
+        animate={rotateControls}
       >
         <DiceIcon />
       </Circle>

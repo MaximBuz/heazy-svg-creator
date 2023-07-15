@@ -1,4 +1,14 @@
-const getOpposedLineProperties = (pointA, pointB) => {
+import {
+  AnchorPoint,
+  GetBezierArgs,
+  GetHandleCoordsArgs,
+  OpposedLineProperties,
+} from './types';
+
+const getOpposedLineProperties = (
+  pointA: AnchorPoint,
+  pointB: AnchorPoint
+): OpposedLineProperties => {
   const lengthX = pointB[0] - pointA[0];
   const lengthY = pointB[1] - pointA[1];
 
@@ -8,13 +18,16 @@ const getOpposedLineProperties = (pointA, pointB) => {
   };
 };
 
-const getHandleCoords = (current, previous, next, reverse, smoothing) => {
-  previous = previous || current;
-  next = next || current;
-
+const getHandleCoords = ({
+  current,
+  previous = current,
+  next = current,
+  reverse,
+  smoothing,
+}: GetHandleCoordsArgs): AnchorPoint => {
   const opposedParallel = getOpposedLineProperties(previous, next);
 
-  // If is end-control-point, add PI to the angle to go backward
+  // If it is an end-control-point, add PI to the angle to go backward
   const angle = opposedParallel.angle + (reverse ? Math.PI : 0);
   const length = opposedParallel.length * smoothing;
 
@@ -24,22 +37,29 @@ const getHandleCoords = (current, previous, next, reverse, smoothing) => {
   return [x, y];
 };
 
-export const getBezier = (point, index, anchorPoints, smoothing) => {
-  // start control point
-  const [handle1x, handle1y] = getHandleCoords(
-    anchorPoints[index - 1],
-    anchorPoints[index - 2],
-    point,
-    undefined,
-    smoothing
-  );
-  // end control point
-  const [handle2x, handle2y] = getHandleCoords(
-    point,
-    anchorPoints[index - 1],
-    anchorPoints[index + 1],
-    true,
-    smoothing
-  );
+export const getBezier = ({
+  point,
+  index,
+  anchorPoints,
+  smoothing,
+}: GetBezierArgs): string => {
+  const currentIndex = index - 1 < 0 ? 0 : index - 1;
+
+  const [handle1x, handle1y] = getHandleCoords({
+    current: anchorPoints[currentIndex],
+    previous: index >= 2 ? anchorPoints[index - 2] : undefined,
+    next: point,
+    reverse: false,
+    smoothing,
+  });
+
+  const [handle2x, handle2y] = getHandleCoords({
+    current: point,
+    previous: anchorPoints[currentIndex],
+    next: index + 1 < anchorPoints.length ? anchorPoints[index + 1] : undefined,
+    reverse: true,
+    smoothing,
+  });
+
   return `C ${handle1x},${handle1y} ${handle2x},${handle2y} ${point[0]},${point[1]}`;
 };

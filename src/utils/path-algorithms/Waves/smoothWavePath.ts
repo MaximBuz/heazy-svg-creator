@@ -2,6 +2,7 @@ import { getBezier } from '../pathSmoothener';
 // calculates svg data attribute for wave with smooth peaks
 import { generateRandomNumber as rndm } from '../../helpers/randomNumber';
 import { getCoordinates as getInitialCoords } from './waveSectionDivider';
+import { AnchorPoint } from '../types';
 
 function getRandomAnchors(
   seed: number,
@@ -9,7 +10,7 @@ function getRandomAnchors(
   breaks: number,
   waveSize: number,
   width: number
-): [number, number][] {
+): AnchorPoint[] {
   // generate initial (non-random) x- and y-coordinates
   const pointCoordinates = getInitialCoords(breaks, width, waveSize);
 
@@ -44,12 +45,12 @@ export function smoothWavePath(
   stacks: number,
   distance: number,
   solid: boolean,
-  smooth: number
+  smoothing: number
 ): string[] {
   const initialWaveSize = height * (1 - balance);
 
   // save each full wave in here
-  const waves = [];
+  const waves: string[] = [];
 
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
@@ -62,20 +63,20 @@ export function smoothWavePath(
       width
     );
 
-    let commands;
-    let path;
+    let commands: string;
+    let path: [string, string];
 
     if (!solid) {
-      //@ts-ignore
-      commands = anchorPoints.reduce((acc, point, index, array) => {
-        return `${acc} ${getBezier(point, index, array, smooth)}`; // change this
-      });
+      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
+        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
+      }, '');
+
       path = [`M${anchorPoints[0][0]} ${anchorPoints[0][1]}`, commands];
     } else {
-      //@ts-ignore
-      commands = anchorPoints.reduce((acc, point, index, array) => {
-        return `${acc} ${getBezier(point, index, array, smooth)}`; // change this
-      });
+      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
+        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
+      }, '');
+
       path = ['M0 0', commands];
       path.push(`L${width} ${height}`, `L0 ${height}Z`);
     }

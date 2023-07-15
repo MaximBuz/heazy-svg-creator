@@ -1,10 +1,11 @@
+import { AnchorPoint } from './../types';
 import { zip } from '../../helpers/zipArray';
 
 export function getCoordinates(
   sections: number,
   width: number,
   waveSize: number
-): [number, number][] {
+): AnchorPoint[] {
   const equal = width / sections;
   const x = [];
   const y = [];

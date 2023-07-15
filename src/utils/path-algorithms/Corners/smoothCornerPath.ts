@@ -1,3 +1,4 @@
+import { AnchorPoint } from './../types';
 // calculates svg data attribute for wave with smooth peaks
 import { generateRandomNumber as rndm } from '../../helpers/randomNumber';
 import { getCoordinates as getInitialCoords } from './cornerWaveSectionDivider';
@@ -9,7 +10,7 @@ function getRandomAnchors(
   velocity: number,
   breaks: number,
   waveSize: number
-): [number, number][] {
+): AnchorPoint[] {
   // generate initial (non-random) x- and y-coordinates
   const pointCoordinates = getInitialCoords(breaks, waveSize);
 
@@ -61,7 +62,7 @@ export function smoothCornerPath(
   const initialWaveSize = ((width + height) / 2) * (1 - balance);
 
   // save each full wave in here
-  const waves = [];
+  const waves: string[] = [];
 
   // generate several stacked waves
   for (let stack = 0; stack <= stacks; stack++) {
@@ -73,21 +74,19 @@ export function smoothCornerPath(
       currentWaveSize
     );
 
-    let commands;
-    let path;
+    let commands: string;
+    let path: [string, string];
 
     // In case the wave is not filled, remove start and end line on the edges
     if (!solid) {
-      //@ts-ignore
-      commands = anchorPoints.reduce((acc, point, index, array) => {
-        return `${acc} ${getBezier(point, index, array, smoothing)}`;
-      });
+      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
+        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
+      }, '');
       path = [`M0 ${anchorPoints[0][1]}`, commands];
     } else {
-      //@ts-ignore
-      commands = anchorPoints.reduce((acc, point, index, array) => {
-        return `${acc} ${getBezier(point, index, array, smoothing)}`;
-      });
+      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
+        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
+      }, '');
       path = ['M0 0', commands];
       path.push('L0 0Z');
     }

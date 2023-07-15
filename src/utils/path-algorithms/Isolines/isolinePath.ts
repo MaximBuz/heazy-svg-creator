@@ -1,35 +1,26 @@
-// calculates svg data attribute for wave with smooth peaks
 import { generateRandomNumber as random } from '../../helpers/randomNumber';
-
-export interface IIsolineCoords {
-  handles: {
-    right: number;
-    left: number;
-    top: number;
-    bottom: number;
-  };
-  anchors: {
-    right: number;
-    left: number;
-    top: number;
-    bottom: number;
-  };
-}
+import { IIsolineCoords } from '../types';
 
 function initializeCoords(
-  seed,
-  velocity,
-  width,
-  height,
-  iteration
+  seed: number,
+  velocity: number,
+  width: number,
+  height: number,
+  iteration: number
 ): IIsolineCoords {
+  const velocityHeight = (velocity / 100) * height;
+  const velocityWidth = (velocity / 100) * width;
+  const handlesRight = (random(seed + 1) - 0.5) * (velocityHeight / iteration);
+  const handlesLeft = (random(seed + 2) - 0.5) * (velocityWidth / iteration);
+  const handlesTop = (random(seed + 3) - 0.5) * (velocityWidth / iteration);
+  const handlesBottom = (random(seed) - 0.5) * (velocityHeight / iteration);
+
   return {
     handles: {
-      right:
-        (random(seed + 1) - 0.5) * (((velocity / 100) * height) / iteration),
-      left: (random(seed + 2) - 0.5) * (((velocity / 100) * width) / iteration),
-      top: (random(seed + 3) - 0.5) * (((velocity / 100) * width) / iteration),
-      bottom: (random(seed) - 0.5) * (((velocity / 100) * height) / iteration),
+      right: handlesRight,
+      left: handlesLeft,
+      top: handlesTop,
+      bottom: handlesBottom,
     },
     anchors: {
       right: (random(seed) - 0.5) * (velocity / 100),
@@ -138,20 +129,21 @@ export function isolinePath(
     y: outerCenter.y * innerOffsetY,
   };
 
-  const isoline = [];
+  const isoline: string[] = [];
   for (let iteration = 2; iteration <= depth + 1; iteration++) {
     const sizeOffset = iteration * distance;
 
-    if (size - sizeOffset > 0)
+    if (size - sizeOffset > 0) {
+      const init = initializeCoords(
+        seed,
+        velocity,
+        width,
+        height,
+        Math.log(iteration + 1)
+      );
       isoline.push(
         calculatePath(
-          initializeCoords(
-            seed,
-            velocity,
-            width,
-            height,
-            Math.log(iteration + 1)
-          ),
+          init,
           size - sizeOffset,
           outerCenter,
           innerCenter,
@@ -159,6 +151,7 @@ export function isolinePath(
           pressure
         )
       );
+    }
   }
 
   return isoline;

@@ -1,9 +1,10 @@
 import { zip } from '../../helpers/zipArray';
+import { AnchorPoint } from '../types';
 
 export function getCoordinates(
   sections: number,
   waveSize: number
-): [number, number][] {
+): AnchorPoint[] {
   let remainingWaveSize = waveSize;
   const cuts = [];
 

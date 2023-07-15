@@ -3,13 +3,15 @@ import { useAuth } from '../../contexts/Auth';
 import { Design } from '../../graphql/generated';
 
 // Design
-import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import {
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  Input,
+  Box,
+  Flex,
+  Heading,
+  Text,
 } from '@chakra-ui/react';
 import Templates from './Templates';
 import Explore from './Explore';
@@ -25,9 +27,6 @@ const UserSpace: React.FunctionComponent = memo(() => {
     currentUserIsError,
     currentUserLoading,
   } = useAuth();
-
-  // Filter
-  const [search, setSearch] = useState<string>('');
 
   if (currentUserLoading) {
     return <QueryLoading size={80} speed={1} color="#363E4A" />;
@@ -64,18 +63,8 @@ const UserSpace: React.FunctionComponent = memo(() => {
             </AccordionButton>
           </h2>
           <AccordionPanel pl="1em" pr="1em">
-            <HStack mb="1em" dir="row" align="center" justify="center">
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
-              />
-            </HStack>
             {currentUser && (
-              <Templates
-                search={search}
-                designs={currentUser.designs as Design[]}
-              />
+              <Templates designs={currentUser.designs as Design[]} />
             )}
           </AccordionPanel>
         </AccordionItem>

@@ -16,7 +16,7 @@ export async function updateDesign(
     where: { id },
     data: {
       ...data,
-      name: data.name || '',
+      name: data.name || undefined,
       deleted: shouldDelete ? true : false,
       public: data.public ?? false,
     },

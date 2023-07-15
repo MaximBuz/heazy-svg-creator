@@ -46,7 +46,7 @@ export function DesignProvider({ children }) {
   // Design State
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
 
-  const [design, setDesign] = useState<IDesignModes>({ name: 'waves', id: 1 });
+  const [design, setDesign] = useState<IDesignModes>({ name: 'waves' });
 
   const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
   const [bubbleState, setBubbleState] =
@@ -61,7 +61,7 @@ export function DesignProvider({ children }) {
     useState<IFlareAllProps>(initialFlareState);
 
   // getting DesignTypes from database
-  const { data: designTypes, isSuccess } = useGetDesignTypesQuery({
+  const { data, isSuccess } = useGetDesignTypesQuery({
     endpoint,
     fetchParams: { headers: headers(auth?.idToken) },
   });
@@ -125,7 +125,7 @@ export function DesignProvider({ children }) {
           }
         );
       })
-      .catch(() => console.log('Failed to upload thumbnail'));
+      .catch((e) => console.error('Failed to upload thumbnail', e));
   }
 
   const value: IDesignProvider = {
@@ -135,17 +135,15 @@ export function DesignProvider({ children }) {
     design,
     setDesign,
     designTypes: isSuccess
-      ? designTypes
-      : {
-          designTypes: [
-            { name: 'waves', id: 1 },
-            { name: 'bubble', id: 2 },
-            { name: 'corners', id: 3 },
-            { name: 'marker', id: 4 },
-            { name: 'isolines', id: 5 },
-            { name: 'flare', id: 6 },
-          ],
-        },
+      ? data.designTypes
+      : [
+          { name: 'waves', id: 1 },
+          { name: 'bubble', id: 2 },
+          { name: 'corners', id: 3 },
+          { name: 'marker', id: 4 },
+          { name: 'isolines', id: 5 },
+          { name: 'flare', id: 6 },
+        ],
 
     waveState,
     setWaveState,

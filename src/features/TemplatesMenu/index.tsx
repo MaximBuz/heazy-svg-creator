@@ -14,12 +14,11 @@ import GitHubButton from 'react-github-btn';
 // Utils
 import Thumbnail from './Thumbnail';
 import { IDesignModes } from '../../types/designModes';
-import { GetDesignTypesQuery } from '../../graphql/generated';
 
 export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
   activeDesign: number;
-  designTypes: GetDesignTypesQuery | null;
+  designTypes: IDesignModes[] | null;
 }
 
 const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
@@ -58,7 +57,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
             }}
           >
             {designTypes ? (
-              designTypes.designTypes.map((type) => (
+              designTypes.map((type) => (
                 <Thumbnail
                   key={type.id}
                   isActive={activeDesign === type.id}
@@ -74,7 +73,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
                       ? marker
                       : type.name === 'isolines'
                       ? isolines
-                      : flare // here put flare placeholder
+                      : flare
                   }
                   type={type}
                 ></Thumbnail>

@@ -1,5 +1,5 @@
-import { Flex, Heading, Stack } from '@chakra-ui/react';
-import React from 'react';
+import { Flex, Heading, Stack, HStack, Input } from '@chakra-ui/react';
+import React, { useMemo, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { useDesign } from '../../contexts/Design';
 import { useUserSpace } from '../../contexts/UserSpace';
@@ -11,21 +11,17 @@ import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
 import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
 import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
 import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
-import placeholderIsolines from '../../assets/Thumbnails/placeholderIsolines.png';
 
 // Components
 import OwnThumbnail from './OwnThumbnail';
 import { useAuth } from '../../contexts/Auth';
+import { RaceBy } from '@uiball/loaders';
 
 export interface ITemplatesProps {
-  search: string;
   designs: Design[];
 }
 
-const Templates: React.FunctionComponent<ITemplatesProps> = ({
-  search,
-  designs,
-}) => {
+const Templates: React.FunctionComponent<ITemplatesProps> = ({ designs }) => {
   // Closing UserSpace
   const { onClose } = useUserSpace();
 
@@ -34,6 +30,9 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({
 
   // Auth
   const { idToken } = useAuth();
+
+  // Filter
+  const [search, setSearch] = useState<string>('');
 
   // Mutations
   const queryClient = useQueryClient();
@@ -46,6 +45,17 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({
       },
     }
   );
+
+  const isFetching = useMemo(() => {
+    return (
+      queryClient.getQueryState('getUserByFirebaseId')?.isFetching ||
+      designMutation.isLoading
+    );
+  }, [
+    queryClient.getQueryState('getUserByFirebaseId'),
+    designMutation.isLoading,
+  ]);
+
   if (designs.length === 0)
     return (
       <Flex direction="column" h="100px" mt="1em" justifyContent="center">
@@ -59,47 +69,61 @@ const Templates: React.FunctionComponent<ITemplatesProps> = ({
     );
 
   return (
-    <Stack spacing="5">
-      {designs
-        .filter((design) => {
-          if (
-            search &&
-            !design.name.toLowerCase().includes(search.toLowerCase())
-          )
-            return false;
-          else return true;
-        })
-        .map((design) => (
-          <OwnThumbnail
-            key={design.id}
-            id={design.id}
-            set={() => {
-              copyTemplateParams(design as Design);
-              onClose();
-            }}
-            mutation={designMutation}
-            isPublic={design.public}
-            copiedFrom={design?.copiedFrom?.userName}
-            timesCopied={design.timesCopied}
-            imageSrc={
-              design.thumbnailUrl !== 'null'
-                ? design.thumbnailUrl
-                : design.type.name === 'waves'
-                ? placeholderWaves
-                : design.type.name === 'bubble'
-                ? placeholderBubble
-                : design.type.name === 'corners'
-                ? placeholderCorners
-                : design.type.name === 'markers'
-                ? placeholderMarker
-                : design.type.name === 'isolines'
-                ? placeholderMarker // here put isolines placeholder
-                : placeholderMarker // here put flare placeholder
-            }
-            caption={design.name}
-          ></OwnThumbnail>
-        ))}
-    </Stack>
+    <>
+      <Flex alignItems="center" justifyContent="center" h="5px" mb="0.5em">
+        {isFetching && (
+          <RaceBy size={150} lineWeight={5} speed={1} color="grey" />
+        )}
+      </Flex>
+      <HStack mb="1em" dir="row" align="center" justify="center">
+        <Input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search"
+        />
+      </HStack>
+      <Stack spacing="5">
+        {designs
+          .filter((design) => {
+            if (
+              search &&
+              !design.name.toLowerCase().includes(search.toLowerCase())
+            )
+              return false;
+            else return true;
+          })
+          .map((design) => (
+            <OwnThumbnail
+              key={design.id}
+              id={design.id}
+              set={() => {
+                copyTemplateParams(design as Design);
+                onClose();
+              }}
+              mutation={designMutation}
+              isPublic={design.public}
+              copiedFrom={design?.copiedFrom?.userName}
+              timesCopied={design.timesCopied}
+              imageSrc={
+                design.thumbnailUrl !== 'null'
+                  ? design.thumbnailUrl
+                  : design.type.name === 'waves'
+                  ? placeholderWaves
+                  : design.type.name === 'bubble'
+                  ? placeholderBubble
+                  : design.type.name === 'corners'
+                  ? placeholderCorners
+                  : design.type.name === 'markers'
+                  ? placeholderMarker
+                  : design.type.name === 'isolines'
+                  ? placeholderMarker
+                  : placeholderMarker
+              }
+              caption={design.name}
+            ></OwnThumbnail>
+          ))}
+      </Stack>
+    </>
   );
 };
 

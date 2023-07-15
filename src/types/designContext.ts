@@ -6,7 +6,7 @@ import { IBubbleAllProps } from './bubbleProps';
 import { ICornerAllProps } from './cornerProps';
 import { IMarkerAllProps } from './markerProps';
 import { IWaveAllProps } from './waveProps';
-import { GetDesignTypesQuery, Design } from '../graphql/generated';
+import { Design } from '../graphql/generated';
 import { IFlareAllProps } from './flareProps';
 
 export interface IDesignProvider {
@@ -15,7 +15,7 @@ export interface IDesignProvider {
   canvasDimensions: ICanvasDimensions;
   design: IDesignModes;
   setDesign: Dispatch<SetStateAction<IDesignModes>>;
-  designTypes: GetDesignTypesQuery | null;
+  designTypes: IDesignModes[] | null;
 
   waveState: IWaveAllProps;
   setWaveState: Dispatch<SetStateAction<IWaveAllProps>>;

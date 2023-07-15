@@ -1,1 +1,1 @@
-export type IDesignModes = { name: string; id: number };
+export type IDesignModes = { name: string; id?: number };

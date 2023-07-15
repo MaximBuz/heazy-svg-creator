@@ -1,6 +1,7 @@
 import {
   AccordionPanel,
   Button,
+  Flex,
   HStack,
   Icon,
   Select,
@@ -24,6 +25,7 @@ import QueryLoading from '../../components/queryLoading';
 import QueryError from '../../components/queryError';
 import { UpDownIcon } from '@chakra-ui/icons';
 import { useDesign } from '../../contexts/Design';
+import { RaceBy } from '@uiball/loaders';
 
 const Explore: React.FunctionComponent = () => {
   // Auth
@@ -34,7 +36,7 @@ const Explore: React.FunctionComponent = () => {
   const [cursor, setCursor] = useState<number>();
   const [sort, setSort] = useState<string>('timesCopied');
   const [filterType, setFilterType] = useState<number>();
-  const { data, isSuccess, isError, isLoading, refetch } =
+  const { data, isSuccess, isError, isLoading, refetch, isRefetching } =
     useGetPublicDesignsQuery(
       {
         endpoint,
@@ -70,7 +72,11 @@ const Explore: React.FunctionComponent = () => {
   );
 
   if (isLoading) {
-    return <QueryLoading size={80} speed={1} color="#363E4A" />;
+    return (
+      <AccordionPanel px="1em" py="2em">
+        <QueryLoading size={80} speed={1} color="#363E4A" />
+      </AccordionPanel>
+    );
   }
 
   if (isError) {
@@ -79,6 +85,11 @@ const Explore: React.FunctionComponent = () => {
 
   return (
     <AccordionPanel pl="1em" pr="1em">
+      <Flex alignItems="center" justifyContent="center" h="5px">
+        {isRefetching && (
+          <RaceBy size={150} lineWeight={5} speed={1} color="grey" />
+        )}
+      </Flex>
       <HStack mb="1em" mt="0.5em" dir="row" align="center" justify="center">
         <Select
           onChange={(e) => setSort(e.target.value)}
@@ -109,12 +120,11 @@ const Explore: React.FunctionComponent = () => {
           }
           placeholder="Filter"
         >
-          {designTypes &&
-            designTypes.designTypes.map((design) => (
-              <option key={design.id} value={design.id}>
-                {design.name}
-              </option>
-            ))}
+          {designTypes?.map((design) => (
+            <option key={design.id} value={design.id}>
+              {design.name}
+            </option>
+          ))}
         </Select>
       </HStack>
       <Stack spacing="5">

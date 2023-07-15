@@ -41,6 +41,6 @@ model Design {
 
 model DesignType {
   id     Int      @id @default(autoincrement())
-  name   String
+  name   String   @unique
   design Design[]
 }

@@ -8,13 +8,16 @@ export async function getPublicDesigns(
   { prisma }: Context
 ): Promise<Design[]> {
   const take = args.take || 3;
-  const type = args.type || Array.from({ length: 6 }, (_, index) => index + 1);
+  const type = args.type;
   const sortBy = args.sortBy || 'timesCopied';
-  console.log(sortBy);
 
   const searchParams: Prisma.DesignFindManyArgs = {
     take,
-    where: { public: true, deleted: false, type: { id: { in: type } } },
+    where: {
+      public: true,
+      deleted: false,
+      type: type ? { id: { in: type } } : undefined,
+    },
     orderBy: { [sortBy]: 'desc' },
   };
 

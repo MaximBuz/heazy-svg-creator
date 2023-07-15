@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, Button } from '@chakra-ui/react';
+import { Flex, Heading, Text, Button, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 
@@ -6,6 +6,7 @@ export interface ICall2ActionProps {}
 
 const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
   const { t } = useTranslation('call2action');
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   return (
     <Flex
@@ -43,7 +44,7 @@ const Call2Action: React.FunctionComponent<ICall2ActionProps> = (props) => {
         {t('title3')}
       </Heading>
       <Text fontSize="20px">{t('description')}</Text>
-      <Flex gap="10px">
+      <Flex gap="10px" direction={isMobile ? 'column' : 'row'}>
         <Button
           as="a"
           href={

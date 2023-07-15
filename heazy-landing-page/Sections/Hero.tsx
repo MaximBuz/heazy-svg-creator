@@ -1,4 +1,4 @@
-import { Flex, Button, Heading, Text } from '@chakra-ui/react';
+import { Flex, Button, Heading, Text, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import Navbar from '../Components/Navbar';
 import { useTranslation } from 'next-i18next';
@@ -7,6 +7,9 @@ export interface IHeroProps {}
 
 const Hero: React.FunctionComponent<IHeroProps> = () => {
   const { t } = useTranslation('hero');
+  const [isMobile] = useMediaQuery(
+    '(max-width: 768px)'
+    );
 
   return (
     <Flex direction="column">
@@ -42,7 +45,7 @@ const Hero: React.FunctionComponent<IHeroProps> = () => {
             </span>
           </Heading>
           <Flex direction="column" alignItems="center" gap="5px">
-            <Flex gap="10px">
+            <Flex gap="10px" direction={isMobile ? 'column' : 'row'}>
               <Button
                 as="a"
                 href={

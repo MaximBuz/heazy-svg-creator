@@ -1,6 +1,5 @@
 import { AnchorPoint } from './../types';
-// calculates svg data attribute for wave with smooth peaks
-import { generateRandomNumber as rndm } from '../../helpers/randomNumber';
+import { generateRandomNumber } from '../../helpers/randomNumber';
 import { getCoordinates as getInitialCoords } from './cornerWaveSectionDivider';
 import { getBezier } from '../pathSmoothener';
 
@@ -20,30 +19,29 @@ function getRandomAnchors(
   for (let waveNo = 0; waveNo < breaks; waveNo++) {
     // get X and Y coordinates
     const pointCoordinate = pointCoordinates[waveNo];
-    const [initialX, initialY] = [pointCoordinate[0], pointCoordinate[1]];
+    const [initialX, initialY] = pointCoordinate;
 
     // calculate random components for y
-    const random = rndm(seed + waveNo);
-    const signedRandomPart = (random - 0.5) * velocity;
+    const random = generateRandomNumber(seed + waveNo);
+    const randomComponent = ((random - 0.5) * velocity * waveSize) / 3;
 
     // randomize X and Y coordinates
-    let x = initialX + (signedRandomPart * waveSize) / 3;
-    let y = initialY + (signedRandomPart * waveSize) / 3;
+    let x = initialX + randomComponent;
+    let y = initialY + randomComponent;
 
     // handle if first point (needs to be at the edge of the canvas)
     if (waveNo === 0) {
       x = 0;
-      y = waveSize + (signedRandomPart * waveSize) / 5;
-    }
-
-    // handle if last point (needs to be at the edge of the canvas)
-    if (waveNo + 1 === breaks) {
-      x = waveSize + (signedRandomPart * waveSize) / 5;
+      y = waveSize + randomComponent;
+    } else if (waveNo + 1 === breaks) {
+      // handle if last point (needs to be at the edge of the canvas)
+      x = waveSize + randomComponent;
       y = 0;
     }
 
     coordinates.push([x, y]);
   }
+
   return coordinates;
 }
 

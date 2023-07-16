@@ -63,23 +63,16 @@ export function smoothWavePath(
       width
     );
 
-    let commands: string;
-    let path: [string, string];
+    const commands = anchorPoints
+      .map((point, index) =>
+        getBezier({ point, index, anchorPoints, smoothing })
+      )
+      .join(' ');
 
-    if (!solid) {
-      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
-        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
-      }, '');
+    const path = solid
+      ? ['M0 0', commands, `L${width} ${height}`, `L0 ${height}Z`]
+      : [`M${anchorPoints[0][0]} ${anchorPoints[0][1]}`, commands]; // In case the wave is not filled, remove start and end line on the edges
 
-      path = [`M${anchorPoints[0][0]} ${anchorPoints[0][1]}`, commands];
-    } else {
-      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
-        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
-      }, '');
-
-      path = ['M0 0', commands];
-      path.push(`L${width} ${height}`, `L0 ${height}Z`);
-    }
     waves.push(path.join(' '));
   }
   return waves;

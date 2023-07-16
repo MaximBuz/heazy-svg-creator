@@ -74,24 +74,16 @@ export function smoothCornerPath(
       currentWaveSize
     );
 
-    let commands: string;
-    let path: [string, string];
+    const commands = anchorPoints
+      .map((point, index) =>
+        getBezier({ point, index, anchorPoints, smoothing })
+      )
+      .join(' ');
 
-    // In case the wave is not filled, remove start and end line on the edges
-    if (!solid) {
-      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
-        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
-      }, '');
-      path = [`M0 ${anchorPoints[0][1]}`, commands];
-    } else {
-      commands = anchorPoints.reduce((acc, point, index, anchorPoints) => {
-        return `${acc} ${getBezier({ point, index, anchorPoints, smoothing })}`;
-      }, '');
-      path = ['M0 0', commands];
-      path.push('L0 0Z');
-    }
+    const path = solid
+      ? ['M0 0', commands.trim(), 'L0 0Z']
+      : [`M0 ${anchorPoints[0][1]}`, commands.trim()]; // In case the wave is not filled, remove start and end line on the edges
 
-    // push each wave to waves array
     waves.push(path.join(' '));
   }
 

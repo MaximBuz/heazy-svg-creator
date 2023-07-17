@@ -11,7 +11,6 @@ import {
 } from './features';
 
 // Context
-import { AuthProvider } from './contexts/Auth';
 import { useDesign } from './contexts/Design';
 import { UserSpaceProvider } from './contexts/UserSpace';
 
@@ -42,32 +41,30 @@ function App() {
         <UserSpaceProvider>
           <TemplateMenu
             designTypes={designTypes}
-            activeDesign={design.id}
+            activeDesign={design.name}
             setDesign={setDesign}
           />
 
-          <AuthProvider>
-            <UserMenu />
+          <UserMenu />
 
-            <Container
-              centerContent
-              transform={`scale(${zoom})`}
-              transition="transform 0.3s cubic-bezier(0,.5,.5,1)"
-              justifyContent="center"
-              alignContent="center"
-              padding="3"
-              m="0"
-            >
-              {canvasContent}
-            </Container>
+          <Container
+            centerContent
+            transform={`scale(${zoom})`}
+            transition="transform 0.3s cubic-bezier(0,.5,.5,1)"
+            justifyContent="center"
+            alignContent="center"
+            padding="3"
+            m="0"
+          >
+            {canvasContent}
+          </Container>
 
-            <CanvasControls
-              svgRef={canvasRef}
-              currentZoom={zoom}
-              setSeed={setSeed}
-              setZoom={setZoom}
-            />
-          </AuthProvider>
+          <CanvasControls
+            svgRef={canvasRef}
+            currentZoom={zoom}
+            setSeed={setSeed}
+            setZoom={setZoom}
+          />
 
           <OptionsMenu svgRef={canvasRef}>{optionsContent}</OptionsMenu>
         </UserSpaceProvider>

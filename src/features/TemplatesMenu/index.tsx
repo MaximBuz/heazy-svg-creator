@@ -13,12 +13,12 @@ import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
-import { IDesignModes } from '../../types/designModes';
+import { IDesignMode } from '../../types/designModes';
 
 export interface ITemplateMenuProps {
-  setDesign: Dispatch<SetStateAction<IDesignModes>>;
-  activeDesign: number;
-  designTypes: IDesignModes[] | null;
+  setDesign: Dispatch<SetStateAction<IDesignMode>>;
+  activeDesign: IDesignMode['name'];
+  designTypes: IDesignMode[] | null;
 }
 
 const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
@@ -60,7 +60,7 @@ const TemplateMenu: React.FunctionComponent<ITemplateMenuProps> = memo(
               designTypes.map((type) => (
                 <Thumbnail
                   key={type.id}
-                  isActive={activeDesign === type.id}
+                  isActive={activeDesign === type.name}
                   setDesign={setDesign}
                   image={
                     type.name === 'waves'

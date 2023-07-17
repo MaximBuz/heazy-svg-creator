@@ -1,7 +1,7 @@
 import { IIsolinesAllProps } from './isolinesProps';
 import { Dispatch, SetStateAction, Ref } from 'react';
 import { ICanvasDimensions } from './canvasDimensions';
-import { IDesignModes } from './designModes';
+import { IDesignMode } from './designModes';
 import { IBubbleAllProps } from './bubbleProps';
 import { ICornerAllProps } from './cornerProps';
 import { IMarkerAllProps } from './markerProps';
@@ -13,9 +13,9 @@ export interface IDesignProvider {
   setWidth: Dispatch<SetStateAction<number>>;
   setHeight: Dispatch<SetStateAction<number>>;
   canvasDimensions: ICanvasDimensions;
-  design: IDesignModes;
-  setDesign: Dispatch<SetStateAction<IDesignModes>>;
-  designTypes: IDesignModes[] | null;
+  design: IDesignMode;
+  setDesign: Dispatch<SetStateAction<IDesignMode>>;
+  designTypes: IDesignMode[] | null;
 
   waveState: IWaveAllProps;
   setWaveState: Dispatch<SetStateAction<IWaveAllProps>>;

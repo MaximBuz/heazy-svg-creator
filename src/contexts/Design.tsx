@@ -1,5 +1,5 @@
 import React, { useContext, useState, Ref } from 'react';
-import { IDesignModes } from '../types/designModes';
+import { IDesignMode } from '../types/designModes';
 import { initialBubbleState } from '../features/Designs/Bubble/initialState';
 import { IBubbleAllProps } from '../types/bubbleProps';
 import { initialCornerState } from '../features/Designs/Corners/initialState';
@@ -46,7 +46,7 @@ export function DesignProvider({ children }) {
   // Design State
   const [setWidth, setHeight, canvasDimensions] = useCanvasDimensions(800, 600);
 
-  const [design, setDesign] = useState<IDesignModes>({ name: 'waves' });
+  const [design, setDesign] = useState<IDesignMode>({ name: 'waves' });
 
   const [waveState, setWaveState] = useState<IWaveAllProps>(initialWaveState);
   const [bubbleState, setBubbleState] =
@@ -70,7 +70,7 @@ export function DesignProvider({ children }) {
   function copyTemplateParams(designParams: Design) {
     const type = designParams.type;
 
-    setDesign(type);
+    setDesign(type as IDesignMode);
 
     if (type.name === 'waves') {
       setWaveState({ ...waveState, ...designParams.optionParameters });
@@ -135,15 +135,15 @@ export function DesignProvider({ children }) {
     design,
     setDesign,
     designTypes: isSuccess
-      ? data.designTypes
-      : [
-          { name: 'waves', id: 1 },
-          { name: 'bubble', id: 2 },
-          { name: 'corners', id: 3 },
-          { name: 'marker', id: 4 },
-          { name: 'isolines', id: 5 },
-          { name: 'flare', id: 6 },
-        ],
+      ? (data.designTypes as IDesignMode[])
+      : ([
+          { name: 'waves' },
+          { name: 'bubble' },
+          { name: 'corners' },
+          { name: 'marker' },
+          { name: 'isolines' },
+          { name: 'flare' },
+        ] as IDesignMode[]),
 
     waveState,
     setWaveState,

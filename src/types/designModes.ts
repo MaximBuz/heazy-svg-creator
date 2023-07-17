@@ -1,1 +1,4 @@
-export type IDesignModes = { name: string; id?: number };
+export type IDesignMode = {
+  name: 'waves' | 'bubble' | 'corners' | 'marker' | 'isolines' | 'flare';
+  id?: number;
+};

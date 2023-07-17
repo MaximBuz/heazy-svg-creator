@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { DesignProvider } from './contexts/Design';
 import { CookiesProvider } from './contexts/Cookies';
+import { AuthProvider } from './contexts/Auth';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,11 +31,13 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <ChakraProvider resetCSS={true} theme={theme}>
-        <DesignProvider>
-          <CookiesProvider>
-            <App />
-          </CookiesProvider>
-        </DesignProvider>
+        <AuthProvider>
+          <DesignProvider>
+            <CookiesProvider>
+              <App />
+            </CookiesProvider>
+          </DesignProvider>
+        </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} position="top-right" />
     </QueryClientProvider>

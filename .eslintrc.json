@@ -29,6 +29,7 @@
   "ignorePatterns": [
     "node_modules/",
     "build/",
-    "*.d.ts"
+    "*.d.ts",
+    "*.config.js"
   ]
 }

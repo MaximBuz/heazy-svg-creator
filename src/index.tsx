@@ -30,18 +30,6 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <ChakraProvider resetCSS={true} theme={theme}>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.goatcounter = {
-          path: function(p) { return "app." + p }
-      }`,
-          }}
-        />
-        <script
-          data-goatcounter="https://heazy.goatcounter.com/count"
-          async
-          src="//gc.zgo.at/count.js"
-        ></script>
         <DesignProvider>
           <CookiesProvider>
             <App />

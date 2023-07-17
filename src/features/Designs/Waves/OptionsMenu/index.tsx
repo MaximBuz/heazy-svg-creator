@@ -9,7 +9,7 @@ import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import Shape from './Shape';
 import Variants from './Variants';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const WaveOptions: React.FunctionComponent = () => {
   const { waveState, setWaveState } = useDesign();

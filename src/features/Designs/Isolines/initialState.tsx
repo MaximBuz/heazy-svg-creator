@@ -1,4 +1,4 @@
-import { IIsolinesAllProps } from '../../../types/isolinesProps';
+import { IIsolinesAllProps } from './types/IsolineProps.types';
 
 export const initialIsolineState: IIsolinesAllProps = {
   bgColor: '#0a1a32ff',

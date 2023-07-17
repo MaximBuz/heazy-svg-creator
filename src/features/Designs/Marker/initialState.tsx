@@ -1,4 +1,4 @@
-import { IMarkerAllProps } from '../../../types/markerProps';
+import { IMarkerAllProps } from './types/MarkerProps.types';
 
 export const initialMarkerState: IMarkerAllProps = {
   lineCap: 'butt',

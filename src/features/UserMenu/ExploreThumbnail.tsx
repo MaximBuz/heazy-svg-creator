@@ -9,7 +9,6 @@ import { useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../../firebase';
-import { IExploreThumbnailProps } from '../../types/userMenuExploreThumbnailProps';
 
 // Images
 import placeholderWaves from '../../assets/Thumbnails/placeholderWaves.png';
@@ -17,7 +16,8 @@ import placeholderBubble from '../../assets/Thumbnails/placeholderBubble.png';
 import placeholderCorners from '../../assets/Thumbnails/placeholderCorners.png';
 import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
 // import placeholderIsolines from '../../assets/Thumbnails/placeholderIsolines.png';
-import { useAuth } from '../../contexts/Auth';
+import { useAuth } from '../../contexts/AuthContext';
+import { IExploreThumbnailProps } from './types/ExploreThumbnailProps.types';
 
 const ExploreThumbnail: React.FunctionComponent<IExploreThumbnailProps> = ({
   copyTemplate,

@@ -11,13 +11,13 @@ import {
 } from './features';
 
 // Context
-import { useDesign } from './contexts/Design';
-import { UserSpaceProvider } from './contexts/UserSpace';
+import { useDesign } from './contexts/DesignContext';
+import { UserSpaceProvider } from './contexts/UserSpaceContext';
 
 // Styling
 import { Flex, Container } from '@chakra-ui/react';
-import useCanvasContent from './hooks/useCanvasContent';
-import useOptionsContent from './hooks/useOptionsContent';
+import useCanvasContent from './features/Canvas/hooks/useCanvasContent';
+import useOptionsContent from './features/OptionsMenu/hooks/useOptionsContent';
 
 function App() {
   const { design, setDesign, designTypes } = useDesign();

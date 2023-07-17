@@ -1,7 +1,7 @@
 import React, { Ref } from 'react';
 import SvgCanvas from '../../Canvas/SvgCanvas';
 import { generateRandomNumber as rand } from '../../../utils/helpers/randomNumber';
-import { useDesign } from '../../../contexts/Design';
+import { useDesign } from '../../../contexts/DesignContext';
 import hexRgb from 'hex-rgb';
 import mirror from '../../../utils/helpers/getTransform';
 

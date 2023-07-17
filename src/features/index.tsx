@@ -19,7 +19,7 @@ import Flare from './Designs/Flare';
 import FlareOptions from './Designs/Flare/OptionsMenu';
 
 import CanvasControls from './Canvas/CanvasControls';
-import useCanvasDimensions from './Canvas/useCanvasDimensions';
+import useCanvasDimensions from './Canvas/hooks/useCanvasDimensions';
 
 import TemplateMenu from './TemplatesMenu';
 import OptionsMenu from './OptionsMenu';

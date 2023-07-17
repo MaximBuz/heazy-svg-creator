@@ -17,8 +17,8 @@ import {
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import LineWidthLeft from '../../Waves/OptionsMenu/Icons/LineWidthLeft';
 import LineWidthRight from '../../Waves/OptionsMenu/Icons/LineWidthRight';
-import { useDesign } from '../../../../contexts/Design';
-import { strokeStyles } from '../../../../types/isolinesProps';
+import { useDesign } from '../../../../contexts/DesignContext';
+import { strokeStyles } from '../types/IsolineProps.types';
 
 const Variants: React.FunctionComponent = () => {
   const { isolinesState: state, setIsolinesState: setState } = useDesign();

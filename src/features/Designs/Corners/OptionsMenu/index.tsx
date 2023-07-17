@@ -12,7 +12,7 @@ import ColorOptions from '../../../OptionsMenu/ColorOptions';
 
 // Types
 import Position from './Position';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const CornerOptions: React.FunctionComponent = () => {
   const { cornerState, setCornerState } = useDesign();

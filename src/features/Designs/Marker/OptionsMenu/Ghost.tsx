@@ -21,7 +21,7 @@ import rgbHex from 'rgb-hex';
 import HideColorButton from '../../../OptionsMenu/HideColorButton';
 import GhostLeft from './Icons/GhostLeft';
 import GhostRight from './Icons/GhostRight';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;

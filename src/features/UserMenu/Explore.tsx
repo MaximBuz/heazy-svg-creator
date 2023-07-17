@@ -18,13 +18,13 @@ import {
 import { headers, endpoint } from '../../utils/apiConfig';
 
 // Components
-import { useAuth } from '../../contexts/Auth';
+import { useAuth } from '../../contexts/AuthContext';
 import ExploreThumbnail from './ExploreThumbnail';
 
-import QueryLoading from '../../components/queryLoading';
-import QueryError from '../../components/queryError';
+import LoadingPlaceholder from '../../components/LoadingPlaceholder';
+import ErrorPlaceholder from '../../components/ErrorPlaceholder';
 import { UpDownIcon } from '@chakra-ui/icons';
-import { useDesign } from '../../contexts/Design';
+import { useDesign } from '../../contexts/DesignContext';
 import { RaceBy } from '@uiball/loaders';
 
 const Explore: React.FunctionComponent = () => {
@@ -74,13 +74,13 @@ const Explore: React.FunctionComponent = () => {
   if (isLoading) {
     return (
       <AccordionPanel px="1em" py="2em">
-        <QueryLoading size={80} speed={1} color="#363E4A" />
+        <LoadingPlaceholder size={80} speed={1} color="#363E4A" />
       </AccordionPanel>
     );
   }
 
   if (isError) {
-    return <QueryError />;
+    return <ErrorPlaceholder />;
   }
 
   return (

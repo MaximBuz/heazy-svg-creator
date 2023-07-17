@@ -18,7 +18,7 @@ import LineWidthLeft from '../../Waves/OptionsMenu/Icons/LineWidthLeft';
 import LineWidthRight from '../../Waves/OptionsMenu/Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const Variants: React.FunctionComponent = () => {
   const { bubbleState: state, setBubbleState: setState } = useDesign();

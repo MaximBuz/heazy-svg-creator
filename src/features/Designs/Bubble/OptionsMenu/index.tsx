@@ -11,7 +11,7 @@ import Variants from './Variants';
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import ShadowOptions from '../../../OptionsMenu/ShadowOptions';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const BubbleOptions: React.FunctionComponent = () => {
   const { bubbleState, setBubbleState } = useDesign();

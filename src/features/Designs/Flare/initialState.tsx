@@ -1,4 +1,4 @@
-import { IFlareAllProps } from '../../../types/flareProps';
+import { IFlareAllProps } from './types/FlareProps.types';
 
 export const initialFlareState: IFlareAllProps = {
   bgColor: '#0a1a32',

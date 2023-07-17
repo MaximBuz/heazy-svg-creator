@@ -1,4 +1,4 @@
-import { ICornerAllProps } from '../../../types/cornerProps';
+import { ICornerAllProps } from './types/Corners.types';
 
 export const initialCornerState: ICornerAllProps = {
   solid: true,

@@ -1,11 +1,11 @@
 import { Flex, Circle, Icon } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import React from 'react';
-import { useUserSpace } from '../../contexts/UserSpace';
-import { ICanvasControlsProps } from '../../types/canvasControlsProps';
+import { useUserSpace } from '../../contexts/UserSpaceContext';
 
 import DiceIcon from './DiceIcon';
 import SaveButton from './SaveButton';
+import { ICanvasControlsProps } from './types/Canvas.types';
 
 const CanvasControls: React.FunctionComponent<ICanvasControlsProps> = ({
   currentZoom,

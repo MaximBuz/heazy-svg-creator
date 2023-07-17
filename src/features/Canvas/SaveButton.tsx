@@ -17,9 +17,9 @@ import {
 } from '@chakra-ui/react';
 
 // Contexts
-import { useAuth } from '../../contexts/Auth';
-import { useDesign } from '../../contexts/Design';
-import { useUserSpace } from '../../contexts/UserSpace';
+import { useAuth } from '../../contexts/AuthContext';
+import { useDesign } from '../../contexts/DesignContext';
+import { useUserSpace } from '../../contexts/UserSpaceContext';
 import { CloseIcon } from '@chakra-ui/icons';
 import { useEventLogger } from '../../hooks/useEventLogger';
 

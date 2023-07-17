@@ -1,7 +1,7 @@
 import React, { Ref, useId } from 'react';
 import { smoothWavePath } from '../../../utils/path-algorithms/Waves/smoothWavePath';
 import SvgCanvas from '../../Canvas/SvgCanvas';
-import { useDesign } from '../../../contexts/Design';
+import { useDesign } from '../../../contexts/DesignContext';
 
 const Waves: React.FunctionComponent<{
   svgRef: Ref<SVGSVGElement | null>;

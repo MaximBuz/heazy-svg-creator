@@ -27,7 +27,7 @@ import CapsRight from './Icons/CapsRight';
 import JoinsLeft from './Icons/JoinsLeft';
 import JoinsCenter from './Icons/JoinsCenter';
 import JoinsRight from './Icons/JoinsRight';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const Shape: React.FunctionComponent = () => {
   const { markerState: state, setMarkerState: setState } = useDesign();

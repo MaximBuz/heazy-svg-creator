@@ -18,7 +18,7 @@ import {
   Spacer,
   Button,
 } from '@chakra-ui/react';
-import { IDimensionsDrawerProps } from '../../types/dimensionsDrawerProps';
+import { IDimensionsDrawerProps } from './types/OptionsMenu.types';
 
 const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
   isOpen,

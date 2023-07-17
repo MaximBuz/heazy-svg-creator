@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 import * as icons from './icons';
 
 const Shape: React.FunctionComponent = () => {

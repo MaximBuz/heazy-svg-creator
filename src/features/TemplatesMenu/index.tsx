@@ -13,7 +13,7 @@ import GitHubButton from 'react-github-btn';
 
 // Utils
 import Thumbnail from './Thumbnail';
-import { IDesignMode } from '../../types/designModes';
+import { IDesignMode } from '../../contexts/types/DesignContext.types';
 
 export interface ITemplateMenuProps {
   setDesign: Dispatch<SetStateAction<IDesignMode>>;

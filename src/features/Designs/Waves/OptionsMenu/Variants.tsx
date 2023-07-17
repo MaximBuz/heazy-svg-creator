@@ -20,7 +20,7 @@ import LineWidthRight from './Icons/LineWidthRight';
 import Solid from './Icons/Solid';
 import Outline from './Icons/Outline';
 import { memo } from 'react';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const Variants: React.FunctionComponent = memo(() => {
   const { waveState: state, setWaveState: setState } = useDesign();

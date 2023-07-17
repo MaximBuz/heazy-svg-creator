@@ -7,7 +7,7 @@ import {
   HStack,
   Switch,
 } from '@chakra-ui/react';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const Position: React.FunctionComponent = () => {
   const { cornerState: state, setCornerState: setState } = useDesign();

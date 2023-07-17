@@ -1,6 +1,6 @@
 import React from 'react';
-import { ICornerSvgGroup } from '../../../types/cornerSvgGroup';
 import mirror from '../../../utils/helpers/getTransform';
+import { ICornerSvgGroup } from './types/Corners.types';
 
 const CornerSvgGroup: React.FunctionComponent<ICornerSvgGroup> = (props) => {
   // destructure some params

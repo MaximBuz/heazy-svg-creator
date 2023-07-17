@@ -2,7 +2,7 @@ import React, { Ref, useId } from 'react';
 import { smoothCornerPath } from '../../../utils/path-algorithms/Corners/smoothCornerPath';
 import CornerSvgGroup from './CornerSvgGroup';
 import SvgCanvas from '../../Canvas/SvgCanvas';
-import { useDesign } from '../../../contexts/Design';
+import { useDesign } from '../../../contexts/DesignContext';
 
 const Corners: React.FunctionComponent<{
   svgRef: Ref<SVGSVGElement | null>;

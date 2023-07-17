@@ -1,4 +1,4 @@
-import { IBubbleAllProps } from '../../../types/bubbleProps';
+import { IBubbleAllProps } from './types/Bubble.types';
 
 export const initialBubbleState: IBubbleAllProps = {
   solid: true,

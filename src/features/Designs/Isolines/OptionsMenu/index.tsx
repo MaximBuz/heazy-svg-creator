@@ -10,7 +10,7 @@ import Variants from './Variants';
 // Types
 import Shape from './Shape';
 import ColorOptions from '../../../OptionsMenu/ColorOptions';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 import Position from './Position';
 import CenterPosition from './CenterOffset';
 

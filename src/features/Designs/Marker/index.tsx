@@ -1,7 +1,7 @@
 import React, { Ref, useId } from 'react';
 import { markerPath } from '../../../utils/path-algorithms/Marker/markerPath';
 import SvgCanvas from '../../Canvas/SvgCanvas';
-import { useDesign } from '../../../contexts/Design';
+import { useDesign } from '../../../contexts/DesignContext';
 
 const Marker: React.FunctionComponent<{
   svgRef: Ref<SVGSVGElement | null>;

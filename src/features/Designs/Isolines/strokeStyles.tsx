@@ -1,5 +1,5 @@
 import React from 'react';
-import { IIsolinesVariantsProps } from '../../../types/isolinesProps';
+import { IIsolinesVariantsProps } from './types/IsolineProps.types';
 
 const StrokeStyles: React.FunctionComponent<
   Pick<IIsolinesVariantsProps, 'strokeStyle'>

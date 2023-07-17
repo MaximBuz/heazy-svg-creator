@@ -20,7 +20,7 @@ import {
 } from './Styles';
 import DimensionsDrawer from './DimensionsDrawer';
 import DownloadSection from './DownloadSection';
-import { useDesign } from '../../contexts/Design';
+import { useDesign } from '../../contexts/DesignContext';
 
 export interface IOptionsMenuProps {
   svgRef: Ref<SVGSVGElement | null>;

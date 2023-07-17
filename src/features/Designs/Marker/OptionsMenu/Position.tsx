@@ -10,7 +10,7 @@ import {
   Tab,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import PaddingLeft from './Icons/PaddingLeft';
 import PaddingRight from './Icons/PaddingRight';

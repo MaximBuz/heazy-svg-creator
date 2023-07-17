@@ -10,7 +10,7 @@ import ColorOptions from '../../../OptionsMenu/ColorOptions';
 import Shape from './Shape';
 import Position from './Position';
 import Ghost from './Ghost';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 // Types
 

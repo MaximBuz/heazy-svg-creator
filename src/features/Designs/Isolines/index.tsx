@@ -1,6 +1,6 @@
 import React, { Ref, useId } from 'react';
 import SvgCanvas from '../../Canvas/SvgCanvas';
-import { useDesign } from '../../../contexts/Design';
+import { useDesign } from '../../../contexts/DesignContext';
 import { isolinePath } from '../../../utils/path-algorithms/Isolines/isolinePath';
 import StrokeStyles from './strokeStyles';
 

@@ -22,8 +22,8 @@ import {
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
 import HideColorButton from '../../../OptionsMenu/HideColorButton';
-import { useDesign } from '../../../../contexts/Design';
-import { TLensColorModes } from '../../../../types/flareProps';
+import { useDesign } from '../../../../contexts/DesignContext';
+import { TLensColorModes } from '../types/FlareProps.types';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;

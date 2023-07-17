@@ -2,7 +2,7 @@ import React, { Ref, useId } from 'react';
 import { bubblePath } from '../../../utils/path-algorithms/Bubble/bubblePath';
 import { generateRandomNumber } from '../../../utils/helpers/randomNumber';
 import SvgCanvas from '../../Canvas/SvgCanvas';
-import { useDesign } from '../../../contexts/Design';
+import { useDesign } from '../../../contexts/DesignContext';
 
 const Bubble: React.FunctionComponent<{
   svgRef: Ref<SVGSVGElement | null>;

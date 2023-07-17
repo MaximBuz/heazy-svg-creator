@@ -1,8 +1,8 @@
 import { Flex, Heading, Stack, HStack, Input } from '@chakra-ui/react';
 import React, { useMemo, useState } from 'react';
 import { useQueryClient } from 'react-query';
-import { useDesign } from '../../contexts/Design';
-import { useUserSpace } from '../../contexts/UserSpace';
+import { useDesign } from '../../contexts/DesignContext';
+import { useUserSpace } from '../../contexts/UserSpaceContext';
 import { Design, useUpdateDesignMutation } from '../../graphql/generated';
 import { headers, endpoint } from '../../utils/apiConfig';
 
@@ -14,7 +14,7 @@ import placeholderMarker from '../../assets/Thumbnails/placeholderMarker.png';
 
 // Components
 import OwnThumbnail from './OwnThumbnail';
-import { useAuth } from '../../contexts/Auth';
+import { useAuth } from '../../contexts/AuthContext';
 import { RaceBy } from '@uiball/loaders';
 
 export interface ITemplatesProps {

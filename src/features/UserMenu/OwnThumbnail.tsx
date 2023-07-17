@@ -15,7 +15,7 @@ import { useMutation, useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { deleteObject, getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../../firebase';
-import { IOwnThumbnailProps } from '../../types/userMenuOwnThumbnailProps';
+import { IOwnThumbnailProps } from './types/OwnThumbnailProps.types';
 
 const OwnThumbnail: React.FunctionComponent<IOwnThumbnailProps> = ({
   id,

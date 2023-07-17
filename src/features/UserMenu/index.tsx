@@ -10,8 +10,8 @@ import {
 } from '@chakra-ui/react';
 import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion';
 import React, { memo, useRef, useState } from 'react';
-import { useAuth } from '../../contexts/Auth';
-import { useUserSpace } from '../../contexts/UserSpace';
+import { useAuth } from '../../contexts/AuthContext';
+import { useUserSpace } from '../../contexts/UserSpaceContext';
 import Login from './Login';
 import Registration from './Registration';
 import UserSpace from './UserSpace';

@@ -24,7 +24,7 @@ import DistanceLeft from './Icons/DistanceLeft';
 import DistanceRight from './Icons/DistanceRight';
 import Edgy from './Icons/Edgy';
 import Smooth from './Icons/Smooth';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const Shape: React.FunctionComponent = memo(() => {
   const { waveState: state, setWaveState: setState } = useDesign();

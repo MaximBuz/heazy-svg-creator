@@ -12,7 +12,7 @@ import VelocityLeft from './Icons/VelocityLeft';
 import VelocityRight from './Icons/VelocityRight';
 import SizeLeft from './Icons/SizeLeft';
 import SizeRight from './Icons/SizeRight';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 export interface IShapeProps {
   velocity: number;

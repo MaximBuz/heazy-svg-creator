@@ -1,8 +1,8 @@
 import { logEvent } from 'firebase/analytics';
-import { useCookies } from '../contexts/Cookies';
+import { useAnalyticsConsent } from '../contexts/AnalyticsConsentContext';
 
 export const useEventLogger = () => {
-  const cookies = useCookies();
+  const cookies = useAnalyticsConsent();
 
   function sendEventLog(
     eventName: string,

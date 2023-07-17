@@ -7,7 +7,7 @@ import {
   SliderThumb,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 import SliderIconWrapper from '../../../OptionsMenu/SliderIconWrapper';
 import * as icons from './icons';
 

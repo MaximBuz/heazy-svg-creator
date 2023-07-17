@@ -11,7 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { Dispatch, useState } from 'react';
-import { useAuth } from '../../contexts/Auth';
+import { useAuth } from '../../contexts/AuthContext';
 import Register from '../../assets/Register.svg';
 import { RaceBy } from '@uiball/loaders';
 

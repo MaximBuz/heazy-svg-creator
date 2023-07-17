@@ -1,4 +1,4 @@
-import { IWaveAllProps } from '../../../types/waveProps';
+import { IWaveAllProps } from './types/WaveProps.types';
 
 export const initialWaveState: IWaveAllProps = {
   solid: true,

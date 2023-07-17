@@ -22,7 +22,7 @@ import {
 
 import { RaceBy } from '@uiball/loaders';
 import React, { Dispatch, useState } from 'react';
-import { useAuth } from '../../contexts/Auth';
+import { useAuth } from '../../contexts/AuthContext';
 import LoginImg from '../../assets/Login.svg';
 
 export interface ILoginProps {

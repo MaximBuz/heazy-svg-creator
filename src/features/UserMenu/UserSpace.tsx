@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { useAuth } from '../../contexts/Auth';
+import { useAuth } from '../../contexts/AuthContext';
 import { Design } from '../../graphql/generated';
 
 // Design
@@ -15,8 +15,8 @@ import {
 } from '@chakra-ui/react';
 import Templates from './Templates';
 import Explore from './Explore';
-import QueryError from '../../components/queryError';
-import QueryLoading from '../../components/queryLoading';
+import ErrorPlaceholder from '../../components/ErrorPlaceholder';
+import LoadingPlaceholder from '../../components/LoadingPlaceholder';
 
 const UserSpace: React.FunctionComponent = memo(() => {
   // Auth
@@ -29,10 +29,10 @@ const UserSpace: React.FunctionComponent = memo(() => {
   } = useAuth();
 
   if (currentUserLoading) {
-    return <QueryLoading size={80} speed={1} color="#363E4A" />;
+    return <LoadingPlaceholder size={80} speed={1} color="#363E4A" />;
   }
   if (currentUserIsError) {
-    return <QueryError withImage />;
+    return <ErrorPlaceholder withImage />;
   }
   return (
     <Flex direction="column" textAlign="center" gap="10px">

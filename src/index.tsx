@@ -7,9 +7,9 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import theme from './utils/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { DesignProvider } from './contexts/Design';
-import { CookiesProvider } from './contexts/Cookies';
-import { AuthProvider } from './contexts/Auth';
+import { DesignProvider } from './contexts/DesignContext';
+import { AnalyticsConsentProvider } from './contexts/AnalyticsConsentContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -33,9 +33,9 @@ root.render(
       <ChakraProvider resetCSS={true} theme={theme}>
         <AuthProvider>
           <DesignProvider>
-            <CookiesProvider>
+            <AnalyticsConsentProvider>
               <App />
-            </CookiesProvider>
+            </AnalyticsConsentProvider>
           </DesignProvider>
         </AuthProvider>
       </ChakraProvider>

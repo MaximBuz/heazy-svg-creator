@@ -24,7 +24,7 @@ import DistanceRight from './Icons/DistanceRight';
 
 import Smooth from './Icons/Smooth';
 import Edgy from './Icons/Edgy';
-import { useDesign } from '../../../../contexts/Design';
+import { useDesign } from '../../../../contexts/DesignContext';
 
 const Shape: React.FunctionComponent = () => {
   const { cornerState: state, setCornerState: setState } = useDesign();

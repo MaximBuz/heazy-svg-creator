@@ -5,11 +5,9 @@ import { Flex, Text, Image, Box } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
-import { IDesignMode } from '../../types/designModes';
-import { logEvent } from 'firebase/analytics';
-import { useUserSpace } from '../../contexts/UserSpace';
-import { useCookies } from '../../contexts/Cookies';
+import { useUserSpace } from '../../contexts/UserSpaceContext';
 import { useEventLogger } from '../../hooks/useEventLogger';
+import { IDesignMode } from '../../contexts/types/DesignContext.types';
 
 export interface IThumbnailProps {
   isActive: boolean;

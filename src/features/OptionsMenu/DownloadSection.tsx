@@ -13,6 +13,7 @@ import {
   PopoverHeader,
   PopoverBody,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 import React, { Ref } from 'react';
 import {
@@ -25,14 +26,13 @@ import { downloadSectionStyles } from './Styles';
 
 export interface IDownloadSectionProps {
   svgRef: Ref<SVGSVGElement | null>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  toast: any;
 }
 
 const DownloadSection: React.FunctionComponent<IDownloadSectionProps> = ({
   svgRef,
-  toast,
 }) => {
+  const toast = useToast();
+
   return (
     <Flex {...downloadSectionStyles}>
       <Stack direction="row" spacing={2}>

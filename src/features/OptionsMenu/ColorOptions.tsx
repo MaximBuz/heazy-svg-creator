@@ -1,5 +1,5 @@
 // React
-import React, { Dispatch, memo, SetStateAction } from 'react';
+import React, { memo } from 'react';
 
 // Styles
 import {
@@ -20,37 +20,12 @@ import {
 import ColorPicker from 'react-color';
 import rgbHex from 'rgb-hex';
 import HideColorButton from './HideColorButton';
-
-// Types
-import { IBubbleAllProps } from '../Designs/Bubble/types/Bubble.types';
-import { ICornerAllProps } from '../Designs/Corners/types/Corners.types';
-import { IIsolinesAllProps } from '../Designs/Isolines/types/IsolineProps.types';
-import { IMarkerAllProps } from '../Designs/Marker/types/MarkerProps.types';
-import { IWaveAllProps } from '../Designs/Waves/types/WaveProps.types';
+import { ISharedOptionsProps } from './types/OptionsMenu.types';
 
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;
 
-type IColorOptionProps =
-  | { state: IWaveAllProps; setState: Dispatch<SetStateAction<IWaveAllProps>> }
-  | {
-      state: IBubbleAllProps;
-      setState: Dispatch<SetStateAction<IBubbleAllProps>>;
-    }
-  | {
-      state: IMarkerAllProps;
-      setState: Dispatch<SetStateAction<IMarkerAllProps>>;
-    }
-  | {
-      state: ICornerAllProps;
-      setState: Dispatch<SetStateAction<ICornerAllProps>>;
-    }
-  | {
-      state: IIsolinesAllProps;
-      setState: Dispatch<SetStateAction<IIsolinesAllProps>>;
-    };
-
-const ColorOptions: React.FunctionComponent<IColorOptionProps> = memo(
+const ColorOptions: React.FunctionComponent<ISharedOptionsProps> = memo(
   ({ state, setState }) => {
     return (
       <>

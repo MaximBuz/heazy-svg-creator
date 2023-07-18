@@ -1,14 +1,7 @@
-import React, { ReactNode, Ref, useRef } from 'react';
+import React, { useRef } from 'react';
 
 // Design
-import {
-  Flex,
-  Stack,
-  Heading,
-  Divider,
-  useDisclosure,
-  useToast,
-} from '@chakra-ui/react';
+import { Flex, Stack, Heading, Divider, useDisclosure } from '@chakra-ui/react';
 
 // Utils
 import { motion } from 'framer-motion';
@@ -21,11 +14,7 @@ import {
 import DimensionsDrawer from './DimensionsDrawer';
 import DownloadSection from './DownloadSection';
 import { useDesign } from '../../contexts/DesignContext';
-
-export interface IOptionsMenuProps {
-  svgRef: Ref<SVGSVGElement | null>;
-  children: ReactNode;
-}
+import { IOptionsMenuProps } from './types/OptionsMenu.types';
 
 const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({
   svgRef,
@@ -36,12 +25,9 @@ const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({
   /* ---------- PROPS ---------- */
   const { width, widthRatio, height, heightRatio } = canvasDimensions;
 
-  /* ---------- NOTIFICATIONS ---------- */
-  const toast = useToast();
-
   /* ---------- DIMENSIONS DRAWER ---------- */
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const drawerButtonRef = useRef();
+  const drawerButtonRef = useRef<HTMLDivElement | null>();
 
   return (
     <Flex {...wrapperStyles}>
@@ -72,7 +58,7 @@ const OptionsMenu: React.FunctionComponent<IOptionsMenuProps> = ({
       </Stack>
 
       {/* --------- DOWNLOAD SECTION AT BOTTOM --------- */}
-      <DownloadSection svgRef={svgRef} toast={toast} />
+      <DownloadSection svgRef={svgRef} />
 
       {/* --------- DIMENSIONS DRAWER --------- */}
       <DimensionsDrawer

@@ -36,7 +36,6 @@ const DimensionsDrawer: React.FunctionComponent<IDimensionsDrawerProps> = ({
       onClose={onClose}
       finalFocusRef={drawerButtonRef}
     >
-      {/* <DrawerOverlay /> */}
       <DrawerContent bgColor="#1c1f27">
         <DrawerHeader>
           <Stack spacing={2.5}>

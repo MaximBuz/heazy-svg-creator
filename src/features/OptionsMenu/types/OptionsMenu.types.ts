@@ -1,4 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, Ref, RefObject, SetStateAction } from 'react';
+import { IBubbleAllProps } from '../../Designs/Bubble/types/Bubble.types';
+import { ICornerAllProps } from '../../Designs/Corners/types/Corners.types';
+import { IIsolinesAllProps } from '../../Designs/Isolines/types/IsolineProps.types';
+import { IMarkerAllProps } from '../../Designs/Marker/types/MarkerProps.types';
+import { IWaveAllProps } from '../../Designs/Waves/types/WaveProps.types';
 
 export interface IColors {
   startColor: string;
@@ -29,9 +34,26 @@ export interface IShadowDispatcher {
 export interface IDimensionsDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  drawerButtonRef: any;
+  drawerButtonRef: RefObject<HTMLDivElement | null>;
   setHeight: Dispatch<SetStateAction<number>>;
   setWidth: Dispatch<SetStateAction<number>>;
   height: number;
   width: number;
+}
+
+export type AllDesignsProps =
+  | IWaveAllProps
+  | IBubbleAllProps
+  | IMarkerAllProps
+  | ICornerAllProps
+  | IIsolinesAllProps;
+
+export interface ISharedOptionsProps<T = AllDesignsProps> {
+  state: T;
+  setState: Dispatch<SetStateAction<T>>;
+}
+
+export interface IOptionsMenuProps {
+  svgRef: Ref<SVGSVGElement | null>;
+  children: ReactNode;
 }

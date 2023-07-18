@@ -41,7 +41,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=true npm run test && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate": "graphql-codegen",
@@ -78,9 +78,9 @@
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0-alpha.2",
+    "husky": "^8.0.0",
     "prettier": "^3.0.0",
     "source-map-explorer": "^2.5.2",
-    "typescript": "latest",
-    "husky": "^8.0.0"
+    "typescript": "latest"
   }
 }

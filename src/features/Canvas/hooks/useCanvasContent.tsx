@@ -9,7 +9,7 @@ import {
   Waves,
 } from '../../../features';
 
-const useDesignRendering = () => {
+const useCanvasContent = () => {
   const { design } = useDesign();
 
   const [seed, setSeed] = useState<number>(1);
@@ -35,4 +35,4 @@ const useDesignRendering = () => {
   };
 };
 
-export default useDesignRendering;
+export default useCanvasContent;

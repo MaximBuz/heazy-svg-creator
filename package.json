@@ -40,7 +40,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:app": "react-scripts start",
+    "start:server": "npm run --prefix ./server start",
+    "start:landing-page": "npm run --prefix ./heazy-landing-page dev",
     "build": "CI=true npm run test && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

@@ -59,8 +59,12 @@ const Home: NextPage = () => {
           bottom="0"
           background="transparent"
           width="100%"
+          gap="1em"
         >
           <Link href="/privacy">{t('privacyNotice')}</Link>
+          <Link href="https://website-mechaniker.de/" target="_blank">
+            Website Mechaniker
+          </Link>
         </Flex>
         <Flex
           position="fixed"

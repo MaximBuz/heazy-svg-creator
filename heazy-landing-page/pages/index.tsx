@@ -62,8 +62,11 @@ const Home: NextPage = () => {
           gap="1em"
         >
           <Link href="/privacy">{t('privacyNotice')}</Link>
-          <Link href="https://website-mechaniker.de/" target="_blank">
-            Website Mechaniker
+          <Link href="https://maxim-buz.dev" target="_blank">
+            Maxim Buz
+          </Link>
+          <Link href="https://ai-native-engineering-jobs.com" target="_blank">
+            AI Native Engineering Jobs
           </Link>
         </Flex>
         <Flex

@@ -65,8 +65,8 @@ const Home: NextPage = () => {
           <Link href="https://maxim-buz.dev" target="_blank">
             Maxim Buz
           </Link>
-          <Link href="https://ai-native-engineering-jobs.com" target="_blank">
-            AI Native Engineering Jobs
+          <Link href="https://agentic-engineering-jobs.com/" target="_blank">
+            Agentic Engineering Jobs
           </Link>
         </Flex>
         <Flex
